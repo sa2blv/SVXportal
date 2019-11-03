@@ -10,7 +10,9 @@ These instructions will get you a copy of the project up and running on your loc
 
 
 ```
-php5 > and mysql
+php5 > 
+mysql
+apache2 or ngnx
 
 
 ```
@@ -41,7 +43,7 @@ and add username and password to config.php
 
 add adress to svxrefector proxy to config.php
 
-edit the $url parameter in the Reflectorporxy/index.php director to match the 
+edit the $url parameter in the reflektorproxy/index.php director to match the 
 SVXreflector server.
 
 
