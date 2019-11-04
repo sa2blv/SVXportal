@@ -923,13 +923,7 @@ function show_station_information(identity)
 		$('#tg_tg').html(tg_tg.toString());
 		$('#swVer_tg').html(swVer_tg.toString());
 		
-		if(ip_adress.includes("44.") == true)
-		{
-			$('#ipnr_stn').html("True");
-		}else
-		{
-			$('#ipnr_stn').html("False");
-		}
+	
 
 		
 		$('#nodeLocation_stn').html(location.toString());
@@ -1526,6 +1520,10 @@ function remove_covige()
 {
 	window.map.removeLayer(ov["riu.png"]);
 	window.map.removeLayer(ov["gw.png"]);
+
+
+
+			
 	Lock_show  =0;
 }
 

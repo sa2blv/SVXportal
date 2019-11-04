@@ -22,7 +22,7 @@ function get_fcontent( $url,  $javascript_loop = 0, $timeout = 5 ) {
     $cookies = tempnam('/tmp','cookie.txt');
     curl_setopt($ch, CURLOPT_COOKIEJAR, $cookies); 
     curl_setopt($ch, CURLOPT_COOKIEFILE, $cookies);
-    curl_setopt($curl, CURLOPT_FRESH_CONNECT , 1);
+    curl_setopt($ch, CURLOPT_FRESH_CONNECT , 1);
     
     $content = curl_exec( $ch ); 
     $response = curl_getinfo( $ch );
