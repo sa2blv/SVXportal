@@ -41,7 +41,7 @@ if ($_POST) {
         echo '<pre>';
         echo $current;
         echo '</pre>';
-        prepend($current,"config1.php");
+        prepend($current,"config.php");
         
       
         
