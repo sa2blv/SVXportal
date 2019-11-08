@@ -746,7 +746,7 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 
 										<div class="col-md-4">
 											<ul class="list-group">
-												<li class="list-group-item">Hamnet</li>
+												
 												<li class="list-group-item">Location</li>
 												<li class="list-group-item">Talkgroups</li>
 												<li class="list-group-item">Version</li>
@@ -757,7 +757,7 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 										</div>
 										<div class="col-md-8">
 											<ul class="list-group">
-												<li class="list-group-item" id="ipnr_stn"></li>
+												
 												<li class="list-group-item" id="nodeLocation_stn"></li>
 												<li class="list-group-item" id="stn_tg"></li>
 												<li class="list-group-item" id="swVer_tg"></li>
@@ -916,7 +916,7 @@ function show_station_information(identity)
 		var name = identity;
 		var ip_adress = data.nodes[identity].addr;
 		var location = data.nodes[identity].NodeLocation;
-		var tg_tg = data.nodes[identity].sw;
+		var tg_tg = data.nodes[identity].tg;
 		var swVer_tg = data.nodes[identity].swVer;
 	
 		$('#stname').html(name.toString());
