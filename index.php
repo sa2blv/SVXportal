@@ -1031,6 +1031,14 @@ function update_tx_station(lat,lon,idn,tg,label,active)
     	iconFeature = new ol.Feature({
     	    geometry: new ol.geom.Point(new ol.proj.transform([lon,lat], 'EPSG:4326', 'EPSG:3857')),
     	});
+    	var lablel_text="";
+    	var newZoom = map.getView().getZoom();
+
+    	if(newZoom >= 7)
+    	{
+    		lablel_text = label;
+    	}
+    	
     
     	var iconStyle = new ol.style.Style({
     	        image: new ol.style.Icon(({
@@ -1043,7 +1051,7 @@ function update_tx_station(lat,lon,idn,tg,label,active)
     	        })),
     	        text: new ol.style.Text({
     	                     font: '12px helvetica,sans-serif',
-    	                     text: label,
+    	                     text: lablel_text,
     	                     fontSize: 12,
     						 scale:1.2,
     	                     fill: new ol.style.Fill({
@@ -1101,6 +1109,10 @@ function addmarker(iconindex,lat, lon,label,html)
         iconFeature = new ol.Feature({
             geometry: new ol.geom.Point(new ol.proj.transform([lon,lat], 'EPSG:4326', 'EPSG:3857')),
         });
+    	var lablel_text="";
+    	var newZoom = map.getView().getZoom();
+
+
 
         var iconStyle = new ol.style.Style({
                 image: new ol.style.Icon(({
