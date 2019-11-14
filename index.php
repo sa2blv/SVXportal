@@ -916,6 +916,10 @@ function show_station_information(identity)
 		var name = identity;
 		var ip_adress = data.nodes[identity].addr;
 		var location = data.nodes[identity].NodeLocation;
+		if(location == null)
+		{
+			location = data.nodes[identity].nodeLocation;
+		}
 		var tg_tg = data.nodes[identity].tg;
 		var swVer_tg = data.nodes[identity].swVer;
 	

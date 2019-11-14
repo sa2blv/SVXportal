@@ -166,7 +166,12 @@ for(var k in data.nodes){
 
 		if(data.nodes[k].NodeLocation == null)
 		{
-			data.nodes[k].NodeLocation="";
+			
+			data.nodes[k].NodeLocation=data.nodes[k].nodeLocation; 
+			if(data.nodes[k].NodeLocation == null)
+			{
+				data.nodes[k].NodeLocation=" ";
+			}
 		}
 
 
