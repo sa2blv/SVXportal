@@ -114,6 +114,14 @@ function update_filter(value) {
 	call_svxrefelktor();
 
 }
+function remove_notgouiltychar(string)
+{
+
+	string = encodeURI(string);
+	string= string.replace("(", "");
+	string= string.replace(")", "");
+	return string;
+}
 
 
 
@@ -134,6 +142,7 @@ $.getJSON( "<?php echo $serveradress ?>", function( data ) {
 
 for(var k in data.nodes){
 	
+	k=remove_notgouiltychar(k);
 	for(var nodes in data.nodes[k].monitoredTGs){
 		//tg_collors[data.nodes[k].monitoredTGs[nodes]]['color']="";	   
 	}
@@ -145,6 +154,8 @@ for(var k in data.nodes){
 }
 
 for(var k in data.nodes){
+	
+	k=remove_notgouiltychar(k);
 	
     if(data.nodes[k].hidden == true)
     {
@@ -160,6 +171,10 @@ for(var k in data.nodes){
 		conole.log("empty data");
 		break;
 	}
+	k=remove_notgouiltychar(k);
+
+	
+	
 
 
 		var image= '<img src="images/talking.gif" alt="talk" id="talking" width="25px">';	

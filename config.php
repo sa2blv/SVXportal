@@ -15,5 +15,5 @@ $livelink="http://svxportal.sm2ampr.net:8000/svxcard96";
 $dir="/var/www/svx/svxrecording";
  
 // svxreflektor server adress;
-$serveradress ="http://sk3w.se/svxreflektor/";
+$serveradress ="http://sk3w.se/svxreflektor/reflektor%20proxy/";
 ?>
