@@ -41,7 +41,7 @@ function call_svxrefelktor() {
 
 							var image = '<img src="images/talking.gif" alt="talk" id="talking" width="25px">';
 							
-							if (document.getElementById('div' + k)) {
+							if (document.getElementById('div' + remove_notgouiltychar(k))) {
 								if (data.nodes[k].isTalker == false) {
 									// $('#holder').html('<div
 									// id="div'+k+'">'+k+''+data.nodes[k].tg+'</div>');
@@ -63,13 +63,13 @@ function call_svxrefelktor() {
 								$('#holder')
 										.append(
 												'<div id="div'
-														+ k
+														+ remove_notgouiltychar(k)
 														+ '"><h2>Signal values at '
 														+ k
 														+ ' ( '
 														+ data.nodes[k].tg
 														+ ' )</h2><table class="table table-striped  table-hover"  id="status-'
-														+ k
+														+ remove_notgouiltychar(k)
 														+ '"></table></div>');
 								$('#status-' + remove_notgouiltychar(k))
 										.html(
