@@ -50,6 +50,15 @@ function add_header()
 	$('#Reflektortable').html('<thead class="thead-dark"><tr><th scope="col" class="col-xs-2 text-left" >Callsign &emsp;&emsp;&emsp;&emsp;</th><th scope="col" class="col-xs-1" >Location</th><th scope="col" class="col-xs-1 text-left">TG</th><th scope="col" class="col-xs-1"></th><th scope="col" class="col-xs-2">Reciver</th><th scope="col" class="col-xs-1">Signal</th><th scope="col" class="col-xs-2">Frequency</th><th class="col-xs-2">Talk time</th></tr></thead>');
  	
 }
+function remove_notgouiltychar(string)
+{
+	string= string.replace("(", "");
+	string= string.replace(")", "");
+	string= string.replace(".", "");
+	string= string.replace(",", "");
+	string= string.replace("'", "");
+	return string;
+}
 
 function generate_coulor()
 {
@@ -114,14 +123,7 @@ function update_filter(value) {
 	call_svxrefelktor();
 
 }
-function remove_notgouiltychar(string)
-{
 
-	string = encodeURI(string);
-	string= string.replace("(", "");
-	string= string.replace(")", "");
-	return string;
-}
 
 
 
@@ -142,7 +144,6 @@ $.getJSON( "<?php echo $serveradress ?>", function( data ) {
 
 for(var k in data.nodes){
 	
-	k=remove_notgouiltychar(k);
 	for(var nodes in data.nodes[k].monitoredTGs){
 		//tg_collors[data.nodes[k].monitoredTGs[nodes]]['color']="";	   
 	}
@@ -154,9 +155,7 @@ for(var k in data.nodes){
 }
 
 for(var k in data.nodes){
-	
-	k=remove_notgouiltychar(k);
-	
+		
     if(data.nodes[k].hidden == true)
     {
     	delete data.nodes[k];
@@ -171,7 +170,9 @@ for(var k in data.nodes){
 		conole.log("empty data");
 		break;
 	}
-	k=remove_notgouiltychar(k);
+	var printk =remove_notgouiltychar(k)
+	
+	//k=remove_notgouiltychar(k);
 
 	
 	
@@ -188,22 +189,24 @@ for(var k in data.nodes){
 				data.nodes[k].NodeLocation=" ";
 			}
 		}
+		
 
 
  		
-    	if(document.getElementById('row'+k))
+    	if(document.getElementById('row'+printk))
        	{
+           	
     		if(data.nodes[k].isTalker == false)
     		{
-	 	  		$('#row'+k+'').html('<td>'+k+'</td>'+'<td>'+data.nodes[k].NodeLocation+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td class="red_collor"><canvas id="bar_'+k+'"></canvas></td><td id="reciver_'+k+'">  </td></td><td id="value_k'+k+'">0%</td><td id="freq_row'+k+'"></td><td class="flex-nowrap"> - </td>');
-	 	  		$('#row'+k+'').removeClass("font-weight-bold");
+	 	  		$('#row'+printk+'').html('<td>'+k+'</td>'+'<td>'+data.nodes[k].NodeLocation+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td class="red_collor"><canvas id="bar_'+printk+'"></canvas></td><td id="reciver_'+printk+'">  </td></td><td id="value_k'+printk+'">0%</td><td id="freq_row'+printk+'"></td><td class="flex-nowrap"> - </td>');
+	 	  		$('#row'+printk+'').removeClass("font-weight-bold");
 	 	  		
     			
     		}
     		else
     		{
-	 	  		$('#row'+k+'').html('<td>'+k+'</td>'+'<td>'+data.nodes[k].NodeLocation+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td class="green_collor" ><canvas id="bar_'+k+'"></canvas></td><td id="reciver_'+k+'">  </td><td id="value_k'+k+'">0%</td><td id="freq_row'+k+'"></td><td class="flex-nowrap" ><label id="minutes_'+data.nodes[k].tg+'">00</label>:<label id="seconds_'+data.nodes[k].tg+'">00</label></td>');
-	 	  		$('#row'+k+'').addClass("font-weight-bold");	
+	 	  		$('#row'+printk+'').html('<td>'+k+'</td>'+'<td>'+data.nodes[k].NodeLocation+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td class="green_collor" ><canvas id="bar_'+printk+'"></canvas></td><td id="reciver_'+printk+'">  </td><td id="value_k'+printk+'">0%</td><td id="freq_row'+printk+'"></td><td class="flex-nowrap" ><label id="minutes_'+data.nodes[k].tg+'">00</label>:<label id="seconds_'+data.nodes[k].tg+'">00</label></td>');
+	 	  		$('#row'+printk+'').addClass("font-weight-bold");	
 
 	 	  		
 	    	}
@@ -225,23 +228,23 @@ for(var k in data.nodes){
 		          }
 		    		
 		    	
-	    		$('#row'+k+'').addClass("table-secondary");
-    			$('#row'+k+'').css('background-color', tg_collors[data.nodes[k].tg]["color"]);
-    			$('#row'+k+'').removeClass("table-secondary");
+	    		$('#row'+remove_notgouiltychar(k)+'').addClass("table-secondary");
+    			$('#row'+remove_notgouiltychar(k)+'').css('background-color', tg_collors[data.nodes[k].tg]["color"]);
+    			$('#row'+remove_notgouiltychar(k)+'').removeClass("table-secondary");
 	    	}
 	    	else
 	    	{
-	    		$('#row'+k+'').css('background-color', "");
-	    		$('#row'+k+'').addClass("table-secondary");
+	    		$('#row'+remove_notgouiltychar(k)+'').css('background-color', "");
+	    		$('#row'+remove_notgouiltychar(k)+'').addClass("table-secondary");
 	    	}
     		
-    		create_bar('bar_'+k);
+    		create_bar('bar_'+remove_notgouiltychar(k));
 	    	
     	 }
     	 else
     	 {
-	  		$('#Reflektortable').append('<tbody class="table-striped"><tr data-toggle="collapse" data-target="#group-of-'+k+'" aria-expanded="false" aria-controls="group-of-'+k+'" class="" id="row'+k+'"><td>'+k+'</td>'+'<td>'+data.nodes[k].NodeLocation+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td ><canvas id="bar_'+k+'"></canvas></td><td id="reciver_'+k+'">  </td><td id="value_k'+k+'">0%</td></td><td id="freq_row'+k+'"></td><td class="flex-nowrap"><label id="minutes_'+data.nodes[k].tg+'"></label><label id="seconds_'+data.nodes[k].tg+'"></label></td> </tr> </tbody>');
-	  		create_bar('bar_'+k);
+	  		$('#Reflektortable').append('<tbody class="table-striped"><tr data-toggle="collapse" data-target="#group-of-'+printk+'" aria-expanded="false" aria-controls="group-of-'+printk+'" class="" id="row'+printk+'"><td>'+k+'</td>'+'<td>'+data.nodes[k].NodeLocation+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td ><canvas id="bar_'+printk+'"></canvas></td><td id="reciver_'+printk+'">  </td><td id="value_k'+printk+'">0%</td></td><td id="freq_row'+printk+'"></td><td class="flex-nowrap"><label id="minutes_'+data.nodes[k].tg+'"></label><label id="seconds_'+data.nodes[k].tg+'"></label></td> </tr> </tbody>');
+	  		create_bar('bar_'+printk);
 	    }
 		  if(current_talker[data.nodes[k].tg] == k)
 	  {
@@ -297,25 +300,25 @@ for(var k in data.nodes){
            }
 
 
-     	  if(document.getElementById('row'+name_id))
+     	  if(document.getElementById('row'+remove_notgouiltychar(name_id)))
      	  {
 
-              qth_html_add ='<td> * '+qth_name+'</td><td></td><td></td><td colspan="1" id="td'+k+'_'+qth_name+'"><canvas id="bar_'+k+'_'+qth_name+'"></canvas></p> </td><td></td><td>'+parseInt(value)+'%</td><td>'+Freqvensy+'</td><td></td>';
-              $('#row'+name_id).html(qth_html_add);
-              $('#row'+name_id).addClass("class_row");
+              qth_html_add ='<td> * '+qth_name+'</td><td></td><td></td><td colspan="1" id="td'+k+'_'+qth_name+'"><canvas id="bar_'+printk+'_'+qth_name+'"></canvas></p> </td><td></td><td>'+parseInt(value)+'%</td><td>'+Freqvensy+'</td><td></td>';
+              $('#row'+remove_notgouiltychar(name_id)).html(qth_html_add);
+              $('#row'+remove_notgouiltychar(name_id)).addClass("class_row");
               
               
               //create_bar('bar_'+k);
      	  }
      	  else
      	  {
-              qth_html_add ='<tbody id="group-of-'+k+'" class="collapse"><tr class="table-striped  '+class_row+' table-borderless" id="row'+name_id+'"  ><td></td><td></td><td> * '+qth_name+'</td><td></td><td colspan="" id="td'+k+'_'+qth_name+'"><canvas id="bar_'+k+'_'+qth_name+'"></canvas> </td><td></td><td>'+parseInt(value)+'%</td><td>'+Freqvensy+'</td><td></td></tr></tbody>';
+              qth_html_add ='<tbody id="group-of-'+printk+'" class="collapse"><tr class="table-striped  '+class_row+' table-borderless" id="row'+name_id+'"  ><td></td><td></td><td> * '+qth_name+'</td><td></td><td colspan="" id="td'+printk+'_'+qth_name+'"><canvas id="bar_'+printk+'_'+qth_name+'"></canvas> </td><td></td><td>'+parseInt(value)+'%</td><td>'+Freqvensy+'</td><td></td></tr></tbody>';
               $('#Reflektortable').append(qth_html_add);
-              $('#row'+name_id).removeClass("class_row");
+              $('#row'+remove_notgouiltychar(name_id)+'').removeClass("class_row");
               
      	  }
           
-           var canvas = document.getElementById('bar_'+k+'_'+qth_name);
+           var canvas = document.getElementById('bar_'+printk+'_'+qth_name);
            var context = canvas.getContext('2d');
            width= 0.2 *window.innerWidth
            var value_scale =width/100;

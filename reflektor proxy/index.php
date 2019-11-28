@@ -2,6 +2,7 @@
 //header('Content-Type: text/event-stream');
 header('Cache-Control: no-cache');
 header("Access-Control-Allow-Origin: *");
+include "config.php";
 
 function get_fcontent( $url,  $javascript_loop = 0, $timeout = 5 ) {
     $url = str_replace( "&amp;", "&", urldecode(trim($url)) );
@@ -80,8 +81,8 @@ if (file_exists($cachefile) && microtime(true)  - $cachetime < getTime($cachefil
 }
 else
 {
-$url = "http://172.17.2.151:8080/status"; // path to your JSON file
-$data = get_fcontent($url); // put the contents of the file into a variable
+
+$data = get_fcontent($Svx_reflector_address ); // put the contents of the file into a variable
 
 // Cache the contents to a cache file
 $cached = fopen($cachefile, 'w');

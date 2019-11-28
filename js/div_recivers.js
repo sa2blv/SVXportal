@@ -9,6 +9,15 @@ function update_filter(value) {
 var interval;
 var totalSeconds = 0;
 var current_talker = "";
+function remove_notgouiltychar(string)
+{
+	string= string.replace("(", "");
+	string= string.replace(")", "");
+	string= string.replace(".", "");
+	string= string.replace(",", "");
+	string= string.replace("'", "");
+	return string;
+}
 
 function call_svxrefelktor() {
 	
@@ -36,7 +45,7 @@ function call_svxrefelktor() {
 								if (data.nodes[k].isTalker == false) {
 									// $('#holder').html('<div
 									// id="div'+k+'">'+k+''+data.nodes[k].tg+'</div>');
-									$('#div' + k + ' h1').removeClass(
+									$('#div' + remove_notgouiltychar(k) + ' h1').removeClass(
 											"bg-success");
 
 								} else {
@@ -45,7 +54,7 @@ function call_svxrefelktor() {
 									// >YES'+image+'</td><td></td><td></td><td><label
 									// id="minutes">00</label>:<label
 									// id="seconds">00</label></td>');
-									$('#div' + k + ' h1')
+									$('#div' + remove_notgouiltychar(k) + ' h1')
 											.addClass("bg-success");
 									write_log(k+" started taking on tg"+data.nodes[k].tg);
 								}
@@ -62,7 +71,7 @@ function call_svxrefelktor() {
 														+ ' )</h2><table class="table table-striped  table-hover"  id="status-'
 														+ k
 														+ '"></table></div>');
-								$('#status-' + k)
+								$('#status-' + remove_notgouiltychar(k))
 										.html(
 												'<thead class="bg-info"><th class="w-25 p-3">Receiver</th><th></th><th>Bargraph</th><th>Signal</th><th>Frequency</th>Frequency<th></th></thead>');
 							}
@@ -95,29 +104,29 @@ function call_svxrefelktor() {
 										
 										qth_html_add = '<td> * ' + qth_name
 												+ '</td><td colspan="2" id="td'
-												+ k + '_' + qth_name
-												+ '"><canvas id="bar_' + k
+												+ remove_notgouiltychar(k) + '_' + qth_name
+												+ '"><canvas id="bar_' + remove_notgouiltychar(k)
 												+ '_' + qth_name
 												+ '"></canvas></p> </td><td>'
 												+ parseInt(value)
 												+ '%</td><td>' + Freqvensy
 												+ ' Mhz</td><td></td>';
-										$('#row' + name_id).html(qth_html_add);
-										$('#row' + name_id).addClass(
+										$('#row' + remove_notgouiltychar(name_id)).html(qth_html_add);
+										$('#row' + remove_notgouiltychar(name_id)).addClass(
 												"class_row");
 									} else {
 										qth_html_add = '<tr class="table-striped  '
 												+ class_row
 												+ ' table-borderless" id="row'
-												+ name_id
+												+ remove_notgouiltychar(name_id)
 												+ '"  ><td> * '
 												+ qth_name
 												+ '</td><td colspan="2" id="td'
-												+ k
+												+ remove_notgouiltychar(k)
 												+ '_'
 												+ qth_name
 												+ '"><canvas id="bar_'
-												+ k
+												+ remove_notgouiltychar(k)
 												+ '_'
 												+ qth_name
 												+ '"></canvas></p> </td><td>'
@@ -126,7 +135,7 @@ function call_svxrefelktor() {
 												+ Freqvensy
 												+ ' Mhz</td><td></td></tr>';
 
-										$('#status-' + k).append(qth_html_add);
+										$('#status-' + remove_notgouiltychar(k)).append(qth_html_add);
 										$('#row' + qth_name).removeClass(
 												"class_row");
 									}
