@@ -942,7 +942,11 @@ function show_station_information(identity)
 			var sysop_tg = data.nodes[identity].qth[qth].sysop;
 			if(sysop_tg == null)
 			{
-				sysop_tg=" &nbsp;";
+				sysop_tg = data.nodes[identity].sysop;
+				if(sysop_tg == null)
+				{
+					sysop_tg=" &nbsp;";
+				}
 			}
 			$('#sysop_tg').html(sysop_tg.toString());
 			
