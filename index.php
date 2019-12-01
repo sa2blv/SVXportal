@@ -394,7 +394,7 @@ function generate_coulor()
 
 					<li class="nav-item"><a class="nav-link" href="#Recivers2"
 						onclick="load_reflector()" data-toggle="tab"><i
-							class="fas fa-broadcast-tower"></i> Recivers</a></li>
+							class="fas fa-broadcast-tower"></i> Receivers</a></li>
 
 					<li class="nav-item"><a class="nav-link" href="#map_repeater"
 						onclick="setTimeout(function(){
@@ -676,7 +676,7 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 											Bars</a> <a class="dropdown-item"
 											onclick="vectorSource.clear();Barsource.clear();map.overlays_.clear();"
 											href="#">Remove ALL</a> <a class="dropdown-item"
-											onclick="prosess_json_reflecktor();" href="#">Show Recivers</a>
+											onclick="prosess_json_reflecktor();" href="#">Show Receivers</a>
 											
 											<a class="nav-link dropdown-toggle" href="#"
 									onclick="toogle_AutoFollow()" id="Autofollow_text"
@@ -772,9 +772,9 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 											<table class="table">
 												<thead class="table-dark">
 													<tr>
-														<th scope="col">Qth</th>
+														<th scope="col">RX Name</th>
 														<th scope="col">SqlType</th>
-														<th scope="col">Frevency</th>
+														<th scope="col">Frequency</th>
 														<th scope="col">Enable</th>
 
 

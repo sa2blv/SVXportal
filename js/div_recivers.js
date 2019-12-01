@@ -155,11 +155,11 @@ function call_svxrefelktor() {
 									context.fillRect(1, 1, -0, 1);
 
 									if (rx_active == true && rx_sql == true) {
-										write_log("Reciver "+qth_name+" set to active");
+										write_log("Receiver "+qth_name+" set to active");
 										context.fillStyle = "#1932F7";
 
 									} else if (rx_sql == true) {
-										write_log("Reciver "+qth_name+" set to SQl open");
+										write_log("Receiver "+qth_name+" set to SQl open");
 										context.fillStyle = "#E31013";
 
 									} else {

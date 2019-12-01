@@ -7,7 +7,7 @@ include 'config.php';
 
 <meta charset="UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=Cp1252">
-<title>Reciver Monitor</title>
+<title>Receiver Monitor</title>
 
 
 <link
@@ -47,7 +47,7 @@ var tg_collors = new Array();
 function add_header()
 {
 
-	$('#Reflektortable').html('<thead class="thead-dark"><tr><th scope="col" class="col-xs-2 text-left" >Callsign &emsp;&emsp;&emsp;&emsp;</th><th scope="col" class="col-xs-1" >Location</th><th scope="col" class="col-xs-1 text-left">TG</th><th scope="col" class="col-xs-1"></th><th scope="col" class="col-xs-2">Reciver</th><th scope="col" class="col-xs-1">Signal</th><th scope="col" class="col-xs-2">Frequency</th><th class="col-xs-2">Talk time</th></tr></thead>');
+	$('#Reflektortable').html('<thead class="thead-dark"><tr><th scope="col" class="col-xs-2 text-left" >Callsign &emsp;&emsp;&emsp;&emsp;</th><th scope="col" class="col-xs-1" >Location</th><th scope="col" class="col-xs-1 text-left">TG</th><th scope="col" class="col-xs-1"></th><th scope="col" class="col-xs-2">Receiver</th><th scope="col" class="col-xs-1">Signal</th><th scope="col" class="col-xs-2">Frequency</th><th class="col-xs-2">Talk time</th></tr></thead>');
  	
 }
 function remove_notgouiltychar(string)
