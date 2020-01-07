@@ -284,9 +284,13 @@ for(var k in data.nodes){
            	var rx_sql =data.nodes[k].qth[qth].rx[qth1].sql_open;
            	var sql = data.nodes[k].qth[qth].name;
            	var value =data.nodes[k].qth[qth].rx[qth1].siglev;
-           	var Freqvensy =data.nodes[k].qth[qth].rx[qth1].freq;
-           	if(Freqvensy != null)
-           		Freqvensy = Freqvensy.toFixed(3);
+           	var Freqvensy =String(data.nodes[k].qth[qth].rx[qth1].freq);
+
+           	Freqvensy = parseFloat(Freqvensy);
+           	Freqvensy = Freqvensy.toFixed(4); 
+           	Freqvensy = String(Freqvensy);
+           
+      
            	var name_id =data.nodes[k].qth[qth].name+qth1;
            	name_id = name_id.trim();
            	if(value == undefined)

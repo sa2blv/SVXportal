@@ -109,7 +109,7 @@ function call_svxrefelktor() {
 												+ '_' + qth_name
 												+ '"></canvas></p> </td><td>'
 												+ parseInt(value)
-												+ '%</td><td>' + Freqvensy
+												+ '%</td><td>' + String(Freqvensy)
 												+ ' Mhz</td><td></td>';
 										$('#row' + remove_notgouiltychar(name_id)).html(qth_html_add);
 										$('#row' + remove_notgouiltychar(name_id)).addClass(
@@ -132,7 +132,7 @@ function call_svxrefelktor() {
 												+ '"></canvas></p> </td><td>'
 												+ parseInt(value)
 												+ '%</td><td>'
-												+ Freqvensy
+												+ String(Freqvensy)
 												+ ' Mhz</td><td></td></tr>';
 
 										$('#status-' + remove_notgouiltychar(k)).append(qth_html_add);
