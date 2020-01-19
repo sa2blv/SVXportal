@@ -23,7 +23,7 @@ function scan_dir($dir) {
 $files = (scan_dir($svx_folder));
 $array_json =array();
 $i=0;
-$array_json['length'] = sizeof($files)+1;
+$array_json['length'] = sizeof($files);
 foreach($files as $key => $val)
 {
  $array_json[$i]['text'] = date ("F d Y H:i:s.", filemtime($val));
