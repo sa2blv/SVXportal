@@ -80,6 +80,15 @@ var current_talker ="";
 
 function call_svxrefelktor() {
 $.getJSON( "<?php echo $serveradress ?>", function( data ) {
+	for(var k in data.nodes){
+		
+	    if(data.nodes[k].hidden == true)
+	    {
+	    	delete data.nodes[k];
+	    	
+	    }
+	}
+	
 
 $('#Reflektortable').html('<th>Callsign</th><th>TG</th><th>Is talker</th><th>Monitored TGs</th><th>Talk time</th><th>Active RX</th>');
 for(var k in data.nodes){
@@ -1624,6 +1633,16 @@ function update_tx_station_loop()
 		}
 		
 		for(var k in data.nodes){
+
+			for(var k in data.nodes){
+				
+			    if(data.nodes[k].hidden == true)
+			    {
+			    	delete data.nodes[k];
+			    	
+			    }
+			}
+			
 		    for(var qth in data.nodes[k].qth){
 		        for(var qth1 in data.nodes[k].qth[qth].tx){
 				var lat =data.nodes[k].qth[qth].pos.lat

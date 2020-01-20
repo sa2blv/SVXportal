@@ -34,6 +34,14 @@ function call_svxrefelktor() {
 									delete data.nodes[k];
 							}
 						}
+						for(var k in data.nodes){
+							
+						    if(data.nodes[k].hidden == true)
+						    {
+						    	delete data.nodes[k];
+						    	
+						    }
+						}
 
 						for ( var k in data.nodes) {
 
@@ -199,6 +207,14 @@ function load_reflector()
     call_svxrefelktor();
     $('#selects').html('<option value=""> -- All -- </option>');
     $.getJSON( refelktor_address, function( data ) {
+    	for(var k in data.nodes){
+    		
+    	    if(data.nodes[k].hidden == true)
+    	    {
+    	    	delete data.nodes[k];
+    	    	
+    	    }
+    	}
     	
 
 
