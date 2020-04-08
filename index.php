@@ -45,7 +45,7 @@ include "config.php";
 <!-- fontawesome.com iconpac -->
 <link href="./fontawesome/css/all.css" rel="stylesheet">
 <!--load all styles -->
-
+<script src="./js/chart/Chart.min.js"></script>
 <script src="./js/div_recivers.js"></script>
 
 <script type="text/javascript">
@@ -53,9 +53,12 @@ var refelktor_address="<?php echo $serveradress ?>";
 //<![CDATA[
 $(document).ready(function(){
 call_svxrefelktor();
+add_node_collors();
 load_reflector();
 generate_coulor();
+
 	$( "#datepicker" ).datepicker({firstDay: 1, dateFormat: 'yy-mm-dd' });
+
 
 		var myPlaylist = new jPlayerPlaylist({
 			jPlayer: "#jquery_jplayer_N",
@@ -74,12 +77,95 @@ generate_coulor();
 			size: {width: "100%", height: "0px"}
 		});
 
+		$( "#Datepicker_graph" ).datepicker({firstDay: 1, dateFormat: 'yy-mm-dd' });
+
+		
+
 var interval;
 var totalSeconds = 0;
 var current_talker ="";
 
+$("#jquery_jplayer_N").bind($.jPlayer.event.timeupdate, function(event) { 
+    var currentTime = Math.floor(event.jPlayer.status.currentTime)
+    var TotaltimeTime = Math.floor(event.jPlayer.status.duration)
+
+$.post( "signal.php", { time: (TotaltimeTime-currentTime), file: event.jPlayer.status.src })
+.done(function( data ) {
+
+	console.log(data);
+	if(data != "")
+	{
+    var Json_data = JSON.parse(data);
+    
+
+
+
+
+    $('#Reciverbars_player').html("");
+	$('#Reciverbars_player').append('<p>'+Json_data.Nodename+'</p><canvas id="canvpr"></canvas><br/>');
+	create_bar_rx(Json_data.Siglev,'canvpr',true);
+    
+    $('#signalpressent').html(Json_data.Siglev);
+
+		for(var k in Json_data.Subreciver){
+
+			$('#Reciverbars_player').append('<p>'+Json_data.Subreciver[k]['Nodename']+'</p><canvas id="canvp'+k+'"></canvas><br/>');
+			create_bar_rx(Json_data.Subreciver[k]['Siglev'],'canvp'+k,false);
+			
+		}
+
+	}
+    
+
+});
+
+
+});
+function create_bar_rx(value,element,rx_sql)
+{
+    var canvas = document.getElementById(element);
+    var context = canvas.getContext('2d');
+    width= 0.2 *window.innerWidth
+    var value_scale =width/100;
+    canvas.setAttribute('width', width);
+
+    canvas.setAttribute('height', 10);
+    canvas.setAttribute('style', 'border:1px solid #000000;');
+
+    
+    context.stroke(); 
+    context.fillRect(1, 1 , -0,1); 
+    var rx_active=true;
+
+    
+
+	if(rx_active == true && rx_sql == true)
+	{
+		 
+		context.fillStyle ="#1932F7";
+	
+	}
+	else if(rx_sql == true)
+	{
+		context.fillStyle ="#E31013";
+
+	}
+	else
+	{
+		context.fillStyle ='black';
+	}
+    
+	
+	if(value>=0 && value <100)
+		context.fillRect(1, 1 , (value_scale*value)-3,8); 
+	else if (value >=100)
+		context.fillRect(1, 1 , width-3,8);
+	
+}
+
 function call_svxrefelktor() {
 $.getJSON( "<?php echo $serveradress ?>", function( data ) {
+	console.log(data);
 	for(var k in data.nodes){
 		
 	    if(data.nodes[k].hidden == true)
@@ -94,12 +180,9 @@ $('#Reflektortable').html('<th>Callsign</th><th>TG</th><th>Is talker</th><th>Mon
 for(var k in data.nodes){
 	var text =" ";
 	for(var nodes in data.nodes[k].monitoredTGs){
-
-
-		
-	   text = text  +data.nodes[k].monitoredTGs[nodes].toString() +" "
-	   
 	
+	   text = text  +data.nodes[k].monitoredTGs[nodes].toString() +" "
+	  
 	}
 
 		var image= '<img src="images/talking.gif" alt="talk" id="talking" width="25px">';	
@@ -196,8 +279,8 @@ var myPlaylist = new jPlayerPlaylist({
 		},
 		swfPath: "../dist/jplayer",
 		supplied: "webmv, ogv, m4v, oga, mp3",
-		useStateClassSkin: true,
-		autoBlur: false,
+		useStateClassSkin: false,
+		autoBlur: true,
 		smoothPlayBar: true,
 		keyEnabled: true,
 	    size: {width: "100%", height: "0px"}
@@ -222,8 +305,8 @@ var myPlaylist = new jPlayerPlaylist({
 		},
 		swfPath: "./dist/jplayer",
 		supplied: "webmv, ogv, m4v, oga, mp3",
-		useStateClassSkin: true,
-		autoBlur: false,
+		useStateClassSkin: false,
+		autoBlur: true,
 		smoothPlayBar: true,
 		keyEnabled: true,
 	    size: {width: "100%", height: "0px"}
@@ -299,13 +382,13 @@ function generate_coulor()
     
     	for(var k in data.nodes){
     		
-    		for(var nodes in data.nodes[k].monitoredTGs){
+    		for(var nodes in data.nodes[k].monitoredTGs)
+        	{
     			//tg_collors[data.nodes[k].monitoredTGs[nodes]]['color']="";	
     			tg_collors[data.nodes[k].monitoredTGs[nodes]]= new Array();
     			tg_collors[data.nodes[k].monitoredTGs[nodes]]["id"] =data.nodes[k].monitoredTGs[nodes];
     			tg_collors[data.nodes[k].monitoredTGs[nodes]]["color"] =random_css_collor();   
     			tg_collors[data.nodes[k].monitoredTGs[nodes]]["TXT"] ="";
-
     		}
     
     		tg_collors[data.nodes[k].tg]= new Array();
@@ -354,6 +437,47 @@ function generate_coulor()
 
     
 }
+var node_collors = new Array();
+function add_node_collors()
+{
+	<?php 
+    $result = mysqli_query($link, "SELECT * FROM `RefletorStations` ");
+
+    // Numeric array
+
+    // Associative array
+    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+        if($row["Callsign"] == null)
+        {
+            $row["Callsign"]="nodata";
+        }
+        ?>
+        node_collors["<?php echo $row["Callsign"]?>"]= new Array();
+        node_collors["<?php echo $row["Callsign"]?>"]["id"] ="<?php echo $row["Callsign"]?>";
+        node_collors["<?php echo $row["Callsign"]?>"]["color"] = "<?php echo $row["Collor"]?>";      
+            		          
+    <?php }?>
+	
+}
+
+
+function login_form()
+{
+	var login = $('#login').val();
+	var password = $('#password').val();
+	
+	$.post( "login.php", { login: login, password: password })
+	  .done(function( data ) {
+		  if(data == "true ")
+			  alert( "login sucsess!");
+		  else
+	    	alert( "wrong username or password" );
+
+
+
+	  });
+	
+}
 
 
 </script>
@@ -377,7 +501,7 @@ function generate_coulor()
 	<div id="wrapper">
 
 		<!-- Sidebar -->
-		<nav id="sidebar">
+		<nav id="sidebar" class="sidbar_bg">
 			<div id="sidebar-wrapper">
 				<ul class="list-unstyled nav nav-tabs nav-justified">
 					<li class="sidebar-brand nav-item"><a href="#">
@@ -390,29 +514,37 @@ function generate_coulor()
 					<li class="nav-item"><a class="nav-link active" href="#Reflector"
 						data-toggle="tab"><i class="fas fa-broadcast-tower"></i> Reflector</a></li>
 					<li class="nav-item"><a class="nav-link " href="#listen"
-						data-toggle="tab"><i class="fas fa-headphones-alt"></i> Listen</a></li>
+						data-toggle="tab"><i class="fas fa-headphones-alt"></i> Monitor</a></li>
 					<li class="nav-item"><a class="nav-link" href="#Echolink"
-						data-toggle="tab"><i class="fas fa-terminal"></i> Commands</a></li>
+						data-toggle="tab"><i class="fas fa-terminal"></i> System description</a></li>
 					<li class="nav-item"><a class="nav-link" href="#Dictionary"
-						data-toggle="tab"><i class="fas fa-book"></i> Dictionary</a></li>
+						data-toggle="tab"><i class="fas fa-book"></i> Talkgroups</a></li>
 					<li class="nav-item"><a class="nav-link" href="list_reciver.php"><i
 							class="fas fa-broadcast-tower"></i> List reciver</a></li>
-					<li class="nav-item"><a class="nav-link" href="#Log"
-						data-toggle="tab"><i class="fas fa-terminal"></i> Log</a></li>
 
+					<li class="nav-item"><a class="nav-link" href="#Statistics" onclick="get_statistics()"
+						data-toggle="tab"><i class="fas fa-chart-bar"></i> Statistics</a></li>
+						
 
 					<li class="nav-item"><a class="nav-link" href="#Recivers2"
 						onclick="load_reflector()" data-toggle="tab"><i
 							class="fas fa-broadcast-tower"></i> Receivers</a></li>
-
+					<li class="nav-item"><a class="nav-link" href="#Log"
+						data-toggle="tab"><i class="fas fa-terminal"></i> Log</a></li>
+					<li class="nav-item"><a class="nav-link" href="#Table_ctcss"
+						data-toggle="tab"><i class="fas fa-terminal"></i> CTSS map table</a></li>
+						
+						
+						
+						
 					<li class="nav-item"><a class="nav-link" href="#map_repeater"
 						onclick="setTimeout(function(){
 		   map.updateSize();connect_reflector();
 	   },300); "
 						data-toggle="tab"><i class="fas fa-map-marked"></i> Map</a></li>
-
-					<!--	<li class="nav-item"><a  class="nav-link" href="#LoginTab" data-toggle="tab"><i class="fas fa-lock"></i> Login</a></li>
-	--->
+<?php if($use_logein != null){?>
+						<li class="nav-item"><a  class="nav-link" href="#LoginTab" data-toggle="tab"><i class="fas fa-lock"></i> Login</a></li>
+<?php }?>
 				</ul>
 
 
@@ -449,11 +581,19 @@ function generate_coulor()
 				<div class="tab-pane " id="listen">
 					<div class="row">
 						<div class="col-md-6">
-							<h1>Recorded QSO</h1>
+							<h1>QSO Monitor</h1>
 							<hr />
+							
+	<div class="card" style="width: 100%;">
+ 	 <div class="card-body">
 
+
+				</div>
+
+							
+				
 							<div id="jp_container_N" class="jp-video jp-video-270p"
-								role="application" aria-label="media player">
+								role="application" aria-label="media player" style="width: 100%">
 								<div class="jp-video-play">
 									<button class="jp-video-play-icon" role="button" tabindex="0">play</button>
 								</div>
@@ -514,6 +654,8 @@ function generate_coulor()
 									</div>
 								</div>
 							</div>
+								
+							</div>
 						</div>
 						<div class="col-md-6">
 							<br />
@@ -524,35 +666,73 @@ function generate_coulor()
 								Menu</a>
 							<hr />
 							<h3>Select date to listen</h3>
+							<?php if($use_logein != null){?>
+								<p>to use player you must login </p>
+							<?php }?>
 							<p>
 								<input type="text" id="datepicker"
 									value="<?php echo date("Y-m-d")?>"
 									onchange="get_audio_from_date(this.value)">
 							</p>
 							<hr />
+							<h5 class="card-title" id="Stationid">Sinal</h5>
+   						     <p class="card-text"><span id="signalpressent">0</span>% Signal value  from Reciver.</p>
+							<div class="card" style="width: 100%">
+           						<div id="Reciverbars_player"></div>
+							</div>
+							<hr />
 							<table class="table table-striped">
 								<thead>
 									<tr>
 										<th>Name</th>
 										<th>Openings</th>
-										<th>Nag</th>
+										<th>Uptime</th>
+										<th>Color</th>
 									</tr>
 								</thead>
 								<tbody>
 	   
 
 	<?php
+	
+	$sql_node ="SELECT sum(Talktime), `Callsign` FROM RefletorNodeLOG WHERE `Type` = '1' AND `Active` ='0' group by  `Callsign`";
+	
+	 
+	function secondsToDHMS($seconds) {
+	    $s = (int)$seconds;
+	    if($s >0)
+	       return sprintf('%d:%02d:%02d:%02d', $s/86400, $s/3600%24, $s/60%60, $s%60);
+	    else
+	        return "0:00:00:00";
+	    
+	}
+	
+	$sqlref = $link->query($sql_node);
+	$timesum_node =array();
+	
 
-$result = mysqli_query($link, "SELECT * FROM `repeater`");
+	while($row = $sqlref->fetch_assoc()) {
+	    $timesum_node[$row["Callsign"]] =$row["sum(Talktime)"];
+	    
+	}
+
+	
+	
+	
+
+$result = mysqli_query($link, "SELECT * FROM `RefletorStations` where Callsign != '' ");
 
 // Numeric array
 
 // Associative array
 while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
     echo "<tr>";
-    echo "<td>" . $row["Name"] . "</td>";
-    echo "<td>" . $row["Openings"] . "</td>";
-    echo "<td>" . $row["Nag"] . "</td>";
+    echo "<td>" . $row["Callsign"] . "</td>";
+    echo "<td>" . utf8_encode($row["Location"]) . "</td>";
+    echo "<td>" .secondsToDHMS($timesum_node[$row["Callsign"]]). "</td>";
+    
+    echo "<td>".'<div style="border:2px solid black; width: 25px; height :25px;  background-color:'.$row["Collor"].' ">'."</td>";
+    
     echo "</tr>";
 }
 
@@ -571,14 +751,24 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 
 				</div>
 				<div class="tab-pane" id="Echolink">
-					<h1>Commands</h1>
-					<pre>
+<!-- 					<h1>Commands</h1> -->
+  <div class="row">
 			<?php
-$myfile = fopen("echolink.txt", "r") or die("Unable to fla file!");
-echo utf8_encode(fread($myfile, filesize("echolink.txt")));
-fclose($myfile);
+if($usefile != null)
+{
+    $myfile = fopen("echolink.txt", "r") or die("Unable to fla file!");
+    echo utf8_encode(fread($myfile, filesize("echolink.txt")));
+    fclose($myfile);
+}else
+{
+    if($iframe_documentation_url != null )
+     ini_set('default_socket_timeout', 20); // 900 Seconds = 15 Minutes
+    $data = file_get_contents($iframe_documentation_url);
+    echo $data;
 ?>
-		</pre>
+
+<?php }?>	
+	</div>
 				</div>
 				<div class="tab-pane" id="Recivers2">
 					<div class="container">
@@ -610,22 +800,50 @@ fclose($myfile);
 							<tr>
 								<th>TG</th>
 								<th>Name</th>
+								<th>Last Active</th>
+								<th>Time</th>
+								<th>Time Total</th>
+								<th>Color</th>
 							</tr>
 						</thead>
 						<tbody>
 	   
 
 	<?php
+	$sql_active ="SELECT sum(Talktime), `Talkgroup` FROM RefletorNodeLOG WHERE `Type` = '1' AND `Active` ='0' group by  `Talkgroup`";
+	
+	$sql_nonactive ="SELECT sum(UNIX_TIMESTAMP(`Time`)), `Talkgroup` FROM RefletorNodeLOG WHERE `Type` = '1' AND `Active` ='0' group by  `Talkgroup` ";
+	
+	
+	$sqlref = $link->query($sql_active);
 
+	$timesum =array();
+	
+	while($row = $sqlref->fetch_assoc()) {
+	    $timesum[$row["Talkgroup"]] =$row["sum(Talktime)"];
+	}
+
+	
+mysqli_set_charset($link,"utf8");
 $result = mysqli_query($link, "SELECT * FROM `Talkgroup` ORDER BY `Talkgroup`.`TG` ASC");
 
 // Numeric array
 
 // Associative array
-while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
+{
     echo "<tr>";
     echo "<td>" . $row["TG"] . "</td>";
     echo "<td>" . $row["TXT"] . "</td>";
+    $result1 = mysqli_query($link, "SELECT Callsign,Time FROM `RefletorNodeLOG` WHERE `Talkgroup` ='".$row["TG"]."' ORDER BY `RefletorNodeLOG`.`Id` DESC limit 1");
+    $row1 = mysqli_fetch_array($result1, MYSQLI_ASSOC);
+
+    
+    echo "<td><spawn id=\"Last_".$row["TG"]."\">" . $row1["Callsign"] . "</spawn></td>";
+    echo "<td>".$row1["Time"]."</td>";
+    echo "<td>".secondsToDHMS($timesum[ $row["TG"]])."</td>";
+    echo "<td>".'<div style="border:2px solid black; width: 25px; height :25px;  background-color:'.$row["Collor"].' ">'."</td>";
+    
     echo "</tr>";
 }
 
@@ -637,7 +855,10 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 
 				<div class="tab-pane " id="Log">
 
-					<div id="logdiv" class="col-xs-6"></div>
+					
+					<div id="logdiv1" class="col-xs-6">
+					<?php include_once 'log.php';?>
+					</div>
 
 				</div>
 
@@ -795,15 +1016,6 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 												</tbody>
 
 											</table>
-
-
-
-
-
-
-
-
-
 
 
 									</div>
@@ -967,6 +1179,10 @@ function show_station_information(identity)
 				if(freq != null)
 					freq = freq.toFixed(3);
 				var enabled = data.nodes[identity].qth[qth].rx[rx].enabled
+				if(enabled == undefined)
+				{
+					enabled= "true";
+				}
 				$('#optable_stn').append('<tr><td>'+name+'</td><td>'+sqlType+'</td><td>'+freq+'</td><td>'+enabled+'</td></tr>');
 
 			}
@@ -1302,13 +1518,68 @@ function add_repeater_transmiter(lat, lon,label,idn,tg)
 }
 var instervalls;
 
+function hueToRgb (p, q, t) 
+{
+  if (t < 0) t += 1
+  if (t > 1) t -= 1
+  if (t < 1/6) return p + (q - p) * 6 * t
+  if (t < 1/2) return q
+  if (t < 2/3) return p + (q - p) * (2/3 - t) * 6
+
+  return p
+}
+
+
+function hslToRgb (h, s, l) {
+	  // Achromatic
+	  if (s === 0) return [l, l, l]
+	  h /= 360
+
+	  var q = l < 0.5 ? l * (1 + s) : l + s - l * s
+	  var p = 2 * l - q
+
+	  return [
+	    Math.round(hueToRgb(p, q, h + 1/3) * 255),
+	    Math.round(hueToRgb(p, q, h) * 255),
+	    Math.round(hueToRgb(p, q, h - 1/3) * 255)
+	  ]
+	}
+
+
+
 
 function random_css_collor()
 {
-	  return "hsl(" + 360 * Math.random() + ',' +
-      (25 + 70 * Math.random()) + '%,' + 
-      (85 + 10 * Math.random()) + '%)'
+	 var data = hslToRgb (360 * Math.random(), (25 + 70 * Math.random()), (85 + 10 * Math.random()))
+	  return "RGB(" + data[0] + ',' +data[1]
+       + ',' + data[2]
+      + ')'
 }
+function componentToHex(c) {
+	  var hex = c.toString(16);
+	  return hex.length == 1 ? "0" + hex : hex;
+	}
+	
+//random hex string generator
+var randHex = function(len) {
+  var maxlen = 8,
+      min = Math.pow(16,Math.min(len,maxlen)-1) 
+      max = Math.pow(16,Math.min(len,maxlen)) - 1,
+      n   = Math.floor( Math.random() * (max-min+1) ) + min,
+      r   = n.toString(16);
+  while ( r.length < len ) {
+     r = r + randHex( len - maxlen );
+  }
+  return r;
+};
+
+function Hex_random_css_collor() 
+{
+
+	  return "#" + randHex(6);
+}
+
+
 
 
 
@@ -1446,6 +1717,446 @@ function prosess_json_reflecktor()
   });
 
 }
+function get_statistics()
+{
+
+	$('#canvas_grap_holder').html("");
+	$('#canvas_grap_holder').html('<canvas id="Graph" width="400px" height="400px"></canvas>');
+	var canvas = document.getElementById('Graph')
+	canvas.width = canvas.width; 
+	var ctx = document.getElementById('Graph').getContext('2d');
+	var barDatafromJSON;
+	var date_value = $('#Datepicker_graph').val();
+
+
+    var barDatafromJSON= {
+    	labels: [''],
+    	datasets: [
+    	]
+    
+    };
+
+
+window.myBara = new Chart(ctx, {
+	type: 'bar',
+	data: barDatafromJSON,
+	options: {
+		responsive: true,
+		maintainAspectRatio: false,
+		legend: {
+			position: 'top',
+		},
+		title: {
+			display: true,
+			text: 'Talkgroup activity '+date_value
+		},
+		scales: {
+            yAxes: [{
+                ticks: {
+                    // Include a dollar sign in the ticks
+                    callback: function(value, index, values) {
+                        return secondsToDHMS( value);
+                    }
+                }
+            }]
+        },
+		tooltips: {
+            // Disable the on-canvas tooltip
+            enabled: true,
+            callbacks: {
+                label: function(tooltipItem, data) {
+                    var label = data.datasets[tooltipItem.datasetIndex].label;
+                    var talktime = data.datasets[tooltipItem.datasetIndex].data[0];
+      
+					
+                    if (label) {
+                        label += ': ';
+                    }
+                    label += secondsToDHMS(talktime);
+                    return label;
+                }
+            }
+
+        }
+	}
+});
+
+	
+	$.get( "get_statistics.php", { date: date_value} )
+	  .done(function( data ) {
+		  var jsondata = JSON.parse(data); 
+
+
+
+
+
+	    	
+		  var i =0;
+		  for(var talkgroup in jsondata)
+		  {
+		    	if(tg_collors[talkgroup] == null)
+		    	{
+		    		tg_collors[talkgroup]= new Array();
+		    		tg_collors[talkgroup]["id"] =talkgroup;
+		    		tg_collors[talkgroup]["color"] =random_css_collor();
+		    		tg_collors[talkgroup]["TXT"] ="";
+		    	}
+		    	
+
+			  if(jsondata[talkgroup].unixtime >0)
+			  {
+  
+
+    			  i++;
+
+   
+    				var newDataset = {
+    					label: talkgroup,
+    					backgroundColor: tg_collors[talkgroup]['color'].trim(),
+    					borderColor:  tg_collors[talkgroup]['color'].trim(),
+    					borderWidth: 1,
+    					data: []
+    				};
+
+    				
+						var datato_push =jsondata[talkgroup].unixtime;
+    					newDataset.data.push(datato_push);
+    				
+
+    					barDatafromJSON.datasets.push(newDataset);
+
+    				
+    			  
+			  }
+			  
+		  }
+		  
+
+		  window.myBara.update();
+
+	
+
+
+
+	  });
+	get_station_chat();
+}
+var show_all_tg =1;
+function get_statistics_hour()
+{
+
+	$('#canvas_grap_holder1').html("");
+	$('#canvas_grap_holder1').html('<canvas id="Graph1" width="400px" height="400px"></canvas>');
+	var canvas = document.getElementById('Graph1')
+	canvas.width = canvas.width; 
+	var ctx = document.getElementById('Graph1').getContext('2d');
+	var barDatafromJSON;
+	var date_value = $('#Datepicker_graph').val();
+
+    var barDatafromJSON= {
+    	labels: [''],
+    	datasets: [
+    	]
+    
+    };
+
+
+
+	
+	$.get( "get_statistics.php", { date: date_value, time:"true"} )
+	  .done(function( data ) {
+		  var jsondata = JSON.parse(data); 
+		 
+
+
+	    	
+		  var i =0;
+		  // fuling för time 0-24
+		  var data_to_set = new Array();
+		  var labels = new Array();
+		  for (talkgroup = 0; talkgroup < 24;talkgroup++) 
+		  {
+				if(jsondata[talkgroup].unixtime == null || jsondata[talkgroup].unixtime  <0)
+					jsondata[talkgroup].unixtime =0;
+		
+			  data_to_set[talkgroup] ={x:talkgroup, y:parseInt(jsondata[talkgroup].unixtime)};
+			  labels[talkgroup] = talkgroup+":00"
+
+  
+			  
+		  }
+
+		    var barDatafromJSON= {
+		        	labels: labels,
+		        	datasets: [
+		        		{
+		    			label: 'Reflektor time in S',
+						backgroundColor: "#6495ED",
+						borderColor: "#6495ED",
+						fill: false,
+						data: data_to_set
+		        		}
+		    ]
+		    };
+	
+
+
+		    		  
+
+		  window.myLine = new Chart(ctx, {
+				type: 'line',
+				data: barDatafromJSON,
+				options: {
+					responsive: true,
+					maintainAspectRatio: false,
+					legend: {
+						position: 'top',
+					},
+					title: {
+						display: true,
+						text: 'Hour  activity '+date_value
+					},
+					scales: {
+			            yAxes: [{
+			                ticks: {
+			                    // Include a dollar sign in the ticks
+			                    callback: function(value, index, values) {
+			                        return secondsToDHMS( value);
+			                    }
+			                }
+			            }]
+			        },
+					tooltips: {
+			            // Disable the on-canvas tooltip
+			            enabled: true,
+			            
+		            callbacks: {
+		                label: function(tooltipItem, data) {
+		                    var label = data.datasets[tooltipItem.datasetIndex].label;
+		                    var talktime = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].y;
+		          
+				
+							
+		                    if (label) {
+		                        label += ': ';
+		                    }
+		                    label += secondsToDHMS(talktime);
+		                    return label;
+		                }
+		            }
+				   }
+				}
+				
+					
+				
+			});
+
+			if(show_all_tg ==1 )
+			{
+				var talkgropoup_array = new Array();
+
+				  for (time = 0; time < 24;time++) 
+				  {
+					  
+					  for(var talkgroup in jsondata[time].TG)
+					  {
+						  if(talkgropoup_array[talkgroup] == 'undefined' || !(talkgropoup_array[talkgroup] instanceof Array) )
+						  {
+						 	 talkgropoup_array[talkgroup]= new Array();
+						  }
+						  
+						  if(jsondata[time].TG[talkgroup] <= 0)
+						  {
+							  talkgropoup_array[talkgroup][time] ={x: time, y:0};
+						  }
+						  else
+						  {
+							  talkgropoup_array[talkgroup][time] = {x:time  ,y: jsondata[time].TG[talkgroup]};
+						  }
+					  }
+						  
+
+				  }
+
+				  for(var talkgroup in talkgropoup_array)
+				  {
+
+				    	if(tg_collors[talkgroup] == null)
+				    	{
+				    		tg_collors[talkgroup]= new Array();
+				    		tg_collors[talkgroup]["id"] =talkgroup;
+				    		tg_collors[talkgroup]["color"] =random_css_collor();
+				    		tg_collors[talkgroup]["TXT"] ="";
+				    	}
+
+				    	
+
+						var newDataset = {
+		    					label: talkgroup+ ' time',
+		    					backgroundColor: tg_collors[talkgroup]['color'].trim(),
+		    					borderColor:  tg_collors[talkgroup]['color'].trim(),
+		    					fill: false,
+		    					data: talkgropoup_array[talkgroup]
+		    				};
+		
+		    		
+
+		    				
+				
+		
+		    					barDatafromJSON.datasets.push(newDataset);
+
+
+								  
+					 
+
+				  }
+				  window.myLine.update();
+
+				  
+				  console.log(talkgropoup_array[240]);
+
+				
+				
+			}
+
+		  
+		  
+
+	  });
+}
+
+
+function get_station_chat()
+{
+
+	
+	$('#Graph_Cricle_holder').html("");
+	$('#Graph_Cricle_holder').html('<canvas id="Graph_Cricle" width="400px" height="400px"></canvas>');
+
+	
+	var canvas = document.getElementById('Graph_Cricle')
+	canvas.width = canvas.width; 
+	var ctx = document.getElementById('Graph_Cricle').getContext('2d');
+	var barDatafromJSON;
+	var date_value = $('#Datepicker_graph').val();
+	var Stations = new Array();
+	var Stations_timesum = new Array();
+	var Stations_collor = new Array()
+	var j=0;
+	$("#nodes_activity > tbody").html("");
+	$.get( "get_statistics.php", { date: date_value,qrv :1} )
+	  .done(function( data ) {
+		  console.log("chart");
+		  console.log(data);
+		 
+		  var Stations_json = JSON.parse(data); 
+
+	
+		  for(var station in Stations_json.data)
+		  {
+			  console.log(Stations_json.data[j]);
+			  Stations_timesum[j]=0;
+			  Stations_timesum[j] = Stations_json.data[j].time;
+			  console.log(Stations_json.data[j].time);
+			  Stations[j] =  Stations_json.data[j].call;
+			  if(node_collors[Stations_json.data[j].call]["color"] != null)
+			  {
+				  Stations_collor[j] = node_collors[Stations_json.data[j].call]["color"].trim();
+			  }
+			  else
+			  {
+			  	Stations_collor[j] = Hex_random_css_collor();
+			  }
+			  var preccent= (((Stations_json.data[j].time)/86400) * 100).toFixed(3);
+			  var preccent_network= (((Stations_json.data[j].time)/Stations_json.total_secounds) * 100).toFixed(3);
+			  
+			  $("#nodes_activity").append('<tr><td>'+Stations[j]+'</td><td>'+Stations_json.data[j].Secound+"</td><td>"+preccent_network+"%</td><td>"+preccent+"%</td><td>"+Stations_json.data[j].reciver+"</td><tr>");
+			  j++;
+
+			 
+		  }
+		
+	
+
+		    var data = {
+		    	    datasets: [{
+		    	        data: Stations_timesum,
+    					backgroundColor: Stations_collor,
+    					borderColor:  Stations_collor
+		    	    }],
+
+		    	    // These labels appear in the legend and in the tooltips when hovering different arcs
+		    	    labels: Stations
+		    	};
+
+
+		window.myBar = new Chart(ctx, {
+			type: 'pie',
+			data: data,
+			options: {
+				maintainAspectRatio: false,
+				responsive: true,
+				legend: {
+					position: 'top',
+				},
+				title: {
+					display: true,
+					text: 'Station activity '+date_value
+				},
+
+				
+				tooltips: {
+		            // Disable the on-canvas tooltip
+		            enabled: true,
+		            callbacks: {
+		                label: function(tooltipItem, data) {
+		                    var label = data.labels[tooltipItem.index];
+		                    var talktime = data.datasets[0].data[tooltipItem.index];
+		    
+							
+		                    if (label) {
+		                        label += ': ';
+		                    }
+		                    console.log(talktime);
+		                    label += secondsToDHMS(talktime);
+		                    return label;
+		                }
+		            }
+
+		        }
+			}
+		});
+
+	  });
+
+
+
+
+	
+}
+function numberconvert(n){
+    return n > 9 ? "" + n: "0" + n;
+}
+
+
+function secondsToDHMS(seconds) {
+    var totalSeconds = parseInt(seconds);
+    if(totalSeconds >0)
+    {
+    	hours = Math.floor(totalSeconds / 3600);
+    	totalSeconds %= 3600;
+    	minutes = Math.floor(totalSeconds / 60);
+    	seconds = totalSeconds % 60;
+        
+        
+        return numberconvert(hours)+":"+numberconvert(+minutes)+":"+numberconvert(seconds);
+
+    }
+       else
+            return "00:00:00";
+            
+}
 
 
 
@@ -1577,6 +2288,7 @@ function add_tx_station()
 {
 	$.getJSON( "<?php echo $serveradress ?>", function( data ) {
 
+
 		for(var k in data.nodes){
 			
 		    if(data.nodes[k].hidden == true)
@@ -1588,7 +2300,7 @@ function add_tx_station()
 		
 		for(var k in data.nodes){
 		    for(var qth in data.nodes[k].qth){
-		    	console.log(k+" - "+data.nodes[k].qth[qth].name);
+		    	//console.log(k+" - "+data.nodes[k].qth[qth].name);
 		        for(var qth1 in data.nodes[k].qth[qth].tx){
 			        		        
     				var lat =data.nodes[k].qth[qth].pos.lat
@@ -1614,8 +2326,9 @@ function add_tx_station()
 
 		//add_repeater_node()
 
-
-
+		<?php if($default_long != "" && $default_lat !=""){?>
+			setmap(<?php echo $default_lat?>, <?php echo $default_long?>,5);
+		<?php }?>
 		});
 	
 }
@@ -1634,14 +2347,7 @@ function update_tx_station_loop()
 		
 		for(var k in data.nodes){
 
-			for(var k in data.nodes){
-				
-			    if(data.nodes[k].hidden == true)
-			    {
-			    	delete data.nodes[k];
-			    	
-			    }
-			}
+
 			
 		    for(var qth in data.nodes[k].qth){
 		        for(var qth1 in data.nodes[k].qth[qth].tx){
@@ -1734,13 +2440,7 @@ function update_tx_station_loop()
                 			update_bar(idn,value.toString(),sql);
         				}
         			}
-        
-        					
-        
-        
-
-    			
-
+        			
 	        	}
 
 			}	
@@ -1782,6 +2482,60 @@ function toogle_menu()
 {
         $("#wrapper").toggleClass("toggled");	
 }
+
+function change_day_next()
+{
+
+    var date = $('#Datepicker_graph').datepicker('getDate');
+    date.setDate(date.getDate() +1)
+    $('#Datepicker_graph').datepicker('setDate', date);
+    get_statistics();
+    get_statistics_hour();
+
+}
+function change_day_prew()
+{
+
+	var date = $('#Datepicker_graph').datepicker('getDate');
+	date.setDate(date.getDate() -1)
+	$('#Datepicker_graph').datepicker('setDate', date);
+    get_statistics();
+    get_statistics_hour();
+
+
+}
+function bind_key_statistics()
+{
+
+
+	$(document).keydown(function(e) {
+	    switch(e.which) {
+	        case 37: // left
+	        	change_day_prew()
+	        break;
+
+	        case 38: // up
+	        break;
+
+	        case 39: // right
+	        	change_day_next()
+	        break;
+
+	        case 40: // down
+	        break;
+
+	        default: return; // exit this handler for other keys
+	    }
+	    e.preventDefault(); // prevent the default action (scroll / move caret)
+	});
+	
+}
+
+
+
+
+
+   
 	
     </script>
 
@@ -1797,11 +2551,11 @@ function toogle_menu()
 							</div>
 
 							<!-- Login Form -->
-							<form>
+							<form id="loginform" action="login.php" method="post" >
 								<input type="text" id="login" class="fadeIn second" name="login"
 									placeholder="login"> <input type="password" id="password"
-									class="fadeIn third" name="password" placeholder="password"> <input
-									type="submit" class="fadeIn fourth" value="Log In">
+									class="fadeIn third" name="password" placeholder="password"> <input onclick="login_form()"
+									type="button" class="fadeIn fourth" value="Log In">
 							</form>
 
 							<!-- Remind Passowrd -->
@@ -1813,6 +2567,85 @@ function toogle_menu()
 					</div>
 				</div>
 
+
+				<div class="tab-pane " id="Statistics">
+				<div class="row">
+    				<h3>Statistics for Network</h3>
+    			</div>
+    			<div class="row">
+    			
+    				<p><button class="prev-day btn btn-outline-secondary"  onclick="change_day_prew()" id="prev-day"><i class="fa fa-angle-left" aria-hidden='true'></i></button></button><input type="text" id="Datepicker_graph" value="<?php echo date("Y-m-d")?>" onchange="get_statistics();get_statistics_hour()">
+    				
+    				<button class='next-day btn btn-outline-secondary' onclick="change_day_next()" ><i class='fa fa-angle-right' aria-hidden='true'></i></button></p>
+				</div>
+        	  <div class="col">
+               <nav id="ssas" class="navbar navbar-expand-lg navbar-light bg-light navbar navbar-light bg-light ">
+        
+                   <ul class="navbar-nav">
+                  	<li class="nav-link  active"><a data-toggle="tab" onclick="$('#ssas a.active').removeClass('active');" href="#dastaty">Day</a></li>
+                  	<li class="nav-link "><a data-toggle="tab" onclick="$('#ssas a.active').removeClass('active');get_statistics_hour()" href="#menu_hour">Hour</a></li>
+
+                   </ul> 
+            </nav>
+            </div>
+        
+             
+        
+
+        		<div class="row">
+				<div class="tab-content col-md-12">
+				
+				
+     			<div id="dastaty" class="tab-pane in active w-100  ">
+                    <div class="container-fluid">
+                        <div class="row">
+                        	<div class="col-md-6">
+                				<div style="width: 80%; height: 500px;" id="canvas_grap_holder">
+                					<canvas id="Graph" width="400px" height="400px"></canvas>
+                				</div>
+                			</div>
+                    		<div class="col-md-6" id="Graph_Cricle_holder">
+                    				<canvas id="Graph_Cricle" width="400px" height="400px"></canvas>
+                    		</div>	
+                    	 </div>
+                	 </div>
+            	 </div>
+            	 
+      			<div id="menu_hour" class="tab-pane  in  w-100  ">
+                    <div class="container-fluid">
+                        <div class="row">
+                        	<div class="col-md-12">
+                				<div style="width: 80%; height: 500px;" id="canvas_grap_holder1">
+                					<canvas id="Graph1" width="400px" height="400px"></canvas>
+                				</div>
+                			</div>
+
+                    	 </div>
+                	 </div>
+            	 </div>
+            	 
+            	            	 
+            	 </div>
+        			
+    			</div>
+
+
+    			<div class="row">
+    				<div class="col-md-12">
+    					&nbsp;
+    				</div>
+    			</div>
+    			<div class="col-md-12" id="table">
+    			<table id="nodes_activity" class="table" ><thead class="thead-dark"><tr><th>Station</th><th>Uptime</th><th>Network Usage 24 hour</th><th>Usage last 24 hour</th><th>Most use reciver</th></tr></thead></table>
+    			</div>
+    			</div>	
+    			
+    			<div class="tab-pane " id="Table_ctcss">
+    			<?php 
+    			$noheader =1;
+    			include 'ctcss_map_table.php'?>
+    			</div>
+				
 			</div>
 			<!-- /#page-content-wrapper -->
 

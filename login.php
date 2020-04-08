@@ -1,10 +1,36 @@
 <?php
-$username = $_POST['username'];
+include 'config.php';
+session_start();
+$username = $_POST['login'];
 $password = $_POST['password'];
-echo "<html>";
-echo "<title>Welcome to the Restricted Area</title><head>";
-echo "<META HTTP-EQUIV=REFRESH CONTENT=\"0; URL=http://$username:$password@www.myserver/svxrecording/index.htm\">";
-echo "</head><body>";
-echo "<center><h2>Please Wait .... Login Into the Restricted Area ... </h2>";
-echo "</body></html>";
+
+$username= $link->real_escape_string($username);
+$password = $link->real_escape_string($password);
+
+$password_hash = md5($password);
+
+
+$result = mysqli_query($link, "SELECT id  FROM `users`  WHERE Username = '".$username."' AND Password='".$password_hash."'  ");
+
+
+
+while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
+{
+
+    if($row['id'] >0 )
+    {
+        $_SESSION["loginid"] = $row['id'];
+        $_SESSION["level"] = $row['level'];
+        
+        echo "true";
+    }
+    else
+    {
+        echo "false";
+    }
+    
+
+}
+
+
 ?> 

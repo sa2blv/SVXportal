@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Värd: localhost
--- Tid vid skapande: 09 apr 2020 kl 00:12
--- Serverversion: 5.7.29-0ubuntu0.18.04.1
--- PHP-version: 7.2.24-0ubuntu0.18.04.3
+-- Tid vid skapande: 03 nov 2019 kl 21:00
+-- Serverversion: 5.7.27-0ubuntu0.18.04.1
+-- PHP-version: 7.2.24-0ubuntu0.18.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -32,6 +32,10 @@ CREATE TABLE `covrige` (
   `Radiomobilestring` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumpning av Data i tabell `covrige`
+--
+
 
 -- --------------------------------------------------------
 
@@ -45,8 +49,13 @@ CREATE TABLE `Daylog` (
   `Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumpning av Data i tabell `Daylog`
+--
 
 
+
+-- --------------------------------------------------------
 
 --
 -- Tabellstruktur `Filter`
@@ -63,44 +72,6 @@ CREATE TABLE `Filter` (
 -- Dumpning av Data i tabell `Filter`
 --
 
--- --------------------------------------------------------
-
---
--- Tabellstruktur `RefletorNodeLOG`
---
-
-CREATE TABLE `RefletorNodeLOG` (
-  `Id` int(11) NOT NULL,
-  `Callsign` varchar(40) NOT NULL,
-  `Type` int(11) NOT NULL,
-  `Active` int(11) NOT NULL,
-  `Talkgroup` bigint(20) NOT NULL,
-  `NODE` varchar(11) NOT NULL,
-  `Siglev` int(11) NOT NULL,
-  `Duration` int(11) NOT NULL,
-  `Nodename` varchar(80) NOT NULL,
-  `IsTalker` int(20) NOT NULL,
-  `Time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `Talktime` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
--- --------------------------------------------------------
-
---
--- Tabellstruktur `RefletorStations`
---
-
-CREATE TABLE `RefletorStations` (
-  `ID` int(11) NOT NULL,
-  `Callsign` varchar(40) CHARACTER SET utf8 COLLATE utf8_swedish_ci NOT NULL,
-  `Location` text NOT NULL,
-  `Collor` text
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumpning av Data i tabell `RefletorStations`
---
 
 
 -- --------------------------------------------------------
@@ -120,10 +91,7 @@ CREATE TABLE `repeater` (
 -- Dumpning av Data i tabell `repeater`
 --
 
-INSERT INTO `repeater` (`id`, `Openings`, `Nag`, `Name`) VALUES
-(1, 711, 118, 'SK2RIU'),
-(2, 0, 0, 'SK3GW'),
-(3, 0, 0, 'SK3W');
+
 
 -- --------------------------------------------------------
 
@@ -140,24 +108,6 @@ CREATE TABLE `Talkgroup` (
 
 --
 -- Dumpning av Data i tabell `Talkgroup`
---
-
-
--- --------------------------------------------------------
-
---
--- Tabellstruktur `users`
---
-
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `Username` varchar(40) NOT NULL,
-  `Password` varchar(200) NOT NULL,
-  `level` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumpning av Data i tabell `users`
 --
 
 
@@ -185,21 +135,6 @@ ALTER TABLE `Filter`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index för tabell `RefletorNodeLOG`
---
-ALTER TABLE `RefletorNodeLOG`
-  ADD PRIMARY KEY (`Id`),
-  ADD KEY `Callsign` (`Callsign`),
-  ADD KEY `NODE` (`NODE`),
-  ADD KEY `Nodename` (`Nodename`);
-
---
--- Index för tabell `RefletorStations`
---
-ALTER TABLE `RefletorStations`
-  ADD PRIMARY KEY (`ID`);
-
---
 -- Index för tabell `repeater`
 --
 ALTER TABLE `repeater`
@@ -210,12 +145,6 @@ ALTER TABLE `repeater`
 --
 ALTER TABLE `Talkgroup`
   ADD PRIMARY KEY (`ID`);
-
---
--- Index för tabell `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT för dumpade tabeller
@@ -237,25 +166,10 @@ ALTER TABLE `Daylog`
 ALTER TABLE `Filter`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT för tabell `RefletorNodeLOG`
---
-ALTER TABLE `RefletorNodeLOG`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=617126;
---
--- AUTO_INCREMENT för tabell `RefletorStations`
---
-ALTER TABLE `RefletorStations`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
---
 -- AUTO_INCREMENT för tabell `Talkgroup`
 --
 ALTER TABLE `Talkgroup`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
---
--- AUTO_INCREMENT för tabell `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

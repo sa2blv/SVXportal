@@ -1,0 +1,35 @@
+
+
+D1#  ->  EchoTest
+D10# ->  SK0CT-R
+D11# ->  SK3BG-R
+D12# ->  SK3GA-R
+D13# ->  SK3GW-R
+D14# ->  SK4KO-R
+D15# ->  SK6QW-R
+D16# ->  SK5LW-R
+
+D60# ->  PE1NOS-R
+D61# ->  LA7F-L
+D62# ->  LA7MR-R
+D63# ->  OE2XR-R
+D64# ->  OH6AG-R
+D65# ->  OH3TAM-R
+D66# ->  SIAM TAIHLAND
+
+D71# ->  AMSAT      
+
+
+2# Activate echolink module
+
+to use this comands you nead to start the echolink module
+0# – Play the help message
+1# – List all connected stations
+2# – Play local EchoLink node id
+3# – Connect to a random link or repeater
+32# – Connect to a random conference
+4# – Reconnect to the last disconnected station
+50# – Deactivate listen only mode
+51# – Activate listen only mode
+6* – Use the connect by callsign feature
+# – Close echolink module 

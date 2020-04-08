@@ -1,0 +1,25 @@
+<!DOCTYPE html><html><head>
+<title>Radio Mobile - Coverage Online</title>
+<style type="text/css">html { height: 100% }body { height: 100%; background-color:silver }</style>
+<script language="javascript" type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script><script type="text/javascript">
+var map;
+var rmap1,mk1;
+function initialize() {
+var coord = new google.maps.LatLng( 63.8402900695801, 19.8226833343506);
+var myOptions = {zoom:  6,center: coord, mapTypeId: google.maps.MapTypeId.ROADMAP};
+map = new google.maps.Map(document.getElementById("map_canvas"),myOptions );
+var boundaries1 = new google.maps.LatLngBounds(new google.maps.LatLng( 61.59199, 14.72304), new google.maps.LatLng( 66.08859, 24.92233));
+rmap1 =new google.maps.GroundOverlay("RMD91452B99B84_0.png", boundaries1);
+rmap1.setMap(map);
+mk1 =new google.maps.Marker({position:new google.maps.LatLng( 63.84029004, 19.82268333),map:map,draggable:false,zIndex:1});
+rmap1.setMap(map);
+ }
+function showcov(m,v){if(v.checked) m.setMap(map); else m.setMap(null);}
+</script></head>
+<body onload="initialize()">
+<div id="map_canvas" style="width:100%;height:80%"></div>
+<div style="width:100%;height:10%">
+<table width="100%"><tr><th colspan="2">SK2RIU 434 MHz</th></tr><tr><td bgcolor="#E0E0E0" colspan="2"><form name="form2">
+<input type="checkbox" name="ckc1" checked="true" onclick="showcov(rmap1,ckc1);">SK2RIU 434 MHz</input>
+<input type="checkbox" name="ckm1" checked="true" onclick="showcov(mk1,ckm1);">SK2RIU</input>
+</form></td></tr></table></div></body></html>

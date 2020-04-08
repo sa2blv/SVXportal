@@ -237,7 +237,7 @@ function write_log(logtext)
 	textstring = d.getFullYear()+"-"+ d.getMonth()+"-"+d.getDate()+"-"+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
 	textstring=textstring+="	"+logtext+"</br >";
 	
-	$( "#logdiv" ).prepend( textstring );
+	//$( "#logdiv" ).prepend( textstring );
 }
 
 

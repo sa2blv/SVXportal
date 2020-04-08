@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="canvas" width="60" height="85" >
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script>
+var canvas = document.getElementById('canvas');
+if (canvas.getContext) {
+   var ctx = canvas.getContext('2d');
+
+  ctx.beginPath();
+  ctx.arc(30, 30, 25, 25, Math.PI * 2, true); // Outer circle
+  
+  ctx.moveTo(5, 35);
+  ctx.lineTo(30, 80);
+  ctx.lineTo(55, 35);
+  ctx.lineWidth = 3;
+  ctx.stroke();
+  ctx.fillStyle ="#E31013";
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(30, 30, 10, 0, Math.PI * 2, true); // Outer circle
+ ctx.fillStyle ="#FFFFFF";
+  ctx.fill();
+  		ctx.beginPath();
+		ctx.arc(30, 30, 30, 0, Math.PI * 2, true); // Outer circle
+		ctx.stroke();
+
+}
+</script>
+
+</body>
+</html>

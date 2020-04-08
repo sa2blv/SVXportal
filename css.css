@@ -319,4 +319,13 @@ color: #fff;
 {
 	color: green;
 }
+#dw__toc
+{
+	 float: right;
+	 @include  .float-right;
+}
+.inline
+{
+  .table;
+}
 

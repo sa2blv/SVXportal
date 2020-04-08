@@ -1,0 +1,63 @@
+{
+  "callsign"   : "SK2RLJ",
+  "name"       : "Fura",
+  "input_freq" : 145050000,
+  "output_freq": 145600000,
+  "ctcss_in"   : 0,
+  "ctcss_out"  : 107.2,
+  "echolink_id": 7815,
+  "uri"        : {
+    "homepage"             : "http://www.Sk2at.se/",
+    "signalEventStream"    : "http://sk2riugw.dyndns.org:1535/json",
+    "signalWebsocketStream": "ws://pc7x.net:1535/ws/pi2noss",
+    "audiostream"          : ""
+  },
+  "antennalist"  : ["Roberget"],
+  "antenna"      : {
+    "Roberget ": {
+      "name"       : "Röberget",
+      "description": "4x Stack antenna",
+      "location"   : {
+        "lon": 19.824023,
+        "lat": 63.844387,
+        "alt": 310
+      }
+    }
+    }
+
+
+    
+  },
+  "rxlist"         : [
+    "RX70",
+    "NetBLV",
+    "Rx2"
+
+  ],
+  "rx": {
+    "RX70" : {
+      "name"       : "Röberget",
+      "description": "Base Station",
+      "make"       : "Motorola",
+      "model"      : "",
+      "infoUrl"    : "",
+      "antenna"    : "Slytan",
+      "type"       : "radio"
+    }
+
+  },
+  "txlist"         : [
+    "Tx1"
+  ],
+  "tx": {
+    "Tx1": {
+      "name"       : "Kanis",
+      "description": "Base Station",
+      "make"       : "Ericsson",
+      "model"      : "F800",
+      "infoUrl"    : "http://radioinorr.se/category/radio/projekt-repeater/",
+      "antenna"    : "Kanis1",
+      "type"       : "radio"
+    }
+  }
+}
