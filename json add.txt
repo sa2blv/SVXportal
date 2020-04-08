@@ -1,5 +1,0 @@
-stationInformation
--->  TgToCTCSS
-	--->107.2 = 2402
-	    88.5  = 2405
---> StationAdvanced =""
