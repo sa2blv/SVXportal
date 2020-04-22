@@ -6,7 +6,7 @@ $db="svx";
 
 $link =  mysqli_connect($host, $user, $password , $db);
 // Site name
-$sitename = "2.1";
+$sitename = "2.2";
 
 // Live link
 $livelink="http://svxportal.sm2ampr.net:8000/svxcard96";
