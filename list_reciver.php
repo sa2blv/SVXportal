@@ -317,7 +317,7 @@ for(var k in data.nodes){
      	  }
      	  else
      	  {
-              qth_html_add ='<tbody id="group-of-'+printk+'" class="collapse"><tr class="table-striped  '+class_row+' table-borderless" id="row'+name_id+'"  ><td></td><td></td><td> * '+qth_name+'</td><td></td><td colspan="" id="td'+printk+'_'+qth_name+'"><canvas id="bar_'+printk+'_'+qth_name+'"></canvas> </td><td></td><td>'+parseInt(value)+'%</td><td>'+Freqvensy+'</td><td></td></tr></tbody>';
+              qth_html_add ='<tbody id="group-of-'+printk+'" class="collapse"><tr class="table-striped  '+class_row+' table-borderless" id="row'+name_id+'"  ><td> * '+qth_name+'</td><td></td><td></td><td colspan="" id="td'+printk+'_'+qth_name+'"><canvas id="bar_'+printk+'_'+qth_name+'"></canvas> </td><td></td><td>'+parseInt(value)+'%</td><td>'+Freqvensy+'</td><td></td></tr></tbody>';
               $('#Reflektortable').append(qth_html_add);
               $('#row'+remove_notgouiltychar(name_id)+'').removeClass("class_row");
               
