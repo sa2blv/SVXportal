@@ -92,7 +92,7 @@ $("#jquery_jplayer_N").bind($.jPlayer.event.timeupdate, function(event) {
 $.post( "signal.php", { time: (TotaltimeTime-currentTime), file: event.jPlayer.status.src })
 .done(function( data ) {
 
-	console.log(data);
+	//console.log(data);
 	if(data != "")
 	{
     var Json_data = JSON.parse(data);
@@ -165,7 +165,7 @@ function create_bar_rx(value,element,rx_sql)
 
 function call_svxrefelktor() {
 $.getJSON( "<?php echo $serveradress ?>", function( data ) {
-	console.log(data);
+	//console.log(data);
 	for(var k in data.nodes){
 		
 	    if(data.nodes[k].hidden == true)
@@ -1133,7 +1133,7 @@ function show_station_information(identity)
 {
 	$.getJSON("<?php echo $serveradress ?>", function(data){
 		$("#Showstation_info").modal()
-		console.log(data.nodes[identity]);
+		//console.log(data.nodes[identity]);
 		var name = identity;
 		var ip_adress = data.nodes[identity].addr;
 		var location = data.nodes[identity].NodeLocation;
@@ -1613,7 +1613,7 @@ function prosess_json_reflecktor()
 {
 
   $.getJSON("<?php echo $serveradress ?>", function(data){
-  console.log(data);
+  //console.log(data);
     
 		for(var k in data.nodes){
 			
@@ -1842,6 +1842,7 @@ window.myBara = new Chart(ctx, {
 	get_station_chat();
 }
 var show_all_tg =1;
+var use_hour=0;
 function get_statistics_hour()
 {
 
@@ -1866,6 +1867,7 @@ function get_statistics_hour()
 	$.get( "get_statistics.php", { date: date_value, time:"true"} )
 	  .done(function( data ) {
 		  var jsondata = JSON.parse(data); 
+		  //console.log(jsondata);
 		 
 
 
@@ -2014,7 +2016,7 @@ function get_statistics_hour()
 				  window.myLine.update();
 
 				  
-				  console.log(talkgropoup_array[240]);
+				  //console.log(talkgropoup_array[240]);
 
 				
 				
@@ -2047,7 +2049,7 @@ function get_station_chat()
 	$("#nodes_activity > tbody").html("");
 	$.get( "get_statistics.php", { date: date_value,qrv :1} )
 	  .done(function( data ) {
-		  console.log("chart");
+		  //console.log("chart");
 		  console.log(data);
 		 
 		  var Stations_json = JSON.parse(data); 
@@ -2062,7 +2064,7 @@ function get_station_chat()
 			  Stations[j] =  Stations_json.data[j].call;
 			  if(node_collors[Stations_json.data[j].call]["color"] != null)
 			  {
-				  Stations_collor[j] = node_collors[Stations_json.data[j].call]["color"].trim();
+			  	Stations_collor[j] = node_collors[Stations_json.data[j].call]["color"].trim();
 			  }
 			  else
 			  {
@@ -2071,7 +2073,7 @@ function get_station_chat()
 			  var preccent= (((Stations_json.data[j].time)/86400) * 100).toFixed(3);
 			  var preccent_network= (((Stations_json.data[j].time)/Stations_json.total_secounds) * 100).toFixed(3);
 			  
-			  $("#nodes_activity").append('<tr><td>'+Stations[j]+'</td><td>'+Stations_json.data[j].Secound+"</td><td>"+preccent_network+"%</td><td>"+preccent+"%</td><td>"+Stations_json.data[j].reciver+"</td><tr>");
+			  $("#nodes_activity").append('<tr><td>'+Stations_json.data[j].call+'</td><td>'+Stations_json.data[j].Secound+"</td><td>"+preccent_network+"%</td><td>"+preccent+"%</td><td>"+Stations_json.data[j].reciver+"</td><tr>");
 			  j++;
 
 			 
@@ -2118,7 +2120,7 @@ function get_station_chat()
 		                    if (label) {
 		                        label += ': ';
 		                    }
-		                    console.log(talktime);
+		                    //console.log(talktime);
 		                    label += secondsToDHMS(talktime);
 		                    return label;
 		                }
@@ -2310,7 +2312,7 @@ function add_tx_station()
     				var idn=k+data.nodes[k].qth[qth].tx[qth1].name;
     				idn =idn.replace(" ","_");
     				station_identifire[idn] =k;
-    				console.log(name);
+    				//console.log(name);
     				
     
     				add_repeater_transmiter(lat,lon,name,idn,talkgroup)
@@ -2327,7 +2329,7 @@ function add_tx_station()
 		//add_repeater_node()
 
 		<?php if($default_long != "" && $default_lat !=""){?>
-			setmap(<?php echo $default_lat?>, <?php echo $default_long?>,5);
+			setmap(<?php echo $default_lat?>, <?php echo $default_long?>,<?php echo $default_zoom?>);
 		<?php }?>
 		});
 	
@@ -2509,7 +2511,8 @@ function bind_key_statistics()
 
 
 	$(document).keydown(function(e) {
-	    switch(e.which) {
+	    switch(e.which) 
+	    {
 	        case 37: // left
 	        	change_day_prew()
 	        break;
