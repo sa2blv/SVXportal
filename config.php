@@ -25,7 +25,7 @@ $serveradress ="http://sk3w.se/svxreflektor/reflektor%20proxy/";
 // Default Position
 $default_lat ="62.676160";
 $default_long ="17.633479";
-
+$default_zoom =5;
 
 
 ?>
