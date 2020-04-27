@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-27 02:20+0200\n"
+"POT-Creation-Date: 2020-04-27 14:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ctcss_map_table.php:186 index.php:552
+#: ctcss_map_table.php:186
 msgid "CTSS map table"
 msgstr ""
 
@@ -123,7 +123,7 @@ msgid "Talkgroups"
 msgstr ""
 
 #: index.php:540
-msgid "List reciver"
+msgid "List receiver"
 msgstr ""
 
 #: index.php:543
@@ -136,6 +136,10 @@ msgstr ""
 
 #: index.php:550
 msgid "Log"
+msgstr ""
+
+#: index.php:552
+msgid "CTCSS map table"
 msgstr ""
 
 #: index.php:561

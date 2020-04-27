@@ -537,7 +537,7 @@ function login_form()
 					<li class="nav-item"><a class="nav-link" href="#Dictionary"
 						data-toggle="tab"><i class="fas fa-book"></i> <?php echo _("Talkgroups")?></a></li>
 					<li class="nav-item"><a class="nav-link" href="list_reciver.php"><i
-							class="fas fa-broadcast-tower"></i> <?php echo _("List reciver")?></a></li>
+							class="fas fa-broadcast-tower"></i> <?php echo _("List receiver")?></a></li>
 
 					<li class="nav-item"><a class="nav-link" href="#Statistics" onclick="get_statistics()"
 						data-toggle="tab"><i class="fas fa-chart-bar"></i>  <?php echo _("Statistics")?></a></li>
@@ -549,7 +549,7 @@ function login_form()
 					<li class="nav-item"><a class="nav-link" href="#Log"
 						data-toggle="tab"><i class="fas fa-terminal"></i> <?php echo _("Log")?></a></li>
 					<li class="nav-item"><a class="nav-link" href="#Table_ctcss"
-						data-toggle="tab"><i class="fas fa-terminal"></i> <?php echo _("CTSS map table")?></a></li>
+						data-toggle="tab"><i class="fas fa-terminal"></i> <?php echo _("CTCSS map table")?></a></li>
 						
 						
 						

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2020-04-26 16:22+0200\n"
-"PO-Revision-Date: 2020-04-26 16:25+0200\n"
+"POT-Creation-Date: 2020-04-27 14:09+0200\n"
+"PO-Revision-Date: 2020-04-27 14:09+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nb_NO\n"
@@ -18,20 +18,20 @@ msgstr ""
 msgid "'"
 msgstr ""
 
-#: ctcss_map_table.php:186 index.php:552
+#: ctcss_map_table.php:186
 msgid "CTSS map table"
 msgstr "CTSS-tabell"
 
-#: ctcss_map_table.php:192 index.php:187 index.php:620 list_reciver.php:55
+#: ctcss_map_table.php:192 index.php:187 index.php:621 list_reciver.php:55
 msgid "Callsign"
 msgstr "Kallesignal"
 
-#: ctcss_map_table.php:193 div_reciver.php:94 index.php:1053
+#: ctcss_map_table.php:193 div_reciver.php:94 index.php:1054
 #: list_reciver.php:55
 msgid "Frequency"
 msgstr "Frekvens"
 
-#: ctcss_map_table.php:194 index.php:1026
+#: ctcss_map_table.php:194 index.php:1027 list_reciver.php:55
 msgid "Location"
 msgstr "By"
 
@@ -55,7 +55,7 @@ msgstr "Bruk tre siste røye i kallesignal"
 msgid "Export"
 msgstr "Eksport"
 
-#: div_reciver.php:8 index.php:827
+#: div_reciver.php:8 index.php:828 list_reciver.php:455
 msgid "All"
 msgstr "Alle"
 
@@ -63,13 +63,13 @@ msgstr "Alle"
 msgid "Signal values at"
 msgstr "Signalverdier"
 
-#: div_reciver.php:94
+#: div_reciver.php:94 list_reciver.php:55
 msgid "Receiver"
 msgstr ""
 "M\n"
 "ottaker"
 
-#: div_reciver.php:94 list_reciver.php:55
+#: div_reciver.php:94 index.php:727 list_reciver.php:55
 msgid "Signal"
 msgstr "Signal"
 
@@ -77,7 +77,7 @@ msgstr "Signal"
 msgid "Mhz"
 msgstr "Mhz"
 
-#: index.php:187 index.php:621 index.php:848 list_reciver.php:55
+#: index.php:187 index.php:622 index.php:849 list_reciver.php:55
 msgid "TG"
 msgstr "TG"
 
@@ -125,12 +125,12 @@ msgstr "Overvåke"
 msgid "System description"
 msgstr "Systembeskrivelse"
 
-#: index.php:538 index.php:1027
+#: index.php:538 index.php:1028
 msgid "Talkgroups"
 msgstr "Talegrupper"
 
 #: index.php:540
-msgid "List reciver"
+msgid "List receiver"
 msgstr "Liste mottager"
 
 #: index.php:543
@@ -145,6 +145,12 @@ msgstr "Mottager"
 msgid "Log"
 msgstr "Logg"
 
+#: index.php:552
+msgid "CTCSS map table"
+msgstr ""
+"CTC\n"
+"SS-tabell"
+
 #: index.php:561
 msgid "Map"
 msgstr "Kart"
@@ -153,199 +159,195 @@ msgstr "Kart"
 msgid "Login"
 msgstr "Logg Inn"
 
-#: index.php:622
+#: index.php:623
 msgid "Ver"
 msgstr "Ver"
 
-#: index.php:623
+#: index.php:624
 msgid "TGs"
 msgstr "TGs"
 
-#: index.php:634
+#: index.php:635
 msgid "QSO Monitor"
 msgstr "QSO Monitor"
 
-#: index.php:686
+#: index.php:687
 msgid "repeat"
 msgstr "repeat"
 
-#: index.php:687
+#: index.php:688
 msgid "shuffle"
 msgstr "shuffle"
 
-#: index.php:688
+#: index.php:689
 msgid "full screen"
 msgstr "full skjerm"
 
-#: index.php:712
+#: index.php:713
 msgid "Listen LIVE"
 msgstr "Hør LIVE"
 
-#: index.php:714 index.php:829 index.php:838 index.php:971
+#: index.php:715 index.php:830 index.php:839 index.php:972
 msgid "Toggle menu"
 msgstr "Skjul meny"
 
-#: index.php:716
+#: index.php:717
 msgid "Select date to listen"
 msgstr "Velg dato for å høre"
 
-#: index.php:718
+#: index.php:719
 msgid "to use player you must login"
 msgstr "For å bruke spiller må du logge inn"
 
-#: index.php:726
-msgid "Sinal"
-msgstr "Signal"
-
-#: index.php:727
+#: index.php:728
 msgid "Signal value  from Reciver"
 msgstr "Signalverdi fra mottager"
 
-#: index.php:735 index.php:849
+#: index.php:736 index.php:850
 msgid "Name"
 msgstr "Navn"
 
-#: index.php:736
+#: index.php:737
 msgid "Openings"
 msgstr "Aktive"
 
-#: index.php:737 index.php:2688
+#: index.php:738 index.php:2694
 msgid "Uptime"
 msgstr "Uptime"
 
-#: index.php:738 index.php:853
+#: index.php:739 index.php:854
 msgid "Color"
 msgstr "Farge"
 
-#: index.php:850
+#: index.php:851
 msgid "Last active"
 msgstr "Seneste aktiv"
 
-#: index.php:851
+#: index.php:852
 msgid "Time"
 msgstr "Tid"
 
-#: index.php:852
+#: index.php:853
 msgid "Time Total"
 msgstr "Tid totalt"
 
-#: index.php:924
+#: index.php:925
 msgid "Coverage"
 msgstr "Dekningskart"
 
-#: index.php:927
+#: index.php:928
 msgid "Show"
 msgstr "Showet"
 
-#: index.php:928
+#: index.php:929
 msgid "Remove"
 msgstr "Fjern"
 
-#: index.php:934
+#: index.php:935
 msgid "Actions"
 msgstr "Handlinger"
 
-#: index.php:952
+#: index.php:953
 msgid "Remove bars"
 msgstr "Fjern stengene"
 
-#: index.php:954
+#: index.php:955
 msgid "Remove ALL stations"
 msgstr "Fjern ALLE stasjoner"
 
-#: index.php:955
+#: index.php:956
 msgid "Show Receivers"
 msgstr "Vis mottager"
 
-#: index.php:960
+#: index.php:961
 msgid "Toggle AutoFollow"
 msgstr "Veksle AutoFollow"
 
-#: index.php:966
+#: index.php:967
 msgid "Reload Map"
 msgstr "Last kart på nytt"
 
-#: index.php:1010
+#: index.php:1011
 msgid "Station info for"
 msgstr "Informasjon for"
 
-#: index.php:1028
+#: index.php:1029
 msgid "Version"
 msgstr "Versjon"
 
-#: index.php:1029
+#: index.php:1030
 msgid "CurrentTG"
 msgstr "CurrentTG"
 
-#: index.php:1030
+#: index.php:1031
 msgid "Sysop"
 msgstr "Administrator"
 
-#: index.php:1051
+#: index.php:1052
 msgid "RX Name"
 msgstr "RX-navn"
 
-#: index.php:1052
+#: index.php:1053
 msgid "SqlType"
 msgstr "Sql Type"
 
-#: index.php:1054
+#: index.php:1055
 msgid "Enable"
 msgstr "Aktiver"
 
-#: index.php:1797
+#: index.php:1798
 msgid "Talkgroup activity"
 msgstr "Samtalegruppeaktivitet"
 
-#: index.php:1941
+#: index.php:1942
 msgid "Reflektor time in S"
 msgstr "Reflektortid i S"
 
-#: index.php:1965
+#: index.php:1966
 msgid "Hour activity "
 msgstr "Timeaktivitet"
 
-#: index.php:2153
+#: index.php:2154
 msgid "Station activity"
 msgstr "Stasjonsaktivitet"
 
-#: index.php:2605
+#: index.php:2611
 msgid "Username"
 msgstr "Brukernavn"
 
-#: index.php:2606
+#: index.php:2612
 msgid "password"
 msgstr "Passord"
 
-#: index.php:2607
+#: index.php:2613
 msgid "Log In"
 msgstr "Logg Inn"
 
-#: index.php:2622
+#: index.php:2628
 msgid "Statistics for Network"
 msgstr "Statistikk for nettverk"
 
-#: index.php:2634
+#: index.php:2640
 msgid "Day"
 msgstr "Dag"
 
-#: index.php:2635
+#: index.php:2641
 msgid "Hour"
 msgstr "Time"
 
-#: index.php:2688 log.php:20
+#: index.php:2694 log.php:20
 msgid "Station"
 msgstr "Stasjon"
 
-#: index.php:2688
+#: index.php:2694
 msgid "Network Usage 24 hour"
 msgstr "Nettverksbruk 24 timer i døgnet"
 
-#: index.php:2688
+#: index.php:2694
 msgid "Usage last 24 hour"
 msgstr "Bruk siste 24 timer"
 
-#: index.php:2688
+#: index.php:2694
 msgid "Most used reciver"
 msgstr "Mest brukt mottaker"
 
@@ -388,3 +390,6 @@ msgstr ""
 #: test.php:16
 msgid "hello"
 msgstr ""
+
+#~ msgid "Sinal"
+#~ msgstr "Signal"
