@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2020-04-27 14:09+0200\n"
-"PO-Revision-Date: 2020-04-27 14:47+0200\n"
+"PO-Revision-Date: 2020-04-27 14:51+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nb_NO\n"
@@ -145,9 +145,7 @@ msgstr "Logg"
 
 #: index.php:552
 msgid "CTCSS map table"
-msgstr ""
-"CTC\n"
-"SS-tabell"
+msgstr "CTCSS-tabell"
 
 #: index.php:561
 msgid "Map"
