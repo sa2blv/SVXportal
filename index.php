@@ -595,6 +595,8 @@ function login_form()
     <img onclick="load_languge('nb_NO')" src="images/flags/no.svg" width="30px" alt="NO">
 
 	<img onclick="load_languge('uk_UA')" src="images/flags/ua.svg" width="30px" alt="uk">
+	
+	<img onclick="load_languge('it_IT')" src="images/flags/it.svg" width="30px" alt="it">
 </li>
 				</ul>
 <div class="sidebar-footer wite_font">
@@ -2691,7 +2693,7 @@ function bind_key_statistics()
     				</div>
     			</div>
     			<div class="col-md-12" id="table">
-    			<table id="nodes_activity" class="table" ><thead class="thead-dark"><tr><th><?php echo _("Station")?></th><th><?php echo _("Uptime")?></th><th><?php echo _("Network Usage 24 hour")?></th><th><?php echo _("Usage last 24 hour")?></th><th><?php echo _("Most used reciver")?></th></tr></thead></table>
+    			<table id="nodes_activity" class="table" ><thead class="thead-dark"><tr><th><?php echo _("Station")?></th><th><?php echo _("Uptime")?></th><th><?php echo _("Network Usage 24 hour")?></th><th><?php echo _("Usage last 24 hour")?></th><th><?php echo _("Most used receiver")?></th></tr></thead></table>
     			</div>
     			</div>	
     			

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-27 14:09+0200\n"
-"PO-Revision-Date: 2020-04-27 14:10+0200\n"
+"POT-Creation-Date: 2020-04-27 15:21+0200\n"
+"PO-Revision-Date: 2020-04-27 15:21+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -28,16 +28,16 @@ msgstr ""
 msgid "CTSS map table"
 msgstr "CTCSS Mappning"
 
-#: ctcss_map_table.php:192 index.php:187 index.php:621 list_reciver.php:55
+#: ctcss_map_table.php:192 index.php:187 index.php:623 list_reciver.php:55
 msgid "Callsign"
 msgstr "Anropsignal"
 
-#: ctcss_map_table.php:193 div_reciver.php:94 index.php:1054
+#: ctcss_map_table.php:193 div_reciver.php:94 index.php:1056
 #: list_reciver.php:55
 msgid "Frequency"
 msgstr "Frekvens"
 
-#: ctcss_map_table.php:194 index.php:1027 list_reciver.php:55
+#: ctcss_map_table.php:194 index.php:1029 list_reciver.php:55
 msgid "Location"
 msgstr "Position"
 
@@ -61,7 +61,7 @@ msgstr "Använd 3 sista bokstäverna"
 msgid "Export"
 msgstr "Exportera"
 
-#: div_reciver.php:8 index.php:828 list_reciver.php:455
+#: div_reciver.php:8 index.php:830 list_reciver.php:455
 msgid "All"
 msgstr "Alla"
 
@@ -73,7 +73,7 @@ msgstr "Signalvärde från mottagaren"
 msgid "Receiver"
 msgstr "Mottagare"
 
-#: div_reciver.php:94 index.php:727 list_reciver.php:55
+#: div_reciver.php:94 index.php:729 list_reciver.php:55
 msgid "Signal"
 msgstr "Signal"
 
@@ -81,7 +81,7 @@ msgstr "Signal"
 msgid "Mhz"
 msgstr "MHZ"
 
-#: index.php:187 index.php:622 index.php:849 list_reciver.php:55
+#: index.php:187 index.php:624 index.php:851 list_reciver.php:55
 msgid "TG"
 msgstr "TG"
 
@@ -129,7 +129,7 @@ msgstr "Övervakning"
 msgid "System description"
 msgstr "Systembeskrivning"
 
-#: index.php:538 index.php:1028
+#: index.php:538 index.php:1030
 msgid "Talkgroups"
 msgstr "Talgrupper"
 
@@ -161,196 +161,196 @@ msgstr "Karta"
 msgid "Login"
 msgstr "Inloggning"
 
-#: index.php:623
+#: index.php:625
 msgid "Ver"
 msgstr "Version"
 
-#: index.php:624
+#: index.php:626
 msgid "TGs"
 msgstr "TGs"
 
-#: index.php:635
+#: index.php:637
 msgid "QSO Monitor"
 msgstr "QSO Övervakare"
 
-#: index.php:687
+#: index.php:689
 msgid "repeat"
 msgstr "upprepa"
 
-#: index.php:688
+#: index.php:690
 msgid "shuffle"
 msgstr "blanda"
 
-#: index.php:689
+#: index.php:691
 msgid "full screen"
 msgstr "full skärm"
 
-#: index.php:713
+#: index.php:715
 msgid "Listen LIVE"
 msgstr "Lyssna LIVE"
 
-#: index.php:715 index.php:830 index.php:839 index.php:972
+#: index.php:717 index.php:832 index.php:841 index.php:974
 msgid "Toggle menu"
 msgstr "Dölj meny "
 
-#: index.php:717
+#: index.php:719
 msgid "Select date to listen"
 msgstr "Välj datum för att lyssna"
 
-#: index.php:719
+#: index.php:721
 msgid "to use player you must login"
 msgstr "För att använda spelaren måste du först logga in"
 
-#: index.php:728
+#: index.php:730
 msgid "Signal value  from Reciver"
 msgstr "Signalvärde från mottagaren"
 
-#: index.php:736 index.php:850
+#: index.php:738 index.php:852
 msgid "Name"
 msgstr "Namn"
 
-#: index.php:737
+#: index.php:739
 msgid "Openings"
 msgstr "Aktiveringar"
 
-#: index.php:738 index.php:2694
+#: index.php:740 index.php:2696
 msgid "Uptime"
 msgstr "Uptime"
 
-#: index.php:739 index.php:854
+#: index.php:741 index.php:856
 msgid "Color"
 msgstr "Färg"
 
-#: index.php:851
+#: index.php:853
 msgid "Last active"
 msgstr "Senast aktiv"
 
-#: index.php:852
+#: index.php:854
 msgid "Time"
 msgstr "Tid"
 
-#: index.php:853
+#: index.php:855
 msgid "Time Total"
 msgstr "Total tid"
 
-#: index.php:925
+#: index.php:927
 msgid "Coverage"
 msgstr "Täckningskartor"
 
-#: index.php:928
+#: index.php:930
 msgid "Show"
 msgstr "Visa"
 
-#: index.php:929
+#: index.php:931
 msgid "Remove"
 msgstr "Radera"
 
-#: index.php:935
+#: index.php:937
 msgid "Actions"
 msgstr "Åtgärder"
 
-#: index.php:953
+#: index.php:955
 msgid "Remove bars"
 msgstr "Ta bort staplarna"
 
-#: index.php:955
+#: index.php:957
 msgid "Remove ALL stations"
 msgstr "Ta bort ALLA stationer"
 
-#: index.php:956
+#: index.php:958
 msgid "Show Receivers"
 msgstr "Visa mottagare"
 
-#: index.php:961
+#: index.php:963
 msgid "Toggle AutoFollow"
 msgstr "Aktivera följ med"
 
-#: index.php:967
+#: index.php:969
 msgid "Reload Map"
 msgstr "Ladda om karta"
 
-#: index.php:1011
+#: index.php:1013
 msgid "Station info for"
 msgstr "Stationsinfo för"
 
-#: index.php:1029
+#: index.php:1031
 msgid "Version"
 msgstr "Version"
 
-#: index.php:1030
+#: index.php:1032
 msgid "CurrentTG"
 msgstr "Aktuell TG"
 
-#: index.php:1031
+#: index.php:1033
 msgid "Sysop"
 msgstr "Administartör"
 
-#: index.php:1052
+#: index.php:1054
 msgid "RX Name"
 msgstr "RX Namn"
 
-#: index.php:1053
+#: index.php:1055
 msgid "SqlType"
 msgstr "SqlType"
 
-#: index.php:1055
+#: index.php:1057
 msgid "Enable"
 msgstr "Ativerad"
 
-#: index.php:1798
+#: index.php:1800
 msgid "Talkgroup activity"
 msgstr "Talkgroups-aktivitet"
 
-#: index.php:1942
+#: index.php:1944
 msgid "Reflektor time in S"
 msgstr "Reflektortid i S"
 
-#: index.php:1966
+#: index.php:1968
 msgid "Hour activity "
 msgstr "Aktivitet per Timme"
 
-#: index.php:2154
+#: index.php:2156
 msgid "Station activity"
 msgstr "Stations aktivitet"
 
-#: index.php:2611
+#: index.php:2613
 msgid "Username"
 msgstr "Användarnamn"
 
-#: index.php:2612
+#: index.php:2614
 msgid "password"
 msgstr "Lösenord"
 
-#: index.php:2613
+#: index.php:2615
 msgid "Log In"
 msgstr "Logga in"
 
-#: index.php:2628
+#: index.php:2630
 msgid "Statistics for Network"
 msgstr "Statistik för nätverk"
 
-#: index.php:2640
+#: index.php:2642
 msgid "Day"
 msgstr "Dag"
 
-#: index.php:2641
+#: index.php:2643
 msgid "Hour"
 msgstr "Timmar"
 
-#: index.php:2694 log.php:20
+#: index.php:2696 log.php:20
 msgid "Station"
 msgstr "Station"
 
-#: index.php:2694
+#: index.php:2696
 msgid "Network Usage 24 hour"
 msgstr "Nätverksanvändning 24 timmar"
 
-#: index.php:2694
+#: index.php:2696
 msgid "Usage last 24 hour"
 msgstr "Användning det senaste dygnet"
 
-#: index.php:2694
-msgid "Most used reciver"
+#: index.php:2696
+msgid "Most used receiver"
 msgstr "Mest använda mottagare"
 
 #: list_reciver.php:15
