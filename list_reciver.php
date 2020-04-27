@@ -52,7 +52,7 @@ var tg_collors = new Array();
 function add_header()
 {
 
-	$('#Reflektortable').html('<thead class="thead-dark"><tr><th scope="col" class="col-xs-2 text-left" ><?php echo _('Callsign')?> &emsp;&emsp;&emsp;&emsp;</th><th scope="col" class="col-xs-1" >Location</th><th scope="col" class="col-xs-1 text-left"><?php echo _('TG')?></th><th scope="col" class="col-xs-1"></th><th scope="col" class="col-xs-2">Receiver</th><th scope="col" class="col-xs-1"><?php echo _('Signal')?></th><th scope="col" class="col-xs-2"><?php echo _('Frequency')?></th><th class="col-xs-2"><?php echo _('Talk time')?></th></tr></thead>');
+	$('#Reflektortable').html('<thead class="thead-dark"><tr><th scope="col" class="col-xs-2 text-left" ><?php echo _('Callsign')?> &emsp;&emsp;&emsp;&emsp;</th><th scope="col" class="col-xs-1" ><?php echo _('Location')?></th><th scope="col" class="col-xs-1 text-left"><?php echo _('TG')?></th><th scope="col" class="col-xs-1"></th><th scope="col" class="col-xs-2"><?php echo _('Receiver')?></th><th scope="col" class="col-xs-1"><?php echo _('Signal')?></th><th scope="col" class="col-xs-2"><?php echo _('Frequency')?></th><th class="col-xs-2"><?php echo _('Talk time')?></th></tr></thead>');
  	
 }
 function remove_notgouiltychar(string)
@@ -451,8 +451,8 @@ function update_bar(id,value,k)
 ?>
 <div class="w-screen ">
     <nav class="navbar navbar-dark bg-dark text-light">
-    			<label for="selects"><?php echo gettext('Talkgroup filter')?>:</label><select id="selects"  class="w-25" onchange="update_filter(this.value)">
-    				<option value="">-- All --</option>
+    			<label for="selects"><?php echo _('Talkgroup filter')?>:</label><select id="selects"  class="w-25" onchange="update_filter(this.value)">
+    				<option value="">-- <?php echo _('All')?> --</option>
     			</select>
     <a href="index.php" onclick="" class="btn btn-outline-success my-2 my-sm-0"
     						id="menu-toggle">Back</a>

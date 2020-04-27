@@ -594,6 +594,7 @@ function login_form()
 
     <img onclick="load_languge('nb_NO')" src="images/flags/no.svg" width="30px" alt="NO">
 
+	<img onclick="load_languge('uk_UA')" src="images/flags/ua.svg" width="30px" alt="uk">
 </li>
 				</ul>
 <div class="sidebar-footer wite_font">
