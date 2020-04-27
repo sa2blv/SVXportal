@@ -7,30 +7,32 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-25 17:06+0200\n"
-"PO-Revision-Date: 2020-04-27 15:02+0200\n"
+"POT-Creation-Date: 2020-04-27 14:10+0200\n"
+"PO-Revision-Date: 2020-04-27 15:14+0200\n"
+"Last-Translator: \n"
 "Language-Team: \n"
+"Language: uk_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.3\n"
-"Last-Translator: \n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"Language: uk_IT\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: ctcss_map_table.php:186 index.php:539
+#: ctcss_map_table.php:186
 msgid "CTSS map table"
 msgstr "Tabella CTSS  "
 
-#: ctcss_map_table.php:192 index.php:183 index.php:574 list_reciver.php:70
+#: ctcss_map_table.php:192 index.php:187 index.php:621 list_reciver.php:55
 msgid "Callsign"
 msgstr "Nominativo"
 
-#: ctcss_map_table.php:193 index.php:1008 list_reciver.php:70
+#: ctcss_map_table.php:193 div_reciver.php:94 index.php:1054
+#: list_reciver.php:55
 msgid "Frequency"
 msgstr "Frequenza"
 
-#: ctcss_map_table.php:194 index.php:981
+#: ctcss_map_table.php:194 index.php:1027 list_reciver.php:55
 msgid "Location"
 msgstr "Localizzazione"
 
@@ -50,285 +52,305 @@ msgstr "Usa l'ultimo carattere in chiamata"
 msgid "Export"
 msgstr "Еsporta"
 
-#: index.php:183 index.php:575 index.php:803 list_reciver.php:70
-msgid "TG"
-msgstr "TG"
-
-#: index.php:183
-msgid "Is talker"
-msgstr "In trasmissione"
-
-#: index.php:183
-msgid "Monitored TGs"
-msgstr "Monitor TG"
-
-#: index.php:183 list_reciver.php:70
-msgid "Talk time"
-msgstr "Talk time"
-
-#: index.php:183
-msgid "Active RX"
-msgstr "RX Attivo"
-
-#: index.php:195
-msgid "NO"
-msgstr "No"
-
-#: index.php:204
-msgid "YES"
-msgstr "YES"
-
-#: index.php:476
-msgid "Login sucsess"
-msgstr "Login effettuato"
-
-#: index.php:478
-msgid "Wrong username or password"
-msgstr "Username o passowrd errate"
-
-#: index.php:519
-msgid "Reclector clients"
-msgstr "Reclector clients"
-
-#: index.php:521
-msgid "Monitor"
-msgstr "Моnitor"
-
-#: index.php:523
-msgid "System description"
-msgstr "Info sistema"
-
-#: index.php:525 index.php:982
-msgid "Talkgroups"
-msgstr "Talkgroups"
-
-#: index.php:527
-msgid "List reciver"
-msgstr "Lista ricevitori"
-
-#: index.php:530
-msgid "Statistics"
-msgstr "Statistiche"
-
-#: index.php:535
-msgid "Receivers"
-msgstr "Ricevitori"
-
-#: index.php:537
-msgid "Log"
-msgstr "Log"
-
-#: index.php:548
-msgid "Map"
-msgstr "Маppa"
-
-#: index.php:550
-msgid "Login"
-msgstr "Login"
-
-#: index.php:576
-msgid "Ver"
-msgstr "Ver"
-
-#: index.php:577
-msgid "TGs"
-msgstr "TGs"
-
-#: index.php:588
-msgid "QSO Monitor"
-msgstr "QSO Мonitor"
-
-#: index.php:640
-msgid "repeat"
-msgstr "ripetitore"
-
-#: index.php:641
-msgid "shuffle"
-msgstr "shufle"
-
-#: index.php:642
-msgid "full screen"
-msgstr "Schermo intero"
-
-#: index.php:671
-msgid "Select date to listen"
-msgstr "Seleziona la data da ascoltare"
-
-#: index.php:673
-msgid "to use player you must login"
-msgstr "per usare il lettore devi effettuare il login"
-
-#: index.php:682
-msgid "Signal value  from Reciver"
-msgstr "Livello segnale del ricevitore"
-
-#: index.php:690 index.php:804
-msgid "Name"
-msgstr "Назва"
-
-#: index.php:691
-msgid "Aperture"
-msgstr "Відкриті"
-
-#: index.php:692 index.php:2643
-msgid "Uptime"
-msgstr "Uptime"
-
-#: index.php:693 index.php:808
-msgid "Color"
-msgstr "Colore"
-
-#: index.php:782
+#: div_reciver.php:8 index.php:828 list_reciver.php:455
 msgid "All"
 msgstr "Tutti"
 
-#: index.php:784
-msgid "Toggle menu<"
-msgstr "Attiva / disattiva menu<"
+#: div_reciver.php:85
+msgid "Signal values at"
+msgstr "Livello segnale del "
 
-#: index.php:805
-msgid "Last active"
-msgstr "Ultimo attivo"
+#: div_reciver.php:94 list_reciver.php:55
+msgid "Receiver"
+msgstr "Ricevitori"
 
-#: index.php:806
-msgid "Time"
-msgstr "Tempo"
-
-#: index.php:807
-msgid "Time Total"
-msgstr "Tempo totale"
-
-#: index.php:879
-msgid "Coverage"
-msgstr "Copertura"
-
-#: index.php:882
-msgid "Show"
-msgstr "Visualizza"
-
-#: index.php:883
-msgid "Remove"
-msgstr "Rimuovere"
-
-#: index.php:889
-msgid "Actions"
-msgstr "Azioni"
-
-#: index.php:907
-msgid "Remove bars"
-msgstr "Rimuovere bars"
-
-#: index.php:909
-msgid "Remove all stations"
-msgstr "Rimuovere tutte le stazioni"
-
-#: index.php:910
-msgid "View receivers"
-msgstr "Visualizza ricevitori"
-
-#: index.php:915
-msgid "Toggle AutoFollow"
-msgstr "Attiva / disattiva AutoFollow"
-
-#: index.php:921
-msgid "Reload map"
-msgstr "Ricarica mappa"
-
-#: index.php:926
-msgid "Toggle menu"
-msgstr "Attiva / disattiva menu"
-
-#: index.php:965
-msgid "Station info for"
-msgstr "Info stazione"
-
-#: index.php:983
-msgid "Version"
-msgstr "Versione"
-
-#: index.php:984
-msgid "CurrentTG"
-msgstr "TG attuale"
-
-#: index.php:985
-msgid "Sysop"
-msgstr "Sysop"
-
-#: index.php:1006
-msgid "RX Name"
-msgstr "RX Name"
-
-#: index.php:1007
-msgid "SqlType"
-msgstr "SqlType"
-
-#: index.php:1009
-msgid "Enable"
-msgstr "Attivo"
-
-#: index.php:1752
-msgid "Talkgroup activity"
-msgstr "Attività talkgroup"
-
-#: index.php:1896
-msgid "Reflektor time in S"
-msgstr "Reflector time in S"
-
-#: index.php:1920
-msgid "Attività oraria "
-msgstr "Часова активність "
-
-#: index.php:2560
-msgid "Username"
-msgstr "Username"
-
-#: index.php:2561
-msgid "password"
-msgstr "password"
-
-#: index.php:2562
-msgid "Log In"
-msgstr "Log In"
-
-#: index.php:2577
-msgid "Statistics for Network"
-msgstr "Statistiche network"
-
-#: index.php:2589
-msgid "Day"
-msgstr "Giorno"
-
-#: index.php:2590
-msgid "Hour"
-msgstr "Ora"
-
-#: index.php:2643 log.php:20
-msgid "Station"
-msgstr "Stazione"
-
-#: index.php:2643
-msgid "Network Usage 24 hour"
-msgstr "Utilizzo sistema ultime 24 ore"
-
-#: index.php:2643
-msgid "Usage last 24 hour"
-msgstr "Utilizzo ultime 24 ore"
-
-#: index.php:2643
-msgid "Most used reciver"
-msgstr "Ricevitore più usato"
-
-#: list_reciver.php:30
-msgid "Receiver Monitor"
-msgstr "Monitor Ricevitori"
-
-#: list_reciver.php:70
+#: div_reciver.php:94 index.php:727 list_reciver.php:55
 msgid "Signal"
 msgstr "Segnale"
 
-#: list_reciver.php:469
-msgid "Talkgroup filter:"
-msgstr "Filtro talkgroup:"
+#: div_reciver.php:131
+msgid "Mhz"
+msgstr "Mhz"
+
+#: index.php:187 index.php:622 index.php:849 list_reciver.php:55
+msgid "TG"
+msgstr "TG"
+
+#: index.php:187
+msgid "Is talker"
+msgstr "In trasmissione"
+
+#: index.php:187
+msgid "Monitored TGs"
+msgstr "Monitor TG"
+
+#: index.php:187 list_reciver.php:55
+msgid "Talk time"
+msgstr "Talk time"
+
+#: index.php:187
+msgid "Active RX"
+msgstr "RX Attivo"
+
+#: index.php:199
+msgid "NO"
+msgstr "No"
+
+#: index.php:208
+msgid "YES"
+msgstr "YES"
+
+#: index.php:489
+msgid "Login sucsess"
+msgstr "Login effettuato"
+
+#: index.php:491
+msgid "Wrong username or password"
+msgstr "Username o passowrd errate"
+
+#: index.php:532
+msgid "Reflector clients"
+msgstr "Clienti riflettori"
+
+#: index.php:534
+msgid "Monitor"
+msgstr "Моnitor"
+
+#: index.php:536
+msgid "System description"
+msgstr "Info sistema"
+
+#: index.php:538 index.php:1028
+msgid "Talkgroups"
+msgstr "Talkgroups"
+
+#: index.php:540
+msgid "List receiver"
+msgstr "Lista ricevitori"
+
+#: index.php:543
+msgid "Statistics"
+msgstr "Statistiche"
+
+#: index.php:548
+msgid "Receivers"
+msgstr "Ricevitori"
+
+#: index.php:550
+msgid "Log"
+msgstr "Log"
+
+#: index.php:552
+msgid "CTCSS map table"
+msgstr "Tabella delle mappe CTCSS"
+
+#: index.php:561
+msgid "Map"
+msgstr "Маppa"
+
+#: index.php:563
+msgid "Login"
+msgstr "Login"
+
+#: index.php:623
+msgid "Ver"
+msgstr "Ver"
+
+#: index.php:624
+msgid "TGs"
+msgstr "TGs"
+
+#: index.php:635
+msgid "QSO Monitor"
+msgstr "QSO Мonitor"
+
+#: index.php:687
+msgid "repeat"
+msgstr "ripetitore"
+
+#: index.php:688
+msgid "shuffle"
+msgstr "shufle"
+
+#: index.php:689
+msgid "full screen"
+msgstr "Schermo intero"
+
+#: index.php:713
+msgid "Listen LIVE"
+msgstr "Ascolta dal vivo"
+
+#: index.php:715 index.php:830 index.php:839 index.php:972
+msgid "Toggle menu"
+msgstr "Attiva / disattiva menu"
+
+#: index.php:717
+msgid "Select date to listen"
+msgstr "Seleziona la data da ascoltare"
+
+#: index.php:719
+msgid "to use player you must login"
+msgstr "per usare il lettore devi effettuare il login"
+
+#: index.php:728
+msgid "Signal value  from Reciver"
+msgstr "Livello segnale del ricevitore"
+
+#: index.php:736 index.php:850
+msgid "Name"
+msgstr "Назва"
+
+#: index.php:737
+msgid "Openings"
+msgstr "Aperture"
+
+#: index.php:738 index.php:2694
+msgid "Uptime"
+msgstr "Uptime"
+
+#: index.php:739 index.php:854
+msgid "Color"
+msgstr "Colore"
+
+#: index.php:851
+msgid "Last active"
+msgstr "Ultimo attivo"
+
+#: index.php:852
+msgid "Time"
+msgstr "Tempo"
+
+#: index.php:853
+msgid "Time Total"
+msgstr "Tempo totale"
+
+#: index.php:925
+msgid "Coverage"
+msgstr "Copertura"
+
+#: index.php:928
+msgid "Show"
+msgstr "Visualizza"
+
+#: index.php:929
+msgid "Remove"
+msgstr "Rimuovere"
+
+#: index.php:935
+msgid "Actions"
+msgstr "Azioni"
+
+#: index.php:953
+msgid "Remove bars"
+msgstr "Rimuovere bars"
+
+#: index.php:955
+msgid "Remove ALL stations"
+msgstr "Rimuovere tutte le stazioni"
+
+#: index.php:956
+msgid "Show Receivers"
+msgstr "Mostra i ricevitori"
+
+#: index.php:961
+msgid "Toggle AutoFollow"
+msgstr "Attiva / disattiva AutoFollow"
+
+#: index.php:967
+msgid "Reload Map"
+msgstr "Ricarica mappa"
+
+#: index.php:1011
+msgid "Station info for"
+msgstr "Info stazione"
+
+#: index.php:1029
+msgid "Version"
+msgstr "Versione"
+
+#: index.php:1030
+msgid "CurrentTG"
+msgstr "TG attuale"
+
+#: index.php:1031
+msgid "Sysop"
+msgstr "Sysop"
+
+#: index.php:1052
+msgid "RX Name"
+msgstr "RX Name"
+
+#: index.php:1053
+msgid "SqlType"
+msgstr "SqlType"
+
+#: index.php:1055
+msgid "Enable"
+msgstr "Attivo"
+
+#: index.php:1798
+msgid "Talkgroup activity"
+msgstr "Attività talkgroup"
+
+#: index.php:1942
+msgid "Reflektor time in S"
+msgstr "Reflector time in S"
+
+#: index.php:1966
+msgid "Hour activity "
+msgstr "Attività oraria"
+
+#: index.php:2154
+msgid "Station activity"
+msgstr "Attività della stazione"
+
+#: index.php:2611
+msgid "Username"
+msgstr "Username"
+
+#: index.php:2612
+msgid "password"
+msgstr "password"
+
+#: index.php:2613
+msgid "Log In"
+msgstr "Log In"
+
+#: index.php:2628
+msgid "Statistics for Network"
+msgstr "Statistiche network"
+
+#: index.php:2640
+msgid "Day"
+msgstr "Giorno"
+
+#: index.php:2641
+msgid "Hour"
+msgstr "Ora"
+
+#: index.php:2694 log.php:20
+msgid "Station"
+msgstr "Stazione"
+
+#: index.php:2694
+msgid "Network Usage 24 hour"
+msgstr "Utilizzo sistema ultime 24 ore"
+
+#: index.php:2694
+msgid "Usage last 24 hour"
+msgstr "Utilizzo ultime 24 ore"
+
+#: index.php:2694
+msgid "Most used reciver"
+msgstr "Ricevitore più usato"
+
+#: list_reciver.php:15
+msgid "Receiver Monitor"
+msgstr "Monitor Ricevitori"
+
+#: list_reciver.php:454
+msgid "Talkgroup filter"
+msgstr "Filtro talkgroup"
 
 #: log.php:19
 msgid "Date"
@@ -353,3 +375,15 @@ msgstr " è il livello del segnale attivo"
 #: log.php:50
 msgid "has signal level"
 msgstr "livello del segnale"
+
+#~ msgid "Aperture"
+#~ msgstr "Відкриті"
+
+#~ msgid "Toggle menu<"
+#~ msgstr "Attiva / disattiva menu<"
+
+#~ msgid "View receivers"
+#~ msgstr "Visualizza ricevitori"
+
+#~ msgid "Attività oraria "
+#~ msgstr "Часова активність "
