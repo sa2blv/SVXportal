@@ -46,7 +46,7 @@ msgstr "Програма"
 
 #: ctcss_map_table.php:274
 msgid "Use thre last char in call"
-msgstr "Скористатися останнім викликом"
+msgstr "Використовувати літеру закінчення у позивному"
 
 #: ctcss_map_table.php:279
 msgid "Export"
@@ -375,3 +375,7 @@ msgstr " з рівнем сигналу"
 #: log.php:50
 msgid "has signal level"
 msgstr "має рівень сигналу"
+
+#: ctcss_map_table.php:269
+msgid "CSV index"
+msgstr "CSV індекс"
