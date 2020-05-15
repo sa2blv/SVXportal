@@ -1,0 +1,376 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-27 15:19+0200\n"
+"PO-Revision-Date: 2020-05-16 00:51+0300\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3.1\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: tr_TR\n"
+
+#: ctcss_map_table.php:186
+msgid "CTSS map table"
+msgstr "CTSS tablosu"
+
+#: ctcss_map_table.php:192 index.php:187 index.php:623 list_reciver.php:55
+msgid "Callsign"
+msgstr "Çağrı işareti"
+
+#: ctcss_map_table.php:193 div_reciver.php:94 index.php:1056
+#: list_reciver.php:55
+msgid "Frequency"
+msgstr "Frekans"
+
+#: ctcss_map_table.php:194 index.php:1029 list_reciver.php:55
+msgid "Location"
+msgstr "Konum"
+
+#: ctcss_map_table.php:200
+msgid "Local"
+msgstr "Yerel"
+
+#: ctcss_map_table.php:260
+msgid "Software"
+msgstr "Yazılım"
+
+#: ctcss_map_table.php:274
+msgid "Use thre last char in call"
+msgstr "Çağrıda son üç karakteri kullan"
+
+#: ctcss_map_table.php:279
+msgid "Export"
+msgstr "Dışa Aktar"
+
+#: div_reciver.php:8 index.php:830 list_reciver.php:455
+msgid "All"
+msgstr "Tümü"
+
+#: div_reciver.php:85
+msgid "Signal values at"
+msgstr "Sinyal değerleri"
+
+#: div_reciver.php:94 list_reciver.php:55
+msgid "Receiver"
+msgstr "İstasyon"
+
+#: div_reciver.php:94 index.php:729 list_reciver.php:55
+msgid "Signal"
+msgstr "Sinyal"
+
+#: div_reciver.php:131
+msgid "Mhz"
+msgstr "Mhz"
+
+#: index.php:187 index.php:624 index.php:851 list_reciver.php:55
+msgid "TG"
+msgstr "KG"
+
+#: index.php:187
+msgid "Is talker"
+msgstr "konuşan mı"
+
+#: index.php:187
+msgid "Monitored TGs"
+msgstr "İzlenen KG"
+
+#: index.php:187 list_reciver.php:55
+msgid "Talk time"
+msgstr "Konuşma zamanı"
+
+#: index.php:187
+msgid "Active RX"
+msgstr "Aktif RX"
+
+#: index.php:199
+msgid "NO"
+msgstr "Hayır"
+
+#: index.php:208
+msgid "YES"
+msgstr "EVET"
+
+#: index.php:489
+msgid "Login sucsess"
+msgstr "Giriş Başarılı"
+
+#: index.php:491
+msgid "Wrong username or password"
+msgstr "Kullanıcı adı veya parola hatalı"
+
+#: index.php:532
+msgid "Reflector clients"
+msgstr "Reflector istemcileri"
+
+#: index.php:534
+msgid "Monitor"
+msgstr "İzle"
+
+#: index.php:536
+msgid "System description"
+msgstr "Sistem açıklaması"
+
+#: index.php:538 index.php:1030
+msgid "Talkgroups"
+msgstr "Konuşma Grupları"
+
+#: index.php:540
+msgid "List receiver"
+msgstr "Alıcıları listele"
+
+#: index.php:543
+msgid "Statistics"
+msgstr "İstatistikler"
+
+#: index.php:548
+msgid "Receivers"
+msgstr "Alıcılar"
+
+#: index.php:550
+msgid "Log"
+msgstr "Kayıtlar"
+
+#: index.php:552
+msgid "CTCSS map table"
+msgstr "CTCSS tablosu"
+
+#: index.php:561
+msgid "Map"
+msgstr "Harita"
+
+#: index.php:563
+msgid "Login"
+msgstr "Giriş"
+
+#: index.php:625
+msgid "Ver"
+msgstr "Ver"
+
+#: index.php:626
+msgid "TGs"
+msgstr "KGları"
+
+#: index.php:637
+msgid "QSO Monitor"
+msgstr "QSO izleyici"
+
+#: index.php:689
+msgid "repeat"
+msgstr ""
+
+#: index.php:690
+msgid "shuffle"
+msgstr "karıştır"
+
+#: index.php:691
+msgid "full screen"
+msgstr "tam ekran"
+
+#: index.php:715
+msgid "Listen LIVE"
+msgstr "CANLI Dinle"
+
+#: index.php:717 index.php:832 index.php:841 index.php:974
+msgid "Toggle menu"
+msgstr "Menüyü kapat aç"
+
+#: index.php:719
+msgid "Select date to listen"
+msgstr "Dinleyeceğiniz tarih"
+
+#: index.php:721
+msgid "to use player you must login"
+msgstr "player ı kullanmak için giriş yapmalısınız"
+
+#: index.php:730
+msgid "Signal value  from Reciver"
+msgstr "Alıcıdan gelen sinyal değeri"
+
+#: index.php:738 index.php:852
+msgid "Name"
+msgstr "Ad"
+
+#: index.php:739
+msgid "Openings"
+msgstr "Açılıyor"
+
+#: index.php:740 index.php:2696
+msgid "Uptime"
+msgstr "Çalışma süresi"
+
+#: index.php:741 index.php:856
+msgid "Color"
+msgstr "Renk"
+
+#: index.php:853
+msgid "Last active"
+msgstr "Son Aktif Olan"
+
+#: index.php:854
+msgid "Time"
+msgstr "Zaman"
+
+#: index.php:855
+msgid "Time Total"
+msgstr "Süre"
+
+#: index.php:927
+msgid "Coverage"
+msgstr "Kapsama"
+
+#: index.php:930
+msgid "Show"
+msgstr "Göster"
+
+#: index.php:931
+msgid "Remove"
+msgstr "Sil"
+
+#: index.php:937
+msgid "Actions"
+msgstr "İşlemler"
+
+#: index.php:955
+msgid "Remove bars"
+msgstr "Çubukları sil"
+
+#: index.php:957
+msgid "Remove ALL stations"
+msgstr "Tüm istasyonları sil"
+
+#: index.php:958
+msgid "Show Receivers"
+msgstr "Alıcıları göster"
+
+#: index.php:963
+msgid "Toggle AutoFollow"
+msgstr "Otomatik izleyi kapat aç"
+
+#: index.php:969
+msgid "Reload Map"
+msgstr "Haritayı yenile"
+
+#: index.php:1013
+msgid "Station info for"
+msgstr "İstasyon bilgisi"
+
+#: index.php:1031
+msgid "Version"
+msgstr "Versiyon"
+
+#: index.php:1032
+msgid "CurrentTG"
+msgstr "Mevcut KG"
+
+#: index.php:1033
+msgid "Sysop"
+msgstr "Sysop"
+
+#: index.php:1054
+msgid "RX Name"
+msgstr "RX Adı"
+
+#: index.php:1055
+msgid "SqlType"
+msgstr "SQL Tipi"
+
+#: index.php:1057
+msgid "Enable"
+msgstr "Etkinleştir"
+
+#: index.php:1800
+msgid "Talkgroup activity"
+msgstr "Konuşma Grubu activitesi"
+
+#: index.php:1944
+msgid "Reflektor time in S"
+msgstr "Reflektor zamanı S olarak"
+
+#: index.php:1968
+msgid "Hour activity "
+msgstr "Aktivite süresi "
+
+#: index.php:2156
+msgid "Station activity"
+msgstr "İstasyon aktivitesi"
+
+#: index.php:2613
+msgid "Username"
+msgstr "Kullanıcı"
+
+#: index.php:2614
+msgid "password"
+msgstr "parola"
+
+#: index.php:2615
+msgid "Log In"
+msgstr "Giriş"
+
+#: index.php:2630
+msgid "Statistics for Network"
+msgstr "Network için istatistikler"
+
+#: index.php:2642
+msgid "Day"
+msgstr "Gün"
+
+#: index.php:2643
+msgid "Hour"
+msgstr "Saat"
+
+#: index.php:2696 log.php:20
+msgid "Station"
+msgstr "İstasyon"
+
+#: index.php:2696
+msgid "Network Usage 24 hour"
+msgstr "Son 24 saatte network kullanımı"
+
+#: index.php:2696
+msgid "Usage last 24 hour"
+msgstr "Son 24 saatteki kullanım"
+
+#: index.php:2696
+msgid "Most used receiver"
+msgstr "En çok kullanılan istasyon"
+
+#: list_reciver.php:15
+msgid "Receiver Monitor"
+msgstr "Alıcı izleme"
+
+#: list_reciver.php:454
+msgid "Talkgroup filter"
+msgstr "Konuşma Gruplarını filtrele"
+
+#: log.php:19
+msgid "Date"
+msgstr "Tarih"
+
+#: log.php:21
+msgid "Event"
+msgstr "Olay"
+
+#: log.php:40
+msgid "is Talker on tg"
+msgstr "konuşuyor şu Konuşma Grubunda"
+
+#: log.php:42
+msgid "Stoped talk tg"
+msgstr "konuşması sonlandı şu KG"
+
+#: log.php:48
+msgid " is active signal level"
+msgstr " aktif ve sinyal değeri"
+
+#: log.php:50
+msgid "has signal level"
+msgstr "nin sinyal seviyesi"
