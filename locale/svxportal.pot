@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-27 15:19+0200\n"
+"POT-Creation-Date: 2020-05-21 16:50+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,40 +17,150 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ctcss_map_table.php:186
+#: admin.php:218
+msgid "admin interface"
+msgstr ""
+
+#: admin.php:228
+msgid "Stations"
+msgstr ""
+
+#: admin.php:231 index.php:3161
+msgid "Talkgroup"
+msgstr ""
+
+#: admin.php:235
+msgid "Fault log"
+msgstr ""
+
+#: admin.php:239
+msgid "Users"
+msgstr ""
+
+#: admin.php:242
+msgid "Settings"
+msgstr ""
+
+#: ctcss_map_table.php:197 ctcss_map_table.php:208
 msgid "CTSS map table"
 msgstr ""
 
-#: ctcss_map_table.php:192 index.php:187 index.php:623 list_reciver.php:55
+#: ctcss_map_table.php:210 index.php:772 index.php:1057 log.php:107
+msgid "Print"
+msgstr ""
+
+#: ctcss_map_table.php:217 index.php:779 index.php:1064 log.php:114
+msgid "Export xls"
+msgstr ""
+
+#: ctcss_map_table.php:223 index.php:785 index.php:900 index.php:1026
+#: index.php:1035 index.php:1069 index.php:1258 index.php:3076 log.php:120
+msgid "Toggle menu"
+msgstr ""
+
+#: ctcss_map_table.php:252 index.php:209 index.php:806 index.php:1098
+#: list_reciver.php:55
 msgid "Callsign"
 msgstr ""
 
-#: ctcss_map_table.php:193 div_reciver.php:94 index.php:1056
+#: ctcss_map_table.php:253 div_reciver.php:94 index.php:1330
 #: list_reciver.php:55
 msgid "Frequency"
 msgstr ""
 
-#: ctcss_map_table.php:194 index.php:1029 list_reciver.php:55
+#: ctcss_map_table.php:254 index.php:1303 list_reciver.php:55
 msgid "Location"
 msgstr ""
 
-#: ctcss_map_table.php:200
+#: ctcss_map_table.php:260
 msgid "Local"
 msgstr ""
 
-#: ctcss_map_table.php:260
+#: ctcss_map_table.php:321
 msgid "Software"
 msgstr ""
 
-#: ctcss_map_table.php:274
+#: ctcss_map_table.php:330
+msgid "CSV index"
+msgstr ""
+
+#: ctcss_map_table.php:335
 msgid "Use thre last char in call"
 msgstr ""
 
-#: ctcss_map_table.php:279
+#: ctcss_map_table.php:340
 msgid "Export"
 msgstr ""
 
-#: div_reciver.php:8 index.php:830 list_reciver.php:455
+#: database_text.php:2
+msgid "Hide the languge bar"
+msgstr ""
+
+#: database_text.php:3
+msgid "Use Custom header in sidebar"
+msgstr ""
+
+#: database_text.php:4
+msgid "External dokumentation page"
+msgstr ""
+
+#: database_text.php:5
+msgid "Use login for player"
+msgstr ""
+
+#: database_text.php:6
+msgid "Use external dokumentation page"
+msgstr ""
+
+#: database_text.php:7
+msgid "The default talkgroup for Recording statistic"
+msgstr ""
+
+#: database_text.php:8
+msgid "Send an email to sysop when the node goes down"
+msgstr ""
+
+#: database_text.php:9
+msgid "Mail to system administrator"
+msgstr ""
+
+#: database_text.php:10
+msgid "E-mail adress for the system"
+msgstr ""
+
+#: database_text.php:11
+msgid "First name"
+msgstr ""
+
+#: database_text.php:12
+msgid "Last name"
+msgstr ""
+
+#: database_text.php:13
+msgid "Create user"
+msgstr ""
+
+#: database_text.php:14
+msgid "Is admin"
+msgstr ""
+
+#: database_text.php:15
+msgid "Action"
+msgstr ""
+
+#: database_text.php:16
+msgid "No"
+msgstr ""
+
+#: database_text.php:17
+msgid "Yes"
+msgstr ""
+
+#: database_text.php:18
+msgid "Last seen"
+msgstr ""
+
+#: div_reciver.php:8 index.php:1024 list_reciver.php:455
 msgid "All"
 msgstr ""
 
@@ -62,7 +172,7 @@ msgstr ""
 msgid "Receiver"
 msgstr ""
 
-#: div_reciver.php:94 index.php:729 list_reciver.php:55
+#: div_reciver.php:94 index.php:912 list_reciver.php:55
 msgid "Signal"
 msgstr ""
 
@@ -70,275 +180,435 @@ msgstr ""
 msgid "Mhz"
 msgstr ""
 
-#: index.php:187 index.php:624 index.php:851 list_reciver.php:55
-msgid "TG"
+#: index.php:59
+msgid "Close"
 msgstr ""
 
-#: index.php:187
+#: index.php:60
+msgid "Today"
+msgstr ""
+
+#: index.php:61 index.php:2085
+msgid "January"
+msgstr ""
+
+#: index.php:61 index.php:2085
+msgid "February"
+msgstr ""
+
+#: index.php:61 index.php:2085
+msgid "March"
+msgstr ""
+
+#: index.php:61 index.php:2085
+msgid "April"
+msgstr ""
+
+#: index.php:61 index.php:2085
+msgid "May"
+msgstr ""
+
+#: index.php:61 index.php:2085
+msgid "June"
+msgstr ""
+
+#: index.php:61 index.php:2085
+msgid "July"
+msgstr ""
+
+#: index.php:61 index.php:2085
+msgid "August"
+msgstr ""
+
+#: index.php:61 index.php:2085
+msgid "September"
+msgstr ""
+
+#: index.php:61 index.php:2085
+msgid "October"
+msgstr ""
+
+#: index.php:61 index.php:2085
+msgid "November"
+msgstr ""
+
+#: index.php:61 index.php:2085
+msgid "December"
+msgstr ""
+
+#: index.php:62
+msgid "Su"
+msgstr ""
+
+#: index.php:62
+msgid "Mo"
+msgstr ""
+
+#: index.php:62
+msgid "Tu"
+msgstr ""
+
+#: index.php:62
+msgid "We"
+msgstr ""
+
+#: index.php:62
+msgid "Th"
+msgstr ""
+
+#: index.php:62
+msgid "Fr"
+msgstr ""
+
+#: index.php:62
+msgid "Sa"
+msgstr ""
+
+#: index.php:63
+msgid "Monday"
+msgstr ""
+
+#: index.php:63
+msgid "Tuesday"
+msgstr ""
+
+#: index.php:63
+msgid "Wednesday"
+msgstr ""
+
+#: index.php:63
+msgid "Thursday"
+msgstr ""
+
+#: index.php:63
+msgid "Friday"
+msgstr ""
+
+#: index.php:63
+msgid "Saturday"
+msgstr ""
+
+#: index.php:63
+msgid "Sunday"
+msgstr ""
+
+#: index.php:129
+msgid "No data"
+msgstr ""
+
+#: index.php:209 index.php:1096 list_reciver.php:55
+msgid "TG#"
+msgstr ""
+
+#: index.php:209
 msgid "Is talker"
 msgstr ""
 
-#: index.php:187
+#: index.php:209
 msgid "Monitored TGs"
 msgstr ""
 
-#: index.php:187 list_reciver.php:55
+#: index.php:209 index.php:3203 list_reciver.php:55
 msgid "Talk time"
 msgstr ""
 
-#: index.php:187
+#: index.php:209
 msgid "Active RX"
 msgstr ""
 
-#: index.php:199
+#: index.php:221
 msgid "NO"
 msgstr ""
 
-#: index.php:208
+#: index.php:230
 msgid "YES"
 msgstr ""
 
-#: index.php:489
+#: index.php:502
 msgid "Login sucsess"
 msgstr ""
 
-#: index.php:491
+#: index.php:504
 msgid "Wrong username or password"
 msgstr ""
 
-#: index.php:532
+#: index.php:665 index.php:770
 msgid "Reflector clients"
 msgstr ""
 
-#: index.php:534
+#: index.php:667
 msgid "Monitor"
 msgstr ""
 
-#: index.php:536
+#: index.php:669
 msgid "System description"
 msgstr ""
 
-#: index.php:538 index.php:1030
+#: index.php:671 index.php:1045 index.php:1055 index.php:1304
 msgid "Talkgroups"
 msgstr ""
 
-#: index.php:540
+#: index.php:673
 msgid "List receiver"
 msgstr ""
 
-#: index.php:543
+#: index.php:676
 msgid "Statistics"
 msgstr ""
 
-#: index.php:548
+#: index.php:681
 msgid "Receivers"
 msgstr ""
 
-#: index.php:550
+#: index.php:683 log.php:78
 msgid "Log"
 msgstr ""
 
-#: index.php:552
+#: index.php:685
 msgid "CTCSS map table"
 msgstr ""
 
-#: index.php:561
+#: index.php:694
 msgid "Map"
 msgstr ""
 
-#: index.php:563
+#: index.php:696
 msgid "Login"
 msgstr ""
 
-#: index.php:625
+#: index.php:761
+msgid " Reflector clients"
+msgstr ""
+
+#: index.php:807
+msgid "TG"
+msgstr ""
+
+#: index.php:808
 msgid "Ver"
 msgstr ""
 
-#: index.php:626
+#: index.php:809
 msgid "TGs"
 msgstr ""
 
-#: index.php:637
+#: index.php:820
 msgid "QSO Monitor"
 msgstr ""
 
-#: index.php:689
+#: index.php:872
 msgid "repeat"
 msgstr ""
 
-#: index.php:690
+#: index.php:873
 msgid "shuffle"
 msgstr ""
 
-#: index.php:691
+#: index.php:874
 msgid "full screen"
 msgstr ""
 
-#: index.php:715
+#: index.php:898
 msgid "Listen LIVE"
 msgstr ""
 
-#: index.php:717 index.php:832 index.php:841 index.php:974
-msgid "Toggle menu"
-msgstr ""
-
-#: index.php:719
+#: index.php:902
 msgid "Select date to listen"
 msgstr ""
 
-#: index.php:721
+#: index.php:904
 msgid "to use player you must login"
 msgstr ""
 
-#: index.php:730
+#: index.php:913
 msgid "Signal value  from Reciver"
 msgstr ""
 
-#: index.php:738 index.php:852
+#: index.php:921
 msgid "Name"
 msgstr ""
 
-#: index.php:739
+#: index.php:922
 msgid "Openings"
 msgstr ""
 
-#: index.php:740 index.php:2696
+#: index.php:923 index.php:3234
 msgid "Uptime"
 msgstr ""
 
-#: index.php:741 index.php:856
+#: index.php:924 index.php:1101
 msgid "Color"
 msgstr ""
 
-#: index.php:853
+#: index.php:1022
+msgid "Filter"
+msgstr ""
+
+#: index.php:1097
+msgid "Talkgroup Name"
+msgstr ""
+
+#: index.php:1099
 msgid "Last active"
 msgstr ""
 
-#: index.php:854
-msgid "Time"
-msgstr ""
-
-#: index.php:855
+#: index.php:1100
 msgid "Time Total"
 msgstr ""
 
-#: index.php:927
+#: index.php:1201
 msgid "Coverage"
 msgstr ""
 
-#: index.php:930
+#: index.php:1204
 msgid "Show"
 msgstr ""
 
-#: index.php:931
+#: index.php:1205
 msgid "Remove"
 msgstr ""
 
-#: index.php:937
+#: index.php:1211
 msgid "Actions"
 msgstr ""
 
-#: index.php:955
+#: index.php:1229
 msgid "Remove bars"
 msgstr ""
 
-#: index.php:957
+#: index.php:1231
 msgid "Remove ALL stations"
 msgstr ""
 
-#: index.php:958
+#: index.php:1232
 msgid "Show Receivers"
 msgstr ""
 
-#: index.php:963
+#: index.php:1237
 msgid "Toggle AutoFollow"
 msgstr ""
 
-#: index.php:969
+#: index.php:1243
 msgid "Reload Map"
 msgstr ""
 
-#: index.php:1013
+#: index.php:1287
 msgid "Station info for"
 msgstr ""
 
-#: index.php:1031
+#: index.php:1305
 msgid "Version"
 msgstr ""
 
-#: index.php:1032
+#: index.php:1306
 msgid "CurrentTG"
 msgstr ""
 
-#: index.php:1033
+#: index.php:1307
 msgid "Sysop"
 msgstr ""
 
-#: index.php:1054
+#: index.php:1328
 msgid "RX Name"
 msgstr ""
 
-#: index.php:1055
+#: index.php:1329
 msgid "SqlType"
 msgstr ""
 
-#: index.php:1057
+#: index.php:1331
 msgid "Enable"
 msgstr ""
 
-#: index.php:1800
+#: index.php:2087
+msgid "Total"
+msgstr ""
+
+#: index.php:2116
+msgid "Year statistics"
+msgstr ""
+
+#: index.php:2196
 msgid "Talkgroup activity"
 msgstr ""
 
-#: index.php:1944
+#: index.php:2340
 msgid "Reflektor time in S"
 msgstr ""
 
-#: index.php:1968
+#: index.php:2364
 msgid "Hour activity "
 msgstr ""
 
-#: index.php:2156
+#: index.php:2442
+msgid "time"
+msgstr ""
+
+#: index.php:2552
 msgid "Station activity"
 msgstr ""
 
-#: index.php:2613
+#: index.php:3045
 msgid "Username"
 msgstr ""
 
-#: index.php:2614
+#: index.php:3046
 msgid "password"
 msgstr ""
 
-#: index.php:2615
+#: index.php:3047
 msgid "Log In"
 msgstr ""
 
-#: index.php:2630
+#: index.php:3063
 msgid "Statistics for Network"
 msgstr ""
 
-#: index.php:2642
+#: index.php:3084
 msgid "Day"
 msgstr ""
 
-#: index.php:2643
+#: index.php:3085
 msgid "Hour"
 msgstr ""
 
-#: index.php:2696 log.php:20
+#: index.php:3086
+msgid "Year"
+msgstr ""
+
+#: index.php:3142
+msgid "No Repeater Filter"
+msgstr ""
+
+#: index.php:3143
+msgid "Repeater"
+msgstr ""
+
+#: index.php:3160
+msgid "No Talkgroup Filter"
+msgstr ""
+
+#: index.php:3195
+msgid "Toplist 10 days"
+msgstr ""
+
+#: index.php:3202 log.php:204
+msgid "Date"
+msgstr ""
+
+#: index.php:3234 log.php:205
 msgid "Station"
 msgstr ""
 
-#: index.php:2696
+#: index.php:3234
 msgid "Network Usage 24 hour"
 msgstr ""
 
-#: index.php:2696
+#: index.php:3234
 msgid "Usage last 24 hour"
 msgstr ""
 
-#: index.php:2696
+#: index.php:3234
 msgid "Most used receiver"
 msgstr ""
 
@@ -350,26 +620,287 @@ msgstr ""
 msgid "Talkgroup filter"
 msgstr ""
 
-#: log.php:19
-msgid "Date"
+#: list_reciver.php:458
+msgid "Back"
 msgstr ""
 
-#: log.php:21
+#: log.php:87
+msgid "Page size"
+msgstr ""
+
+#: log.php:105
+msgid "Log print"
+msgstr ""
+
+#: log.php:139
+msgid "Live"
+msgstr ""
+
+#: log.php:143 log.php:144
+msgid "Search"
+msgstr ""
+
+#: log.php:206
 msgid "Event"
 msgstr ""
 
-#: log.php:40
+#: log.php:225
 msgid "is Talker on tg"
 msgstr ""
 
-#: log.php:42
+#: log.php:227
 msgid "Stoped talk tg"
 msgstr ""
 
-#: log.php:48
+#: log.php:231
+msgid "Reciver"
+msgstr ""
+
+#: log.php:233
 msgid " is active signal level"
 msgstr ""
 
-#: log.php:50
+#: log.php:235
 msgid "has signal level"
 msgstr ""
+
+#: log.php:241
+msgid "Node"
+msgstr ""
+
+#: log.php:243
+msgid "has dropt from reflektor"
+msgstr ""
+
+#: log.php:245
+msgid "has connected to  reflektor"
+msgstr ""
+
+
+#: get_station.php:34 get_users.php:23 Settings.php:25 stations.php:122
+#: users.php:239
+msgid "Yes"
+msgstr ""
+
+#: get_station.php:36 get_users.php:25 Settings.php:19 stations.php:124
+#: users.php:241
+msgid "No"
+msgstr ""
+
+#: login.php:13
+msgid "Wrong username or password"
+msgstr ""
+
+#: login.php:27
+msgid "Sign In"
+msgstr ""
+
+#: login.php:36 users.php:148 users.php:215
+msgid "Username"
+msgstr ""
+
+#: login.php:43 users.php:156 users.php:272
+msgid "Password"
+msgstr ""
+
+#: login.php:47
+msgid "Login"
+msgstr ""
+
+#: log.php:80
+msgid "Fault log"
+msgstr ""
+
+#: log.php:89
+msgid "Page size"
+msgstr ""
+
+#: log.php:107 talkgroup.php:85
+msgid "Log print"
+msgstr ""
+
+#: log.php:109 stations.php:52 talkgroup.php:87 users.php:99
+msgid "Print"
+msgstr ""
+
+#: log.php:116 stations.php:59 talkgroup.php:94 users.php:106
+msgid "Export xls"
+msgstr ""
+
+#: log.php:138
+msgid "Live"
+msgstr ""
+
+#: log.php:142 log.php:143
+msgid "Search"
+msgstr ""
+
+#: log.php:203
+msgid "Date"
+msgstr ""
+
+#: log.php:204
+msgid "Station"
+msgstr ""
+
+#: log.php:205
+msgid "Event"
+msgstr ""
+
+#: log.php:237
+msgid "is Talker on tg"
+msgstr ""
+
+#: log.php:239
+msgid "Stoped talk tg"
+msgstr ""
+
+#: log.php:243
+msgid "Reciver"
+msgstr ""
+
+#: log.php:245
+msgid " is active signal level"
+msgstr ""
+
+#: log.php:247
+msgid "has signal level"
+msgstr ""
+
+#: log.php:253
+msgid "Node"
+msgstr ""
+
+#: log.php:255
+msgid "has dropt from reflektor"
+msgstr ""
+
+#: log.php:257
+msgid "has connected to  reflektor"
+msgstr ""
+
+#: log.php:275
+msgid "Previous"
+msgstr ""
+
+#: Settings.php:67
+msgid "Settings is saved!"
+msgstr ""
+
+#: Settings.php:76
+msgid "Settings"
+msgstr ""
+
+#: Settings.php:113
+msgid "Save"
+msgstr ""
+
+#: stations.php:40 stations.php:50
+msgid "Stations"
+msgstr ""
+
+#: stations.php:65 stations.php:164 talkgroup.php:222 users.php:283
+msgid "Update"
+msgstr ""
+
+#: stations.php:87
+msgid "Callsign"
+msgstr ""
+
+#: stations.php:88
+msgid "Location"
+msgstr ""
+
+#: stations.php:89
+msgid "Last seen"
+msgstr ""
+
+#: stations.php:90
+msgid "Station down"
+msgstr ""
+
+#: stations.php:91 stations.php:153 talkgroup.php:131 talkgroup.php:167
+#: talkgroup.php:211
+msgid "Color"
+msgstr ""
+
+#: stations.php:147 talkgroup.php:205
+msgid "Change station color"
+msgstr ""
+
+#: stations.php:163 talkgroup.php:221 users.php:282
+msgid "Close"
+msgstr ""
+
+#: talkgroup.php:25 users.php:31
+msgid "Please confirm user removal"
+msgstr ""
+
+#: talkgroup.php:47
+msgid "talkgroup created!"
+msgstr ""
+
+#: talkgroup.php:75
+msgid "Talkgroup"
+msgstr ""
+
+#: talkgroup.php:110 talkgroup.php:146
+msgid "Create talkgroup"
+msgstr ""
+
+#: talkgroup.php:114 talkgroup.php:163
+msgid "TG#"
+msgstr ""
+
+#: talkgroup.php:122 talkgroup.php:164
+msgid "Description"
+msgstr ""
+
+#: talkgroup.php:142 users.php:176 users.php:214
+msgid "Last name"
+msgstr ""
+
+#: talkgroup.php:166
+msgid "Actions"
+msgstr ""
+
+#: users.php:16
+msgid "User created sucsessfully!"
+msgstr ""
+
+#: users.php:60
+msgid "Password is updated!"
+msgstr ""
+
+#: users.php:87
+msgid "Users"
+msgstr ""
+
+#: users.php:97
+msgid "Print Users"
+msgstr ""
+
+#: users.php:113 users.php:144 users.php:196
+msgid "Create user"
+msgstr ""
+
+#: users.php:165 users.php:213
+msgid "First name"
+msgstr ""
+
+#: users.php:191
+msgid "User is admin"
+msgstr ""
+
+#: users.php:216
+msgid "Is admin"
+msgstr ""
+
+#: users.php:217
+msgid "Action"
+msgstr ""
+
+#: users.php:266
+msgid "Change user password"
+msgstr ""
+

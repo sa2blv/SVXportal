@@ -2,26 +2,22 @@
 header('Access-Control-Allow-Origin: <?php echo $serveradress ?>');
 include "config.php";
 include 'function.php';
-
+define_settings();
 set_laguage();
-
-
 ?>
+<?php $start_time = microtime(true); ?>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title> SVX Portal <?php echo $sitename ?></title>
+<title> SVX Portal <?php echo PORTAL_VERSION ?></title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="icon" type="image/png" href="tower.svg">
-<link
-	href="https://fonts.googleapis.com/css?family=Architects+Daughter&display=swap"
-	rel="stylesheet">
+<link	href="https://fonts.googleapis.com/css?family=Architects+Daughter&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css.css">
-<link href="dist/skin/blue.monday/css/jplayer.blue.monday.min.css"
-	rel="stylesheet" type="text/css" />
+<link href="dist/skin/blue.monday/css/jplayer.blue.monday.min.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="lib/jquery.min.js"></script>
 <script type="text/javascript" src="dist/jplayer/jquery.jplayer.min.js"></script>
 <script type="text/javascript" src="dist/add-on/jplayer.playlist.min.js"></script>
@@ -36,11 +32,8 @@ set_laguage();
 <link rel="stylesheet" href="lib/css/bootstrap.min.css">
 
 
-<link rel="stylesheet"
-	href="jquery-ui.css">
-<scripT src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
-	integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk="
-	crossorigin="anonymous"></script>
+<link rel="stylesheet" href="jquery-ui.css">
+<script src="jquery-ui.js"></script>
 
 <script
 	src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
@@ -51,19 +44,42 @@ set_laguage();
 <!--load all styles -->
 <script src="./js/chart/Chart.min.js"></script>
 <script src="./js/div_recivers.js"></script>
+
+
+
+
 <?php include "div_reciver.php";?>
 
 
 <script type="text/javascript">
 var refelktor_address="<?php echo $serveradress ?>";
 //<![CDATA[
+	
+	$.datepicker.regional['phplang'] = {
+    closeText: '<?php echo _('Close') ?>', // set a close button text
+    currentText: '<?php echo _('Today') ?>', // set today text
+    monthNames: ['<?php echo _('January') ?>','<?php echo _('February') ?>','<?php echo _('March') ?>','<?php echo _('April') ?>','<?php echo _('May') ?>','<?php echo _('June') ?>','<?php echo _('July') ?>','<?php echo _('August') ?>','<?php echo _('September') ?>','<?php echo _('October') ?>','<?php echo _('November') ?>','<?php echo _('December') ?>'], // set month names
+    dayNamesMin: ["<?php echo _('Su') ?>", "<?php echo _('Mo') ?>", "<?php echo _('Tu') ?>", "<?php echo _('We') ?>", "<?php echo _('Th') ?>", "<?php echo _('Fr') ?>", "<?php echo _('Sa') ?>"],
+    dayNames: ['<?php echo _('Monday') ?>','<?php echo _('Tuesday') ?>','<?php echo _('Wednesday') ?>','<?php echo _('Thursday') ?>','<?php echo addslashes (_('Friday')) ?>','<?php echo _('Saturday') ?>','<?php echo _('Sunday') ?>'], // set days names
+    dateFormat: 'dd/mm/yy' // set format date
+};
+	
+
+	
+	
 $(document).ready(function(){
 call_svxrefelktor();
 add_node_collors();
 load_reflector();
 generate_coulor();
 
-	$( "#datepicker" ).datepicker({firstDay: 1, dateFormat: 'yy-mm-dd' });
+
+
+
+
+	$.datepicker.setDefaults($.datepicker.regional['phplang']);
+
+	$( "#datepicker" ).datepicker({<?php echo get_oldest_file();?>maxDate:0,firstDay: 1, dateFormat: 'yy-mm-dd' });
 
 
 		var myPlaylist = new jPlayerPlaylist({
@@ -83,7 +99,7 @@ generate_coulor();
 			size: {width: "100%", height: "0px"}
 		});
 
-		$( "#Datepicker_graph" ).datepicker({firstDay: 1, dateFormat: 'yy-mm-dd' });
+		$( "#Datepicker_graph" ).datepicker({<?php echo startdate($start_date_defined)?>maxDate:0,firstDay: 1, dateFormat: 'yy-mm-dd' });
 
 		
 
@@ -108,6 +124,12 @@ $.post( "signal.php", { time: (TotaltimeTime-currentTime), file: event.jPlayer.s
 
 
     $('#Reciverbars_player').html("");
+	if(Json_data.Nodename == undefined)
+	{
+		Json_data.Nodename ="<?php echo _('No data');?>";
+	}
+
+    
 	$('#Reciverbars_player').append('<p>'+Json_data.Nodename+'</p><canvas id="canvpr"></canvas><br/>');
 	create_bar_rx(Json_data.Siglev,'canvpr',true);
     
@@ -184,7 +206,7 @@ $.getJSON( "<?php echo $serveradress ?>", function( data ) {
 	
 	
 
-$('#Reflektortable').html('<th><?php echo _("Callsign")?></th><th><?php echo _("TG")?></th><th><?php echo _("Is talker")?></th><th><?php echo _("Monitored TGs")?></th><th><?php echo _("Talk time")?></th><th><?php echo _("Active RX")?></th>');
+$('#Reflektortable').html('<th><?php echo _("Callsign")?></th><th><?php echo _("TG#")?></th><th><?php echo _("Is talker")?></th><th><?php echo _("Monitored TGs")?></th><th><?php echo _("Talk time")?></th><th><?php echo _("Active RX")?></th>');
 for(var k in data.nodes){
 	var text =" ";
 	for(var nodes in data.nodes[k].monitoredTGs){
@@ -258,17 +280,6 @@ var output = d.getFullYear() + '-' +
 
 	// Click handlers for jPlayerPlaylist method demo
 
-<?php
-$result = mysqli_query($link, "SELECT * FROM `repeater`");
-
-// Numeric array
-
-// Associative array
-while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-
-    echo " prosess_json('repeater-info-" . $row["Name"] . ".json');";
-}
-?>	
 
 	
 	
@@ -427,6 +438,8 @@ function generate_coulor()
             		tg_collors[<?php echo $row["TG"]?>]["TXT"] = "<?php echo $row["TXT"]?>";             
     <?php }?>
 
+
+
     for(var k in tg_collors){
         
       	$('#selects').append($('<option>', {
@@ -474,7 +487,7 @@ function add_node_collors()
         node_collors["<?php echo $row["Callsign"]?>"]["color"] = "<?php echo $row["Collor"]?>";      
             		          
     <?php }?>
-	
+
 }
 
 
@@ -495,6 +508,117 @@ function login_form()
 	  });
 	
 }
+var loop_livelog =0;
+var current_offset = 0
+var log_size = 500;
+
+function offset_log(offset) {
+	loop_livelog=0;
+	console.log(offset);
+	var serch_string = $("#logserch").val();
+	current_offset= offset;
+	$.get( "log.php", { offset: offset,search: serch_string,size: log_size }, function( data ) {
+		  $( "#logdiv1" ).html( data );
+
+		});
+	return false;
+}
+
+
+function offset_log_neg()
+{
+	if(current_offset >= 0)
+	{
+		var new_page  = parseFloat(current_offset)-(1*log_size);
+		if(new_page>=0)
+		{
+			offset_log(new_page);
+		}
+		
+	}
+}
+
+function offset_log_add()
+{
+
+	
+	var new_page  = (parseFloat(current_offset)+(1*log_size));
+	offset_log(new_page);
+	
+}
+function change_log_size(size)
+{
+	log_size=size;
+	offset_log(0);
+	
+	
+}
+
+
+
+function load_live_log(value)
+{
+	if(value == true)
+	{
+		loop_livelog=1;
+		live_log();
+	
+	}
+	else
+	{
+		loop_livelog=0;
+	}	
+}
+function live_log()
+{
+	if(loop_livelog ==1)
+	{
+		if (document.getElementById('logserch')) {
+	
+    		var serch_string = $("#logserch").val();
+    		$.get( "log.php", { offset: current_offset,search: serch_string,only_table:1,size: log_size }, function( data ) {
+    			  $( "#log_table" ).html( data );
+    				setTimeout(function(){ live_log()}, 2000);
+    
+    			});
+    
+    	
+		}
+		
+	
+	}
+	
+}
+
+function PrintElem(elem,text)
+{
+    var mywindow = window.open('', 'PRINT', 'height=600,width=800');
+
+    mywindow.document.write('<html><head><title>' + document.title  + '</title>');
+    mywindow.document.write('<link rel="stylesheet" media="print" href="lib/css/bootstrap.min.css">');
+    mywindow.document.write('<link rel="stylesheet" href="lib/css/bootstrap.min.css">');
+
+    mywindow.document.write('</head><body >');
+    mywindow.document.write('<h1>' + text  + '</h1>');
+    mywindow.document.write(document.getElementById(elem).innerHTML);
+    mywindow.document.write('</body></html>');
+
+    mywindow.document.close(); // necessary for IE >= 10
+    mywindow.focus(); // necessary for IE >= 10*/
+    
+    mywindow.addEventListener('load', function () {
+        mywindow.print();
+        mywindow.close();
+    	})
+
+
+
+    return true;
+}
+
+
+
+
 
 
 </script>
@@ -520,6 +644,8 @@ function login_form()
 		<!-- Sidebar -->
 		<nav id="sidebar" class="sidbar_bg">
 			<div id="sidebar-wrapper">
+			<?php if(!USE_CUSTOM_SIDBAR_HEADER && USE_CUSTOM_SIDBAR_HEADER == 0)
+			{?>
 				<ul class="list-unstyled nav nav-tabs nav-justified">
 					<li class="sidebar-brand nav-item"><a href="#">
 							<h1 class="wite_font">Svx Portal</h1>
@@ -527,6 +653,13 @@ function login_form()
 					<li class="nav-item"><img class="imagepading" src="loggo.png"
 						alt="logga" /></li>
 				</ul>
+				<?php }else
+				{
+				    include "sideheader.php";
+				    
+				}
+				    
+				?>
 				<ul class="nav flex-column nav-pills" role="tablist">
 					<li class="nav-item"><a class="nav-link active" href="#Reflector"
 						data-toggle="tab"><i class="fas fa-broadcast-tower"></i> <?php echo _("Reflector clients")?> </a></li>
@@ -547,7 +680,7 @@ function login_form()
 						onclick="load_reflector()" data-toggle="tab"><i
 							class="fas fa-broadcast-tower"></i>  <?php echo _("Receivers")?></a></li>
 					<li class="nav-item"><a class="nav-link" href="#Log"
-						data-toggle="tab"><i class="fas fa-terminal"></i> <?php echo _("Log")?></a></li>
+						data-toggle="tab"><i class="fas  fa-align-justify"></i> <?php echo _("Log")?></a></li>
 					<li class="nav-item"><a class="nav-link" href="#Table_ctcss"
 						data-toggle="tab"><i class="fas fa-terminal"></i> <?php echo _("CTCSS map table")?></a></li>
 						
@@ -559,7 +692,7 @@ function login_form()
 		   map.updateSize();connect_reflector();
 	   },300); "
 						data-toggle="tab"><i class="fas fa-map-marked"></i> <?php echo _("Map")?></a></li>
-<?php if($use_logein != null){?>
+<?php if($use_logein != null  || USE_LOGIN == 1){?>
 						<li class="nav-item"><a  class="nav-link" href="#LoginTab" data-toggle="tab"><i class="fas fa-lock"></i> <?php echo _("Login")?></a></li>
 <?php }?>
 
@@ -583,21 +716,25 @@ function login_form()
 
 
 	
-
-<li style="margin-left: 10px">
-
-    <img  onclick="load_languge('en_UK')" src="images/flags/gb.svg" width="30px" alt="GB">
-
+<?php  if(HIDE_LANGUGE_BAR == 0){?>
+    <li style="margin-left: 10px">
     
-    <img onclick="load_languge('sv_SE')" src="images/flags/se.svg" width="30px" alt="Se">
-
-
-    <img onclick="load_languge('nb_NO')" src="images/flags/no.svg" width="30px" alt="NO">
-
-	<img onclick="load_languge('uk_UA')" src="images/flags/ua.svg" width="30px" alt="uk">
-	
-	<img onclick="load_languge('it_IT')" src="images/flags/it.svg" width="30px" alt="it">
-</li>
+        <img  onclick="load_languge('en_UK')" src="images/flags/gb.svg" width="30px" alt="GB">
+    
+        
+        <img onclick="load_languge('sv_SE')" src="images/flags/se.svg" width="30px" alt="Se">
+    
+    
+        <img onclick="load_languge('nb_NO')" src="images/flags/no.svg" width="30px" alt="NO">
+    
+    	<img onclick="load_languge('uk_UA')" src="images/flags/ua.svg" width="30px" alt="uk">
+    	
+    	<img onclick="load_languge('it_IT')" src="images/flags/it.svg" width="30px" alt="it">
+    	
+    	<img onclick="load_languge('tr_TR')" src="images/flags/tr.svg" width="30px" alt="tr_TR">
+    </li>
+    
+<?php }?>
 				</ul>
 <div class="sidebar-footer wite_font">
  <div class="row " style="margin-left:10px ">
@@ -619,6 +756,52 @@ function login_form()
 				<div class="tab-pane active" id="Reflector">
 
 
+    <nav class="navbar navbar-expand-lg navbar-light  bg-light" style="background-color: #e3f2fd;">
+		
+		<a class="navbar-brand" href="#"><?php echo _(' Reflector clients')?></a>
+		
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+
+             <li class="nav-item">
+        
+             
+        <a class="nav-link " href="#" id="navbarDropdownMenuLink" onclick="PrintElem('Reflektortable_div','<?php echo _('Reflector clients')?>')" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               <i class="fas fa-print"></i>
+          <?php echo _('Print')?>
+        </a>
+             
+        </li>
+         <li class="nav-item">
+                <a class="nav-link " href="#" id="navbarDropdownMenuLink" onclick="fnExcelexport('Reflektortable')" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <i class="far fa-file-excel"></i>
+          <?php echo _('Export xls')?>
+        </a>
+        </li>
+        
+         <li class="nav-item">
+  
+        	<a href="#menu-toggle" class="nav-link"" onclick="toogle_menu()"><i class="fab fa-elementor"></i> <?php echo _('Toggle menu')?></a>
+        </li>
+        
+        
+            		
+        
+        
+        
+   
+      
+      
+      
+    </ul>
+
+      </div>
+
+      
+    </nav>
+
+	<div id="Reflektortable_div"> 
 					<table id="Reflektortable" class="table">
 						<th><?php echo _("Callsign")?></th>
 						<th><?php echo _("TG")?></th>
@@ -629,7 +812,7 @@ function login_form()
 				</div>
 
 
-
+	</div>
 
 				<div class="tab-pane " id="listen">
 					<div class="row">
@@ -717,7 +900,7 @@ function login_form()
 								class="btn btn-outline-success my-2 my-sm-0" id="menu-toggle"><?php echo _('Toggle menu')?></a>
 							<hr />
 							<h3><?php echo _("Select date to listen")?></h3>
-							<?php if($use_logein != null){?>
+							<?php if($use_logein != null || USE_LOGIN == 1){?>
 								<p><?php echo _("to use player you must login")?> </p>
 							<?php }?>
 							<p>
@@ -746,7 +929,8 @@ function login_form()
 
 	<?php
 	
-	$sql_node ="SELECT sum(Talktime), `Callsign` FROM RefletorNodeLOG WHERE `Type` = '1' AND `Active` ='0' group by  `Callsign`";
+	$sql_node ="SELECT Talktime, `Callsign`, `Talkgroup` FROM RefletorNodeLOG WHERE `Type` = '1' AND `Active` ='0'";
+
 	
 	 
 	function secondsToDHMS($seconds) {
@@ -761,11 +945,16 @@ function login_form()
 	$sqlref = $link->query($sql_node);
 	$timesum_node =array();
 	
+	$timesum =array();
+	
 
 	while($row = $sqlref->fetch_assoc()) {
-	    $timesum_node[$row["Callsign"]] =$row["sum(Talktime)"];
+	    $timesum_node[$row["Callsign"]] =$timesum_node[$row["Callsign"]]+ $row["Talktime"];
+	    $timesum[$row["Talkgroup"]] =$timesum[$row["Talkgroup"]] +$row["Talktime"];
 	    
 	}
+	
+
 
 	
 	
@@ -812,10 +1001,15 @@ if($usefile != null)
     fclose($myfile);
 }else
 {
-    if($iframe_documentation_url != null )
+    if(USE_EXTERNAL_URL != 0 )
+    {
      ini_set('default_socket_timeout', 20); // 900 Seconds = 15 Minutes
-    $data = file_get_contents($iframe_documentation_url);
+
+     $data = file_get_contents(iframe_documentation_url);
     echo $data;
+    }
+    
+    
 ?>
 
 <?php }?>	
@@ -825,7 +1019,7 @@ if($usefile != null)
 					<div class="container">
 						<nav
 							class="navbar navbar-expand-lg navbar-light bg-light navbar navbar-light bg-light justify-content-between">
-							Filter:<select id="selects" class="w-25"
+							<?php echo _('Filter')?>:<select id="selects" class="w-25"
 								onchange="update_filter(this.value)">
 								<option value="">-- <?php echo _("All")?> --</option>
 							</select> <a href="#menu-toggle" onclick="toogle_menu()"
@@ -845,37 +1039,114 @@ if($usefile != null)
 
 				<div class="tab-pane" id="Recivers2"></div>
 				<div class="tab-pane" id="Dictionary">
-					<table class="table table-striped">
+				
+				    <nav class="navbar navbar-expand-lg navbar-light  bg-light" style="background-color: #e3f2fd;">
+		
+		<a class="navbar-brand" href="#"><?php echo _('Talkgroups')?></a>
+		
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+
+      
+         <li class="nav-item">
+        
+             
+        <a class="nav-link " href="#" id="navbarDropdownMenuLink" onclick="PrintElem('dictornay_taklgroup_print','<?php echo _('Talkgroups')?>')" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               <i class="fas fa-print"></i>
+          <?php echo _('Print')?>
+        </a>
+             
+        </li>
+        <li>
+                <a class="nav-link " href="#" id="navbarDropdownMenuLink" onclick="fnExcelexport('dictornay_taklgroup_data')" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <i class="far fa-file-excel"></i>
+          <?php echo _('Export xls')?>
+        </a>
+        </li>
+        
+    
+        	<a href="#menu-toggle" class="nav-link"" onclick="toogle_menu()"><i class="fab fa-elementor"></i> <?php echo _('Toggle menu')?></a>
+        </li>
+        
+        
+            		
+        
+        
+        
+   
+      
+      
+      
+    </ul>
+
+
+
+
+      </div>
+
+      
+    </nav>
+    
+    
+				<div id="dictornay_taklgroup_print">
+					<table class="table table-striped" id="dictornay_taklgroup_data">
 						<thead>
 							<tr>
-								<th><?php echo _("TG")?></th>
-								<th><?php echo _("Name")?></th>
+								<th><?php echo _("TG#")?></th>
+								<th><?php echo _("Talkgroup Name")?></th>
+								<th><?php echo _("Callsign")?></th>
 								<th><?php echo _("Last active")?></th>
-								<th><?php echo _("Time")?></th>
 								<th><?php echo _("Time Total")?></th>
 								<th><?php echo _("Color")?></th>
 							</tr>
 						</thead>
 						<tbody>
 	   
+<?php 
+	
+	// move earlier in code to increse speed 
+	
+	
+	
 
-	<?php
-	$sql_active ="SELECT sum(Talktime), `Talkgroup` FROM RefletorNodeLOG WHERE `Type` = '1' AND `Active` ='0' group by  `Talkgroup`";
-	
-	$sql_nonactive ="SELECT sum(UNIX_TIMESTAMP(`Time`)), `Talkgroup` FROM RefletorNodeLOG WHERE `Type` = '1' AND `Active` ='0' group by  `Talkgroup` ";
-	
-	
-	$sqlref = $link->query($sql_active);
 
-	$timesum =array();
-	
-	while($row = $sqlref->fetch_assoc()) {
-	    $timesum[$row["Talkgroup"]] =$row["sum(Talktime)"];
-	}
+
 
 	
 mysqli_set_charset($link,"utf8");
+
+
+/*
+$result1 = mysqli_query($link, "SELECT `Id`,`Talkgroup`,`Time`,`Callsign` FROM `RefletorNodeLOG` WHERE
+
+`Id` IN (
+    
+    SELECT MAX(RefletorNodeLOG.Id)
+    FROM RefletorNodeLOG
+    GROUP BY RefletorNodeLOG.`Talkgroup`
+    );");
+*/
+
+
+
+$last_active_array = array();
+while ($row1 = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
+
+    $last_active_array[$row1['Talkgroup']]["Callsign"] =$row1["Callsign"];
+    $last_active_array[$row1['Talkgroup']]["Time"] =$row1["Time"];
+};
+
+
+?>
+
+
+
+<?php 
 $result = mysqli_query($link, "SELECT * FROM `Talkgroup` ORDER BY `Talkgroup`.`TG` ASC");
+
+
+
 
 // Numeric array
 
@@ -885,6 +1156,7 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
     echo "<tr>";
     echo "<td>" . $row["TG"] . "</td>";
     echo "<td>" . $row["TXT"] . "</td>";
+
     $result1 = mysqli_query($link, "SELECT Callsign,Time FROM `RefletorNodeLOG` WHERE `Talkgroup` ='".$row["TG"]."' ORDER BY `RefletorNodeLOG`.`Id` DESC limit 1");
     $row1 = mysqli_fetch_array($result1, MYSQLI_ASSOC);
 
@@ -898,9 +1170,11 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
 }
 
 ?>
-	</tr>
+
 						</tbody>
 					</table>
+					</div>
+					   
 				</div>
 
 				<div class="tab-pane " id="Log">
@@ -924,17 +1198,17 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
 								<li class="nav-item dropdown"><a
 									class="nav-link dropdown-toggle" href="#"
 									id="navbarDropdownMenuLink" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="false"> <?php echo _("Coverage")?> </a>
+									aria-haspopup="true" aria-expanded="false"><i class="fas fa-broadcast-tower"></i> <?php echo _("Coverage")?> </a>
 									<div class="dropdown-menu"
 										aria-labelledby="navbarDropdownMenuLink">
-										<a class="dropdown-item" onclick="show_covige()" href="#"><?php echo _("Show")?></a>
-										<a class="dropdown-item" onclick="remove_covige()" href="#"><?php echo _("Remove")?></a>
+										<a class="dropdown-item" onclick="show_covige()" href="#"><i class="fas fa-asterisk"></i> <?php echo _("Show")?></a>
+										<a class="dropdown-item" onclick="remove_covige()" href="#"><i class="fas fa-asterisk"></i> <?php echo _("Remove")?></a>
 
 									</div></li>
 								<li class="nav-item dropdown"><a
 									class="nav-link dropdown-toggle" href="#"
 									id="navbarDropdownMenuLink" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="false"> <?php echo _("Actions")?> </a>
+									aria-haspopup="true" aria-expanded="false"><i class="fas fa-bolt"></i> <?php echo _("Actions")?> </a>
 									<div class="dropdown-menu"
 										aria-labelledby="navbarDropdownMenuLink">
           
@@ -952,26 +1226,23 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 }
 ?>
 		  
-		  <a class="dropdown-item" onclick="map.overlays_.clear();" href="#"><?php echo _("Remove bars")?> </a> <a class="dropdown-item"
+		  <a class="dropdown-item" onclick="map.overlays_.clear();" href="#"><i class="fas fa-minus-circle"></i> <?php echo _("Remove bars")?> </a> <a class="dropdown-item"
 											onclick="vectorSource.clear();Barsource.clear();map.overlays_.clear();"
-											href="#"><?php echo _("Remove ALL stations")?></a> <a class="dropdown-item"
-											onclick="prosess_json_reflecktor();" href="#"><?php echo _("Show Receivers")?></a>
+											href="#"><i class="fas fa-minus-circle"></i> <?php echo _("Remove ALL stations")?></a> <a class="dropdown-item"
+											onclick="prosess_json_reflecktor();" href="#"><i class="fas fa-minus-circle"></i> <?php echo _("Show Receivers")?></a>
 											
-											<a class="nav-link dropdown-toggle" href="#"
+											<a class="nav-link" href="#"
 									onclick="toogle_AutoFollow()" id="Autofollow_text"
 									data-toggle="dropdown" aria-haspopup="true"
-									aria-expanded="false"> <?php echo _("Toggle AutoFollow")?> </a>
+									aria-expanded="false"><i class="fas fa-asterisk"></i> <?php echo _("Toggle AutoFollow")?> </a>
 									
 									
-									<a class="nav-link dropdown-toggle" href="#"
+									<a class="nav-link" href="#"
 									onclick="connect_reflector()" id="Autofollow_text"
 									data-toggle="dropdown" aria-haspopup="true"
-									aria-expanded="false"><?php echo _("Reload Map")?></a>
+									aria-expanded="false"><i class="fas fa-asterisk"></i> <?php echo _("Reload Map")?></a>
 									
-									<a class="nav-link dropdown-toggle" href="#"
-									onclick="toogle_menu()" id="navbarDropdownMenuLink"
-									data-toggle="dropdown" aria-haspopup="true"
-									aria-expanded="false"> <?php echo _("Toggle menu")?> </a>
+		
 
 									</div></li>
 						
@@ -981,7 +1252,10 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 							</ul>
 
 
-
+							<a class="nav-link" href="#"
+									onclick="toogle_menu()" id="navbarDropdownMenuLink"
+									data-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="false"><i class="fab fa-elementor"></i> <?php echo _("Toggle menu")?> </a>
 
 
 
@@ -1653,8 +1927,10 @@ function addimage(src,lamin,lomin,lamax,lomax)
             imageExtent: [c1[0], c1[1], c2[0], c2[1]]
         })
     });
-    ov[src].setZIndex(parseInt(0, 10) || 0);   
-    map.addLayer(ov[src]);
+    ov[src].setZIndex(parseInt(0, 10) || 0);  
+     
+    this.coverigeGroup.getLayers().array_.push(ov[src])
+    //map.addLayer(ov[src]);
     return ov[src];
 }
 
@@ -1766,6 +2042,126 @@ function prosess_json_reflecktor()
   });
 
 }
+function get_year_static()
+{
+	var date_value = $('#Datepicker_graph').val();
+	var select1= $('#filterpicker_repeater_year').val();
+	var select2= $('#filterpicker_talgroup_year').val();
+
+
+
+	$.get( "get_statistics.php", { date: date_value, mouth:"true", filterpicker_repeater_year: select1, filterpicker_talgroup_year: select2} )
+	  .done(function( data ) {
+			console.log(data);
+
+
+		  var json_data_year = JSON.parse(data);
+
+		  var data_aray_year = new Array();
+		  for(var mouth in json_data_year)
+		  {
+			  data_aray_year[mouth-1]= json_data_year[mouth]['unixtime'];
+
+		  }
+		  $("#toplist_table tbody").html("");
+		  for(var top in json_data_year.Toplist)
+		  {
+			  $("#toplist_table tbody").append("<tr><td>"+json_data_year.Toplist[top]['day']+"</td><td>"+json_data_year.Toplist[top]['Secound']+"</td></tr>");
+
+		  }
+
+		 
+		  		  
+
+        		  
+        	$('#canvas_grap_holder3').html("");
+        	$('#canvas_grap_holder3').html('<canvas id="Graph3"  width="700px" height="500px" class="img-responsive" ></canvas>');
+        	
+        	var canvas = document.getElementById('Graph3')
+        	canvas.width = canvas.width; 
+        	
+        	var ctx = document.getElementById('Graph3').getContext('2d');
+        	var barChartData = {
+        			labels: ['<?php echo _('January')?>', '<?php echo _('February')?>', '<?php echo _('March')?>', '<?php echo _('April')?>', '<?php echo _('May')?>', '<?php echo _('June')?>', '<?php echo _('July')?>','<?php echo _('August')?>','<?php echo _('September')?>','<?php echo _('October')?>','<?php echo _('November')?>','<?php echo _('December')?>'],
+        			datasets: [{
+        				label: '<?php echo _('Total')?>',
+        				backgroundColor: [
+        					"#6495ED",
+        					"#6495ED",
+        					"#7CFC00",
+        					"#7CFC00",
+        					"#bef211",
+        					"#F08080",
+        					"#F08080",
+        					"#FFA500",
+        					"#DAA520",
+        					"#808080",
+        					"#808080",
+        					"#F5FFFA"
+        					
+        					
+        				],
+        				yAxisID: 'y-axis-1',
+        				data:data_aray_year
+        			}]};
+        	
+        	window.myBar2 = new Chart(ctx, {
+        		type: 'bar',
+        		data: barChartData,
+        		options: {
+        			responsive: true,
+        			maintainAspectRatio:false,
+        			title: {
+        				display: true,
+        				text: '<?php echo _('Year statistics')?>'
+        			},
+        			tooltips: {
+        				mode: 'index',
+        				intersect: true
+        			},
+        			scales: {
+        				yAxes: [{
+        					type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+        					display: true,
+        					position: 'left',
+        					id: 'y-axis-1',
+        	                ticks: {
+        	                    // Include a dollar sign in the ticks
+        	                    callback: function(value, index, values) {
+        	                        return secondsToDHMS( value);
+        	                    }
+        	                }
+        				}],
+        			},
+        			tooltips: {
+        	            // Disable the on-canvas tooltip
+        	            enabled: true,
+        	            callbacks: {
+        	                label: function(tooltipItem, data) {
+        	                    var label = data.datasets[tooltipItem.datasetIndex].label;
+        	                    var talktime = data.datasets[0].data[tooltipItem.index];
+ 
+        						
+        	                    if (label) {
+        	                        label += ': ';
+        	                    }
+        	                    label += secondsToDHMS(talktime);
+        	                    return label;
+        	                }
+        	            }
+
+        	        }
+        	        
+        			
+        		}
+        	});
+
+	
+
+	  });
+}
+
+
 function get_statistics()
 {
 
@@ -1922,7 +2318,7 @@ function get_statistics_hour()
 
 	    	
 		  var i =0;
-		  // fuling f�r time 0-24
+		  // fuling fÃ¶r time 0-24
 		  var data_to_set = new Array();
 		  var labels = new Array();
 		  for (talkgroup = 0; talkgroup < 24;talkgroup++) 
@@ -2043,7 +2439,7 @@ function get_statistics_hour()
 				    	
 
 						var newDataset = {
-		    					label: talkgroup+ ' time',
+		    					label: talkgroup+ ' <?php echo _('time')?>',
 		    					backgroundColor: tg_collors[talkgroup]['color'].trim(),
 		    					borderColor:  tg_collors[talkgroup]['color'].trim(),
 		    					fill: false,
@@ -2280,12 +2676,18 @@ function setmap_noTransform(lon,lat,z)
 
 
 var Lock_show =0;
+var coverigeGroup;
 function show_covige()
 {
 	if(Lock_show == 0)
 	{
 		Lock_show =1;
 
+		coverigeGroup = new ol.layer.Group({
+            layers: [],
+            name: 'coverige'
+        });
+		//peter
 		<?php
 
 				$result = mysqli_query($link, "SELECT * FROM `covrige` ");
@@ -2303,18 +2705,13 @@ function show_covige()
 				?>
 
 		
-
+				map.addLayer(this.coverigeGroup);
 		
 	}
 }
 function remove_covige()
 {
-	window.map.removeLayer(ov["riu.png"]);
-	window.map.removeLayer(ov["gw.png"]);
-
-
-
-			
+	this.map.removeLayer(this.coverigeGroup);
 	Lock_show  =0;
 }
 
@@ -2588,6 +2985,41 @@ function bind_key_statistics()
 	
 }
 
+function fnExcelexport(table)
+{
+    var tab_text="<table border='2px'><tr bgcolor='#87AFC6'>";
+    var textRange; var j=0;
+    tab = document.getElementById(table); // id of table
+
+    for(j = 0 ; j < tab.rows.length ; j++) 
+    {     
+        tab_text=tab_text+tab.rows[j].innerHTML+"</tr>";
+        //tab_text=tab_text+"</tr>";
+    }
+
+    tab_text=tab_text+"</table>";
+    tab_text= tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
+    tab_text= tab_text.replace(/<img[^>]*>/gi,""); // remove if u want images in your table
+    tab_text= tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+
+    var ua = window.navigator.userAgent;
+    var msie = ua.indexOf("MSIE "); 
+
+    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+    {
+        txtArea1.document.open("txt/html","replace");
+        txtArea1.document.write(tab_text);
+        txtArea1.document.close();
+        txtArea1.focus(); 
+        sa=txtArea1.document.execCommand("SaveAs",true,"export.xls");
+    }  
+    else                 //other browser not tested on IE 11
+        sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));  
+
+    return (sa);
+}
+
+
 
 
 
@@ -2627,27 +3059,38 @@ function bind_key_statistics()
 
 				<div class="tab-pane " id="Statistics">
 				<div class="row">
+				<div class="col-10">
     				<h3><?php echo _("Statistics for Network")?></h3>
     			</div>
+    			<div class="col-2">
+					
+    			</div>
+    			</div>
     			<div class="row">
-    			
+    			<div class="col-10">
     				<p><button class="prev-day btn btn-outline-secondary"  onclick="change_day_prew()" id="prev-day"><i class="fa fa-angle-left" aria-hidden='true'></i></button></button><input type="text" id="Datepicker_graph" value="<?php echo date("Y-m-d")?>" onchange="get_statistics();get_statistics_hour()">
     				
     				<button class='next-day btn btn-outline-secondary' onclick="change_day_next()" ><i class='fa fa-angle-right' aria-hidden='true'></i></button></p>
+    		</div>
+    		    			<div class="col-2">
+    			<a href="#menu-toggle" class="btn btn-outline-success my-2 my-sm-0" id="menu-toggle33" onclick="toogle_menu()"><?php echo _('Toggle menu')?></a>
+					
+    			</div>
 				</div>
         	  <div class="col">
                <nav id="ssas" class="navbar navbar-expand-lg navbar-light bg-light navbar navbar-light bg-light ">
         
                    <ul class="navbar-nav">
-                  	<li class="nav-link  active"><a data-toggle="tab" onclick="$('#ssas a.active').removeClass('active');" href="#dastaty"><?php echo _("Day")?></a></li>
-                  	<li class="nav-link "><a data-toggle="tab" onclick="$('#ssas a.active').removeClass('active');get_statistics_hour()" href="#menu_hour"><?php echo _("Hour")?></a></li>
+                  	<li class="nav-link  active"><a data-toggle="tab" onclick="$('#ssas a.active').removeClass('active');" href="#dastaty"><i class="far fa-circle"></i> <?php echo _("Day")?></a></li>
+                  	<li class="nav-link "><a data-toggle="tab" onclick="$('#ssas a.active').removeClass('active');get_statistics_hour()" href="#menu_hour"><i class="far fa-circle"></i> <?php echo _("Hour")?></a></li>
+                  	<li class="nav-link "><a data-toggle="tab" onclick="$('#ssas a.active').removeClass('active');get_year_static()" href="#menu_year"><i class="far fa-circle"></i> <?php echo _("Year")?></a></li>
 
                    </ul> 
             </nav>
             </div>
         
              
-        
+
 
         		<div class="row">
 				<div class="tab-content col-md-12">
@@ -2681,6 +3124,101 @@ function bind_key_statistics()
                 	 </div>
             	 </div>
             	 
+       			<div id="menu_year" class="tab-pane  in  w-100  ">
+                    <div class="container-fluid">
+                        <div class="row">
+                        
+
+                        	<div class="col-md-8">
+                        	
+                				<table class="table" >
+                				  <thead class="thead-dark">
+    <tr>
+      <th scope="col">
+
+                       	
+                        	
+                        	<select class="selectpicker" id="filterpicker_repeater_year" onchange="get_year_static()">
+                                 <option value=""><?php echo _('No Repeater Filter')?></option>
+                                  <optgroup label="<?php echo _('Repeater')?>">
+  <?php 
+      			$result = mysqli_query($link, "SELECT * FROM `RefletorStations` WHERE Callsign != '' ORDER BY `Callsign` ASC");
+
+    			// Numeric array
+
+    			// Associative array
+    			while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+    ?>
+    <option value="<?php echo $row["Callsign"]?>" style="background-color: <?php echo $row["Collor"]?>"><?php echo $row["Callsign"] ?></option>        
+    <?php }?>
+            
+                                  </optgroup>
+                                </select>
+         </th>    
+         <th scope="col">
+                         	<select class="selectpicker" id="filterpicker_talgroup_year" onchange="get_year_static()">
+                                 <option value=""><?php echo _('No Talkgroup Filter')?></option>
+                                  <optgroup label="<?php echo _('Talkgroup')?>">
+                                  
+                 <?php 
+    			$result = mysqli_query($link, "SELECT * FROM `Talkgroup` ORDER BY `Talkgroup`.`TG` ASC");
+
+    			// Numeric array
+
+    			// Associative array
+    			while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+    ?>
+    <option value="<?php echo $row["TG"]?>" style="background-color: <?php echo $row["Collor"]?>"><?php echo $row["TG"] ?>		<?php echo  $row["TXT"] ?></option>        
+    <?php }?>
+
+
+                                  </optgroup>
+                                </select>        
+         </th>         
+       </tr>
+  </thead>                              
+                                </table>
+
+                				<div style="position: relative; height:500px!important;" id="canvas_grap_holder3">
+                					<canvas class='img-responsive'  width="700px" height="500px" id="Graph3"></canvas>
+           
+
+                					
+                					
+                				</div>
+                		    </div>
+                                        				<div class="col-md-4">
+                				
+                				<table class="table" id="toplist_table">
+                				  <thead class="thead-dark">
+    <tr>
+      <th scope="col" colspan="2"><?php echo _('Toplist 10 days')?></th>
+
+    </tr>
+  </thead>
+  
+  <thead>
+    <tr>
+      <th scope="col"><?php echo _('Date')?></th>
+      <th scope="col"><?php echo _('Talk time')?></th>
+
+    </tr>
+  </thead>
+    <tbody>
+    </tbody>
+
+</table>
+
+
+                				
+                	
+                			</div>
+
+
+
+                    	 </div>
+                	 </div>
+            	 </div>           	 
             	            	 
             	 </div>
         			
@@ -2700,6 +3238,7 @@ function bind_key_statistics()
     			<div class="tab-pane " id="Table_ctcss">
     			<?php 
     			$noheader =1;
+    			
     			include 'ctcss_map_table.php'?>
     			</div>
 				

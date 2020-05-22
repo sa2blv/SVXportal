@@ -56,7 +56,7 @@ function get_most_use_reciver($day)
     
     $tme_string ="`Time` BETWEEN '$day 00:00:00.000000' AND '$day 23:59:00.000000'";
     $quvery ="
-    SELECT `Nodename`,`Callsign` FROM `RefletorNodeLOG`  WHERE  $tme_string  AND`Type` = 2 AND `Active` = 1  ORDER BY Callsign";
+    SELECT MAX(`Nodename`),`Callsign` FROM `RefletorNodeLOG`  WHERE  $tme_string  AND`Type` = 2 AND `Active` = 1  GROUP BY Callsign";
     //echo $quvery;
 
 
@@ -68,9 +68,9 @@ function get_most_use_reciver($day)
     {
         //echo '<pre>';
         //var_dump($row2);
-        $count_array[$row2['Callsign']][$row2['Nodename']]++;
+        $count_array[$row2['Callsign']][$row2['MAX(`Nodename`)']]++;
         
-        $moste_used_station[$row2['Callsign']] = $row2['Nodename'];
+        $moste_used_station[$row2['Callsign']] = $row2['MAX(`Nodename`)'];
     }
     
     //echo '<pre>';
@@ -92,6 +92,7 @@ function get_most_use_reciver($day)
 $day= $_GET['date'];
 $station = $_GET['st'];
 $qrv = $_GET['qrv'];
+$mouth_s = $_GET['mouth'];
 $link->set_charset("utf8");
 /*
  * Detect if station data
@@ -107,8 +108,60 @@ else
 {
     $station_qvery ="";
 }
+if($mouth_s != "")
+{
+    $day = $link->real_escape_string($day);
+    $current_year= date("Y",strtotime($day));
+    
+    if($_GET['filterpicker_repeater_year'] != "")
+    {
+        
+        $station = $link->real_escape_string($_GET['filterpicker_repeater_year']);
+        $station_quvery = "AND Callsign ='$station'";
+    }
+    if($_GET['filterpicker_talgroup_year'] != "")
+    {
+        
+        $talkgroupid = $link->real_escape_string($_GET['filterpicker_talgroup_year']);
+        $talkgroup_quvery = "AND Talkgroup ='$talkgroupid'";
+    }
+    
+    
+    
+    
+    $sql_stations ="SELECT SUM(`Talktime`),MONTH(`Time`)  FROM   RefletorNodeLOG
+    WHERE YEAR(`Time`) = $current_year  AND Type='1' and Active='0' $station_quvery $talkgroup_quvery  GROUP BY MONTH(`Time`)";
 
-if($qrv != "")
+   
+    $sqla = $link->query($sql_stations);; 
+    while($row = $sqla->fetch_assoc()) 
+    {
+
+       $json_array[$row["MONTH(`Time`)"]] ["Secound"] = secondsToDHMS($row['SUM(`Talktime`)']);
+       $json_array[$row["MONTH(`Time`)"]] ["unixtime"] = $row['SUM(`Talktime`)'];
+        
+    }
+
+    $sql_activity ="SELECT SUM(`Talktime`), MONTH(`Time`) ,DAY(`Time`) FROM RefletorNodeLOG WHERE YEAR(`Time`) = $current_year AND Type='1' and Active='0' $station_quvery $talkgroup_quvery GROUP BY MONTH(`Time`), DAY(`Time`) ORDER BY SUM(`Talktime`) DESC  limit 10";
+
+    $sqla = $link->query($sql_activity);;
+    $id=0;
+    while($row = $sqla->fetch_assoc())
+    {
+        $daystring=$current_year."-".$row['MONTH(`Time`)']."-".$row['DAY(`Time`)'];
+        
+        $json_array["Toplist"][$id]["Secound"] = secondsToDHMS($row['SUM(`Talktime`)']);
+        $json_array["Toplist"][$id]["unixtime"] = $row['SUM(`Talktime`)'];
+        $json_array["Toplist"][$id]["day"] =date("Y-m-d",strtotime($daystring)) ;
+        $id++;
+    }
+    
+    //
+  
+    echo json_encode ($json_array);
+    
+}
+else if($qrv != "")
 {
     $qrv = $link->real_escape_string($qrv);
     $day = $link->real_escape_string($day);

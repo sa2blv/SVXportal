@@ -9,7 +9,13 @@ $station_array= array();
 
 function Get_station_from_json() {
     global $serveradress;
-    $json_data = file_get_contents($serveradress);
+    
+
+    $context = stream_context_create(array('http' => array('header'=>'Connection: close\r\n')));
+    $json_data = file_get_contents($serveradress,false,$context);
+
+    
+    //$json_data = file_get_contents($serveradress);
     $json = json_decode($json_data);
     global $talkgroup_array;
     global $station_array;
@@ -128,6 +134,7 @@ function Get_station_from_json() {
 
 Get_station_from_json();
 sort($talkgroup_array);
+
 /*
 echo '<pre>';
 var_dump($talkgroup_array);
@@ -142,7 +149,6 @@ var_dump($station_array);
 
 
 if($noheader != 1){?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -183,9 +189,63 @@ if($noheader != 1){?>
 
 
 </script>
-  <h2><?php echo _("CTSS map table")?></h2>     
+
+  
+  
+      <nav class="navbar navbar-expand-lg navbar-light  bg-light" style="background-color: #e3f2fd;">
+		
+		<a class="navbar-brand" href="#"><?php echo _('CTSS map table')?></a>
+		
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+
+
+
+           <li class="nav-item">
+        
+             
+        <a class="nav-link " href="#" id="navbarDropdownMenuLink" onclick="PrintElem('print_export_log','<?php echo _('CTSS map table')?>')" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               <i class="fas fa-print"></i>
+          <?php echo _('Print')?>
+        </a>
+             
+        </li>
+        <li>
+                <a class="nav-link " href="#" id="navbarDropdownMenuLink" onclick="fnExcelexport('ctcss_data_table')" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <i class="far fa-file-excel"></i>
+          <?php echo _('Export xls')?>
+        </a>
+        </li>
+        
+
+  
+        	<a href="#menu-toggle" class="nav-link"" onclick="toogle_menu()"><i class="fab fa-elementor"></i> <?php echo _('Toggle menu')?></a>
+        </li>
+        
+        
+
+        
+        
+        
+   
+      
+      
+      
+    </ul>
+
+
+
+      
+    </nav>
+    
+    
+  
+  
+  
   <form action="Get_Node_CSV.php" method="POST" onsubmit="return validate_export()"  target="_blank">
-  <table class="table table-hover">
+  <div id="print_export_log">
+  <table class="table table-hover" id="ctcss_data_table" >
     <thead>
       <tr>
         <th> </th>
@@ -250,6 +310,7 @@ if($noheader != 1){?>
 
     </tbody>
   </table>
+  </div>
   <?php if(!$_GET['hiddeexport']){?>
   
     <div class="row">
@@ -275,8 +336,9 @@ if($noheader != 1){?>
           <div class="col-10">
             <input class="form-control" type="checkbox" value="1" name="trimc" id="countrypre">
           </div>
-  	<div class="col-sm-4">
+  	<div class="col-sm-10">
          	<input class="btn btn-primary" type="submit" value="<?php echo _("Export")?>">
+
 	</div>         
       </fieldset>
 
@@ -290,3 +352,8 @@ if($noheader != 1){?>
   </form>
 
 </div>
+
+
+	
+
+

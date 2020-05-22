@@ -7,11 +7,20 @@ header("Content-Disposition: attachment; filename=".$_POST['Software']."-".date(
 header("Pragma: no-cache");
 header("Expires: 0");
 
+?>
+					This page was generated in <?php echo(number_format(microtime(true) - $start_time, 2)); ?> seconds.
 
+<?php 
 
 $json_data = file_get_contents($serveradress);
 $json = json_decode($json_data);
 
+
+
+?>
+					This page was generated in <?php echo(number_format(microtime(true) - $start_time, 2)); ?> seconds.
+
+<?php 
 //echo '<pre>';
 //var_dump($json->nodes->SK3W->qth[0]->rx);
 

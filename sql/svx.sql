@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Värd: localhost
--- Tid vid skapande: 09 apr 2020 kl 00:12
--- Serverversion: 5.7.29-0ubuntu0.18.04.1
--- PHP-version: 7.2.24-0ubuntu0.18.04.3
+-- Tid vid skapande: 22 maj 2020 kl 22:02
+-- Serverversion: 5.7.30-0ubuntu0.18.04.1
+-- PHP-version: 7.2.24-0ubuntu0.18.04.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Databas: `svx`
+-- Databas: `testinstall`
 --
 
 -- --------------------------------------------------------
@@ -32,7 +32,6 @@ CREATE TABLE `covrige` (
   `Radiomobilestring` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
 -- --------------------------------------------------------
 
 --
@@ -45,8 +44,7 @@ CREATE TABLE `Daylog` (
   `Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
-
+-- --------------------------------------------------------
 
 --
 -- Tabellstruktur `Filter`
@@ -58,10 +56,6 @@ CREATE TABLE `Filter` (
   `Filter` text NOT NULL,
   `Namn` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumpning av Data i tabell `Filter`
---
 
 -- --------------------------------------------------------
 
@@ -84,7 +78,6 @@ CREATE TABLE `RefletorNodeLOG` (
   `Talktime` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
 -- --------------------------------------------------------
 
 --
@@ -95,13 +88,11 @@ CREATE TABLE `RefletorStations` (
   `ID` int(11) NOT NULL,
   `Callsign` varchar(40) CHARACTER SET utf8 COLLATE utf8_swedish_ci NOT NULL,
   `Location` text NOT NULL,
-  `Collor` text
+  `Collor` text,
+  `Last_Seen` datetime DEFAULT NULL,
+  `Station_Down` int(11) NOT NULL,
+  `Station_Down_timmer_count` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumpning av Data i tabell `RefletorStations`
---
-
 
 -- --------------------------------------------------------
 
@@ -116,14 +107,35 @@ CREATE TABLE `repeater` (
   `Name` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Dumpning av Data i tabell `repeater`
+-- Tabellstruktur `Settings`
 --
 
-INSERT INTO `repeater` (`id`, `Openings`, `Nag`, `Name`) VALUES
-(1, 711, 118, 'SK2RIU'),
-(2, 0, 0, 'SK3GW'),
-(3, 0, 0, 'SK3W');
+CREATE TABLE `Settings` (
+  `id` int(11) NOT NULL,
+  `Define` varchar(80) NOT NULL,
+  `value` text NOT NULL,
+  `Name` text NOT NULL,
+  `type` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumpning av Data i tabell `Settings`
+--
+
+INSERT INTO `Settings` (`id`, `Define`, `value`, `Name`, `type`) VALUES
+(1, 'PORTAL_VERSION', '2.3', 'protal version number ', 1),
+(2, 'HIDE_LANGUGE_BAR', '0', 'Hide the languge bar', 1),
+(3, 'USE_CUSTOM_SIDBAR_HEADER', '0', 'Use Custom header in sidebar', 1),
+(4, 'iframe_documentation_url', 'http://sk3w.se/dokuwiki/doku.php?id=svxreflector&do=export_xhtml', 'External dokumentation page', 2),
+(5, 'USE_LOGIN', '0', 'Use login for player', 1),
+(6, 'USE_EXTERNAL_URL', '1', 'Use external dokumentation page', 1),
+(7, 'PLAYER_TALKGROUP_DEFAULT', '240', 'The default talkgroup for Recording statistic', 2),
+(8, 'SEND_MAIL_TO_SYSOP', '0', 'Send an email to sysop when the node goes down', 1),
+(9, 'SYSMATER_MAIL', 'info@a.se', 'Mail to system administrator', 2),
+(10, 'SYSTEM_MAIL', 'info@a.se', 'E-mail adress for the system', 2);
 
 -- --------------------------------------------------------
 
@@ -138,11 +150,6 @@ CREATE TABLE `Talkgroup` (
   `Collor` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumpning av Data i tabell `Talkgroup`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -153,13 +160,18 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `Username` varchar(40) NOT NULL,
   `Password` varchar(200) NOT NULL,
-  `level` int(11) NOT NULL
+  `level` int(11) NOT NULL,
+  `Is_admin` int(11) NOT NULL,
+  `Firstname` varchar(100) NOT NULL,
+  `lastname` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumpning av Data i tabell `users`
 --
 
+INSERT INTO `users` (`id`, `Username`, `Password`, `level`, `Is_admin`, `Firstname`, `lastname`) VALUES
+(1, 'svxportal', 'cd4d75d7a6c085717688aab7c626847e', 3, 1, 'svxportal', 'install');
 
 --
 -- Index för dumpade tabeller
@@ -191,19 +203,34 @@ ALTER TABLE `RefletorNodeLOG`
   ADD PRIMARY KEY (`Id`),
   ADD KEY `Callsign` (`Callsign`),
   ADD KEY `NODE` (`NODE`),
-  ADD KEY `Nodename` (`Nodename`);
+  ADD KEY `Nodename` (`Nodename`),
+  ADD KEY `Talkgroup` (`Talkgroup`),
+  ADD KEY `Callsign_2` (`Callsign`),
+  ADD KEY `Type` (`Type`),
+  ADD KEY `Nodename_2` (`Nodename`),
+  ADD KEY `Time` (`Time`),
+  ADD KEY `Id` (`Id`);
 
 --
 -- Index för tabell `RefletorStations`
 --
 ALTER TABLE `RefletorStations`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Callsign` (`Callsign`),
+  ADD KEY `Callsign_2` (`Callsign`);
 
 --
 -- Index för tabell `repeater`
 --
 ALTER TABLE `repeater`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Index för tabell `Settings`
+--
+ALTER TABLE `Settings`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `Define` (`Define`);
 
 --
 -- Index för tabell `Talkgroup`
@@ -225,37 +252,32 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT för tabell `covrige`
 --
 ALTER TABLE `covrige`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT för tabell `Daylog`
 --
 ALTER TABLE `Daylog`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=727;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT för tabell `Filter`
 --
 ALTER TABLE `Filter`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT för tabell `RefletorNodeLOG`
+-- AUTO_INCREMENT för tabell `Settings`
 --
-ALTER TABLE `RefletorNodeLOG`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=617126;
---
--- AUTO_INCREMENT för tabell `RefletorStations`
---
-ALTER TABLE `RefletorStations`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+ALTER TABLE `Settings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT för tabell `Talkgroup`
 --
 ALTER TABLE `Talkgroup`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT för tabell `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
