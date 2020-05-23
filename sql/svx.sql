@@ -126,7 +126,7 @@ CREATE TABLE `Settings` (
 --
 
 INSERT INTO `Settings` (`id`, `Define`, `value`, `Name`, `type`) VALUES
-(1, 'PORTAL_VERSION', '2.3', 'protal version number ', 1),
+(1, 'PORTAL_VERSION', '2.3', 'protal version number ', 0),
 (2, 'HIDE_LANGUGE_BAR', '0', 'Hide the languge bar', 1),
 (3, 'USE_CUSTOM_SIDBAR_HEADER', '0', 'Use Custom header in sidebar', 1),
 (4, 'iframe_documentation_url', 'http://sk3w.se/dokuwiki/doku.php?id=svxreflector&do=export_xhtml', 'External dokumentation page', 2),
