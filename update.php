@@ -3,11 +3,10 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 include "config.php";
+set_time_limit(10000);
 
-
-
-
-
+ini_set('mysql.connect_timeout','0');
+ini_set('max_execution_time', '0');   
 
 
 $mysqli = new mysqli( $host, $user, $password , $db);
