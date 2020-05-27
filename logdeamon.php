@@ -117,12 +117,12 @@ if(read_cache() != $json_data)
         // instert station to db if note exist
         if(array_search($key,$Station_callsings_fromdb) == NULL)
         {
-            if(!$value->NodeLocation)
-            {
-                $value->NodeLocation == "";
-            }
+
+            $NodeLocation = @$value->NodeLocation;
+      
             
-            $sql_insert = 'INSERT IGNORE RefletorStations(`Callsign`,`Location`)VALUES( "'.$key.'","'.$value->NodeLocation.'")';
+            
+            $sql_insert = 'INSERT IGNORE RefletorStations(`Callsign`,`Location`)VALUES( "'.$key.'","'.$NodeLocation.'")';
             if ($conn->query($sql_insert) === TRUE) {
                 echo "New record created successfully";
             } else {
