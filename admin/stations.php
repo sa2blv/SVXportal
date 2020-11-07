@@ -67,6 +67,10 @@ function reaload_user_stations()
         </li>
         
     </ul>
+    
+    <div>
+    
+    </div>
 
 
 
@@ -109,6 +113,10 @@ function reaload_user_stations()
           else
           {
               $class ="table-success";
+          }
+          if($row['Monitor'] == 0)
+          {
+              $class ="table-info";
           }
               
           

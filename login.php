@@ -22,7 +22,7 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
         $_SESSION["loginid"] = $row['id'];
         $_SESSION["level"] = $row['level'];
         $_SESSION["is_admin"] = $row['is_admin'];
-        
+        $_SESSION["Username"] = $username;
         echo "true";
     }
     else

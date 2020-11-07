@@ -29,7 +29,7 @@ ALTER TABLE `users` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `Settings` CHANGE `Define` `Define` VARCHAR(80) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL; 
 ALTER TABLE `Settings` ADD INDEX(`Define`); 
 
-INSERT INTO `Settings` (`id`, `Define`, `value`, `Name`, `type`) VALUES (NULL, 'PORTAL_VERSION', '2.3', 'protal version number ', '0'); 
+INSERT INTO `Settings` (`id`, `Define`, `value`, `Name`, `type`) VALUES (NULL, 'PORTAL_VERSION', '2.3', 'protal version number ', '1'); 
 INSERT INTO `Settings` (`id`, `Define`, `value`, `Name`, `type`) VALUES (NULL, 'HIDE_LANGUGE_BAR', '0', 'Hide the languge bar', '1');
 
 INSERT INTO `Settings` (`id`, `Define`, `value`, `Name`, `type`) VALUES (NULL, 'USE_CUSTOM_SIDBAR_HEADER', '0', 'Use Custom header in sidebar', '1'); 

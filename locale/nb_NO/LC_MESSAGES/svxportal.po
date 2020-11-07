@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-22 22:19+0200\n"
-"PO-Revision-Date: 2020-05-22 22:23+0200\n"
+"POT-Creation-Date: 2020-10-16 22:33+0200\n"
+"PO-Revision-Date: 2020-10-16 23:08+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 2.4.1\n"
 "X-Poedit-Basepath: ../../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -19,117 +19,285 @@ msgstr ""
 msgid "'"
 msgstr ""
 
-#: admin.php:218
+#: admin.php:222
 msgid "admin interface"
 msgstr "Admin grensesnitt"
 
-#: admin.php:228 admin/stations.php:40 admin/stations.php:50
+#: admin.php:237 admin/stations.php:40 admin/stations.php:50
 msgid "Stations"
 msgstr "Stasjon"
 
-#: admin.php:231 admin/talkgroup.php:75 index.php:3161
+#: admin.php:240 admin/talkgroup.php:75 index.php:4315 index1.php:4135
+#: index_old.php:3161 indexa.php:3162 requset_reflector_login.php:1019
 msgid "Talkgroup"
 msgstr "Talegrupper"
 
-#: admin.php:235 admin/log.php:80
+#: admin.php:244 admin/log.php:80
 msgid "Fault log"
 msgstr "Feillogg"
 
-#: admin.php:239 admin/users.php:87
+#: admin.php:248 admin/users.php:117
 msgid "Users"
 msgstr "Bruker"
 
-#: admin.php:242 admin/Settings.php:76
+#: admin.php:252
+msgid "Reflektor users"
+msgstr "Reflektor-brukere"
+
+#: admin.php:258 admin/Settings.php:76 edit_station.php:431
 msgid "Settings"
 msgstr "Innstillinger"
 
-#: admin/Settings.php:19 admin/get_station.php:36 admin/get_users.php:25
-#: admin/stations.php:128 admin/users.php:241 database_text.php:16
+#: admin/Reflektor_users.php:25 admin/users.php:16
+msgid "User created sucsessfully!"
+msgstr "Bruker opprettet sucsessfully!"
+
+#: admin/Reflektor_users.php:41 admin/talkgroup.php:25 admin/users.php:31
+msgid "Please confirm user removal"
+msgstr "Bekreft fjerning av bruker"
+
+#: admin/Reflektor_users.php:57
+msgid "Please confirm user enable"
+msgstr "Bekreft brukeraktivering"
+
+#: admin/Reflektor_users.php:60
+msgid "Please confirm user disable"
+msgstr "Bekreft at bruker deaktiverer"
+
+#: admin/Reflektor_users.php:95 admin/users.php:72
+msgid "Password is updated!"
+msgstr "Passord er oppdatert!"
+
+#: admin/Reflektor_users.php:179
+msgid "Please enter your message"
+msgstr "Vennligst skriv en melding"
+
+#: admin/Reflektor_users.php:187 admin/Reflektor_users.php:207
+msgid "Message sent"
+msgstr "Melding sendt"
+
+#: admin/Reflektor_users.php:236
+msgid "Reflector users"
+msgstr "Reflektorbrukere"
+
+#: admin/Reflektor_users.php:246 admin/users.php:127
+msgid "Print Users"
+msgstr "Bruker utskrift"
+
+#: admin/Reflektor_users.php:248 admin/log.php:109 admin/stations.php:52
+#: admin/talkgroup.php:87 admin/users.php:129 ctcss_map_table.php:210
+#: index.php:1538 index.php:1931 index.php:3969 index1.php:1358 index1.php:1751
+#: index_old.php:772 index_old.php:1057 indexa.php:773 indexa.php:1058
+#: log.php:223
+msgid "Print"
+msgstr "Skriv ut"
+
+#: admin/Reflektor_users.php:255 admin/log.php:116 admin/stations.php:59
+#: admin/talkgroup.php:94 admin/users.php:136 ctcss_map_table.php:217
+#: index.php:1533 index1.php:1353 index_old.php:779 index_old.php:1064
+#: indexa.php:780 indexa.php:1065 log.php:230
+msgid "Export xls"
+msgstr "Eksport xls"
+
+#: admin/Reflektor_users.php:262 admin/Reflektor_users.php:284
+#: admin/Reflektor_users.php:356 admin/users.php:143 admin/users.php:174
+#: admin/users.php:226 database_text.php:13
+msgid "Create user"
+msgstr "Opprett bruker"
+
+#: admin/Reflektor_users.php:288 admin/login.php:36 admin/users.php:178
+#: admin/users.php:245 index.php:1371 index.php:1372 index.php:3940
+#: index.php:4097 index1.php:1191 index1.php:1192 index1.php:3760
+#: index1.php:3917 index_old.php:3045 indexa.php:3046
+msgid "Username"
+msgstr "Brukernavn"
+
+#: admin/Reflektor_users.php:296
+msgid "Generate Username"
+msgstr "Generer brukernavn"
+
+#: admin/Reflektor_users.php:303 admin/Reflektor_users.php:484
+#: admin/login.php:43 admin/users.php:186 admin/users.php:406 index.php:1375
+#: index.php:4113 index1.php:1195 index1.php:3933
+#: requset_reflector_login.php:506 requset_reflector_login.php:509
+#: requset_reflector_login.php:1001
+msgid "Password"
+msgstr "Passord"
+
+#: admin/Reflektor_users.php:311 admin/Reflektor_users.php:490
+#: requset_reflector_login.php:512
+msgid "Generate password"
+msgstr "Generer passord"
+
+#: admin/Reflektor_users.php:323 admin/Reflektor_users.php:375
+#: admin/talkgroup.php:122 admin/talkgroup.php:164 edit_station.php:920
+#: edit_station.php:1033 edit_station.php:1117 requset_reflector_login.php:528
+#: requset_reflector_login.php:531 station_info.php:144
+msgid "Description"
+msgstr "Beskrivelse"
+
+#: admin/Reflektor_users.php:334 admin/Reflektor_users.php:376
+msgid "E-mail"
+msgstr "E-post"
+
+#: admin/Reflektor_users.php:351 admin/Reflektor_users.php:377 index.php:2195
+#: index1.php:2015 index_old.php:1331 indexa.php:1332
+msgid "Enable"
+msgstr "Aktiver"
+
+#: admin/Reflektor_users.php:373
+msgid "Station login"
+msgstr "Stasjonsinnlogging"
+
+#: admin/Reflektor_users.php:374
+msgid "Station password"
+msgstr "Stasjonspassord"
+
+#: admin/Reflektor_users.php:378 admin/users.php:248 database_text.php:15
+#: edit_station.php:922
+msgid "Action"
+msgstr "Handlinger"
+
+#: admin/Reflektor_users.php:411 admin/Settings.php:25
+#: admin/get_reflector.php:35 admin/get_station.php:34 admin/get_users.php:23
+#: admin/stations.php:130 admin/users.php:270 database_text.php:17
+msgid "Yes"
+msgstr "Ja"
+
+#: admin/Reflektor_users.php:413 admin/Settings.php:19
+#: admin/get_reflector.php:37 admin/get_station.php:36 admin/get_users.php:25
+#: admin/stations.php:132 admin/users.php:272 database_text.php:16
 msgid "No"
 msgstr "Nej"
 
-#: admin/Settings.php:25 admin/get_station.php:34 admin/get_users.php:23
-#: admin/stations.php:126 admin/users.php:239 database_text.php:17
-msgid "Yes"
-msgstr "Ja"
+#: admin/Reflektor_users.php:436 admin/get_reflector.php:58
+msgid "Select action"
+msgstr "velg handling"
+
+#: admin/Reflektor_users.php:438 admin/get_reflector.php:60
+msgid "Enable user"
+msgstr "Aktiver bruker"
+
+#: admin/Reflektor_users.php:440 admin/get_reflector.php:62
+msgid "Disable user"
+msgstr "Deaktiver bruker"
+
+#: admin/Reflektor_users.php:442 admin/get_reflector.php:64
+msgid "Send message to Sysadmin"
+msgstr "Send melding til Sysadmin"
+
+#: admin/Reflektor_users.php:443 admin/get_reflector.php:65
+msgid "Send login credentaial to sysadmin"
+msgstr "Send påloggingsinformasjon til sysadmin"
+
+#: admin/Reflektor_users.php:444 admin/Reflektor_users.php:478
+#: admin/users.php:400
+msgid "Change user password"
+msgstr "Endre brukerpassord"
+
+#: admin/Reflektor_users.php:496 admin/stations.php:171 admin/talkgroup.php:221
+#: admin/users.php:367 admin/users.php:416 edit_station.php:692
+#: edit_station.php:1085 edit_station.php:1163 index.php:81 index.php:2210
+#: index1.php:69 index1.php:2030 index_old.php:59 indexa.php:60
+msgid "Close"
+msgstr "Lukk"
+
+#: admin/Reflektor_users.php:497 admin/stations.php:65 admin/stations.php:172
+#: admin/talkgroup.php:222 admin/users.php:368 admin/users.php:417
+#: edit_station.php:1156
+msgid "Update"
+msgstr "Oppdater"
 
 #: admin/Settings.php:67
 msgid "Settings is saved!"
 msgstr "Innstillingene er lagret!"
 
-#: admin/Settings.php:113
+#: admin/Settings.php:113 edit_station.php:459 edit_station.php:562
+#: edit_station.php:837
 msgid "Save"
 msgstr "Lagre"
 
-#: admin/log.php:89 log.php:87
+#: admin/get_reflector.php:66
+msgid "Change node password"
+msgstr "Endre nodepassord"
+
+#: admin/get_users.php:31 admin/users.php:276
+msgid "- Select station -"
+msgstr "- Velg stasjon -"
+
+#: admin/get_users.php:32 admin/users.php:277
+msgid "User granded"
+msgstr "Bruker granded"
+
+#: admin/get_users.php:48 admin/users.php:292
+msgid "Read only"
+msgstr "Skrivebeskyttet"
+
+#: admin/get_users.php:59 admin/users.php:302
+msgid "User not granded"
+msgstr "Bruker ikke gitt"
+
+#: admin/log.php:89 log.php:155
 msgid "Page size"
 msgstr "Antall rader"
 
-#: admin/log.php:107 admin/talkgroup.php:85 log.php:105
+#: admin/log.php:107 admin/talkgroup.php:85 log.php:221
 msgid "Log print"
 msgstr "Loggutskrift"
 
-#: admin/log.php:109 admin/stations.php:52 admin/talkgroup.php:87
-#: admin/users.php:99 ctcss_map_table.php:210 index.php:772 index.php:1057
-#: log.php:107
-msgid "Print"
-msgstr "Skriv ut"
-
-#: admin/log.php:116 admin/stations.php:59 admin/talkgroup.php:94
-#: admin/users.php:106 ctcss_map_table.php:217 index.php:779 index.php:1064
-#: log.php:114
-msgid "Export xls"
-msgstr "Eksport xls"
-
-#: admin/log.php:138 log.php:139
+#: admin/log.php:138 index.php:448 index.php:1734 index1.php:395
+#: index1.php:1554 log.php:249
 msgid "Live"
 msgstr "Real"
 
-#: admin/log.php:142 admin/log.php:143 log.php:143 log.php:144
+#: admin/log.php:142 admin/log.php:143 log.php:253 log.php:254
 msgid "Search"
 msgstr "Søk"
 
-#: admin/log.php:203 index.php:3202 log.php:204
+#: admin/log.php:203 edit_station.php:677 edit_station.php:707 index.php:4378
+#: index1.php:4198 index_old.php:3202 indexa.php:3203 log.php:323
+#: station_info.php:190
 msgid "Date"
 msgstr "Dato"
 
-#: admin/log.php:204 index.php:3234 log.php:205
+#: admin/log.php:204 index.php:4414 index1.php:4234 index_old.php:3234
+#: indexa.php:3235 log.php:324 map_pick.php:93 requset_reflector_login.php:732
 msgid "Station"
 msgstr "Stasjon"
 
-#: admin/log.php:205 log.php:206
+#: admin/log.php:205 log.php:325
 msgid "Event"
 msgstr "Event"
 
-#: admin/log.php:237 log.php:225
+#: admin/log.php:237 log.php:344
 msgid "is Talker on tg"
 msgstr "Er aktiv på"
 
-#: admin/log.php:239 log.php:227
+#: admin/log.php:239 log.php:346
 msgid "Stoped talk tg"
 msgstr "Stoppet prat på tg"
 
-#: admin/log.php:243 log.php:231
+#: admin/log.php:243 driver/card/blv30.php:304 log.php:350
 msgid "Reciver"
 msgstr "Mottaker"
 
-#: admin/log.php:245 log.php:233
+#: admin/log.php:245 log.php:352
 msgid " is active signal level"
 msgstr "er aktivt signalnivå"
 
-#: admin/log.php:247 log.php:235
+#: admin/log.php:247 log.php:354
 msgid "has signal level"
 msgstr "har signalnivå"
 
-#: admin/log.php:253 log.php:241
+#: admin/log.php:253 log.php:360
 msgid "Node"
 msgstr "Node"
 
-#: admin/log.php:255 log.php:243
+#: admin/log.php:255 log.php:362
 msgid "has dropt from reflektor"
 msgstr "har droppet tilkobling fra reflektor"
 
-#: admin/log.php:257 log.php:245
+#: admin/log.php:257 log.php:364
 msgid "has connected to  reflektor"
 msgstr "har koblet til reflektor"
 
@@ -137,7 +305,8 @@ msgstr "har koblet til reflektor"
 msgid "Previous"
 msgstr "Tidligere"
 
-#: admin/login.php:13 index.php:504
+#: admin/login.php:13 index.php:718 index1.php:665 index_old.php:504
+#: indexa.php:505
 msgid "Wrong username or password"
 msgstr "Feil brukernavn eller passord"
 
@@ -145,30 +314,23 @@ msgstr "Feil brukernavn eller passord"
 msgid "Sign In"
 msgstr "Logg inn"
 
-#: admin/login.php:36 admin/users.php:148 admin/users.php:215 index.php:3045
-msgid "Username"
-msgstr "Brukernavn"
-
-#: admin/login.php:43 admin/users.php:156 admin/users.php:272
-msgid "Password"
-msgstr "Passord"
-
-#: admin/login.php:47 index.php:696
+#: admin/login.php:47 index.php:1473 index1.php:1293 index_old.php:696
+#: indexa.php:697
 msgid "Login"
 msgstr "Logg Inn"
 
-#: admin/stations.php:65 admin/stations.php:168 admin/talkgroup.php:222
-#: admin/users.php:283
-msgid "Update"
-msgstr "Oppdater"
-
-#: admin/stations.php:91 ctcss_map_table.php:252 index.php:209 index.php:806
-#: index.php:1098 list_reciver.php:55
+#: admin/stations.php:91 ctcss_map_table.php:249 index.php:276 index.php:1554
+#: index.php:1958 index1.php:253 index1.php:1374 index1.php:1778
+#: index_old.php:209 index_old.php:806 index_old.php:1098 indexa.php:210
+#: indexa.php:807 indexa.php:1099 list_reciver.php:58 list_reciver_2.php:58
+#: list_reciver_old.php:55 requset_reflector_login.php:387
+#: requset_reflector_login.php:518 requset_reflector_login.php:992
 msgid "Callsign"
 msgstr "Kallesignal"
 
-#: admin/stations.php:92 ctcss_map_table.php:254 index.php:1303
-#: list_reciver.php:55
+#: admin/stations.php:92 ctcss_map_table.php:251 index.php:2167 index1.php:1987
+#: index_old.php:1303 indexa.php:1304 list_reciver.php:58 list_reciver_2.php:58
+#: list_reciver_old.php:55
 msgid "Location"
 msgstr "By"
 
@@ -180,23 +342,16 @@ msgstr "Sist aktiv"
 msgid "Station down"
 msgstr "Stasjon nede"
 
-#: admin/stations.php:95 admin/stations.php:157 admin/talkgroup.php:131
-#: admin/talkgroup.php:167 admin/talkgroup.php:211 index.php:924 index.php:1101
+#: admin/stations.php:95 admin/stations.php:161 admin/talkgroup.php:131
+#: admin/talkgroup.php:167 admin/talkgroup.php:211 index.php:1961
+#: index1.php:1781 index_old.php:924 index_old.php:1101 indexa.php:925
+#: indexa.php:1102
 msgid "Color"
 msgstr "Farge"
 
-#: admin/stations.php:151 admin/talkgroup.php:205
+#: admin/stations.php:155 admin/talkgroup.php:205
 msgid "Change station color"
 msgstr "Endre stasjonsfarge"
-
-#: admin/stations.php:167 admin/talkgroup.php:221 admin/users.php:282
-#: index.php:59
-msgid "Close"
-msgstr "Lukk"
-
-#: admin/talkgroup.php:25 admin/users.php:31
-msgid "Please confirm user removal"
-msgstr "Bekreft fjerning av bruker"
 
 #: admin/talkgroup.php:47
 msgid "talkgroup created!"
@@ -206,92 +361,82 @@ msgstr "talegruppe opprettet!"
 msgid "Create talkgroup"
 msgstr "Opprett talegrupper"
 
-#: admin/talkgroup.php:114 admin/talkgroup.php:163 index.php:209 index.php:1096
-#: list_reciver.php:55
+#: admin/talkgroup.php:114 admin/talkgroup.php:163 index.php:276 index.php:1956
+#: index1.php:253 index1.php:1776 index_old.php:209 index_old.php:1096
+#: indexa.php:210 indexa.php:1097 list_reciver.php:58 list_reciver_2.php:58
+#: list_reciver_old.php:55 requset_reflector_login.php:590
 msgid "TG#"
 msgstr "TG#"
 
-#: admin/talkgroup.php:122 admin/talkgroup.php:164
-msgid "Description"
-msgstr "Beskrivelse"
-
-#: admin/talkgroup.php:142 admin/users.php:176 admin/users.php:214
+#: admin/talkgroup.php:142 admin/users.php:206 admin/users.php:244
 #: database_text.php:12
 msgid "Last name"
 msgstr "Etternavn"
 
-#: admin/talkgroup.php:166 index.php:1211
+#: admin/talkgroup.php:166 index.php:2079 index1.php:1899 index_old.php:1211
+#: indexa.php:1212
 msgid "Actions"
 msgstr "Handlinger"
 
-#: admin/users.php:16
-msgid "User created sucsessfully!"
-msgstr "Bruker opprettet sucsessfully!"
+#: admin/users.php:87
+msgid "Premission is updated!"
+msgstr "Rettigheter tildeles"
 
-#: admin/users.php:60
-msgid "Password is updated!"
-msgstr "Passord er oppdatert!"
-
-#: admin/users.php:97
-msgid "Print Users"
-msgstr "Bruker utskrift"
-
-#: admin/users.php:113 admin/users.php:144 admin/users.php:196
-#: database_text.php:13
-msgid "Create user"
-msgstr "Opprett bruker"
-
-#: admin/users.php:165 admin/users.php:213 database_text.php:11
+#: admin/users.php:195 admin/users.php:243 database_text.php:11
 msgid "First name"
 msgstr "Fornavn"
 
-#: admin/users.php:191
+#: admin/users.php:221
 msgid "User is admin"
 msgstr "Är administratör"
 
-#: admin/users.php:216 database_text.php:14
+#: admin/users.php:246 database_text.php:14
 msgid "Is admin"
 msgstr "Är administratör"
 
-#: admin/users.php:217 database_text.php:15
-msgid "Action"
-msgstr "Handlinger"
+#: admin/users.php:247
+msgid "Station permission"
+msgstr "Stasjonstillatelse"
 
-#: admin/users.php:266
-msgid "Change user password"
-msgstr "Endre brukerpassord"
+#: admin/users.php:347
+msgid "Assign station permission for user"
+msgstr "Tildel stasjonstillatelse for brukeren"
+
+#: admin/users.php:356
+msgid "Read only acsess"
+msgstr "Skrivebeskyttet tilgang"
+
+#: admin/users.php:361
+msgid "Write acsess"
+msgstr "Skrivetilgang"
 
 #: ctcss_map_table.php:197 ctcss_map_table.php:208
 msgid "CTSS map table"
 msgstr "CTSS-tabell"
 
-#: ctcss_map_table.php:223 index.php:785 index.php:900 index.php:1026
-#: index.php:1035 index.php:1069 index.php:1258 index.php:3076 log.php:120
-msgid "Toggle menu"
-msgstr "Skjul meny"
-
-#: ctcss_map_table.php:253 div_reciver.php:94 index.php:1330
-#: list_reciver.php:55
+#: ctcss_map_table.php:250 div_reciver.php:94 index.php:2194 index1.php:2014
+#: index_old.php:1330 indexa.php:1331 list_reciver.php:58 list_reciver_2.php:58
+#: list_reciver_old.php:55
 msgid "Frequency"
 msgstr "Frekvens"
 
-#: ctcss_map_table.php:260
+#: ctcss_map_table.php:257
 msgid "Local"
 msgstr "Lokal"
 
-#: ctcss_map_table.php:321
+#: ctcss_map_table.php:318
 msgid "Software"
 msgstr "Programvare"
 
-#: ctcss_map_table.php:330
+#: ctcss_map_table.php:327
 msgid "CSV index"
 msgstr "CSV-indeks"
 
-#: ctcss_map_table.php:335
+#: ctcss_map_table.php:332
 msgid "Use thre last char in call"
 msgstr "Bruk tre siste røye i kallesignal"
 
-#: ctcss_map_table.php:340
+#: ctcss_map_table.php:337
 msgid "Export"
 msgstr "Eksport"
 
@@ -335,7 +480,13 @@ msgstr "E-postadresse for systemet"
 msgid "color"
 msgstr "farge"
 
-#: div_reciver.php:8 index.php:1024 list_reciver.php:455
+#: database_text.php:21
+msgid "Hide the Monitor bar"
+msgstr "Skjul skjermlinjen"
+
+#: div_reciver.php:8 index.php:1892 index1.php:1712 index_old.php:1024
+#: indexa.php:1025 list_reciver.php:862 list_reciver_2.php:669
+#: list_reciver_old.php:459
 msgid "All"
 msgstr "Alle"
 
@@ -343,11 +494,14 @@ msgstr "Alle"
 msgid "Signal values at"
 msgstr "Signalverdier"
 
-#: div_reciver.php:94 list_reciver.php:55
+#: div_reciver.php:94 list_reciver.php:58 list_reciver_2.php:58
+#: list_reciver_old.php:55
 msgid "Receiver"
 msgstr "Mottaker"
 
-#: div_reciver.php:94 index.php:912 list_reciver.php:55
+#: div_reciver.php:94 index.php:1788 index1.php:1608 index_old.php:912
+#: indexa.php:913 list_reciver.php:58 list_reciver_2.php:58
+#: list_reciver_old.php:55
 msgid "Signal"
 msgstr "Signal"
 
@@ -355,413 +509,977 @@ msgstr "Signal"
 msgid "Mhz"
 msgstr "Mhz"
 
-#: index.php:60
+#: driver/card/blv30.php:81
+msgid "Card"
+msgstr "Kort"
+
+#: driver/card/blv30.php:87
+msgid "RSSI"
+msgstr "RSSI"
+
+#: driver/card/blv30.php:92
+msgid "S-Value"
+msgstr "S-verdi"
+
+#: driver/card/blv30.php:96
+msgid "Tempeure"
+msgstr "Tempeure"
+
+#: driver/card/blv30.php:101
+msgid "SWR alarm"
+msgstr "SWR-alarm"
+
+#: driver/card/blv30.php:105
+msgid "AC alarm"
+msgstr "AC-alarm"
+
+#: driver/card/blv30.php:108
+msgid "PA alarm"
+msgstr "PA-alarm"
+
+#: driver/card/blv30.php:283
+msgid "Tempeture"
+msgstr "Temperatur"
+
+#: driver/card/blv30.php:329
+msgid "Battery"
+msgstr "Batteri"
+
+#: driver/card/blv30.php:333
+msgid "alarm"
+msgstr "alarm"
+
+#: edit_station.php:132 edit_station.php:148
+msgid "Page is saved"
+msgstr "Siden er lagret"
+
+#: edit_station.php:160
+msgid "Settings is saved"
+msgstr "Innstillingene lagres"
+
+#: edit_station.php:174
+msgid "Ticket is created"
+msgstr "hendelsen er opprettet"
+
+#: edit_station.php:358
+msgid "Premission Denied!"
+msgstr "Tillatelse avslått!"
+
+#: edit_station.php:382
+msgid "Station editor"
+msgstr "Stasjonsredaktør"
+
+#: edit_station.php:392 list_reciver.php:865 list_reciver_2.php:672
+#: list_reciver_old.php:462 requset_reflector_login.php:346
+msgid "Back"
+msgstr "Tilbake"
+
+#: edit_station.php:404 station_info.php:77
+msgid "Information"
+msgstr "Informasjon"
+
+#: edit_station.php:407 station_info.php:78
+msgid "Hardware"
+msgstr "Maskinvare"
+
+#: edit_station.php:411
+msgid "DTMF commands"
+msgstr "DTMF-kommandoer"
+
+#: edit_station.php:415 station_info.php:79
+msgid "Operating information"
+msgstr "Driftsinformasjon"
+
+#: edit_station.php:425
+msgid "Driver dashboard"
+msgstr "Driver dashbord"
+
+#: edit_station.php:496 requset_reflector_login.php:450
+msgid "Send command to node"
+msgstr "Send kommando til node"
+
+#: edit_station.php:504 edit_station.php:1029 edit_station.php:1113
+#: requset_reflector_login.php:458
+msgid "DTMF command"
+msgstr "DTMF-kommando"
+
+#: edit_station.php:512 requset_reflector_login.php:466
+msgid "Scheduled date"
+msgstr "Planlagt dato"
+
+#: edit_station.php:516 requset_reflector_login.php:470
+msgid "Send commnd to repeater"
+msgstr "Send commnd til repeater"
+
+#: edit_station.php:627 edit_station.php:902
+msgid "New"
+msgstr "Ny"
+
+#: edit_station.php:645
+msgid "New ticket"
+msgstr "Nytt arrangement"
+
+#: edit_station.php:660
+msgid "Text"
+msgstr "Tekst"
+
+#: edit_station.php:667 function.php:211
+msgid "Info"
+msgstr "Info"
+
+#: edit_station.php:668 function.php:212
+msgid "Warning"
+msgstr "Advarsel"
+
+#: edit_station.php:669 function.php:213
+msgid "Fault"
+msgstr "Feil"
+
+#: edit_station.php:670 function.php:214
+msgid "Done"
+msgstr "Ferdig"
+
+#: edit_station.php:693 edit_station.php:1078
+msgid "Create"
+msgstr "Skape"
+
+#: edit_station.php:708 station_info.php:191
+msgid "Message"
+msgstr "Beskjed"
+
+#: edit_station.php:709 edit_station.php:921 edit_station.php:1038
+#: edit_station.php:1125 station_info.php:192
+msgid "Category"
+msgstr "Kategori"
+
+#: edit_station.php:773
+msgid "Radio Image"
+msgstr "Radiobilde"
+
+#: edit_station.php:775 edit_station.php:806
+msgid "None"
+msgstr "Ingen"
+
+#: edit_station.php:804
+msgid "Driver"
+msgstr "Driver"
+
+#: edit_station.php:919 station_info.php:80
+msgid "DTMF"
+msgstr "DTMF"
+
+#: edit_station.php:939 edit_station.php:999
+msgid "Command is created"
+msgstr "Kommando er opprettet"
+
+#: edit_station.php:1021
+msgid "New DTMF Command "
+msgstr "Ny DTMF-kommando"
+
+#: edit_station.php:1105
+msgid "Edit DTMF Command "
+msgstr "Rediger DTMF-kommando"
+
+#: function.php:198
+msgid "General"
+msgstr "Generell"
+
+#: function.php:199
+msgid "Echolink"
+msgstr "Echolink"
+
+#: function.php:200 log.php:206
+msgid "Reflektor"
+msgstr "Reflektor"
+
+#: function.php:201
+msgid "Shortcut"
+msgstr "Snarvei"
+
+#: function.php:202
+msgid "Macro"
+msgstr "Makro"
+
+#: index.php:82 index1.php:70 index_old.php:60 indexa.php:61
 msgid "Today"
 msgstr "I dag"
 
-#: index.php:61 index.php:2085
+#: index.php:83 index.php:2971 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
 msgid "January"
 msgstr "Januar"
 
-#: index.php:61 index.php:2085
+#: index.php:83 index.php:2971 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
 msgid "February"
 msgstr "Februar"
 
-#: index.php:61 index.php:2085
+#: index.php:83 index.php:2971 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
 msgid "March"
 msgstr "Mars"
 
-#: index.php:61 index.php:2085
+#: index.php:83 index.php:2971 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
 msgid "April"
 msgstr "April"
 
-#: index.php:61 index.php:2085
+#: index.php:83 index.php:2971 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
 msgid "May"
 msgstr "Mai"
 
-#: index.php:61 index.php:2085
+#: index.php:83 index.php:2971 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
 msgid "June"
 msgstr "Juni"
 
-#: index.php:61 index.php:2085
+#: index.php:83 index.php:2971 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
 msgid "July"
 msgstr "Juli"
 
-#: index.php:61 index.php:2085
+#: index.php:83 index.php:2971 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
 msgid "August"
 msgstr "August"
 
-#: index.php:61 index.php:2085
+#: index.php:83 index.php:2971 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
 msgid "September"
 msgstr "September"
 
-#: index.php:61 index.php:2085
+#: index.php:83 index.php:2971 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
 msgid "October"
 msgstr "Oktober"
 
-#: index.php:61 index.php:2085
+#: index.php:83 index.php:2971 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
 msgid "November"
 msgstr "November"
 
-#: index.php:61 index.php:2085
+#: index.php:83 index.php:2971 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
 msgid "December"
 msgstr "Desember"
 
-#: index.php:62
+#: index.php:84 index1.php:72 index_old.php:62 indexa.php:63
 msgid "Su"
 msgstr "Sø"
 
-#: index.php:62
+#: index.php:84 index1.php:72 index_old.php:62 indexa.php:63
 msgid "Mo"
 msgstr "Ma"
 
-#: index.php:62
+#: index.php:84 index1.php:72 index_old.php:62 indexa.php:63
 msgid "Tu"
 msgstr "Ti"
 
-#: index.php:62
+#: index.php:84 index1.php:72 index_old.php:62 indexa.php:63
 msgid "We"
 msgstr "On"
 
-#: index.php:62
+#: index.php:84 index1.php:72 index_old.php:62 indexa.php:63
 msgid "Th"
 msgstr "To"
 
-#: index.php:62
+#: index.php:84 index1.php:72 index_old.php:62 indexa.php:63
 msgid "Fr"
 msgstr "Fr"
 
-#: index.php:62
+#: index.php:84 index1.php:72 index_old.php:62 indexa.php:63
 msgid "Sa"
 msgstr "Lø"
 
-#: index.php:63
+#: index.php:85 index1.php:73 index_old.php:63 indexa.php:64
 msgid "Monday"
 msgstr "Mandag"
 
-#: index.php:63
+#: index.php:85 index1.php:73 index_old.php:63 indexa.php:64
 msgid "Tuesday"
 msgstr "Tirsdag"
 
-#: index.php:63
+#: index.php:85 index1.php:73 index_old.php:63 indexa.php:64
 msgid "Wednesday"
 msgstr "Onsdag"
 
-#: index.php:63
+#: index.php:85 index1.php:73 index_old.php:63 indexa.php:64
 msgid "Thursday"
 msgstr "Torsdag"
 
-#: index.php:63
+#: index.php:85 index1.php:73 index_old.php:63 indexa.php:64
 msgid "Friday"
 msgstr "Fredag"
 
-#: index.php:63
+#: index.php:85 index1.php:73 index_old.php:63 indexa.php:64
 msgid "Saturday"
 msgstr "Lørdag"
 
-#: index.php:63
+#: index.php:85 index1.php:73 index_old.php:63 indexa.php:64
 msgid "Sunday"
 msgstr "Søndag"
 
-#: index.php:129
+#: index.php:160 index1.php:145 index_old.php:129 indexa.php:130
 msgid "No data"
 msgstr "Ingen data"
 
-#: index.php:209
+#: index.php:276 index1.php:253 index_old.php:209 indexa.php:210
 msgid "Is talker"
 msgstr "Er aktiv"
 
-#: index.php:209
+#: index.php:276 index1.php:253 index_old.php:209 indexa.php:210
 msgid "Monitored TGs"
 msgstr "Overvåkede TG-er"
 
-#: index.php:209 index.php:3203 list_reciver.php:55
+#: index.php:276 index1.php:253
+msgid "Start talk"
+msgstr "Start samtalen"
+
+#: index.php:276 index.php:4379 index1.php:253 index1.php:4199
+#: index_old.php:209 index_old.php:3203 indexa.php:210 indexa.php:3204
+#: list_reciver.php:58 list_reciver_2.php:58 list_reciver_old.php:55
 msgid "Talk time"
 msgstr "Tale tid"
 
-#: index.php:209
-msgid "Active RX"
-msgstr "Aktiv RX"
-
-#: index.php:221
+#: index.php:325 index1.php:272 index_old.php:221 indexa.php:222
 msgid "NO"
 msgstr "Nei"
 
-#: index.php:230
+#: index.php:335 index1.php:282 index_old.php:230 indexa.php:231
 msgid "YES"
 msgstr "Ja"
 
-#: index.php:502
-msgid "Login sucsess"
-msgstr "Innloggingssuksess"
+#: index.php:465 index1.php:412
+msgid "Pleace select station"
+msgstr "Please velg stasjon"
 
-#: index.php:665 index.php:770
-msgid "Reflector clients"
-msgstr "Reflektorklienter"
+#: index.php:1282 index1.php:1104
+msgid "Select your language"
+msgstr "Velg ditt språk"
 
-#: index.php:667
-msgid "Monitor"
-msgstr "Overvåke"
+#: index.php:1285 index1.php:1107
+msgid "English"
+msgstr "Engelsk"
 
-#: index.php:669
-msgid "System description"
-msgstr "Systembeskrivelse"
+#: index.php:1287 index1.php:1109
+msgid "Swedish"
+msgstr "Svensk"
 
-#: index.php:671 index.php:1045 index.php:1055 index.php:1304
-msgid "Talkgroups"
-msgstr "Talegrupper"
+#: index.php:1290 index1.php:1112
+msgid "Norwegian"
+msgstr "Norsk"
 
-#: index.php:673
-msgid "List receiver"
-msgstr "Liste mottager"
+#: index.php:1292 index1.php:1114
+msgid "Ukrainian"
+msgstr "Ukrainsk"
 
-#: index.php:676
-msgid "Statistics"
-msgstr "Statistikk"
+#: index.php:1294 index1.php:1116
+msgid "Italian"
+msgstr "Italiensk"
 
-#: index.php:681
-msgid "Receivers"
-msgstr "Mottager"
+#: index.php:1296 index1.php:1118
+msgid "Turkish"
+msgstr "Tyrkisk"
 
-#: index.php:683 log.php:78
-msgid "Log"
-msgstr "Logg"
+#: index.php:1334 index1.php:1156
+msgid "Admin interface"
+msgstr "Administratorgrensesnitt"
 
-#: index.php:685
-msgid "CTCSS map table"
-msgstr "CTCSS-tabell"
+#: index.php:1343 index1.php:1165
+msgid "Sign out"
+msgstr "Logg ut"
 
-#: index.php:694
-msgid "Map"
-msgstr "Kart"
-
-#: index.php:761
-msgid " Reflector clients"
-msgstr "Reflektorklienter"
-
-#: index.php:807
-msgid "TG"
-msgstr "TG"
-
-#: index.php:808
-msgid "Ver"
-msgstr "Ver"
-
-#: index.php:809
-msgid "TGs"
-msgstr "TGs"
-
-#: index.php:820
-msgid "QSO Monitor"
-msgstr "QSO Monitor"
-
-#: index.php:872
-msgid "repeat"
-msgstr "repeat"
-
-#: index.php:873
-msgid "shuffle"
-msgstr "shuffle"
-
-#: index.php:874
-msgid "full screen"
-msgstr "full skjerm"
-
-#: index.php:898
-msgid "Listen LIVE"
-msgstr "Hør LIVE"
-
-#: index.php:902
-msgid "Select date to listen"
-msgstr "Velg dato for å høre"
-
-#: index.php:904
-msgid "to use player you must login"
-msgstr "For å bruke spiller må du logge inn"
-
-#: index.php:913
-msgid "Signal value  from Reciver"
-msgstr "Signalverdi fra mottager"
-
-#: index.php:921
-msgid "Name"
-msgstr "Navn"
-
-#: index.php:922
-msgid "Openings"
-msgstr "Aktive"
-
-#: index.php:923 index.php:3234
-msgid "Uptime"
-msgstr "Uptime"
-
-#: index.php:1022
-msgid "Filter"
-msgstr "Filter"
-
-#: index.php:1097
-msgid "Talkgroup Name"
-msgstr "Talegrupper"
-
-#: index.php:1099
-msgid "Last active"
-msgstr "Seneste aktiv"
-
-#: index.php:1100
-msgid "Time Total"
-msgstr "Tid totalt"
-
-#: index.php:1201
-msgid "Coverage"
-msgstr "Dekningskart"
-
-#: index.php:1204
-msgid "Show"
-msgstr "Showet"
-
-#: index.php:1205
-msgid "Remove"
-msgstr "Fjern"
-
-#: index.php:1229
-msgid "Remove bars"
-msgstr "Fjern stengene"
-
-#: index.php:1231
-msgid "Remove ALL stations"
-msgstr "Fjern ALLE stasjoner"
-
-#: index.php:1232
-msgid "Show Receivers"
-msgstr "Vis mottager"
-
-#: index.php:1237
-msgid "Toggle AutoFollow"
-msgstr "Veksle AutoFollow"
-
-#: index.php:1243
-msgid "Reload Map"
-msgstr "Last kart på nytt"
-
-#: index.php:1287
-msgid "Station info for"
-msgstr "Informasjon for"
-
-#: index.php:1305
-msgid "Version"
-msgstr "Versjon"
-
-#: index.php:1306
-msgid "CurrentTG"
-msgstr "CurrentTG"
-
-#: index.php:1307
-msgid "Sysop"
-msgstr "Administrator"
-
-#: index.php:1328
-msgid "RX Name"
-msgstr "RX-navn"
-
-#: index.php:1329
-msgid "SqlType"
-msgstr "Sql Type"
-
-#: index.php:1331
-msgid "Enable"
-msgstr "Aktiver"
-
-#: index.php:2087
-msgid "Total"
-msgstr "Total"
-
-#: index.php:2116
-msgid "Year statistics"
-msgstr "Satestick per år"
-
-#: index.php:2196
-msgid "Talkgroup activity"
-msgstr "Samtalegruppeaktivitet"
-
-#: index.php:2340
-msgid "Reflektor time in S"
-msgstr "Reflektortid i S"
-
-#: index.php:2364
-msgid "Hour activity "
-msgstr "Timeaktivitet"
-
-#: index.php:2442
-msgid "time"
-msgstr "tid"
-
-#: index.php:2552
-msgid "Station activity"
-msgstr "Stasjonsaktivitet"
-
-#: index.php:3046
-msgid "password"
-msgstr "Passord"
-
-#: index.php:3047
+#: index.php:1358 index.php:1367 index.php:1379 index.php:3942 index1.php:1180
+#: index1.php:1187 index1.php:1199 index1.php:3762 index_old.php:3047
+#: indexa.php:3048
 msgid "Log In"
 msgstr "Logg Inn"
 
-#: index.php:3063
-msgid "Statistics for Network"
-msgstr "Statistikk for nettverk"
+#: index.php:1376 index.php:3941 index1.php:1196 index1.php:3761
+#: index_old.php:3046 indexa.php:3047
+msgid "password"
+msgstr "Passord"
 
-#: index.php:3084
+#: index.php:1419 index.php:1536 index1.php:1239 index1.php:1356
+#: index_old.php:665 index_old.php:770 indexa.php:666 indexa.php:771
+msgid "Reflector clients"
+msgstr "Reflektorklienter"
+
+#: index.php:1426 index1.php:1246 index_old.php:667 indexa.php:668
+msgid "Monitor"
+msgstr "Overvåke"
+
+#: index.php:1433 index1.php:1253
+msgid "Station informtation"
+msgstr "Stasjonsinformasjon"
+
+#: index.php:1436 index1.php:1256 index_old.php:669 indexa.php:670
+msgid "System description"
+msgstr "Systembeskrivelse"
+
+#: index.php:1438 index.php:1918 index.php:1929 index.php:2168 index.php:4190
+#: index1.php:1258 index1.php:1738 index1.php:1749 index1.php:1988
+#: index1.php:4010 index_old.php:671 index_old.php:1045 index_old.php:1055
+#: index_old.php:1304 indexa.php:672 indexa.php:1046 indexa.php:1056
+#: indexa.php:1305
+msgid "Talkgroups"
+msgstr "Talegrupper"
+
+#: index.php:1440 index1.php:1260 index_old.php:673 indexa.php:674
+msgid "List receiver"
+msgstr "Liste mottager"
+
+#: index.php:1443 index1.php:1263 index_old.php:676 indexa.php:677
+msgid "Statistics"
+msgstr "Statistikk"
+
+#: index.php:1446 index1.php:1266 index_old.php:683 indexa.php:684 log.php:146
+msgid "Log"
+msgstr "Logg"
+
+#: index.php:1451 index1.php:1271 index_old.php:681 indexa.php:682
+msgid "Receivers"
+msgstr "Mottager"
+
+#: index.php:1458 index1.php:1278 index_old.php:685 indexa.php:686
+msgid "CTCSS map table"
+msgstr "CTCSS-tabell"
+
+#: index.php:1462 index1.php:1282
+msgid "My stations"
+msgstr "Stasjonene mine"
+
+#: index.php:1471 index1.php:1291 index_old.php:694 indexa.php:695
+msgid "Map"
+msgstr "Kart"
+
+#: index.php:1524 index1.php:1344
+msgid "Active Nodes"
+msgstr "Aktive noder"
+
+#: index.php:1530 index1.php:1350
+msgid "Action menu"
+msgstr "Handlingsmeny"
+
+#: index.php:1555 index.php:1598 index1.php:1375 index1.php:1418
+#: index_old.php:807 indexa.php:808
+msgid "TG"
+msgstr "TG"
+
+#: index.php:1556 index1.php:1376 index_old.php:808 indexa.php:809
+msgid "Ver"
+msgstr "Ver"
+
+#: index.php:1557 index1.php:1377 index_old.php:809 indexa.php:810
+msgid "TGs"
+msgstr "TGs"
+
+#: index.php:1569 index1.php:1389
+msgid "Talker"
+msgstr "Talker"
+
+#: index.php:1589 index1.php:1409
+msgid "Active talkgroups"
+msgstr "Aktive samtalegrupper"
+
+#: index.php:1601 index.php:4219 index1.php:1421 index1.php:4039
+msgid "Nodes"
+msgstr "Noder"
+
+#: index.php:1637 index1.php:1457
+msgid "Player"
+msgstr "Spiller"
+
+#: index.php:1684 index1.php:1504 index_old.php:872 indexa.php:873
+msgid "repeat"
+msgstr "repeat"
+
+#: index.php:1685 index1.php:1505 index_old.php:873 indexa.php:874
+msgid "shuffle"
+msgstr "shuffle"
+
+#: index.php:1686 index1.php:1506 index_old.php:874 indexa.php:875
+msgid "full screen"
+msgstr "full skjerm"
+
+#: index.php:1740 index1.php:1560
+msgid "Select channel"
+msgstr "Velg kanal"
+
+#: index.php:1744 index1.php:1564
+msgid "Default"
+msgstr "Misligholde"
+
+#: index.php:1763 index1.php:1583 index_old.php:898 indexa.php:899
+msgid "Listen LIVE"
+msgstr "Hør LIVE"
+
+#: index.php:1770 index1.php:1590 index_old.php:902 indexa.php:903
+msgid "Select date to listen"
+msgstr "Velg dato for å høre"
+
+#: index.php:1775 index1.php:1595 index_old.php:904 indexa.php:905
+msgid "to use player you must login"
+msgstr "For å bruke spiller må du logge inn"
+
+#: index.php:1791 index1.php:1611 index_old.php:913 indexa.php:914
+msgid "Signal value  from Reciver"
+msgstr "Signalverdi fra mottager"
+
+#: index.php:1890 index1.php:1710 index_old.php:1022 indexa.php:1023
+#: log.php:173
+msgid "Filter"
+msgstr "Filter"
+
+#: index.php:1957 index1.php:1777 index_old.php:1097 indexa.php:1098
+msgid "Talkgroup Name"
+msgstr "Talegrupper"
+
+#: index.php:1959 index1.php:1779 index_old.php:1099 indexa.php:1100
+msgid "Last active"
+msgstr "Seneste aktiv"
+
+#: index.php:2069 index1.php:1889 index_old.php:1201 indexa.php:1202
+msgid "Coverage"
+msgstr "Dekningskart"
+
+#: index.php:2072 index1.php:1892 index_old.php:1204 indexa.php:1205
+msgid "Show"
+msgstr "Showet"
+
+#: index.php:2073 index1.php:1893 index_old.php:1205 indexa.php:1206
+msgid "Remove"
+msgstr "Fjern"
+
+#: index.php:2097 index1.php:1917 index_old.php:1229 indexa.php:1230
+msgid "Remove bars"
+msgstr "Fjern stengene"
+
+#: index.php:2099 index1.php:1919 index_old.php:1231 indexa.php:1232
+msgid "Remove ALL stations"
+msgstr "Fjern ALLE stasjoner"
+
+#: index.php:2100 index1.php:1920 index_old.php:1232 indexa.php:1233
+msgid "Show Receivers"
+msgstr "Vis mottager"
+
+#: index.php:2105 index1.php:1925 index_old.php:1237 indexa.php:1238
+msgid "Toggle AutoFollow"
+msgstr "Veksle AutoFollow"
+
+#: index.php:2111 index1.php:1931 index_old.php:1243 indexa.php:1244
+msgid "Reload Map"
+msgstr "Last kart på nytt"
+
+#: index.php:2151 index1.php:1971 index_old.php:1287 indexa.php:1288
+msgid "Station info for"
+msgstr "Informasjon for"
+
+#: index.php:2169 index1.php:1989 index_old.php:1305 indexa.php:1306
+msgid "Version"
+msgstr "Versjon"
+
+#: index.php:2170 index1.php:1990 index_old.php:1306 indexa.php:1307
+msgid "CurrentTG"
+msgstr "CurrentTG"
+
+#: index.php:2171 index1.php:1991 index_old.php:1307 indexa.php:1308
+msgid "Sysop"
+msgstr "Administrator"
+
+#: index.php:2192 index1.php:2012 index_old.php:1328 indexa.php:1329
+msgid "RX Name"
+msgstr "RX-navn"
+
+#: index.php:2193 index1.php:2013 index_old.php:1329 indexa.php:1330
+msgid "SqlType"
+msgstr "Sql Type"
+
+#: index.php:2212 index1.php:2032
+msgid "Show covreage"
+msgstr "Vis dekning"
+
+#: index.php:2973 index1.php:2793 index_old.php:2087 indexa.php:2088
+msgid "Total"
+msgstr "Total"
+
+#: index.php:3002 index1.php:2822 index_old.php:2116 indexa.php:2117
+msgid "Year statistics"
+msgstr "Satestick per år"
+
+#: index.php:3082 index1.php:2902 index_old.php:2196 indexa.php:2197
+msgid "Talkgroup activity"
+msgstr "Samtalegruppeaktivitet"
+
+#: index.php:3226 index1.php:3046 index_old.php:2340 indexa.php:2341
+msgid "Reflektor time in S"
+msgstr "Reflektortid i S"
+
+#: index.php:3250 index1.php:3070 index_old.php:2364 indexa.php:2365
+msgid "Hour activity "
+msgstr "Timeaktivitet"
+
+#: index.php:3328 index1.php:3148 index_old.php:2442 indexa.php:2443
+msgid "time"
+msgstr "tid"
+
+#: index.php:3438 index1.php:3258 index_old.php:2552 indexa.php:2553
+msgid "Station activity"
+msgstr "Stasjonsaktivitet"
+
+#: index.php:3957 index1.php:3777 station_info.php:55
+msgid "Station infromation"
+msgstr "Stasjonsinfromasjon"
+
+#: index.php:3994 index1.php:3814
+msgid "Select station"
+msgstr "Velg stasjon"
+
+#: index.php:4037 index1.php:3857
+msgid "Passwords aren same"
+msgstr "Passord er de samme"
+
+#: index.php:4049 index1.php:3869
+msgid "User already exist!"
+msgstr "Brukeren finnes fra før!"
+
+#: index.php:4053 index1.php:3873
+msgid "User is creadted!"
+msgstr "Brukeren er smurt!"
+
+#: index.php:4071 index.php:4132 index1.php:3891 index1.php:3952
+msgid "Register"
+msgstr "Registrere"
+
+#: index.php:4078 index1.php:3898
+msgid "Firstname"
+msgstr "Fornavn"
+
+#: index.php:4080 index1.php:3900
+msgid "jay"
+msgstr "jay"
+
+#: index.php:4085 index1.php:3905
+msgid "Lastname"
+msgstr "Lastname"
+
+#: index.php:4087 index1.php:3907
+msgid "Shmit"
+msgstr ""
+
+#: index.php:4106 index1.php:3926
+msgid "Email"
+msgstr "E-post"
+
+#: index.php:4108 index1.php:3928
+msgid "info@test.nu"
+msgstr ""
+
+#: index.php:4115 index1.php:3935
+msgid "Password should be at least 8 characters"
+msgstr "Passordet må bestå av minst 8 tegn"
+
+#: index.php:4120 index1.php:3940
+msgid "Password (Confirm)"
+msgstr "Bekreft passord"
+
+#: index.php:4122 index1.php:3942
+msgid "Please confirm password"
+msgstr "Bekreft passordet"
+
+#: index.php:4131 index1.php:3951
+msgid "Clear"
+msgstr "klar"
+
+#: index.php:4157 index1.php:3977 index_old.php:3084 indexa.php:3085
 msgid "Day"
 msgstr "Dag"
 
-#: index.php:3085
+#: index.php:4158 index1.php:3978 index_old.php:3085 indexa.php:3086
 msgid "Hour"
 msgstr "Time"
 
-#: index.php:3086
+#: index.php:4159 index1.php:3979 index_old.php:3086 indexa.php:3087
 msgid "Year"
 msgstr "År"
 
-#: index.php:3142
+#: index.php:4249 index1.php:4069
+msgid "Hour chart"
+msgstr "Timetabell"
+
+#: index.php:4281 index1.php:4101 index_old.php:3142 indexa.php:3143
 msgid "No Repeater Filter"
 msgstr "ingen valgt repeater"
 
-#: index.php:3143
+#: index.php:4282 index1.php:4102 index_old.php:3143 indexa.php:3144
 msgid "Repeater"
 msgstr "Repeater"
 
-#: index.php:3160
+#: index.php:4314 index1.php:4134 index_old.php:3160 indexa.php:3161
+#: requset_reflector_login.php:1018
 msgid "No Talkgroup Filter"
 msgstr "Ingen valgt tallgruppe"
 
-#: index.php:3195
+#: index.php:4371 index1.php:4191 index_old.php:3195 indexa.php:3196
 msgid "Toplist 10 days"
 msgstr "Toppliste 10 dager"
 
-#: index.php:3234
+#: index.php:4414 index1.php:4234 index_old.php:923 index_old.php:3234
+#: indexa.php:924 indexa.php:3235
+msgid "Uptime"
+msgstr "Uptime"
+
+#: index.php:4414 index1.php:4234 index_old.php:3234 indexa.php:3235
 msgid "Network Usage 24 hour"
 msgstr "Nettverksbruk 24 timer i døgnet"
 
-#: index.php:3234
+#: index.php:4414 index1.php:4234 index_old.php:3234 indexa.php:3235
 msgid "Usage last 24 hour"
 msgstr "Bruk siste 24 timer"
 
-#: index.php:3234
+#: index.php:4414 index1.php:4234 index_old.php:3234 indexa.php:3235
 msgid "Most used receiver"
 msgstr "Mest brukt mottaker"
 
-#: list_reciver.php:15
+#: index_old.php:209 indexa.php:210
+msgid "Active RX"
+msgstr "Aktiv RX"
+
+#: index_old.php:502 indexa.php:503
+msgid "Login sucsess"
+msgstr "Innloggingssuksess"
+
+#: index_old.php:761 indexa.php:762
+msgid " Reflector clients"
+msgstr "Reflektorklienter"
+
+#: index_old.php:785 index_old.php:900 index_old.php:1026 index_old.php:1035
+#: index_old.php:1069 index_old.php:1258 index_old.php:3076 indexa.php:786
+#: indexa.php:901 indexa.php:1027 indexa.php:1036 indexa.php:1070
+#: indexa.php:1259 indexa.php:3077
+msgid "Toggle menu"
+msgstr "Skjul meny"
+
+#: index_old.php:820 indexa.php:821
+msgid "QSO Monitor"
+msgstr "QSO Monitor"
+
+#: index_old.php:921 indexa.php:922
+msgid "Name"
+msgstr "Navn"
+
+#: index_old.php:922 indexa.php:923
+msgid "Openings"
+msgstr "Aktive"
+
+#: index_old.php:1100 indexa.php:1101
+msgid "Time Total"
+msgstr "Tid totalt"
+
+#: index_old.php:3063 indexa.php:3064
+msgid "Statistics for Network"
+msgstr "Statistikk for nettverk"
+
+#: list_reciver.php:16 list_reciver_2.php:16 list_reciver_old.php:15
 msgid "Receiver Monitor"
 msgstr "Radiomonitor"
 
-#: list_reciver.php:454
+#: list_reciver.php:861 list_reciver_2.php:668 list_reciver_old.php:458
 msgid "Talkgroup filter"
 msgstr "Talkgroup-filter"
 
-#: list_reciver.php:458
-msgid "Back"
-msgstr "Tilbake"
+#: log.php:191
+msgid "Repeater actions"
+msgstr "Repeater-handlinger"
+
+#: log.php:198
+msgid "S-valuse"
+msgstr ""
+
+#: requset_reflector_login.php:240
+msgid "Station already exist!"
+msgstr "Stasjonen eksisterer allerede!"
+
+#: requset_reflector_login.php:247
+msgid "Thanks for your registration an admin will contact you soon"
+msgstr "Takk for registreringen, en administrator vil kontakte deg snart"
+
+#: requset_reflector_login.php:336
+msgid "Network acsess"
+msgstr "Nettverkstilgang"
+
+#: requset_reflector_login.php:358
+msgid "My Stations"
+msgstr "Mine stasjoner"
+
+#: requset_reflector_login.php:361
+msgid "Request repeater Login"
+msgstr "Be om repeater pålogging"
+
+#: requset_reflector_login.php:365
+msgid "Generate node_info.json"
+msgstr "Generer node_info.json"
+
+#: requset_reflector_login.php:370
+msgid "Generate svx.config parameters"
+msgstr "Generer parametere for svxlink.config"
+
+#: requset_reflector_login.php:388
+msgid "Lastseen"
+msgstr "Sist aktiv"
+
+#: requset_reflector_login.php:389
+msgid "Send Command"
+msgstr "Send kommando"
+
+#: requset_reflector_login.php:418
+msgid "Send DTMF to node"
+msgstr "Send DTMF til node"
+
+#: requset_reflector_login.php:421
+msgid "Send Command to Nod"
+msgstr "Send kommando til Nod"
+
+#: requset_reflector_login.php:424
+msgid "Edit Repeater"
+msgstr "Rediger repeater"
+
+#: requset_reflector_login.php:493
+msgid "User Credentals"
+msgstr "Brukerlegitimasjon"
+
+#: requset_reflector_login.php:497
+msgid "Email address"
+msgstr "Epostadresse"
+
+#: requset_reflector_login.php:500
+msgid "Enter email"
+msgstr "Skriv inn e-post"
+
+#: requset_reflector_login.php:538
+msgid "Register User"
+msgstr "Registrer bruker"
+
+#: requset_reflector_login.php:549
+msgid "Repater information"
+msgstr "Informasjon om repater"
+
+#: requset_reflector_login.php:552
+msgid "Station location ( Area )"
+msgstr "Stasjonsplassering (område)"
+
+#: requset_reflector_login.php:555
+msgid "Node location"
+msgstr "Nodeplassering"
+
+#: requset_reflector_login.php:562
+msgid "System operator"
+msgstr "Systemoperatør"
+
+#: requset_reflector_login.php:582
+msgid "Tone To Talkgroup Mapping"
+msgstr "Tone To Talkgroup Mapping"
+
+#: requset_reflector_login.php:589
+msgid "CTCSS"
+msgstr "CTCSS"
+
+#: requset_reflector_login.php:610
+msgid "#TG"
+msgstr "#TG"
+
+#: requset_reflector_login.php:652
+msgid "QTH Settings"
+msgstr "QTH-innstillinger"
+
+#: requset_reflector_login.php:784
+msgid "Location name"
+msgstr "Stedsnavn"
+
+#: requset_reflector_login.php:787
+msgid "Stockholm"
+msgstr "Stockholm"
+
+#: requset_reflector_login.php:793
+msgid "Latitude"
+msgstr "Latitude"
+
+#: requset_reflector_login.php:805
+msgid "Longitude"
+msgstr "Longitude"
+
+#: requset_reflector_login.php:815
+msgid "Locator"
+msgstr "Locator"
+
+#: requset_reflector_login.php:824
+msgid "Tx Letter \"Get From svxlink.conf\""
+msgstr "Tx Letter \"Get From svxlink.conf\""
+
+#: requset_reflector_login.php:834
+msgid "RX letter \"Get From svxlink.conf\""
+msgstr "RX-bokstaven \"Get From svxlink.conf\""
+
+#: requset_reflector_login.php:844
+msgid "Sql type"
+msgstr "Sql-type"
+
+#: requset_reflector_login.php:858
+msgid "Transmitter Power w"
+msgstr "Senderkraft  W"
+
+#: requset_reflector_login.php:868
+msgid "Antenna Directon"
+msgstr "Antenneretning"
+
+#: requset_reflector_login.php:879
+msgid "Antenna Height"
+msgstr "Antennehøyde"
+
+#: requset_reflector_login.php:889
+msgid "Antenna Description"
+msgstr "Antennebeskrivelse"
+
+#: requset_reflector_login.php:898
+msgid "TX Frequency"
+msgstr "TX-frekvens"
+
+#: requset_reflector_login.php:907
+msgid "RX Frequency"
+msgstr "RX-frekvens"
+
+#: requset_reflector_login.php:921
+msgid "Parameters dor Svxlink.conf"
+msgstr "Parametere for Svxlink.conf"
+
+#: requset_reflector_login.php:925 requset_reflector_login.php:935
+msgid "Parameter"
+msgstr "Parameter"
+
+#: requset_reflector_login.php:970
+msgid "Generate JSON / Paramters"
+msgstr "Generer JSON / parametere"
+
+#: requset_reflector_login.php:1009
+msgid "Select talkgroups to monitor"
+msgstr "Velg samtalegrupper du vil overvåke"
+
+#: requset_reflector_login.php:1040
+msgid "Generate config"
+msgstr "Generer konfigurasjon"
+
+#: station_info.php:143
+msgid "DTMF Command"
+msgstr "DTMF-kommando"
+
+#: station_info.php:245
+msgid "Radio"
+msgstr "Radio"
+
+#: station_info.php:266
+msgid "Logic status"
+msgstr "Logikkstatus"
 
 #~ msgid "Svxportal  Reflector clients"
 #~ msgstr "Reflektorklienter"
