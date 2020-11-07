@@ -2,7 +2,6 @@
 header('Access-Control-Allow-Origin: <?php echo $serveradress ?>');
 include "config.php";
 include 'function.php';
-include "Mqtt_driver.php";
 define_settings();
 set_laguage();
 ?>
@@ -11,17 +10,10 @@ set_laguage();
 <html>
 <head>
 <meta charset="utf-8" />
-
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title> SVX Portal <?php echo PORTAL_VERSION ?></title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-<meta charset="UTF-8">
-<meta name="description" content="Svxportal For SvxReflektor">
-<meta name="keywords" content="svxlink,svxreflektor,sa2blv">
-<meta name="author" content="Peter SA2BLV">
-
 <link rel="icon" type="image/png" href="tower.svg">
 <link	href="https://fonts.googleapis.com/css?family=Architects+Daughter&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css.css">
@@ -43,8 +35,6 @@ set_laguage();
 <link rel="stylesheet" href="jquery-ui.css">
 <script src="jquery-ui.js"></script>
 
-
-
 <script
 	src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
 <link rel="stylesheet"
@@ -54,7 +44,7 @@ set_laguage();
 <!--load all styles -->
 <script src="./js/chart/Chart.min.js"></script>
 <script src="./js/div_recivers.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js" type="text/javascript"></script>
+
 
 
 
@@ -62,18 +52,6 @@ set_laguage();
 
 
 <script type="text/javascript">
-
-var get_push ="0";
-function show_notifications_nodes()
-{
-	alert("Notifcation beta");
-		get_push = "1";
-	
-}
-
-
-
-
 var refelktor_address="<?php echo $serveradress ?>";
 //<![CDATA[
 	
@@ -86,24 +64,15 @@ var refelktor_address="<?php echo $serveradress ?>";
     dateFormat: 'dd/mm/yy' // set format date
 };
 	
-	var station_talkgroup= new Array();
+
 	
 	
 $(document).ready(function(){
+call_svxrefelktor();
+add_node_collors();
+load_reflector();
+generate_coulor();
 
-  if ($(window).width() < 922) {
-	   toogle_menu();
-	  } 
-  	
-    call_svxrefelktor();
-    add_node_collors();
-    load_reflector();
-    generate_coulor();
-	MQTTconnect();
-	request_notification();
-    var x = document.getElementById("beep_message"); 
-    x.load()
-    
 
 
 
@@ -160,8 +129,6 @@ $.post( "signal.php", { time: (TotaltimeTime-currentTime), file: event.jPlayer.s
 		Json_data.Nodename ="<?php echo _('No data');?>";
 	}
 
-	
-
     
 	$('#Reciverbars_player').append('<p>'+Json_data.Nodename+'</p><canvas id="canvpr"></canvas><br/>');
 	create_bar_rx(Json_data.Siglev,'canvpr',true);
@@ -176,47 +143,17 @@ $.post( "signal.php", { time: (TotaltimeTime-currentTime), file: event.jPlayer.s
 		}
 
 	}
-
-
-
     
 
 });
 
-    
-
- // Get the input field
-    var input = document.getElementById("password2");
-
- if(input != undefined)
- {
-    // Execute a function when the user releases a key on the keyboard
-    input.addEventListener("keyup", function(event) {
-      // Number 13 is the "Enter" key on the keyboard
-      if (event.keyCode === 13) {
-        // Cancel the default action, if needed
-        event.preventDefault();
-        // Trigger the button element with a click
-        login_form();
-      }
-    }); 
- }
-
-    
-
 
 });
-var start_talk_var;
-
-
-
-
-
 function create_bar_rx(value,element,rx_sql)
 {
     var canvas = document.getElementById(element);
     var context = canvas.getContext('2d');
-    width= 0.24 *window.innerWidth
+    width= 0.2 *window.innerWidth
     var value_scale =width/100;
     canvas.setAttribute('width', width);
 
@@ -255,11 +192,7 @@ function create_bar_rx(value,element,rx_sql)
 }
 
 function call_svxrefelktor() {
-var node_count =0;
-var talkgroups_active = new Array();
 $.getJSON( "<?php echo $serveradress ?>", function( data ) {
-
-
 	//console.log(data);
 	for(var k in data.nodes){
 		
@@ -273,11 +206,8 @@ $.getJSON( "<?php echo $serveradress ?>", function( data ) {
 	
 	
 
-$('#Reflektortable').html('<tr class="dash_header"><th><?php echo _("Callsign")?></th><th><?php echo _("TG#")?></th><th><?php echo _("Is talker")?></th><th><?php echo _("Monitored TGs")?></th><th class="d-none d-md-table-cell" ><?php echo _("Start talk")?></th><th class="d-none d-md-table-cell" ><?php echo _("Talk time")?></th></tr>');
-
-
+$('#Reflektortable').html('<th><?php echo _("Callsign")?></th><th><?php echo _("TG#")?></th><th><?php echo _("Is talker")?></th><th><?php echo _("Monitored TGs")?></th><th><?php echo _("Talk time")?></th><th><?php echo _("Active RX")?></th>');
 for(var k in data.nodes){
-	node_count++;
 	var text =" ";
 	for(var nodes in data.nodes[k].monitoredTGs){
 	
@@ -286,43 +216,9 @@ for(var k in data.nodes){
 	}
 
 		var image= '<img src="images/talking.gif" alt="talk" id="talking" width="25px">';	
-		if(talkgroups_active[data.nodes[k].tg] == undefined)
-			talkgroups_active[data.nodes[k].tg]  =1;
-		else
-			talkgroups_active[data.nodes[k].tg] =talkgroups_active[data.nodes[k].tg] +1;
-
-		
-     if(get_push == "1")
-     {
-         
-
-            if(station_talkgroup[k] == undefined )
-            {
-            	station_talkgroup[k] = data.nodes[k].tg;
-            }
-
-    		if(station_talkgroup[k] != data.nodes[k].tg)
-    		{
-    			if(data.nodes[k].isTalker == true)
-    			{
-        			create_message_toast("Started to talk on TG# "+data.nodes[k].tg,"Station "+k+"",0,"green","true");
-        			station_talkgroup[k] = data.nodes[k].tg;
-    			}
-    
-    		}
-    		else
-    		{
-    			if(data.nodes[k].isTalker == true)
-    			{
-    				station_talkgroup[k] = data.nodes[k].tg;
-    			}
-    
-    		}
-     }
-		
        if(data.nodes[k].isTalker == false)
 	{
-	  $('#Reflektortable').append('<tr><td class="text-nowrap">'+k+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td class="red_collor"><?php echo _("NO")?></td><td class="text-primary">'+text+'</td><td></td><td></td></tr>');
+	  $('#Reflektortable').append('<tr><td>'+k+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td class="red_collor"><?php echo _("NO")?></td><td class="text-primary">'+text+'</td><td></td><td></td></tr>');
 	  if(current_talker == k)
 	  {
 		totalSeconds=0;
@@ -331,56 +227,23 @@ for(var k in data.nodes){
 	}
 	else
 	{
-		
-         $('#Reflektortable').append('<tr class="table-info"><td class="text-nowrap">'+k+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td class="green_collor" ><?php echo _("YES")?></td><td class="text-primary">'+text+'</td><td><label id="Start_talk"></label></td><td  class="d-none d-md-table-cell" ><label id="minutes">00</label>:<label id="seconds">00</label></td></tr>');
+         $('#Reflektortable').append('<tr><td>'+k+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td class="green_collor" ><?php echo _("YES")?>'+image+'</td><td class="text-primary">'+text+'</td><td><label id="minutes">00</label>:<label id="seconds">00</label></td><td></td></tr>');
            ++totalSeconds;
 		var minutesLabel = document.getElementById("minutes");
        	var secondsLabel = document.getElementById("seconds");
-       	var Start_talk_element = document.getElementById("Start_talk");
-       	
 		current_talker = k;
             secondsLabel.innerHTML = pad(totalSeconds%60);
             minutesLabel.innerHTML = pad(parseInt(totalSeconds/60));
-
-
-            
-
-            var d = new Date();
-            d.setSeconds(d.getSeconds() - totalSeconds);
-            var h = addZero(d.getHours());
-            var m = addZero(d.getMinutes());
-            var s = addZero(d.getSeconds());
-            Start_talk_element.innerHTML = h + ":" + m + ":" + s;
-            
-      
  
 	}
 }
 
 
-$('#active_talgroup_table > tbody').html('');
 
-for(var k in talkgroups_active)
-{
-
-    $('#active_talgroup_table > tbody').append('<tr><td>'+k+'</td><td>'+talkgroups_active[k]+'</td></tr>');
-}
-
-
-$("#menuNodeCount").html(node_count);
 interval = setTimeout(call_svxrefelktor, 1000);   
-});
-
-
+  });
 
 }
-function addZero(i) {
-	  if (i < 10) {
-	    i = "0" + i;
-	  }
-	  return i;
-	}
-
 
         function setTime()
         {
@@ -426,8 +289,6 @@ var output = d.getFullYear() + '-' +
 //]]>
 function listen_live()
 {
-var station_url = $('#Live_station').val();
-var aditional_text = $( "#Live_station option:selected" ).text();	
 var myPlaylist = new jPlayerPlaylist({
 		jPlayer: "#jquery_jplayer_N",
 		cssSelectorAncestor: "#jp_container_N"
@@ -445,59 +306,12 @@ var myPlaylist = new jPlayerPlaylist({
 	});
 
   myPlaylist.add({
-    title:"<?php echo _('Live')?>: " +aditional_text,
-    artist:"Svx stream",
-    mp3:station_url  
+    title:"Live",
+    artist:"Repeater",
+    oga:"<?php echo $livelink?>"  
   });
   myPlaylist.play();
 }
-function Load_station_intofmation(value)
-{
-	console.log(value);
-
-
-
-	$.get( "station_info.php", { callsign: value, no_header: "true" } )
-	  .done(function( data ) {
-		  if(value != "")
-	    	$('#station_info_html_data').html(data);
-		  else
-			  $('#station_info_html_data').html("<h3><?php echo _('Pleace select station') ?></h3>");  
-	  });
-	
-}
-
-
-
-<?php
-
-if($use_mqtt == true){
-    
-    $mytt_man = new MQtt_Driver;
-    $mytt_man-> Set_broker($mqtt_host,$mqtt_port,$mqtt_TLS);
-    
-    $mytt_man->javascipt();
-    
-    $mytt_man->Print_hock_on_message();
-    
-//    $mytt_man->
-
-    
-}else
-{
-    
-    // Create a dummu fumction    
- ?>
-    function MQTTconnect()
-    {
-    
-
-	}
- <?php  
-}
-
-?>
-
 
 function get_audio_from_date(date)
 {
@@ -520,7 +334,7 @@ var myPlaylist = new jPlayerPlaylist({
 
 $.getJSON('recording.php?date='+date, function (data) {
 
-	  var nr =0;
+	   
       for (i = 0; i < data.length; i++) {
     	var title ="";
     	  if(data[i].text != null)
@@ -534,12 +348,10 @@ $.getJSON('recording.php?date='+date, function (data) {
         oga:data[i].file
        // poster: "http://www.rfwireless-world.com/images/VHF-UHF-repeater.jpg"
       });
-      nr=i;
+        
         
       
    }
-
-      $("#menuaudioCount").html((nr))
   
   
   
@@ -654,14 +466,6 @@ function load_languge(lang)
 	  });
 	
 }
-function hide_menu_click()
-{
-
-	  if ($(window).width() < 922) {
-		   toogle_menu();
-		  } 
-	  
-}
 
 var node_collors = new Array();
 function add_node_collors()
@@ -686,34 +490,16 @@ function add_node_collors()
 
 }
 
-function player_move()
-{
-	var sidebar = $( "#wrapper" ).hasClass( "toggled" );
-
-
-	var sidebar_size = $(  "#sidebar-wrapper").width();
-	console.log(sidebar_size);
-	$('#Player_bar').css('margin-left', sidebar_size);
-		
-
-
-	
-	
-}
-
 
 function login_form()
 {
 	var login = $('#login').val();
-	var password = $('#password2').val();
+	var password = $('#password').val();
 	
 	$.post( "login.php", { login: login, password: password })
 	  .done(function( data ) {
 		  if(data == "true ")
-		  {
-			  
-			  location.reload(); 
-		  }
+			  alert( "<?php echo _("Login sucsess")?>!");
 		  else
 	    	alert( "<?php echo _("Wrong username or password")?>" );
 
@@ -725,34 +511,19 @@ function login_form()
 var loop_livelog =0;
 var current_offset = 0
 var log_size = 500;
-var filter_log=""
 
 function offset_log(offset) {
 	loop_livelog=0;
 	console.log(offset);
 	var serch_string = $("#logserch").val();
 	current_offset= offset;
-	$.get( "log.php", { offset: offset,search: serch_string,size: log_size,filter: filter_log }, function( data ) {
+	$.get( "log.php", { offset: offset,search: serch_string,size: log_size }, function( data ) {
 		  $( "#logdiv1" ).html( data );
 
 		});
 	return false;
 }
-function get_log_filter()
-{
-	
-	var checked = []
-	filter_log="";
-	$("input[name='Log_filter_checkbox[]']:checked").each(function ()
-	{
-	    console.log(parseInt($(this).val()));
 
-	    filter_log =filter_log+ $(this).val() +",";
-	});
-	offset_log(0)
-	
-	
-}
 
 function offset_log_neg()
 {
@@ -805,7 +576,7 @@ function live_log()
 		if (document.getElementById('logserch')) {
 	
     		var serch_string = $("#logserch").val();
-    		$.get( "log.php", { offset: current_offset,search: serch_string,only_table:1,size: log_size,filter: filter_log }, function( data ) {
+    		$.get( "log.php", { offset: current_offset,search: serch_string,only_table:1,size: log_size }, function( data ) {
     			  $( "#log_table" ).html( data );
     				setTimeout(function(){ live_log()}, 2000);
     
@@ -844,265 +615,7 @@ function PrintElem(elem,text)
 
     return true;
 }
-function stripHtml(html)
-{
-   var tmp = document.createElement("DIV");
-   tmp.innerHTML = html;
-   return tmp.textContent || tmp.innerText || "";
-}
 
-
-
-function show_station_cover(ident,stationid)
-{
-
-	console.log(ident);
-
-
-  var id2 =	stationid.slice(4)
-	console.log(id2);
-
-	 
-	//peter
-	
-	remove_covige();
-	
-	coverigeGroup = new ol.layer.Group({
-            layers: [],
-            name: 'coverige'
-        });
-	map.addLayer(this.coverigeGroup);
-
-
-	        
-	<?php
-
-			$result = mysqli_query($link, "SELECT * FROM `covrige` ");
-
-			// Numeric array
-
-			// Associative array
-			while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-			    
-			    echo 'if(id2 =="'.$row['Name'].'"){';
-			    
-			    echo "
-                " . $row["Radiomobilestring"] . "
-    
-                
-                return 0;}
-                ";
-			    
-			    
-			}
-			
-			
-			
-			
-			$result = mysqli_query($link, "SELECT * FROM `covrige` ");
-			
-			while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-			    
-			    echo 'if(ident =="'.$row['Name'].'"){';
-	
-			    echo "
-                " . $row["Radiomobilestring"] . "
-                        
-
-                return 0;
-                }";
-                
-	
-			}
-			
-	
-			
-			
-
-			?>
-
-	
-	
-
-
-			
-
-	
-}
-var message_toast_id =0;
-function create_message_toast(message,title,type,color,hide)
-{
-	// multilne template
-    var html = `
-    <div  class="toast fade show"  role="alert" aria-live="assertive" data-autohide="%hide%" data-delay="30000" aria-atomic="true"  id="message_show_id_%idnr%" style="min-width=800px !important;">
-        
-    <div class="toast-header toast_dash_header"  >
-    <svg class=" rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
-        preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-        <rect fill="#007aff" width="100%" height="100%" /></svg>
-        
-      <strong class="mr-auto"> %title%</strong>
-      <small>%time%</small>
-      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-        <div class="toast-body" style="min-width=500px !important; ">
-        <div style="width:500px;"></div>
-        
-          %text%
-        </div>
-    </div>
-    </div>
-    `;
-    
-   
-
-    html =html.replace("%idnr%", message_toast_id);
-    //html =html.replace("%text%", stripHtml(message));
-    html =html.replace("%text%", (message));
-    html =html.replace("%title%", title);
-    html =html.replace("%time%", time_NOW());
-    html =html.replace("%hide%", hide);
-    
-    
- 
-    $('#message_container').append(html);
-    $('#message_show_id_'+message_toast_id).toast('show');
-    message_toast_id++;
-    var x = document.getElementById("beep_message"); 
-    x.load()
-    x.play();  
-}
-
-function create_alert_toast(message,title,type,color,hide)
-{
-	// multilne template
-    var html = `
-    <div  class="toast fade show"  role="alert" aria-live="assertive" data-autohide="%hide%" data-delay="30000" aria-atomic="true"  id="message_show_id_%idnr%" style="min-width=800px !important;">
-        
-    <div class="toast-header" style="background-color: #ff3333 !important; color:white !important;" >
-    <svg class=" rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
-        preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-        <rect fill="#b30000" width="100%" height="100%" /></svg>
-        
-      <strong class="mr-auto"> %title%</strong>
-      <small>%time%</small>
-      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-        <div class="toast-body" style="min-width=500px !important; ">
-        <div style="width:500px;"></div>
-        
-          %text%
-        </div>
-    </div>
-    </div>
-    `;
-    
-   
-
-    html =html.replace("%idnr%", message_toast_id);
-    //html =html.replace("%text%", stripHtml(message));
-    html =html.replace("%text%", (message));
-    html =html.replace("%title%", title);
-    html =html.replace("%time%", time_NOW());
-    html =html.replace("%hide%", hide);
-    
-    
- 
-    $('#message_container').append(html);
-    $('#message_show_id_'+message_toast_id).toast('show');
-    message_toast_id++;
-    var x = document.getElementById("beep_message"); 
-    x.load()
-    x.play();  
-}
-
-
-
-
-
-
-function time_NOW() {
-	
-    var date = new Date();
-    var aaaa = date.getFullYear();
-    var gg = date.getDate();
-    var mm = (date.getMonth() + 1);
-
-    if (gg < 10)
-        gg = "0" + gg;
-
-    if (mm < 10)
-        mm = "0" + mm;
-
-    var cur_day = aaaa + "-" + mm + "-" + gg;
-
-    var hours = date.getHours()
-    var minutes = date.getMinutes()
-    var seconds = date.getSeconds();
-
-    if (hours < 10)
-        hours = "0" + hours;
-
-    if (minutes < 10)
-        minutes = "0" + minutes;
-
-    if (seconds < 10)
-        seconds = "0" + seconds;
-
-    return cur_day +" "+ hours + ":" + minutes + ":" + seconds;
-
-}
-
-
-
-
-//########################################################################## test ##################################################
-function request_notification()
-{
-<?php 
-if($_SESSION['loginid'] && USE_NODE_ADMIN_NOTIFICATION == 1)
-	{
-?>
-	$.getJSON("request_notification.php", function(data){
-
-		console.log(data);
-
-		for(var n in data)
-		{
-
-			if(data[n].Active == "1")
-			{
-				create_alert_toast("Has Disconnect from reflektor ","Node "+data[n]["Callsign"],"","","true");
-			}
-			else
-			{
-				create_message_toast("Has connected to reflektor","Node "+data[n]["Callsign"],"","","true");
-			}
-
-			
-	
-		  
-		}
-
-
-		
-
-		
-
-	});
-
-	
-	instervalls = setTimeout(request_notification, 20000);
-<?php }?>
-}
-
-
-
-//########################################################################## test ##################################################
 
 
 
@@ -1111,8 +624,7 @@ if($_SESSION['loginid'] && USE_NODE_ADMIN_NOTIFICATION == 1)
 </script>
 
 <!-- Custom CSS -->
-<link href="css/simple-sidebar.css" rel="stylesheet"> 
-
+<link href="css/simple-sidebar.css" rel="stylesheet">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -1124,348 +636,59 @@ if($_SESSION['loginid'] && USE_NODE_ADMIN_NOTIFICATION == 1)
 <!--[if IE]><script language="JavaScript" type="text/JavaScript" src="EventSource.js"></script><![endif]-->
 <script type="text/javascript" src="svx_stat.js"></script>
 
-<style type="text/css">
-
-/* Fixed navbar */
-body {
-    padding-top: 66px;
-}
-/* General sizing */
-ul.dropdown-lr {
-  width: 300px;
-}
-
-/* mobile fix */
-@media (max-width: 768px) {
-	.dropdown-lr h3 {
-		color: #eee;
-	}
-	.dropdown-lr label {
-		color: #eee;
-	}
-}
-
-.topnav-right {
-  float: right;
-}
-
-
-.label {
-    display: inline;
-    padding: .2em .6em .3em;
-    font-size: 75%;
-    font-weight: 700;
-    line-height: 1;
-    color: #fff;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    border-radius: .25em;
-}
-
-
-.pull-Lable-right {
-    float: right !important;
-    vertical-align: middle;
-}
-
-
-
-</style>
-
 </head>
 <body>
 
-<audio class="my_audio" id="beep_message"  controls="false""  preload="auto" style="display:none;">
-    <source src="../beep.mp3" type="audio/mpeg">
-
-</audio>
-
-
-
-
-
-
-
-
-<div aria-live="polite" aria-atomic="true">
-
-        <!-- Position it -->
-      <div style="position: fixed; top: 0; right: 0; z-index:10; padding-top: 80px;opacity: 0 !important; padding-right: 20px;opacity: 1 !important;" id="message_container" >
-    
-    
-
-
-    </div>
-
-</div>
-
-
-<!-- bg-dark -->
-
-
-<!-- <nav class="navbar navbar-expand-sm navbar-inverse sidebar_collor  navbar-dark fixed-top text-white" >  -->
-
-
-
-
- <nav class="navbar navbar-expand-sm  sidebar_collor  navbar-dark fixed-top " >
-
-
-
-<div class="container-fluid">
-
-  <div>
-
-    			
-    <?php if(!USE_CUSTOM_SIDBAR_HEADER && USE_CUSTOM_SIDBAR_HEADER == 0)
-    {?>
-    
-    
-   <a class="navbar-brand" href="#">
-    <img src="loggo.png" alt="Logo" style="width:40px;">
-
-  </a>
-   <a class="navbar-brand wite_font" href="#">
-     SVX Portal
-   </a>
-
-
-    
-
-<?php }else
-{
-    include "sideheader.php";
-    
-}?>
-
-  <a href="#" class="sidebar-toggle " role="button" onclick="toogle_menu()">
-                <span class="navbar-toggler-icon"></span>
-</a>
-  
-  </div>
-
-
-
-
-    
-      <div class="topnav-right">
-    
-        <div id="navbar" class="">
-    
-          <ul class="nav  dropdown navbar1 flex-nowrap flex-row" >
-
- 
-                
-            
-
-                
-            <?php if( $_SESSION["loginid"] ==""){?>
-
-			<li class="nav-item dropdown">
-			
-            <a class="nav-link d-none d-xl-inline-flex d-lg-inline-flex" href="#register" onclick="" data-toggle="tab"><i class="far fa-plus-square"  style="color: #fff; padding-top:5px" ></i>&nbsp;<?php echo ('Register');?></a>
-            
-            <?php }?>
-            <?php  if(HIDE_LANGUGE_BAR == 0){?>
-    
-          <li class="nav-item dropdown" style="color:#e1e3e9; ">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-   
-              <?php return_flag($current_lagnuge)?>
-              
-    
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color:#e1e3e9; padding-left:-20px;margin-left:-100px;box-shadow: 10px 10px 5px grey; text-align: left; " >
-
-            <div style="width: 250px;"></div>
-       		 <a href="#" class="dropdown-item"><?php echo _('Select your language')?></a>
-       		     <div class="dropdown-divider"></div>
-        	
-            <a onclick="load_languge('en_UK')" class="dropdown-item table-primary" href="#"><img   src="images/flags/gb.svg" width="30px" alt="GB"> <?php echo _('English')?></a>
-            
-            <a onclick="load_languge('sv_SE')" class="dropdown-item table-secondary" href="#"><img src="images/flags/se.svg" width="30px" alt="Se"> <?php echo _('Swedish')?></a>
-        
-        
-            <a onclick="load_languge('nb_NO')" class="dropdown-item table-primary" href="#"><img src="images/flags/no.svg" width="30px" alt="NO"> <?php echo _('Norwegian')?></a>
-        
-        	<a onclick="load_languge('uk_UA')" class="dropdown-item table-secondary" href="#"><img  src="images/flags/ua.svg" width="30px" alt="uk"> <?php echo _('Ukrainian')?></a>
-        	
-        	<a onclick="load_languge('it_IT')" class="dropdown-item table-primary" href="#"><img  src="images/flags/it.svg" width="30px" alt="it"> <?php echo _('Italian')?></a>
-        	
-        	<a  onclick="load_languge('tr_TR')" class="dropdown-item table-secondary" href="#"><img src="images/flags/tr.svg" width="30px" alt="tr_TR"> <?php echo _('Turkish')?></a>
-        	
-        	</div>
-        	
-    
-          </li>
-          <li class="nav-item dropdown"></li>
-    	
-    
-    
-        
-    <?php }?>
-       
-       <?php if( $_SESSION["loginid"] !=""){?>
-
-            
-     	 <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img   src="user.svg" width="30px" alt="GB">
-                <span class="d-none d-xl-inline-flex d-lg-inline-flex">
-          		<?php echo strtoupper($_SESSION["Username"]);?>
-          		</span>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="margin-left: -55px; box-shadow: 10px 10px 5px grey; background-color:#e1e3e9;">
-
-<?php 
-  /*
-              <a class="dropdown-item" href="#">
-              <i class="fa fa-key" aria-hidden="true"></i>
-              <?php echo _('Password')?>
-              
-              </a>
-*/
-?>
-                 <?php if( $_SESSION['is_admin'] > 0  ){?>
-                
-                <a class="dropdown-item" href="admin.php" id="">
-                <i class="fa fa-id-card" aria-hidden="true"></i>
-                  <?php echo _('Admin interface')?> </a>
-              
-                
-                <?php }?>
-
-
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="signout.php">
-              <i class="fa fa-sign-out" aria-hidden="true"></i>
-              <?php echo _('Sign out')?></a>
-            </div>
-          </li>
-          
-      
-      
-          
-            
-<?php }else{?>
-            
-   
-            
-            <li class="dropdown">
-         	 <a href="#" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-key" style="color: #fff;"></i> 
-         	 <span class="d-none d-xl-inline-flex d-lg-inline-flex">
-         	 	<?php echo _("Log In")?></a>	 
-         	 </span>
-              
-              
-              <ul class="dropdown-menu dropdown-lr animated slideInRight" role="menu" class="droptdown_popmenu" style="margin-left: -190px; background-color: #e1e3e9; box-shadow: 10px 10px 5px grey;">
-                <div class="col-lg-12" style="padding: 25px; ">
-
-                  <div class="text-center" style="color: black !important;">
-                  
-                    <h3><b><?php echo _("Log In")?></b></h3></div>
-                    
-							<form id="loginform" action="login.php" method="post" class="clearfix " style="display:inline-block;margin:0;padding:0;text-align:center" >
-							  <div class="form-group">
-							    <label for="login"><?php echo _('Username')?></label>	
-								<input type="text" id="login" class="fadeIn second" name="login" placeholder="<?php echo _("Username")?>"><br />
-							  </div>
-							  <div class="form-group">
-							     <label for="password2"><?php echo _('Password')?></label>	<br />
-							  	<input type="password" id="password2" class="fadeIn third" name="password" placeholder="<?php echo _("password")?>">
-						      </div>
-						            
-									 <input onclick="login_form()" type="button" class="fadeIn fourth" value="<?php echo _("Log In")?>">
-							</form>
-                  
-                  
-                </div>
-              </ul>
-            </li>
-            
-<?php }?>            
-
-                
-          
-                
-            
-          </ul>
-        </div>
-     
-    </div>
-</div>
-
-</nav>
-
-
-
-<div  class="container-fluid ">
-
-
-<!-- 	<div id="wrapper"> -->
-
-
-	<div id="wrapper" class="">
+	<div id="wrapper">
 
 		<!-- Sidebar -->
-		<nav id="sidebar" class="  navbar-fixed-left">
-			<div id="sidebar-wrapper" class="sidebar_collor_left" >
-
+		<nav id="sidebar" class="sidbar_bg">
+			<div id="sidebar-wrapper">
+			<?php if(!USE_CUSTOM_SIDBAR_HEADER && USE_CUSTOM_SIDBAR_HEADER == 0)
+			{?>
+				<ul class="list-unstyled nav nav-tabs nav-justified">
+					<li class="sidebar-brand nav-item"><a href="#">
+							<h1 class="wite_font">Svx Portal</h1>
+					</a></li>
+					<li class="nav-item"><img class="imagepading" src="loggo.png"
+						alt="logga" /></li>
+				</ul>
+				<?php }else
+				{
+				    include "sideheader.php";
 				    
-		
-				<ul class="nav flex-column nav-pills navbar1 navbar2" role="tablist">
-					<li class="nav-item"><a class="nav-link active" href="#Reflector" onclick="hide_menu_click()"
-						data-toggle="tab"><i class="fas fa-broadcast-tower"></i> <?php echo _("Reflector clients")?> 
-						<span class="label pull-Lable-right bg-warning" style="padding-top: 5px !important;" id="menuNodeCount"></span>
-						</a>
-						</li>
-						
-						<?php if(HIDE_MONITOR_BAR == 0){?>
-					<li class="nav-item"><a class="nav-link " href="#listen"  onclick="hide_menu_click();player_move();"
-						data-toggle="tab"><i class="fas fa-headphones-alt"></i> <?php echo _("Monitor")?> 
-						
-						<span class="label pull-Lable-right bg-info" style="padding-top: 5px !important;" id="menuaudioCount">0</span>
-						</a></li>
-						<?php }?>
-					
-					<li class="nav-item"><a class="nav-link " href="#stationinfor"  onclick="hide_menu_click()"
-						data-toggle="tab"><i class="fas fa-info-circle"></i> <?php echo _("Station informtation")?> </a></li>				
-					
-					<li class="nav-item"><a class="nav-link" href="#Echolink"	data-toggle="tab" onclick="hide_menu_click()">  
-					<i class="fas fa-terminal"></i> <?php echo _("System description")?></a></li>
-					<li class="nav-item"><a class="nav-link" href="#Dictionary"  onclick="hide_menu_click()"
+				}
+				    
+				?>
+				<ul class="nav flex-column nav-pills" role="tablist">
+					<li class="nav-item"><a class="nav-link active" href="#Reflector"
+						data-toggle="tab"><i class="fas fa-broadcast-tower"></i> <?php echo _("Reflector clients")?> </a></li>
+					<li class="nav-item"><a class="nav-link " href="#listen"
+						data-toggle="tab"><i class="fas fa-headphones-alt"></i> <?php echo _("Monitor")?> </a></li>
+					<li class="nav-item"><a class="nav-link" href="#Echolink"
+						data-toggle="tab"><i class="fas fa-terminal"></i> <?php echo _("System description")?></a></li>
+					<li class="nav-item"><a class="nav-link" href="#Dictionary"
 						data-toggle="tab"><i class="fas fa-book"></i> <?php echo _("Talkgroups")?></a></li>
 					<li class="nav-item"><a class="nav-link" href="list_reciver.php"><i
 							class="fas fa-broadcast-tower"></i> <?php echo _("List receiver")?></a></li>
 
-					<li class="nav-item"><a class="nav-link" href="#Statistics" onclick="get_statistics()"  onclick="hide_menu_click()"
+					<li class="nav-item"><a class="nav-link" href="#Statistics" onclick="get_statistics()"
 						data-toggle="tab"><i class="fas fa-chart-bar"></i>  <?php echo _("Statistics")?></a></li>
-
-				<li class="nav-item"><a class="nav-link" href="#Log"  onclick="hide_menu_click()"
-						data-toggle="tab"><i class="fas  fa-align-justify"></i> <?php echo _("Log")?></a></li>
 						
 
 					<li class="nav-item"><a class="nav-link" href="#Recivers2"
-						onclick="load_reflector();hide_menu_click()" data-toggle="tab"><i
+						onclick="load_reflector()" data-toggle="tab"><i
 							class="fas fa-broadcast-tower"></i>  <?php echo _("Receivers")?></a></li>
-							
-							
-	
-						
-						
-					<li class="nav-item"><a class="nav-link" href="#Table_ctcss" onclick="hide_menu_click()"
+					<li class="nav-item"><a class="nav-link" href="#Log"
+						data-toggle="tab"><i class="fas  fa-align-justify"></i> <?php echo _("Log")?></a></li>
+					<li class="nav-item"><a class="nav-link" href="#Table_ctcss"
 						data-toggle="tab"><i class="fas fa-terminal"></i> <?php echo _("CTCSS map table")?></a></li>
 						
-						<?php if( $_SESSION['loginid'] >0 ){?>
-						<li class="nav-item"><a class="nav-link" href="requset_reflector_login.php">
-						<i class="fa fa-globe"></i> <?php echo _("My stations")?></a></li>					
-						<?php }?>
 						
 						
 						
 					<li class="nav-item"><a class="nav-link" href="#map_repeater"
-						onclick="hide_menu_click();setTimeout(function(){
+						onclick="setTimeout(function(){
 		   map.updateSize();connect_reflector();
 	   },300); "
 						data-toggle="tab"><i class="fas fa-map-marked"></i> <?php echo _("Map")?></a></li>
@@ -1490,8 +713,30 @@ ul.dropdown-lr {
 
 
 
+
+
+	
+<?php  if(HIDE_LANGUGE_BAR == 0){?>
+    <li style="margin-left: 10px">
+    
+        <img  onclick="load_languge('en_UK')" src="images/flags/gb.svg" width="30px" alt="GB">
+    
+        
+        <img onclick="load_languge('sv_SE')" src="images/flags/se.svg" width="30px" alt="Se">
+    
+    
+        <img onclick="load_languge('nb_NO')" src="images/flags/no.svg" width="30px" alt="NO">
+    
+    	<img onclick="load_languge('uk_UA')" src="images/flags/ua.svg" width="30px" alt="uk">
+    	
+    	<img onclick="load_languge('it_IT')" src="images/flags/it.svg" width="30px" alt="it">
+    	
+    	<img onclick="load_languge('tr_TR')" src="images/flags/tr.svg" width="30px" alt="tr_TR">
+    </li>
+    
+<?php }?>
 				</ul>
-<div class="fixed-bottom wite_font">
+<div class="sidebar-footer wite_font">
  <div class="row " style="margin-left:10px ">
 			&copy; SA2BLV <?php echo date("Y"); ?>
 </div>
@@ -1499,149 +744,87 @@ ul.dropdown-lr {
 			</div>
 
 			<!-- /#sidebar-wrapper -->
+		</nav>
 
 
+
+		<!-- Page Content -->
+		<div id="page-content-wrapper">
+
+			<div id="my-tab-content" class="tab-content">
+
+				<div class="tab-pane active" id="Reflector">
+
+
+    <nav class="navbar navbar-expand-lg navbar-light  bg-light" style="background-color: #e3f2fd;">
 		
-<div class="col-sm-12 col-md-12  ">    
-    
-    
-    		<!-- Page Content -->
-    		<div id="page-content-wrapper">
-    
-    			<div id="my-tab-content" class="tab-content">
-    
-    				<div class="tab-pane active" id="Reflector">
-    
+		<a class="navbar-brand" href="#"><?php echo _(' Reflector clients')?></a>
+		
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
 
+             <li class="nav-item">
         
-        <div class="row">
+             
+        <a class="nav-link " href="#" id="navbarDropdownMenuLink" onclick="PrintElem('Reflektortable_div','<?php echo _('Reflector clients')?>')" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               <i class="fas fa-print"></i>
+          <?php echo _('Print')?>
+        </a>
+             
+        </li>
+         <li class="nav-item">
+                <a class="nav-link " href="#" id="navbarDropdownMenuLink" onclick="fnExcelexport('Reflektortable')" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <i class="far fa-file-excel"></i>
+          <?php echo _('Export xls')?>
+        </a>
+        </li>
+        
+         <li class="nav-item">
+  
+        	<a href="#menu-toggle" class="nav-link"" onclick="toogle_menu()"><i class="fab fa-elementor"></i> <?php echo _('Toggle menu')?></a>
+        </li>
+        
+        
+            		
+        
+        
+        
+   
+      
+      
+      
+    </ul>
 
-            <div class="col-xl-10 col-lg-8">
-              <div class="card shadow mb-10">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between navbar-dark   text-white bg-dark">
-                  <h6 class="m-0 font-weight-bold text-white"><?php echo _('Active Nodes')?></h6>
-                  <div class="dropdown no-arrow ">
-                    <a class="dropdown-toggle text-white" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400 "></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" style="">
-                      <div class="dropdown-header"><?php echo _('Action menu')?></div>
-                          <a class="nav-link " href="#" id="navbarDropdownMenuLink" onclick="fnExcelexport('Reflektortable')" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            				 <i class="far fa-file-excel"></i>
-              						<?php echo _('Export xls')?>
-      					 </a>
-          					 
-				        	 <a class="nav-link " href="#" id="navbarDropdownMenuLink" onclick="PrintElem('Reflektortable_div','<?php echo _('Reflector clients')?>')" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  				 <i class="fas fa-print"></i>
-             						 <?php echo _('Print')?>
-          					 </a>
-            
-            
+      </div>
 
+      
+    </nav>
 
-                    </div>
-                  </div>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                  <div class=""><div class=""><div class=""><div class=""></div></div><div class=""><div class=""></div></div></div>
-                    
-                    	<div id="Reflektortable_div"> 
-					<table id="Reflektortable" class="table table-sm">
-					<tr class="thead-dark">
+	<div id="Reflektortable_div"> 
+					<table id="Reflektortable" class="table">
 						<th><?php echo _("Callsign")?></th>
 						<th><?php echo _("TG")?></th>
 						<th><?php echo _("Ver")?></th>
 						<th><?php echo _("TGs")?></th>
-					</tr>
+
 					</table>
-					
-					                  <div class="mt-4 text-center small">
-<!--                     <span class="mr-2"> -->
-<!--                       <i class="fas fa-circle text-primary"></i> Direct -->
-<!--                     </span> -->
-<!--                     <span class="mr-2"> -->
-<!--                       <i class="fas fa-circle text-success"></i> Social -->
-<!--                     </span> -->
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-info"></i> <?php echo _('Talker')?>
-                    </span>
-                  </div>
-                  
-                  
-                  
 				</div>
-                    
-                    
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Pie Chart -->
-            <div class="col-xl-2 col-lg-4">
-              <div class="card shadow mb-2">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between  navbar-dark   text-white bg-dark">
-                  <h6 class="m-0 font-weight-bold "><?php echo _('Active talkgroups')?></h6>
-               
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                
-                <table class="table table-sm" id="active_talgroup_table" style=" word-wrap: break-word;">
-                	<thead>
-                		<th>
-                		 <?php echo _("TG")?>
-                		</th>
-                  		<th>
-                		 <?php echo _("Nodes")?>
-                		</th>              
-                	</thead>
-                	<tbody>
-                	
-                	</tbody>
-                </table>
-
-                </div>
-              </div>
-            </div>
-            
-            
-            
-            
-            
-          </div>
-
-
-
-
 
 
 	</div>
 
 				<div class="tab-pane " id="listen">
 					<div class="row">
-				<div class="col-md-7"> 
-						<!-- 	<h1><?php //echo _("QSO Monitor")?></h1> -->
-				
+						<div class="col-md-6">
+							<h1><?php echo _("QSO Monitor")?></h1>
+							<hr />
 							
-			<div> 
-					
-					<div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between text-white bg-dark">
-                  <h6 class="m-0 font-weight-bold "><?php echo _('Player')?></h6>
- 
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                  <div class=""><div class=""><div class=""><div class=""></div></div><div class=""><div class=""></div></div></div>
-      
-        
+	<div class="card" style="width: 100%;">
+ 	 <div class="card-body">
+
+
+				</div>
 
 							
 				
@@ -1650,12 +833,17 @@ ul.dropdown-lr {
 								<div class="jp-video-play">
 									<button class="jp-video-play-icon" role="button" tabindex="0">play</button>
 								</div>
-
+								<div class="jp-playlist">
+									<ul>
+										<!-- The method Playlist.displayPlaylist() uses this unordered list -->
+										<li>&nbsp;</li>
+									</ul>
+								</div>
 
 
 								<div class="jp-type-playlist">
 									<div id="jquery_jplayer_N" class="jp-jplayer"></div>
-									<div id="Player_bar" class="jp-gui fixed-bottom">
+									<div class="jp-gui">
 
 										<div class="jp-interface">
 											<div class="jp-progress">
@@ -1684,11 +872,8 @@ ul.dropdown-lr {
 													<button class="jp-repeat" role="button" tabindex="0"><?php echo _("repeat")?></button>
 													<button class="jp-shuffle" role="button" tabindex="0"><?php echo _("shuffle")?></button>
 													<button class="jp-full-screen" role="button" tabindex="0"><?php echo _("full screen")?></button>
-													
 												</div>
-												
 											</div>
-							
 											<div class="jp-details">
 												<div class="jp-title" aria-label="title">&nbsp;</div>
 											</div>
@@ -1703,109 +888,46 @@ ul.dropdown-lr {
 											target="_blank">Flash plugin</a>.
 									</div>
 								</div>
-								
-								
-															<div class="jp-playlist">
-									<ul>
-										<!-- The method Playlist.displayPlaylist() uses this unordered list -->
-										<li>&nbsp;</li>
-									</ul>
-								</div>
-								
 							</div>
 								
 							</div>
-<!-- End of containter player						 -->
-		          </div>
-                </div>
-              </div>
- 							<div style="height: 100px;"></div>
- 
-						
-							
 						</div>
-						<div class="col-md-5">
-						
-
-    			
-						
-						<div class="card card_margin shadow mb-4">
-    						<div class="card-header text-white bg-dark">
-    						<i class="fab fa-forumbee"></i> <?php echo _('Live');?>
-    						</div>
-    						<div class="card-body bg-white">
-    		
-    							  <div class="form-group">
-    							  
-                                    <label for="Live_station"><?php echo _('Select channel');?></label>
-                                    <select class="form-control" id="Live_station">
-                                    
-                                        <?php if($livelink!= ""){?>
-                                        		<option value="<?php echo $livelink?>"><?php echo _('Default')." ". $default_tg_player?></option>
-                                        <?php }?>
-                                        
-                                        <?php if($livelink_station)
-                                         {
-        
-                                             
-                                         foreach ($livelink_station as $key => $value) {
-                                             
-                                             echo '<option value="'.$value["URL"].'"><i class="fas fa-headphones-alt"></i>'.$value["Name"].'</option>';
-                                           }
-                                         }
-                                           ?>
-                                    
-                                    
-    
-                                    </select>
-    						  		</div>
-    							<button type="button" onclick="listen_live()"
-    								class="btn btn-outline-success my-2 my-sm-0"><?php echo _('Listen LIVE')?></button>
-								</div>
+						<div class="col-md-6">
+							<br />
+							<button type="button" onclick="listen_live()"
+								class="btn btn-outline-success my-2 my-sm-0"><?php echo _('Listen LIVE')?></button>
+							<a href="#menu-toggle"
+								class="btn btn-outline-success my-2 my-sm-0" id="menu-toggle"><?php echo _('Toggle menu')?></a>
+							<hr />
+							<h3><?php echo _("Select date to listen")?></h3>
+							<?php if($use_logein != null || USE_LOGIN == 1){?>
+								<p><?php echo _("to use player you must login")?> </p>
+							<?php }?>
+							<p>
+								<input type="text" id="datepicker"
+									value="<?php echo date("Y-m-d")?>"
+									onchange="get_audio_from_date(this.value)">
+							</p>
+							<hr />
+							<h5 class="card-title" id="Stationid"><?php echo _('Signal')?></h5>
+   						     <p class="card-text"><span id="signalpressent">0</span>% <?php echo _("Signal value  from Reciver")?>.</p>
+							<div class="card" style="width: 100%">
+           						<div id="Reciverbars_player"></div>
 							</div>
-			
-							<div class="card card_margin shadow mb-4">
-							<div class="card-header text-white bg-dark">
-    						<i class="far fa-calendar-alt"></i>
-    							<?php echo _("Select date to listen")?>
-    							</div>
-    							
-        							<div class="card-body bg-white">
-        							<?php if($use_logein != null || USE_LOGIN == 1){?>
-        								<p><?php echo _("to use player you must login")?> </p>
-        							<?php }?>
-        							<p>
-        								<input type="text" id="datepicker"
-        									value="<?php echo date("Y-m-d")?>"
-        									onchange="get_audio_from_date(this.value)">
-        							</p>
-        							</div>
-        					</div>		
-        		
-							<div class="card card_margin shadow mb-4">
-    							<div class="card-header text-white bg-dark">
-    								<i class="fas fa-broadcast-tower"></i>
-    								<span" id="Stationid"><?php echo _('Signal')?></span>
-    							</div>
-    							<div class="card-body bg-white">
-           						     <p class="card-text"><span id="signalpressent">0</span>% <?php echo _("Signal value from receiver")?>.</p>
-           						     <hr />
-        							
-                   						<div id="Reciverbars_player"></div>
-        						
-    							</div>
-				
-							</div>
-							<div style="height: 100px;"></div>
-						
-			
-	
+							<hr />
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th><?php echo _("Name")?></th>
+										<th><?php echo _("Openings")?></th>
+										<th><?php echo _("Uptime")?></th>
+										<th><?php echo _("Color")?></th>
+									</tr>
+								</thead>
+								<tbody>
 	   
 
 	<?php
-	
-
-	
 	
 	$sql_node ="SELECT Talktime, `Callsign`, `Talkgroup` FROM RefletorNodeLOG WHERE `Type` = '1' AND `Active` ='0'";
 
@@ -1820,17 +942,17 @@ ul.dropdown-lr {
 	    
 	}
 	
-	//$sqlref = $link->query($sql_node);
+	$sqlref = $link->query($sql_node);
 	$timesum_node =array();
 	
 	$timesum =array();
 	
 
-// 	while($row = $sqlref->fetch_assoc()) {
-// 	    $timesum_node[$row["Callsign"]] =$timesum_node[$row["Callsign"]]+ $row["Talktime"];
-// 	    $timesum[$row["Talkgroup"]] =$timesum[$row["Talkgroup"]] +$row["Talktime"];
+	while($row = $sqlref->fetch_assoc()) {
+	    $timesum_node[$row["Callsign"]] =$timesum_node[$row["Callsign"]]+ $row["Talktime"];
+	    $timesum[$row["Talkgroup"]] =$timesum[$row["Talkgroup"]] +$row["Talktime"];
 	    
-// 	}
+	}
 	
 
 
@@ -1842,7 +964,17 @@ $result = mysqli_query($link, "SELECT * FROM `RefletorStations` where Callsign !
 
 // Numeric array
 
-
+// Associative array
+while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+    echo "<tr>";
+    echo "<td>" . $row["Callsign"] . "</td>";
+    echo "<td>" . utf8_encode($row["Location"]) . "</td>";
+    echo "<td>" .secondsToDHMS($timesum_node[$row["Callsign"]]). "</td>";
+    
+    echo "<td>".'<div style="border:2px solid black; width: 25px; height :25px;  background-color:'.$row["Collor"].' ">'."</td>";
+    
+    echo "</tr>";
+}
 
 ?>
 	</tr>
@@ -1890,9 +1022,8 @@ if($usefile != null)
 							<?php echo _('Filter')?>:<select id="selects" class="w-25"
 								onchange="update_filter(this.value)">
 								<option value="">-- <?php echo _("All")?> --</option>
-							</select>
-							
-							<a href="#"></a>
+							</select> <a href="#menu-toggle" onclick="toogle_menu()"
+								class="btn btn-outline-success my-2 my-sm-0" id="menu-toggle"><?php echo _("Toggle menu")?></a>
 						</nav>
 					</div>
 					<div id="holder" class="container"></div>
@@ -1900,65 +1031,74 @@ if($usefile != null)
 				</div>
 
 				<div class="tab-pane" id="Recivers">
-				
+					<a href="#menu-toggle" class="btn btn-outline-success my-2 my-sm-0"
+						id="menu-toggle"><?php echo _("Toggle menu")?></a>
 				</div>
 
 
 
 				<div class="tab-pane" id="Recivers2"></div>
 				<div class="tab-pane" id="Dictionary">
-
-    
-    
-    
-   	 <div class="card shadow mb-4">
-         
-                
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between navbar-dark   text-white bg-dark">
-                  <h6 class="m-0 font-weight-bold text-white"><?php echo _("Talkgroups")?></h6>
-                  <div class="dropdown no-arrow ">
-                    <a class="dropdown-toggle text-white" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400 "></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" style="">
-                      <div class="dropdown-header">Action menu</div>
-                          <a class="nav-link  " href="#" id="navbarDropdownMenuLink" onclick="fnExcelexport('dictornay_taklgroup_data')" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            				 <i class="far fa-file-excel"></i>
-              						Export xls      					 </a>
-          					 
-       					 <a class="nav-link  " href="#" id="navbarDropdownMenuLink" onclick="PrintElem('dictornay_taklgroup_print','<?php echo _('Talkgroups')?>')" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  				 <i class="fas fa-print"></i>
-             						 <?php echo _('Print') ?>          					 </a>
-            
-            
+				
+				    <nav class="navbar navbar-expand-lg navbar-light  bg-light" style="background-color: #e3f2fd;">
+		
+		<a class="navbar-brand" href="#"><?php echo _('Talkgroups')?></a>
+		
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
 
-                    </div>
-                  </div>
-                </div>
-                
-                
-                
-                
-                <div class="">
-<!--                  <div class="card-body"> -->
+      
+         <li class="nav-item">
+        
+             
+        <a class="nav-link " href="#" id="navbarDropdownMenuLink" onclick="PrintElem('dictornay_taklgroup_print','<?php echo _('Talkgroups')?>')" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               <i class="fas fa-print"></i>
+          <?php echo _('Print')?>
+        </a>
+             
+        </li>
+        <li>
+                <a class="nav-link " href="#" id="navbarDropdownMenuLink" onclick="fnExcelexport('dictornay_taklgroup_data')" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <i class="far fa-file-excel"></i>
+          <?php echo _('Export xls')?>
+        </a>
+        </li>
+        
+    
+        	<a href="#menu-toggle" class="nav-link"" onclick="toogle_menu()"><i class="fab fa-elementor"></i> <?php echo _('Toggle menu')?></a>
+        </li>
+        
+        
+            		
+        
+        
+        
+   
+      
+      
+      
+    </ul>
 
-       
-    
-    
-    
+
+
+
+      </div>
+
+      
+    </nav>
     
     
 				<div id="dictornay_taklgroup_print">
 					<table class="table table-striped" id="dictornay_taklgroup_data">
-						<thead class="dash_header">
+						<thead>
 							<tr>
 								<th><?php echo _("TG#")?></th>
 								<th><?php echo _("Talkgroup Name")?></th>
-								<th  class="d-none d-md-table-cell"><?php echo _("Callsign")?></th>
-								<th class="d-none  d-md-table-cell"><?php echo _("Last active")?></th>
-
-								<th  class="d-none d-md-table-cell"><?php echo _("Color")?></th>
+								<th><?php echo _("Callsign")?></th>
+								<th><?php echo _("Last active")?></th>
+								<th><?php echo _("Time Total")?></th>
+								<th><?php echo _("Color")?></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -2021,10 +1161,10 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
     $row1 = mysqli_fetch_array($result1, MYSQLI_ASSOC);
 
     
-    echo "<td  class='d-none d-md-table-cell'><spawn id=\"Last_".$row["TG"]."\">" . $row1["Callsign"] . "</spawn></td>";
-    echo "<td class='d-none d-md-table-cell' >".$row1["Time"]."</td>";
-  //  echo "<td>".secondsToDHMS($timesum[ $row["TG"]])."</td>";
-    echo "<td class='d-none d-md-table-cell'>".'<div style="border:2px solid black; width: 25px; height :25px;  background-color:'.$row["Collor"].' ">'."</td>";
+    echo "<td><spawn id=\"Last_".$row["TG"]."\">" . $row1["Callsign"] . "</spawn></td>";
+    echo "<td>".$row1["Time"]."</td>";
+    echo "<td>".secondsToDHMS($timesum[ $row["TG"]])."</td>";
+    echo "<td>".'<div style="border:2px solid black; width: 25px; height :25px;  background-color:'.$row["Collor"].' ">'."</td>";
     
     echo "</tr>";
 }
@@ -2033,15 +1173,7 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
 
 						</tbody>
 					</table>
-
-         </div>
-              </div>
-    
-
 					</div>
-
-
-
 					   
 				</div>
 
@@ -2120,6 +1252,10 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 							</ul>
 
 
+							<a class="nav-link" href="#"
+									onclick="toogle_menu()" id="navbarDropdownMenuLink"
+									data-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="false"><i class="fab fa-elementor"></i> <?php echo _("Toggle menu")?> </a>
 
 
 
@@ -2129,16 +1265,16 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 					</div>
 
 
-			
-						<div class="col-sm-12 fill" style="">
-						
-								<div class="map" style="" id="map"></div>
+					<div style="padding: 0 15px">
+						<div class="row" style="">
+							<div class="col col-md-8">
+								<div class="map"
+									style="width: 83.3%; height: 83.3%; position: fixed" id="map"></div>
+
+							</div>
 
 						</div>
-						
-						
-
-				
+					</div>
 
 					<!-- Modal -->
 					<div class="modal fade" id="Showstation_info" tabindex="-1"
@@ -2207,9 +1343,7 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 
 									</div>
 									<button type="button" class="btn btn-secondary"
-										data-dismiss="modal"><?php echo _('Close')?></button>
-									<button type="button" class="btn btn-secondary" id="Show_covige_button"
-										><?php echo _('Show covreage')?></button>
+										data-dismiss="modal">Close</button>
 
 								</div>
 							</div>
@@ -2294,18 +1428,7 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 		    var coordinates = feature.getGeometry().getCoordinates();
 		 	
 			 var idn = feature.id_;
-			 console.log(idn);
-			 if(idn.startsWith('aa'))
-				 var identity =station_identifire[idn.slice(2)];
-			 else
-		     	var identity =station_identifire[idn.slice(4)];
-			// Get the <a> element with id="myAnchor"
-			 var x = document.getElementById("Show_covige_button");  
-			 x.setAttribute("onclick", "show_station_cover('"+identity+"','"+idn+"')");
-
-			 
-
-		     	
+		     var identity =station_identifire[idn.slice(4)];
 		     show_station_information(identity);
 
 
@@ -2331,7 +1454,6 @@ var ico = [
 ];
 function show_station_information(identity)
 {
-	console.log(identity);
 	$.getJSON("<?php echo $serveradress ?>", function(data){
 		$("#Showstation_info").modal()
 		//console.log(data.nodes[identity]);
@@ -2419,8 +1541,7 @@ function update_tx_station(lat,lon,idn,tg,label,active)
     
     
     	
-
-    	html =html.replace(/ /g,"_");
+    	html=html.replace(" ","_");
     	var canvas = document.createElement('canvas');
     	var ctx = canvas.getContext('2d');
     	canvas.setAttribute('width', 60);
@@ -2802,7 +1923,7 @@ function addimage(src,lamin,lomin,lamax,lomax)
 
     ov[src] = new ol.layer.Image({
             source: new ol.source.ImageStatic({
-            url: "covrige/"+src,
+            url: src,
             imageExtent: [c1[0], c1[1], c2[0], c2[1]]
         })
     });
@@ -2854,8 +1975,7 @@ function prosess_json_reflecktor()
     				var name = k+" "+data.nodes[k].qth[qth].rx[qth1].name;
     				var talkgroup =data.nodes[k].tg;
     				var idn=k+data.nodes[k].qth[qth].rx[qth1].name;
-    				idn =idn.replace(/ /g,"_");
-
+    				idn =idn.replace(" ","_");
     	
 //   				console.log(tx_count);
     				if(tx_count>0)
@@ -2864,8 +1984,7 @@ function prosess_json_reflecktor()
         				{
             				
             				var group_idn= k+data.nodes[k].qth[qth].name;
-            				group_idn =group_idn.replace(/ /g,"_");
-            				add_repeater_node(lat, lon,name,group_idn);
+            				group_idn =group_idn.replace(" ","_");
 							if(Barsource.getFeatureById(group_idn) == null)
 							{
  //               				console.log("tx: " +group_idn+" "+lat+" "+lon);
@@ -2888,22 +2007,16 @@ function prosess_json_reflecktor()
         				{
 
         					var group_idn= k+data.nodes[k].qth[qth].name;
-        					group_idn =group_idn.replace(/ /g,"_");
+        					group_idn =group_idn.replace(" ","_");
 							if(Barsource.getFeatureById(group_idn) == null)
 							{
-								station_identifire[group_idn] =k;
-								
         						add_repeater_node(lat, lon,name,group_idn);
-        	    				
 							}
         					
         				}
         				else
         				{
   //      					console.log("else rx: " +idn+" "+lat+" "+lon);
- 							idn =idn.replace(/ /g,"_");
- 							station_identifire[idn] =k;
- 							console.log(idn);
         					add_repeater_node(lat, lon,name,idn);
         				}
     					
@@ -3014,7 +2127,6 @@ function get_year_static()
         					id: 'y-axis-1',
         	                ticks: {
         	                    // Include a dollar sign in the ticks
-        	                    beginAtZero: true,
         	                    callback: function(value, index, values) {
         	                        return secondsToDHMS( value);
         	                    }
@@ -3090,7 +2202,6 @@ window.myBara = new Chart(ctx, {
                     callback: function(value, index, values) {
                         return secondsToDHMS( value);
                     }
-            	,beginAtZero: true
                 }
             }]
         },
@@ -3368,7 +2479,7 @@ function get_station_chat()
 
 	
 	$('#Graph_Cricle_holder').html("");
-	$('#Graph_Cricle_holder').html('<canvas id="Graph_Cricle" width="400px" height="600px"></canvas>');
+	$('#Graph_Cricle_holder').html('<canvas id="Graph_Cricle" width="400px" height="400px"></canvas>');
 
 	
 	var canvas = document.getElementById('Graph_Cricle')
@@ -3568,7 +2679,6 @@ var Lock_show =0;
 var coverigeGroup;
 function show_covige()
 {
-	remove_covige();
 	if(Lock_show == 0)
 	{
 		Lock_show =1;
@@ -3651,9 +2761,8 @@ function add_tx_station()
     				var name = k+" "+data.nodes[k].qth[qth].tx[qth1].name;
     				var talkgroup =data.nodes[k].tg;
     				var idn=k+data.nodes[k].qth[qth].tx[qth1].name;
-    				idn =idn.replace(/ /g,"_");
+    				idn =idn.replace(" ","_");
     				station_identifire[idn] =k;
-    			
     				//console.log(name);
     				
     
@@ -3665,8 +2774,7 @@ function add_tx_station()
 		        	
 		        }
 
-			}
-			console.log(station_identifire);	
+			}	
 		}
 
 		//add_repeater_node()
@@ -3708,8 +2816,7 @@ function update_tx_station_loop()
 				{
 					active = false;
 				}
-				idn =idn.replace(/ /g,"_");
-
+				idn =idn.replace(" ","_");
 				update_tx_station(lat,lon,idn,talkgroup,name,active);
 		        	
 
@@ -3729,8 +2836,7 @@ function update_tx_station_loop()
         			var name = k+" "+data.nodes[k].qth[qth].rx[qth1].name;
         			var talkgroup =data.nodes[k].tg;
         			var idn=k+data.nodes[k].qth[qth].rx[qth1].name;
-        			idn =idn.replace(/ /g,"_");
-        			
+        			idn =idn.replace(" ","_");
  //       			console.log(idn+" "+lat+" "+lon);
         			var value =0;
                    	var qth_name =data.nodes[k].qth[qth].rx[qth1].name;
@@ -3757,7 +2863,7 @@ function update_tx_station_loop()
         			if(count_rx > 1 && sql != "")
         			{
         				var group_idn = k+data.nodes[k].qth[qth].name;
-        				group_idn =group_idn.replace(/ /g,"_");
+        				group_idn =group_idn.replace(" ","_");
         				if(Barsource.getFeatureById(group_idn) != null)
         				{
                 			update_text_byid(group_idn,value.toString(),sql);
@@ -3769,7 +2875,7 @@ function update_tx_station_loop()
         			else if(count_rx > 1)
         			{
         				var group_idn = k+data.nodes[k].qth[qth].name;
-        				group_idn =group_idn.replace(/ /g,"_");
+        				group_idn =group_idn.replace(" ","_");
         				if(Barsource.getFeatureById(group_idn) != null)
         				{
                 			update_text_byid(group_idn,value.toString(),sql);
@@ -3820,19 +2926,14 @@ function update_tx_station_loop()
 
 				<!-- Menu Toggle Script -->
 				<script>
-
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
 	
 function toogle_menu()
 {
         $("#wrapper").toggleClass("toggled");	
-   
-        
-        setTimeout(function(){
-        	   map.updateSize();
-        	   player_move();
-        	   
-        
-        }, 500);
 }
 
 function change_day_next()
@@ -3928,7 +3029,7 @@ function fnExcelexport(table)
     </script>
 
 				<div class="tab-pane" id="LoginTab">
-					<div class="wrapper1 ">
+					<div class="wrapper ">
 						<div id="formContent">
 							<!-- Tabs Titles -->
 
@@ -3954,228 +3055,39 @@ function fnExcelexport(table)
 						</div>
 					</div>
 				</div>
-             <div id="stationinfor" class="tab-pane">
-    			
-    		<nav class="navbar navbar-expand-sm navbar-light  bg-light" style="background-color: #e3f2fd;">
-		
-				<a class="navbar-brand" href="#"><?php  echo _('Station infromation')?> 
-				
-				
-				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
-
-      
-         <li class="nav-item d-none d-lg-inline-flex">
-        
-             
-        <a class="nav-link  " href="#" id="navbarDropdownMenuLink" onclick="PrintElem('print_div','')" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-               <i class="fas fa-print"></i>
-          <?php echo _('Print')?>        </a>
-             
-        </li>
-
-        </li>
-        
-    
-        
-        
-        
-            		
-        
-        
-        
-   
-      
-      
-      
-    </ul>
-    
-    
-				
-				
-				
-				 <select class="selectpicker w-25" id="Pricker_station_monitor"  onchange="Load_station_intofmation(this.value)" >
-				 <option value=""><?php echo _('Select station')?></option>
-
-  <?php 
-      			$result = mysqli_query($link, "SELECT * FROM `Infotmation_page` ORDER BY `Station_Name` ASC ");
-
-    			// Numeric array
-
-    			// Associative array
-    			while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-    ?>
-    <option value="<?php echo $row["Station_Name"]?>" ><?php echo $row["Station_Name"] ?></option>        
-    <?php }?>
-            
-                 </optgroup>
-                                </select>
-
-
- 
-    
-
-    
-		
-
-      
-			</nav>
-			<div id="station_info_html_data"></div>
-    			
-    			</div>
-
-            <div id="register" class="tab-pane">
-            
-            
-            <script type="text/javascript">
-
-
-            function create_user()
-            {
-            	var usern = $('#usern1').val();
-            	var pass = $('#passwordareg').val();
-            	var pass1 = $('#password_confirm').val();
-
-            	if(pass != pass1)
-            	{
-            		alert("<?php echo _('Passwords aren same')?>")
-            		return false;
-            		
-            	}
-
-            	if((usern != "" && pass != "" ) && (pass == pass1))
-            	{
-                	$.post( "admin/user_action.php", $( "#register_user" ).serialize() )
-                	.done(function( data ) {
-
-						if(data == "-1")
-						{
-							alert("<?php echo _('User already exist!')?>")
-						}
-						else
-						{
-                			alert("<?php echo _('User is creadted!')?>")
-						}
-                		
-                
-                	});
-            	}
-            	
-
-            	return false;
-            }
-
-
-            
-
-            </script>
-            
-                    <nav class="navbar navbar-expand-sm navbar-light  bg-light" style="background-color: #e3f2fd;">
-        		
-        		<a class="navbar-brand" href="#"><?php echo _('Register')?></a>
-        		
-			  </nav>
-
-			<form class="form-horizontal" id="register_user" action='' method="POST" onsubmit="return create_user()">
-						  
-          <div class="form-group">
-                <label class="control-label col-sm-2" for="Firstname"><?php echo  _('Firstname')?>:</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="Firstname" name="Firstname" placeholder="<?php  echo _('jay')?>">
-                </div>
-          </div>                                    
-                           
-          <div class="form-group">
-                <label class="control-label col-sm-2" for="lastname"><?php echo  _('Lastname')?>:</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="lastname" name="lastname" placeholder="<?php  echo _('Shmit')?>">
-                </div>
-          </div>                                    
-                                                      
-                           			  
-			  
-			  
-
-          
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="email"><?php echo  _('Username')?>:</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="username" name="username" placeholder="SA%RME">
-                </div>
-          </div>      
-          
-          <input type="hidden"  id="registernewuser" name="registernewuser" value="1">
-          
-           <div class="form-group">
-                <label class="control-label col-sm-2" for="E"><?php echo  _('Email')?>:</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="Email" name="Email" placeholder="<?php echo _('info@test.nu') ?>">
-                </div>
-          </div>  
-                         
-          <div class="form-group">
-                <label class="control-label col-sm-2" for="password"><?php echo  _('Password')?>:</label>
-                <div class="col-sm-10">
-                  <input type="password" class="form-control" id="passwordareg" name="password" placeholder="<?php echo _('Password should be at least 8 characters') ?>">
-                </div>
-          </div>                                    
-                             
-          <div class="form-group">
-                <label class="control-label col-sm-2" for="password_confirm"><?php echo  _('Password (Confirm)')?>:</label>
-                <div class="col-sm-10">
-                  <input type="password" class="form-control" id="password_confirm" name="password_confirm" placeholder="<?php  echo _('Please confirm password')?>">
-                </div>
-          </div>                                    
-                                  
-
-            <div class="form-group">
-              <!-- Button -->
-    
-               
-                 <button class="btn btn-success" onclick=" document.getElementById('register_user').reset(); "><?php echo _('Clear')?></button>
-                 <button class="btn btn-success"><?php echo _('Register')?></button>
-            </div>
-
-
-        	</form>
-                            
-                            
-            			
-            	</div>		
-   
 
 				<div class="tab-pane " id="Statistics">
-			
-			
-    			<div class="row">
-    			<div class="col-12">
-
-    		</div>
-    		    		
-				</div>
-        	  <div class="col-12">
-               <nav id="ssas" class="navbar navbar-default ">
-               
-        
-                       <ul class="nav  navbar-expand">
-                      	<li class="nav-link  active"><a data-toggle="tab" onclick="$('#ssas a.active').removeClass('active');" href="#dastaty"><i class="far fa-circle"></i> <?php echo _("Day")?></a></li>
-                      	<li class="nav-link "><a data-toggle="tab" onclick="$('#ssas a.active').removeClass('active');get_statistics_hour()" href="#menu_hour"><i class="far fa-circle"></i> <?php echo _("Hour")?></a></li>
-                      	<li class="nav-link "><a data-toggle="tab" onclick="$('#ssas a.active').removeClass('active');get_year_static()" href="#menu_year"><i class="far fa-circle"></i> <?php echo _("Year")?></a></li>
-    
-                       </ul> 
-                   
-        	
-    			<div class="nav navbar-nav navbar-right">
-					
-					
-   					<p><button class="prev-day btn btn-outline-secondary"  onclick="change_day_prew()" id="prev-day"><i class="fa fa-angle-left" aria-hidden='true'></i></button></button><input type="text" id="Datepicker_graph" value="<?php echo date("Y-m-d")?>" onchange="get_statistics();get_statistics_hour()">
-    				
-					<button class='next-day btn btn-outline-secondary' onclick="change_day_next()" ><i class='fa fa-angle-right' aria-hidden='true'></i></button></p>
+				<div class="row">
+				<div class="col-10">
+    				<h3><?php echo _("Statistics for Network")?></h3>
     			</div>
-                   
+    			<div class="col-2">
+					
+    			</div>
+    			</div>
+    			<div class="row">
+    			<div class="col-10">
+    				<p><button class="prev-day btn btn-outline-secondary"  onclick="change_day_prew()" id="prev-day"><i class="fa fa-angle-left" aria-hidden='true'></i></button></button><input type="text" id="Datepicker_graph" value="<?php echo date("Y-m-d")?>" onchange="get_statistics();get_statistics_hour()">
+    				
+    				<button class='next-day btn btn-outline-secondary' onclick="change_day_next()" ><i class='fa fa-angle-right' aria-hidden='true'></i></button></p>
+    		</div>
+    		    			<div class="col-2">
+    			<a href="#menu-toggle" class="btn btn-outline-success my-2 my-sm-0" id="menu-toggle33" onclick="toogle_menu()"><?php echo _('Toggle menu')?></a>
+					
+    			</div>
+				</div>
+        	  <div class="col">
+               <nav id="ssas" class="navbar navbar-expand-lg navbar-light bg-light navbar navbar-light bg-light ">
+        
+                   <ul class="navbar-nav">
+                  	<li class="nav-link  active"><a data-toggle="tab" onclick="$('#ssas a.active').removeClass('active');" href="#dastaty"><i class="far fa-circle"></i> <?php echo _("Day")?></a></li>
+                  	<li class="nav-link "><a data-toggle="tab" onclick="$('#ssas a.active').removeClass('active');get_statistics_hour()" href="#menu_hour"><i class="far fa-circle"></i> <?php echo _("Hour")?></a></li>
+                  	<li class="nav-link "><a data-toggle="tab" onclick="$('#ssas a.active').removeClass('active');get_year_static()" href="#menu_year"><i class="far fa-circle"></i> <?php echo _("Year")?></a></li>
+
+                   </ul> 
             </nav>
             </div>
-            <br />
         
              
 
@@ -4188,58 +3100,13 @@ function fnExcelexport(table)
                     <div class="container-fluid">
                         <div class="row">
                         	<div class="col-md-6">
-                        	
-        		<div class="card shadow mb-4">
-                	<div class="card-header py-3 text-white bg-dark">
-                  		<h6 class="m-0 font-weight-bold "><?php echo _('Talkgroups')?></h6>
-           		 	</div>
-                    <div class="card-body">
-						
-					
-        				<div style="width: 100%; height: 600px;" id="canvas_grap_holder">
-        					<canvas id="Graph" width="800px" height="600px"></canvas>
-        				</div>
-        				
-                				
-                				    			
-                    </div>
-              	</div>
-              </div>
-              
-              
-              
-              
-                        	
-                        
-                				
-                				
-               
-                			
-                			
-                	<div class="col-md-6"> 
-                	
-                	        		<div class="card shadow mb-4">
-                	<div class="card-header py-3  text-white bg-dark">
-                  		<h6 class="m-0 font-weight-bold "><?php echo _('Nodes')?></h6>
-           		 	</div>
-                    <div class="card-body" style="min-height:540px;">
-                    
-                    
-                	
-                	
-                		<div class="" id="Graph_Cricle_holder">
-                				<canvas id="Graph_Cricle" width="400px" height="400px"></canvas>
-                		</div>	
-                		
-                    </div>
-              	</div>
-     
-              	
-                		
-                    </div>
-                    		
-                    		
-                    		
+                				<div style="width: 80%; height: 500px;" id="canvas_grap_holder">
+                					<canvas id="Graph" width="400px" height="400px"></canvas>
+                				</div>
+                			</div>
+                    		<div class="col-md-6" id="Graph_Cricle_holder">
+                    				<canvas id="Graph_Cricle" width="400px" height="400px"></canvas>
+                    		</div>	
                     	 </div>
                 	 </div>
             	 </div>
@@ -4248,17 +3115,8 @@ function fnExcelexport(table)
                     <div class="container-fluid">
                         <div class="row">
                         	<div class="col-md-12">
-                        	<div class="card shadow mb-4">
-                    	     	<div class="card-header py-3 text-white bg-dark">
-                  					<h6 class="m-0 font-weight-bold "><?php echo _('Hour chart')?></h6>
-           		 				</div>
-           		 	
-           		 	
                 				<div style="width: 80%; height: 500px;" id="canvas_grap_holder1">
                 					<canvas id="Graph1" width="400px" height="400px"></canvas>
-                					
-                				</div>	
-                				<br />
                 				</div>
                 			</div>
 
@@ -4272,7 +3130,6 @@ function fnExcelexport(table)
                         
 
                         	<div class="col-md-8">
-                        	<div class="card shadow mb-4" style="min-height: 610px;">
                         	
                 				<table class="table" >
                 				  <thead class="thead-dark">
@@ -4291,23 +3148,8 @@ function fnExcelexport(table)
 
     			// Associative array
     			while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-    
-    			    if(return_diff_to_darkness(($row["Collor"])) <100 && return_diff_to_darkness($row["Collor"]) >0)
-    			    {
-    			        $color_text ="color:white;";
-    			        
-    			    }
-    			    else
-    			    {
-    			        $color_text ="";
-    			        
-    			    }
-    			        
-    			 
-    			    
     ?>
-    
-    <option value="<?php echo $row["Callsign"]?>" style="background-color: <?php echo $row["Collor"]?>;<?php echo $color_text?> "><?php echo $row["Callsign"]; ?></option>        
+    <option value="<?php echo $row["Callsign"]?>" style="background-color: <?php echo $row["Collor"]?>"><?php echo $row["Callsign"] ?></option>        
     <?php }?>
             
                                   </optgroup>
@@ -4325,23 +3167,8 @@ function fnExcelexport(table)
 
     			// Associative array
     			while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-    			    
-    			    
-    			    if(return_diff_to_darkness(($row["Collor"])) <100 && return_diff_to_darkness($row["Collor"]) >0)
-    			    {
-    			        $color_text ="color:white;";
-    			        
-    			    }
-    			    else
-    			    {
-    			        $color_text ="";
-    			        
-    			    }
-    			    
-    			    
-    			    
     ?>
-    <option value="<?php echo $row["TG"]?>" style="background-color: <?php echo $row["Collor"]?> ;<?php echo $color_text;?>"><?php echo $row["TG"] ?>		<?php echo  $row["TXT"] ?></option>        
+    <option value="<?php echo $row["TG"]?>" style="background-color: <?php echo $row["Collor"]?>"><?php echo $row["TG"] ?>		<?php echo  $row["TXT"] ?></option>        
     <?php }?>
 
 
@@ -4351,7 +3178,6 @@ function fnExcelexport(table)
        </tr>
   </thead>                              
                                 </table>
-                             
 
                 				<div style="position: relative; height:500px!important;" id="canvas_grap_holder3">
                 					<canvas class='img-responsive'  width="700px" height="500px" id="Graph3"></canvas>
@@ -4360,14 +3186,8 @@ function fnExcelexport(table)
                 					
                 					
                 				</div>
-                				<br />
-<!-- 		end of contener -->
-		   </div>
                 		    </div>
-                				<div class="col-md-4">
-                		<div class="card shadow mb-4">			
-                                        	
-                                        				
+                                        				<div class="col-md-4">
                 				
                 				<table class="table" id="toplist_table">
                 				  <thead class="thead-dark">
@@ -4391,7 +3211,7 @@ function fnExcelexport(table)
 
 
                 				
-                	</div>
+                	
                 			</div>
 
 
@@ -4411,15 +3231,9 @@ function fnExcelexport(table)
     				</div>
     			</div>
     			<div class="col-md-12" id="table">
-    			
-    			<div class="card shadow mb-4">
-           
-                    
-    				<table id="nodes_activity" class="table" ><thead class="thead-dark"><tr><th><?php echo _("Station")?></th><th><?php echo _("Uptime")?></th><th><?php echo _("Network Usage 24 hour")?></th><th><?php echo _("Usage last 24 hour")?></th><th><?php echo _("Most used receiver")?></th></tr></thead></table>
+    			<table id="nodes_activity" class="table" ><thead class="thead-dark"><tr><th><?php echo _("Station")?></th><th><?php echo _("Uptime")?></th><th><?php echo _("Network Usage 24 hour")?></th><th><?php echo _("Usage last 24 hour")?></th><th><?php echo _("Most used receiver")?></th></tr></thead></table>
     			</div>
     			</div>	
-    			</div>
-    
     			
     			<div class="tab-pane " id="Table_ctcss">
     			<?php 
@@ -4427,36 +3241,13 @@ function fnExcelexport(table)
     			
     			include 'ctcss_map_table.php'?>
     			</div>
-    			
-    
-    
-    
-    
-
-
-			
- 
-    			
-    			
 				
 			</div>
 			<!-- /#page-content-wrapper -->
-			
-
-
 
 		</div>
 		<!-- /#wrapper -->
-</div>
-</div>
- <div>
- 
 
-
-
- 
- 
-  <div>
 </body>
 
 </html>

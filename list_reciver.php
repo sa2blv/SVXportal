@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 include 'config.php';
 $link->set_charset("utf8");
 include 'function.php';
@@ -21,7 +20,6 @@ set_laguage();
 	rel="stylesheet">
 <link rel="stylesheet" href="css.css">
 <link rel="icon" type="image/png" href="tower.svg">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js" type="text/javascript"></script>
 
 <!-- Latest compiled and minified JavaScript -->
 <script type="text/javascript" src="lib/jquery.min.js"></script>
@@ -44,7 +42,6 @@ $(document).ready(function(){
 	add_header();
 	generate_coulor();
 	call_svxrefelktor();
-	MQTTconnect();
 
 });
 
@@ -58,132 +55,6 @@ function add_header()
 	$('#Reflektortable').html('<thead class="thead-dark"><tr><th scope="col" class="col-xs-2 text-left" ><?php echo _('Callsign')?> &emsp;&emsp;&emsp;&emsp;</th><th scope="col" class="col-xs-1" ><?php echo _('Location')?></th><th scope="col" class="col-xs-1 text-left"><?php echo _('TG#')?></th><th scope="col" class="col-xs-1"></th><th scope="col" class="col-xs-2"><?php echo _('Receiver')?></th><th scope="col" class="col-xs-1"><?php echo _('Signal')?></th><th scope="col" class="col-xs-2"><?php echo _('Frequency')?></th><th class="col-xs-2"><?php echo _('Talk time')?></th></tr></thead>');
  	
 }
-
-var mqtt;
-var reconnectTimeout = 2000;
-var host="mqttportal.drift.sm2ampr.net"; //change this
-var port=10001;
-
-var mqtt_station_array = new Array();
-
-function onConnect() {
-// Once a connection has been made, make a subscription and send a message.
-
-    console.log("Connected ");
-    mqtt.subscribe("#");
-}
-	
-
-
-function MQTTconnect() {
-
-	var number = Math.random() // 0.9394456857981651
-	number.toString(36); // '0.xtis06h6'
-	var id = number.toString(36).substr(2, 9); // 'xtis06h6'
-	id.length >= 9; // false
-
-	
-	console.log("connecting to "+ host +" "+ port);
-	mqtt = new Paho.MQTT.Client(host,port,("portal"+id));
-	//document.write("connecting to "+ host);
-	var options = {
-		useSSL:true,
-		timeout: 10,
-		onSuccess: onConnect,
-		onFailure: onFailure,
-		
-	  
-	 };
-	
-	mqtt.onMessageArrived = onMessageArrived
-	mqtt.onConnectionLost = onConnectionLost;  // Callback when lost connectio
-		
-
-	 
-	mqtt.connect(options); //connect
-	
-	}
-
-
-function onConnectionLost(resObj) {
-    console.log("Lost connection to " + resObj.uri + "\nError code: " + resObj.errorCode + "\nError text: " + resObj.errorMessage);
-    if (resObj.reconnect) {
-        console.log("Automatic reconnect is currently active.");
-    } else {
-        console.log("Lost connection to host.");
-        setTimeout(MQTTconnect, reconnectTimeout);
-    }
-}
-
-function onFailure(message) {
-	console.log("Connection Attempt to Host "+host+"Failed");
-	setTimeout(MQTTconnect, reconnectTimeout);
-}
-function onMessageArrived(msg){
-
-
-
-	var payload_topic =  msg.destinationName.split("/"); 
-
-
-
-	if(mqtt_station_array[payload_topic[0]]=== undefined)
-	{
-		mqtt_station_array[payload_topic[0]] =new Array();
-		mqtt_station_array[payload_topic[0]] ["RSSI"] ="-200";
-		mqtt_station_array[payload_topic[0]] ["Sval"] ="S0";
-
-		
-	}
-
-	mqtt_station_array[payload_topic[0]] [payload_topic[1]] =msg.payloadString;
-
-
-	
-	//mqtt_station_array[payload_topic[0]][payload_topic[1]] = msg.payloadString;
-	//console.log(mqtt_station_array);
-	
-	out_msg="Message received "+msg.payloadString+"<br>";
-	out_msg=out_msg+"Message received Topic "+msg.destinationName;
-	//console.log(out_msg);
-
-	Mqtt_sys_msg(msg)
-
-}
-
-
-function Mqtt_sys_msg(msg)
-{
-		var payload_topic =  msg.destinationName.split("/"); 
-		
-		
-		
-		
-		
-		if(payload_topic[0] == "Sys_message")
-			create_message_toast(msg.payloadString,payload_topic[1],0,"red","true");
-		if(payload_topic[0] == "Sys_message_important")
-			create_message_toast(msg.payloadString,payload_topic[1],0,"red","false");
-			
-		
-		
-
-//  create_message_toast(message,title,type,color)
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
 function remove_notgouiltychar(string)
 {
 	string= string.replace("(", "");
@@ -207,7 +78,6 @@ function generate_coulor()
     			tg_collors[data.nodes[k].monitoredTGs[nodes]]["id"] =data.nodes[k].monitoredTGs[nodes];
     			tg_collors[data.nodes[k].monitoredTGs[nodes]]["color"] =random_css_collor();   
     			tg_collors[data.nodes[k].monitoredTGs[nodes]]["TXT"] ="";
-    			tg_collors[data.nodes[k].monitoredTGs[nodes]]["TXT_collor"] ="color:black;";
     			totalSeconds[data.nodes[k].tg]=0;
     		}
     
@@ -231,33 +101,7 @@ function generate_coulor()
     				tg_collors[<?php echo $row["TG"]?>]= new Array();
             		tg_collors[<?php echo $row["TG"]?>]["id"] =<?php echo $row["TG"]?>;
             		tg_collors[<?php echo $row["TG"]?>]["color"] = "<?php echo $row["Collor"]?>";      
-            		tg_collors[<?php echo $row["TG"]?>]["TXT"] = "<?php echo $row["TXT"]?>";          
-
-            		<?php 
-            		
-            		if(return_diff_to_darkness(($row["Collor"])) <100 && return_diff_to_darkness($row["Collor"]) >0)
-            		{
-            		    $color_text ="color:white;";
-            		    
-            		}
-            		else
-            		{
-            		    $color_text ="color:black;";
-            		    
-            		}
-            		
-            		
-            		
-            		
-            		
-            		
-            		?>
-
-            		tg_collors[<?php echo $row["TG"]?>]["TXT_collor"] = "<?php echo $color_text?>";
-
-
-
-            		   
+            		tg_collors[<?php echo $row["TG"]?>]["TXT"] = "<?php echo $row["TXT"]?>";             
     <?php }?>
 
     for(var k in tg_collors){
@@ -265,7 +109,7 @@ function generate_coulor()
       	$('#selects').append($('<option>', {
       	    value: k,
       	    text: k+"		"+tg_collors[k]["TXT"],
-      	  style:"background-color: "+tg_collors[k]["color"] +";"+tg_collors[k]["TXT_collor"]+";"
+      	  style:"background-color: "+tg_collors[k]["color"] 
       	}));
       }
 	
@@ -301,7 +145,6 @@ $.getJSON( "<?php echo $serveradress ?>", function( data ) {
     		
     	}
 	}
-	//console.log(data);
 	
 
 for(var k in data.nodes){
@@ -357,33 +200,17 @@ for(var k in data.nodes){
  		
     	if(document.getElementById('row'+printk))
        	{
-
-    		var rssi_str ="";
-    		if(mqtt_station_array[k])
-    		{
-    			rssi_str ='<canvas id="bar_RSSI_'+printk+'"></canvas><br />';
-
-    		}
-    		else
-    		{
-    			rssi_str ='';
-    		}
-
-    	
-        		
-			
-
            	
     		if(data.nodes[k].isTalker == false)
     		{
-	 	  		$('#row'+printk+'').html('<td>'+k+'</td>'+'<td>'+data.nodes[k].NodeLocation+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td class="">'+rssi_str+'<canvas id="bar_'+printk+'"></canvas></td><td id="reciver_'+printk+'">  </td></td><td id="value_k'+printk+'">0%</td><td id="freq_row'+printk+'"></td><td class="flex-nowrap"> - </td>');
+	 	  		$('#row'+printk+'').html('<td>'+k+'</td>'+'<td>'+data.nodes[k].NodeLocation+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td class="red_collor"><canvas id="bar_'+printk+'"></canvas></td><td id="reciver_'+printk+'">  </td></td><td id="value_k'+printk+'">0%</td><td id="freq_row'+printk+'"></td><td class="flex-nowrap"> - </td>');
 	 	  		$('#row'+printk+'').removeClass("font-weight-bold");
 	 	  		
     			
     		}
     		else
     		{
-	 	  		$('#row'+printk+'').html('<td>'+k+'</td>'+'<td>'+data.nodes[k].NodeLocation+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td class="" >'+rssi_str+'<canvas id="bar_'+printk+'"></canvas></td><td id="reciver_'+printk+'">  </td><td id="value_k'+printk+'">0%</td><td id="freq_row'+printk+'"></td><td class="flex-nowrap" ><label id="minutes_'+data.nodes[k].tg+'">00</label>:<label id="seconds_'+data.nodes[k].tg+'">00</label></td>');
+	 	  		$('#row'+printk+'').html('<td>'+k+'</td>'+'<td>'+data.nodes[k].NodeLocation+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td class="green_collor" ><canvas id="bar_'+printk+'"></canvas></td><td id="reciver_'+printk+'">  </td><td id="value_k'+printk+'">0%</td><td id="freq_row'+printk+'"></td><td class="flex-nowrap" ><label id="minutes_'+data.nodes[k].tg+'">00</label>:<label id="seconds_'+data.nodes[k].tg+'">00</label></td>');
 	 	  		$('#row'+printk+'').addClass("font-weight-bold");	
 
 	 	  		
@@ -415,22 +242,14 @@ for(var k in data.nodes){
 	    		$('#row'+remove_notgouiltychar(k)+'').css('background-color', "");
 	    		$('#row'+remove_notgouiltychar(k)+'').addClass("table-secondary");
 	    	}
-	    	
-	    	create_bar('bar_'+remove_notgouiltychar(k));
-	    	
-    		if(mqtt_station_array[k])
-    		{
-    			create_bar_rssi('bar_RSSI_'+remove_notgouiltychar(k));
-    			
-    		}
-    		//create_bar_rssi('bar_RSSI_'+remove_notgouiltychar(k));
+    		
+    		create_bar('bar_'+remove_notgouiltychar(k));
 	    	
     	 }
     	 else
     	 {
-	  		$('#Reflektortable').append('<tbody class="table-striped"><tr data-toggle="collapse" data-target="#group-of-'+printk+'" aria-expanded="false" aria-controls="group-of-'+printk+'" class="" id="row'+printk+'"><td>'+k+'</td>'+'<td>'+data.nodes[k].NodeLocation+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td ><canvas id="bar_RSSI_'+printk+'"></canvas><canvas id="bar_'+printk+'"></canvas></td><td id="reciver_'+printk+'">  </td><td id="value_k'+printk+'">0%</td></td><td id="freq_row'+printk+'"></td><td class="flex-nowrap"><label id="minutes_'+data.nodes[k].tg+'"></label><label id="seconds_'+data.nodes[k].tg+'"></label></td> </tr> </tbody>');
+	  		$('#Reflektortable').append('<tbody class="table-striped"><tr data-toggle="collapse" data-target="#group-of-'+printk+'" aria-expanded="false" aria-controls="group-of-'+printk+'" class="" id="row'+printk+'"><td>'+k+'</td>'+'<td>'+data.nodes[k].NodeLocation+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td ><canvas id="bar_'+printk+'"></canvas></td><td id="reciver_'+printk+'">  </td><td id="value_k'+printk+'">0%</td></td><td id="freq_row'+printk+'"></td><td class="flex-nowrap"><label id="minutes_'+data.nodes[k].tg+'"></label><label id="seconds_'+data.nodes[k].tg+'"></label></td> </tr> </tbody>');
 	  		create_bar('bar_'+printk);
-	  		//create_bar_rssi('bar_RSSI_'+printk)
 	    }
 		  if(current_talker[data.nodes[k].tg] == k)
 	  {
@@ -527,17 +346,7 @@ for(var k in data.nodes){
     		context.fillStyle ="#1932F7";
     		update_bar('bar_'+k,value,k);
     		$("#freq_row"+k).html(Freqvensy);
-
-    		if(mqtt_station_array[k])
-    		{
-    		
-    			$("#reciver_"+k).html(Math.round(mqtt_station_array[k]["RSSI"])+" dBm<br/>"+qth_name);
-    		}
-    		else
-    		{
-    			$("#reciver_"+k).html(qth_name);
-    		}
-    		
+    		$("#reciver_"+k).html(qth_name);
  		
     	}
     	else if(rx_sql == true)
@@ -579,42 +388,12 @@ function create_bar(id)
     canvas.setAttribute('height', 10);
     canvas.setAttribute('style', 'border:1px solid #000000;');
 
-
+    
     context.stroke(); 
     context.fillRect(1, 1 , -0,1); 
-    
 }
-function create_bar_rssi(id)
-{
-    var canvas = document.getElementById(id);
-    var context = canvas.getContext('2d');
-    width= 0.2 *window.innerWidth
-    var value_scale =width/100;
-    canvas.setAttribute('width', width);
-
-    canvas.setAttribute('height', 10);
-    canvas.setAttribute('style', 'border:1px solid #000000;');
-
-
-    context.stroke(); 
-    context.fillRect(1, 1 , -0,1); 
-    
-}
-
-
 function update_bar(id,value,k)
 {
-
-	if(mqtt_station_array[k])
-	{
-		update_bar_rssi('bar_RSSI_'+k,mqtt_station_array[k]["RSSI"],k)
-	}
-	else
-	{
-		$("#value_k"+k).html(parseInt(value)+" %")
-	}
-
-		
     var canvas = document.getElementById(id);
     var context = canvas.getContext('2d');
     width= 0.2 *window.innerWidth
@@ -633,81 +412,8 @@ function update_bar(id,value,k)
 	else if (value >=100)
 		context.fillRect(1, 1 , (value_scale*100)-3,8);
 
-    context.rect(10, 10, 150, 100);
 
-
-}
-
-const scale = (num, in_min, in_max, out_min, out_max) => {
-	  return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-	}
-
-function scale_rssi(val)
-{
-
-	console.log(val);
-	return (scale(val, -160, -10, 0, 100)); 
-
-	
-}
-
-
-
-function update_bar_rssi(id,value,k)
-{
-    var canvas = document.getElementById(id);
-    var context = canvas.getContext('2d');
-    width= 0.2 *window.innerWidth
-    var value_scale =width/100;
-    canvas.setAttribute('width', width);
-
-    value=scale_rssi(value)
-
-    canvas.setAttribute('height', 10);
-    canvas.setAttribute('style', 'border:1px solid #000000;');
-
-    
-    context.stroke(); 
-    context.fillRect(1, 1 , -0,1); 
-    context.fillStyle ="#1932F7";
-   	if(value>=0 && value <100)
-   	{
-   	   	console.log(value);
-   	   	if(value >=0)
-   	   	{
-       		context.fillStyle ="#FFFF00";
-       		if(value >= 20)
-       		{
-       			context.fillRect(1, 1 , (value_scale*20)-3,8); 
-       		}
-       		else
-       		{
-       			context.fillRect(1, 1 , (value_scale*value)-3,8); 
-       		}
-           
-       	
-   	   	}
-
-   	   	if(value >= 20)
-   	   	{
-       		context.fillStyle ="#9ACD32";
-       		context.fillRect((value_scale*20), 1 , (value_scale*(value-20))-3,8); 
-
-   	   	}
-   	   	if(value >= 45)
-   	   	{
-       		context.fillStyle ="#FF4500";
-       		context.fillRect((value_scale*45), 1 , (value_scale*(value-45))-3,8); 
-
-   	   	}
-   	}
-	else if (value >=100)
-		context.fillRect(1, 1 , (value_scale*100)-3,8);
-
-    context.rect(10, 10, 150, 100);
-
-	$("#value_k"+k).html(mqtt_station_array[k]["Sval"]+"<br />"+parseInt(value)+" %")
-	
+	$("#value_k"+k).html(parseInt(value)+" %")
 }
 
 
@@ -733,91 +439,6 @@ function update_bar_rssi(id,value,k)
             }
         }
 
-        
-        var message_toast_id =0;
-        function create_message_toast(message,title,type,color,hide)
-        {
-        	// multilne template
-            var html = `
-            <div  class="toast fade show"  role="alert" aria-live="assertive" data-autohide="%hide%" data-delay="30000" aria-atomic="true"  id="message_show_id_%idnr%" style="min-width=800px !important;">
-                
-            <div class="toast-header toast_dash_header" >
-            <svg class=" rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
-                preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-                <rect fill="#007aff" width="100%" height="100%" /></svg>
-                
-              <strong class="mr-auto"> %title%</strong>
-              <small>%time%</small>
-              <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-                <div class="toast-body" style="min-width=500px !important; ">
-                <div style="width:500px;"></div>
-                
-                  %text%
-                </div>
-            </div>
-            </div>
-            `;
-            
-           
-
-            html =html.replace("%idnr%", message_toast_id);
-            //html =html.replace("%text%", stripHtml(message));
-            html =html.replace("%text%", (message));
-            html =html.replace("%title%", title);
-            html =html.replace("%time%", time_NOW());
-            html =html.replace("%hide%", hide);
-            
-            
-         
-            $('#message_container').append(html);
-            $('#message_show_id_'+message_toast_id).toast('show');
-            message_toast_id++;
-            var x = document.getElementById("beep_message"); 
-            x.load()
-            x.play();  
-        }
-
-
-
-        function time_NOW() {
-        	
-            var date = new Date();
-            var aaaa = date.getFullYear();
-            var gg = date.getDate();
-            var mm = (date.getMonth() + 1);
-
-            if (gg < 10)
-                gg = "0" + gg;
-
-            if (mm < 10)
-                mm = "0" + mm;
-
-            var cur_day = aaaa + "-" + mm + "-" + gg;
-
-            var hours = date.getHours()
-            var minutes = date.getMinutes()
-            var seconds = date.getSeconds();
-
-            if (hours < 10)
-                hours = "0" + hours;
-
-            if (minutes < 10)
-                minutes = "0" + minutes;
-
-            if (seconds < 10)
-                seconds = "0" + seconds;
-
-            return cur_day +" "+ hours + ":" + minutes + ":" + seconds;
-
-        }
-
-
-
-        
-
 </script>
 
 
@@ -826,38 +447,10 @@ function update_bar_rssi(id,value,k)
 
 <body>
 
-<audio class="my_audio" id="beep_message"  controls="false""  preload="auto" style="display:none;">
-    <source src="../beep.mp3" type="audio/mpeg">
-
-</audio>
-
-
-
-
-
-
-
-
-<div aria-live="polite" aria-atomic="true">
-
-        <!-- Position it -->
-      <div style="position: fixed; top: 0; right: 0; z-index:10; padding-top: 80px;opacity: 0 !important; padding-right: 20px;opacity: 1 !important;" id="message_container" >
-    
-    
-
-
-    </div>
-
-</div>
-
-
-
-
-
 <?php
 ?>
 <div class="w-screen ">
-    <nav class="navbar navbar-dark  text-light sidebar_collor">
+    <nav class="navbar navbar-dark bg-dark text-light">
     			<label for="selects"><?php echo _('Talkgroup filter')?>:</label><select id="selects"  class="w-25" onchange="update_filter(this.value)">
     				<option value="">-- <?php echo _('All')?> --</option>
     			</select>

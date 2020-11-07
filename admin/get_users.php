@@ -24,62 +24,6 @@ if($_SESSION['is_admin'] >0 && $_SESSION['loginid'] >0 ){
         <?php }else{?>
           <td><?php echo _('No')?></td>
         <?php }?>
-        
-       <td>
-
-<select  name="station" class="form-control" id="station_premission" onchange="chahge_premmision(this.value,<?php echo $row['id']?>)">
- <option value=""> <?php echo _('- Select station -')?></option>
-  <optgroup label="<?php echo _('User granded'); ?>">
-  
-<?php 
-$user_id= $row['id'];
-$result1 = mysqli_query($link, "SELECT * FROM User_Premission LEFT JOIN RefletorStations ON RefletorStations.ID = User_Premission.Station_id WHERE User_Premission.User_id ='$user_id' ");
-
-
-
-// Associative array
-while ($row1 = mysqli_fetch_array($result1, MYSQLI_ASSOC)) 
-{    
-    
-    $idarray[]=$row1['Station_id'];
-    
-    if($row1['RW'] == 0)
-    {
-        $rostr = ' ('._('Read only').')';
-    }
-    else
-    {
-        $rostr="";
-    }
-    
-    
-?>
-    <option value="<?php echo $row1['ID'];?>"> <?php echo $row1['Callsign'].'' .$rostr;?></option>
-<?php }?>
-   <optgroup label="<?php echo _('User not granded'); ?>">
-   
-<?php 
-$idin= join(",",$idarray);
-
-if(sizeof ($idarray) == 0)
-    $result2 = mysqli_query($link, "SELECT * FROM `RefletorStations`  WHERE Callsign !='' ");
-else
-    $result2 = mysqli_query($link, "SELECT * FROM `RefletorStations`  WHERE ID NOT IN($idin) AND Callsign !='' ");
-    unset($idarray);
-
-
-// Associative array
-while ($row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC)) 
-{    
-?>
-<option value="<?php echo $row2['ID'];?>"> <?php echo $row2['Callsign'];?></option>
-
-<?php }?>
-  </optgroup>
-</select>
-
-  
-     </td>
           <td><i class="fas fa-trash" onclick="Delete_user(<?php echo $row['id']?>)"></i> <i onclick="chahge_password(<?php echo $row['id']?>)" class="fas fa-key"></i> </td>
           </tr>
           

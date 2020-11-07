@@ -3,7 +3,6 @@ include "config.php";
 include 'function.php';
 define_settings();
 set_laguage();
-
 mysqli_set_charset($link,"utf8");
 
 ?>
@@ -210,23 +209,15 @@ function fnExcelexport(table)
 <?php if($_SESSION['is_admin'] >0 && $_SESSION['loginid'] >0 ){?>
 
    <header>
- <nav class="navbar   navbar-dark sidebar_collor">
- <div>
+ <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
    <a class="navbar-brand" href="#">
     <img src="loggo.png" alt="Logo" style="width:40px;">
 
   </a>
-
-   <a class="navbar-brand wite_font" href="#">
-   
-     SVX Portal <?php echo _('admin interface')?>
+   <a class="navbar-brand" href="#">
+     SVX Protal <?php echo _('admin interface')?>
    </a>
-   
-   </div>
-
-  <div class="topnav-right" >
-  <a href="index.php" onclick="" class="btn btn-outline-success my-2 my-sm-0" id="menu-toggle">Tillbaka</a>
-  </div>
+  ...
 </nav> 
     </header>
 
@@ -247,13 +238,6 @@ function fnExcelexport(table)
   <li class="nav-item">
     <a class="nav-link" id="users-tab" data-toggle="tab" href="#users" role="tab" aria-controls="Users" aria-selected="false"><?php echo _('Users')?></a>
   </li>
-  <?php if($reflektor_db == 1){?>
-<li class="nav-item">
-    <a class="nav-link" id="ReflektorUsers-tab" data-toggle="tab" href="#ReflektorUsers" role="tab" aria-controls="ReflektorUsers" aria-selected="false"><?php echo _('Reflektor users')?></a>
-  </li>
-  
-  <?php }?>
-  
 	<li class="nav-item">
     <a class="nav-link" id="settings-tab" data-toggle="tab" href="#Settings" role="tab" aria-controls="Settings" aria-selected="false"><?php echo _('Settings')?></a>
   </li>
@@ -275,14 +259,6 @@ function fnExcelexport(table)
   <?php include "admin/talkgroup.php";?>
   
   </div>  
-    <?php if($reflektor_db == 1){?>
-    
-    <div class="tab-pane fade" id="ReflektorUsers" role="tabpanel" aria-labelledby="ReflektorUsers-tab">
-  
-  <?php include "admin/Reflektor_users.php";?>
-  
-  </div>  
-   <?php }?>
   
   
 <div class="tab-pane fade" id="Log" role="tabpanel" aria-labelledby="Log-tab">

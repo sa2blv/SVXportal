@@ -39,9 +39,6 @@ function check_if_dead($call) {
     return $row['Station_Down'];
     
 }
-
-
-
 function check_if_dead_time($call) {
     global $conn;
     global $counter_down;
@@ -51,12 +48,10 @@ function check_if_dead_time($call) {
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
     
-    
+
     
     if($row['Station_Down'] == 1)
     {
-        
-   
         
         if($row['Station_Down_timmer_count'] >= $downtime_time)
         {
@@ -68,7 +63,6 @@ function check_if_dead_time($call) {
         {
             $sql1 ="UPDATE RefletorStations SET Station_Down_timmer_count = Station_Down_timmer_count + 1  WHERE Callsign = '".$call."'";
         }
-        $conn->query($sql1);
 
         
     }
@@ -77,8 +71,6 @@ function check_if_dead_time($call) {
     return $row['Station_Down_timmer_count'];
     
 }
-
-
 function check_if_sendmail($call) {
     global $conn;
 
@@ -90,7 +82,7 @@ function check_if_sendmail($call) {
     
     
     
-    if($row['Station_Down_timmer_count'] == ($downtime_time+1))
+    if($row['Station_Down_timmer_count'] == $downtime_time)
     {
         return 1;   
     }
@@ -98,6 +90,14 @@ function check_if_sendmail($call) {
     return 0;
     
 }
+
+
+
+
+
+
+
+
 
 
 function send_mail($email,$node,$type) 
@@ -118,7 +118,7 @@ function send_mail($email,$node,$type)
     
     $to      = SYSMATER_MAIL;
     $headers = 'From: '.SYSTEM_MAIL.'' . "\r\n" .
-        'Reply-To:'.SYSTEM_MAIL.'' . "\r\n" .
+        'Reply-To: Systemguard@svxportal.sm2ampr.net' . "\r\n" .
         'X-Mailer: PHP/' . phpversion();
     
     if($email !="")
@@ -170,7 +170,7 @@ $json = json_decode($json_data);
     wrie_to_cache($json_data);
     mysqli_set_charset($conn,"utf8");
     
-    $sql ="SELECT `Callsign` FROM RefletorStations where  Monitor=1";
+    $sql ="SELECT `Callsign` FROM RefletorStations";
     $result = $conn->query($sql);
     $i=1;
     while($row = $result->fetch_assoc())
@@ -266,7 +266,6 @@ $json = json_decode($json_data);
         
             if(SEND_MAIL_TO_SYSOP ==1)
             {
-                echo " Send mail test";
                 send_mail("",$value,1);
             }
             

@@ -48,18 +48,6 @@ function chahge_password(id)
 	return false;
 }
 
-function chahge_premmision(station,id)
-{
-
-
-
-		$("#user_page_id").val(id);
-		$("#station_page_id").val(station);
-
-	 $("#Premission").modal() 
-	return false;
-}
-
 
 
 function update_password()
@@ -71,30 +59,12 @@ function update_password()
     	.done(function( data ) {
     		alert("<?php echo _('Password is updated!')?>")
     		reaload_user_table();
-    		$('#myModal').modal('toggle'); 
 
     
     	});
 	}
 	return false;
 }
-
-function update_premission()
-{
-
-    	$.post( "admin/user_action.php", $( "#set_premission" ).serialize() )
-    	.done(function( data ) {
-    		alert("<?php echo _('Premission is updated!')?>")
-    		reaload_user_table();
-    		$('#Premission').modal('toggle'); 
-
-    
-    	});
-	
-	return false;
-}
-
-
 function user_c()
 {
 	$("#create_user_div").toggle()
@@ -244,7 +214,6 @@ function reaload_user_table()
           <th scope="col"><?php echo _('Last name')?></th>
           <th scope="col"><?php echo _('Username')?></th>
           <th scope="col"><?php echo _('Is admin')?></th>
-          <th scope="col"><?php echo _('Station permission')?></th>
           <th scope="col"><?php echo _('Action')?></th>
         </tr>
       </thead>
@@ -271,60 +240,6 @@ function reaload_user_table()
     <?php }else{?>
       <td><?php echo _('No')?></td>
     <?php }?>
-<td>
-<select  name="station" class="form-control" id="station_premission" onchange="chahge_premmision(this.value,<?php echo $row['id']?>)">
- <option value=""> <?php echo _('- Select station -')?></option>
-  <optgroup label="<?php echo _('User granded');?>">
-  
-<?php 
-$user_id= $row['id'];
-$result1 = mysqli_query($link, "SELECT * FROM User_Premission LEFT JOIN RefletorStations ON RefletorStations.ID = User_Premission.Station_id WHERE User_Premission.User_id ='$user_id' ");
-
-
-
-// Associative array
-while ($row1 = mysqli_fetch_array($result1, MYSQLI_ASSOC)) 
-{    
-    
-    $idarray[]=$row1['Station_id'];
-    if($row1['RW'] == 0)
-    {
-     $rostr = ' ('._('Read only').')';   
-    }
-    else
-    {
-        $rostr="";
-    }
-
-?>
-    <option value="<?php echo $row1['ID'];?>"> <?php echo $row1['Callsign'].'' .$rostr;?> </option>
-<?php }?>
-   <optgroup label="<?php echo _('User not granded'); ?>">
-   
-<?php 
-$idin= join(",",$idarray);
-
-if(sizeof ($idarray) == 0)
-    $result2 = mysqli_query($link, "SELECT * FROM `RefletorStations`  WHERE Callsign !='' ");
-    else
-        $result2 = mysqli_query($link, "SELECT * FROM `RefletorStations`  WHERE ID NOT IN($idin) AND Callsign !='' ");
-unset($idarray);
-        
-
-
-
-// Associative array
-while ($row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC)) 
-{    
-?>
-<option value="<?php echo $row2['ID'];?>"> <?php echo $row2['Callsign'];?></option>
-
-<?php }?>
-  </optgroup>
-</select>
-
-  
-     </td>
       <td><i class="fas fa-trash" onclick="Delete_user(<?php echo $row['id']?>)"></i> <i onclick="chahge_password(<?php echo $row['id']?>)" class="fas fa-key"></i> </td>
       </tr>
       
@@ -337,55 +252,6 @@ while ($row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC))
   </tbody>
 </table>
 </div>
-
-  <!-- Modal -->
-<div id="Premission" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-            
-            <h4 class="modal-title"><?php echo _('Assign station permission for user') ?></h4>
-            
-          </div>
-      <form id="set_premission" onsubmit="return update_premission()">
-    	<div class="modal-body">
-       
-
-      <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="readuser" name="readuser" value="1">
-        <label class="form-check-label" for="readuser"><?php echo _('Read only acsess')?></label>
-      </div>
-  
-       <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="writeuser" name="writeuser" value="1" >
-        <label class="form-check-label" for="writeuser"><?php echo _('Write acsess')?></label>
-      </div>    
-     
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="reaload_user_table();"><?php echo _('Close')?></button>
-        <button type="submit" class="btn btn-default"><?php echo _('Update')?></button>
-      </div>
-      
-	<input type="hidden" name="user_id" id="user_page_id" value=""> 
-	<input type="hidden" name="station_page_id" id="station_page_id"" value=""> 
-	<input type="hidden" name="Assignpermission"  value="1"> 
-      
-       </form>
-       
-       
-          
-      </div>
-
-  </div>
-
-</div>
-  
-  
-  
-
-
 
 <!-- Trigger the modal with a button -->
 
@@ -420,12 +286,4 @@ while ($row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC))
     </div>
 
   </div>
-  
-  
-
-  
-  
-  
-  
-  
 </div>
