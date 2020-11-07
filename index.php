@@ -253,108 +253,176 @@ function create_bar_rx(value,element,rx_sql)
 		context.fillRect(1, 1 , width-3,8);
 	
 }
+var old_json_pass = "";
+var totalSeconds =  new Array();
+var current_talker= new Array();
+
 
 function call_svxrefelktor() {
 var node_count =0;
 var talkgroups_active = new Array();
+
 $.getJSON( "<?php echo $serveradress ?>", function( data ) {
 
 
 	//console.log(data);
-	for(var k in data.nodes){
+for(var k in data.nodes)
+{
 		
 	    if(data.nodes[k].hidden == true)
 	    {
 	    	delete data.nodes[k];
-	    	
 	    }
+}
+
+	
+	
+
+//$('#Reflektortable').html('
+// create first dryrun
+var dryrun =0;
+if(old_json_pass =="")
+{
+	old_json_pass = data;
+	dryrun=1;
+	
+}
+var clear =0;
+// Reinit_table_sort
+if(Object.keys( data.nodes).length > Object.keys( old_json_pass.nodes).length)
+{
+	$("#Reflektortable > tbody").empty("");
+	dryrun=1;
+	
+}
+
+
+
+		
+for(var k in data.nodes)
+{
+
+	if($('#Reflektortable_row_'+k).length == 0)
+	{
+		$('#Reflektortable > tbody ').append('<tr id ="Reflektortable_row_'+k+'"></tr>');
+
 	}
 
 	
-	
 
-$('#Reflektortable').html('<tr class="dash_header"><th><?php echo _("Callsign")?></th><th><?php echo _("TG#")?></th><th><?php echo _("Is talker")?></th><th><?php echo _("Monitored TGs")?></th><th class="d-none d-md-table-cell" ><?php echo _("Start talk")?></th><th class="d-none d-md-table-cell" ><?php echo _("Talk time")?></th></tr>');
+}
+$('tr[id^="Reflektortable_row"]').each(function( index ) {
+
+  var elenent_id=$( this ).attr('id');
+  res = elenent_id.split("_");
+
+  var nodes = data.nodes;
+  if(!nodes.hasOwnProperty(res[2]))
+  {
+	  $( this ).addClass('table-warning text-muted');
+  }
+  else
+  {
+	  $( this ).removeClass('table-warning text-muted');
+  }
+
+  
+
+  
+});
 
 
 for(var k in data.nodes){
 	node_count++;
 	var text =" ";
-	for(var nodes in data.nodes[k].monitoredTGs){
-	
-	   text = text  +data.nodes[k].monitoredTGs[nodes].toString() +" "
-	  
-	}
 
-		var image= '<img src="images/talking.gif" alt="talk" id="talking" width="25px">';	
-		if(talkgroups_active[data.nodes[k].tg] == undefined)
-			talkgroups_active[data.nodes[k].tg]  =1;
-		else
-			talkgroups_active[data.nodes[k].tg] =talkgroups_active[data.nodes[k].tg] +1;
 
-		
-     if(get_push == "1")
-     {
-         
 
-            if(station_talkgroup[k] == undefined )
-            {
-            	station_talkgroup[k] = data.nodes[k].tg;
-            }
-
-    		if(station_talkgroup[k] != data.nodes[k].tg)
-    		{
-    			if(data.nodes[k].isTalker == true)
-    			{
-        			create_message_toast("Started to talk on TG# "+data.nodes[k].tg,"Station "+k+"",0,"green","true");
-        			station_talkgroup[k] = data.nodes[k].tg;
-    			}
-    
-    		}
-    		else
-    		{
-    			if(data.nodes[k].isTalker == true)
-    			{
-    				station_talkgroup[k] = data.nodes[k].tg;
-    			}
-    
-    		}
-     }
-		
-       if(data.nodes[k].isTalker == false)
-	{
-	  $('#Reflektortable').append('<tr><td class="text-nowrap">'+k+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td class="red_collor"><?php echo _("NO")?></td><td class="text-primary">'+text+'</td><td></td><td></td></tr>');
-	  if(current_talker == k)
-	  {
-		totalSeconds=0;
-	  }	
-
-	}
+	if(talkgroups_active[data.nodes[k].tg] == undefined)
+		talkgroups_active[data.nodes[k].tg]  =1;
 	else
-	{
-		
-         $('#Reflektortable').append('<tr class="table-info"><td class="text-nowrap">'+k+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td class="green_collor" ><?php echo _("YES")?></td><td class="text-primary">'+text+'</td><td><label id="Start_talk"></label></td><td  class="d-none d-md-table-cell" ><label id="minutes">00</label>:<label id="seconds">00</label></td></tr>');
-           ++totalSeconds;
-		var minutesLabel = document.getElementById("minutes");
-       	var secondsLabel = document.getElementById("seconds");
-       	var Start_talk_element = document.getElementById("Start_talk");
-       	
-		current_talker = k;
-            secondsLabel.innerHTML = pad(totalSeconds%60);
-            minutesLabel.innerHTML = pad(parseInt(totalSeconds/60));
+		talkgroups_active[data.nodes[k].tg] =talkgroups_active[data.nodes[k].tg] +1;
 
+	
 
-            
+	if((JSON.stringify(data.nodes[k]) != JSON.stringify(old_json_pass.nodes[k]) || dryrun == 1 || data.nodes[k].isTalker == true))
+    	{
+    	for(var nodes in data.nodes[k].monitoredTGs){
+    	
+    	   text = text  +data.nodes[k].monitoredTGs[nodes].toString() +" "
+    	  
+    	}
+    
+    		var image= '<img src="images/talking.gif" alt="talk" id="talking" width="25px">';	
 
-            var d = new Date();
-            d.setSeconds(d.getSeconds() - totalSeconds);
-            var h = addZero(d.getHours());
-            var m = addZero(d.getMinutes());
-            var s = addZero(d.getSeconds());
-            Start_talk_element.innerHTML = h + ":" + m + ":" + s;
-            
-      
- 
-	}
+    
+    		
+         if(get_push == "1")
+         {
+             
+    
+                if(station_talkgroup[k] == undefined )
+                {
+                	station_talkgroup[k] = data.nodes[k].tg;
+                }
+    
+        		if(station_talkgroup[k] != data.nodes[k].tg)
+        		{
+        			if(data.nodes[k].isTalker == true)
+        			{
+            			create_message_toast("Started to talk on TG# "+data.nodes[k].tg,"Station "+k+"",0,"green","true");
+            			station_talkgroup[k] = data.nodes[k].tg;
+        			}
+        
+        		}
+        		else
+        		{
+        			if(data.nodes[k].isTalker == true)
+        			{
+        				station_talkgroup[k] = data.nodes[k].tg;
+        			}
+        
+        		}
+         }
+       
+    		
+        if(data.nodes[k].isTalker == false)
+    	{
+        	$('#Reflektortable_row_'+k).removeClass( "table-info" );
+        	$('#Reflektortable_row_'+k).html('<td class="text-nowrap">'+k+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td class="red_collor"><?php echo _("NO")?></td><td class="text-primary">'+text+'</td><td></td><td></td>');
+
+    	 	 totalSeconds[k]=0;
+    
+    	}
+    	else
+    	{
+    		//tr class="table-info">
+    		$('#Reflektortable_row_'+k).html('<td class="text-nowrap">'+k+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td class="green_collor" ><?php echo _("YES")?></td><td class="text-primary">'+text+'</td><td><label id="Start_talk_'+k+'"></label></td><td  class="d-none d-md-table-cell" ><label id="minutes_'+k+'">00</label>:<label id="seconds_'+k+'">00</label></td>');
+    		$('#Reflektortable_row_'+k).addClass( "table-info" );
+    
+             totalSeconds[k]++;
+    		var minutesLabel = document.getElementById("minutes_"+k);
+           	var secondsLabel = document.getElementById("seconds_"+k);
+           	var Start_talk_element = document.getElementById("Start_talk_"+k);
+           	
+    		current_talker = k;
+                secondsLabel.innerHTML = pad(totalSeconds[k]%60);
+                minutesLabel.innerHTML = pad(parseInt(totalSeconds[k]/60));
+    
+    
+                
+    
+                var d = new Date();
+                d.setSeconds(d.getSeconds() - totalSeconds);
+                var h = addZero(d.getHours());
+                var m = addZero(d.getMinutes());
+                var s = addZero(d.getSeconds());
+                Start_talk_element.innerHTML = h + ":" + m + ":" + s;
+                
+          
+     
+    	}
+    }
 }
 
 
@@ -368,6 +436,8 @@ for(var k in talkgroups_active)
 
 
 $("#menuNodeCount").html(node_count);
+
+old_json_pass = data;
 interval = setTimeout(call_svxrefelktor, 1000);   
 });
 
@@ -1550,12 +1620,11 @@ ul.dropdown-lr {
                     
                     	<div id="Reflektortable_div"> 
 					<table id="Reflektortable" class="table table-sm">
-					<tr class="thead-dark">
-						<th><?php echo _("Callsign")?></th>
-						<th><?php echo _("TG")?></th>
-						<th><?php echo _("Ver")?></th>
-						<th><?php echo _("TGs")?></th>
-					</tr>
+					<thead>
+					<tr class="dash_header"><th><?php echo _("Callsign")?></th><th><?php echo _("TG#")?></th><th><?php echo _("Is talker")?></th><th><?php echo _("Monitored TGs")?></th><th class="d-none d-md-table-cell" ><?php echo _("Start talk")?></th><th class="d-none d-md-table-cell" ><?php echo _("Talk time")?></th></tr>
+					</thead>
+					<tbody>
+					</tbody>
 					</table>
 					
 					                  <div class="mt-4 text-center small">
@@ -1568,6 +1637,11 @@ ul.dropdown-lr {
                     <span class="mr-2">
                       <i class="fas fa-circle text-info"></i> <?php echo _('Talker')?>
                     </span>
+					<span class="mr-2">
+                      <i class="fas fa-circle text-warning"></i> <?php echo _('Dropped')?>
+         		 </span> 
+
+
                   </div>
                   
                   
@@ -2937,6 +3011,7 @@ function get_year_static()
 
 
 
+	
 	$.get( "get_statistics.php", { date: date_value, mouth:"true", filterpicker_repeater_year: select1, filterpicker_talgroup_year: select2} )
 	  .done(function( data ) {
 			console.log(data);

@@ -276,6 +276,7 @@ function generate_coulor()
     
 }
 var filter_station = "";
+var old_json_pass="";
 function update_filter(value) {
 	filter_station = value;
 //	$('#Reflektortable').html("<th>Callsign</th><th>TG</th><th>Ver</th><th>Monitored TGs</th>");
@@ -286,7 +287,7 @@ function update_filter(value) {
 }
 
 
-
+dryrun=1;
 
 function call_svxrefelktor() {
 	
@@ -301,6 +302,48 @@ $.getJSON( "<?php echo $serveradress ?>", function( data ) {
     		
     	}
 	}
+if(dryrun == 1)
+{
+	old_json_pass=data;
+	
+}
+
+$('tr[id^="row"]').each(function( index ) {
+
+	  var elenent_id=$( this ).attr('id');
+	  res = elenent_id.replace("row", "");
+
+	  var nodes = data.nodes;
+	  var parent_paent;
+	  parent_paent =$( this).parent().attr('id');
+	 
+
+	  if(typeof parent_paent === 'undefined' || parent_paent === null)
+	  {
+	   	  if(!nodes.hasOwnProperty(res))
+    	  {
+
+    		  console.log($( this).parent().attr('id'));
+    		  $( this ).addClass('table-warning text-muted');
+    	  }
+    	  else
+    	  {
+    		  $( this ).removeClass('table-warning text-muted');
+    	  }
+		  
+
+	  }
+	  else
+	  {
+
+	  }
+});
+
+
+	  
+
+
+	
 	//console.log(data);
 	
 
@@ -376,8 +419,22 @@ for(var k in data.nodes){
            	
     		if(data.nodes[k].isTalker == false)
     		{
-	 	  		$('#row'+printk+'').html('<td>'+k+'</td>'+'<td>'+data.nodes[k].NodeLocation+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td class="">'+rssi_str+'<canvas id="bar_'+printk+'"></canvas></td><td id="reciver_'+printk+'">  </td></td><td id="value_k'+printk+'">0%</td><td id="freq_row'+printk+'"></td><td class="flex-nowrap"> - </td>');
+
+    			if((JSON.stringify(data.nodes[k]) != JSON.stringify(old_json_pass.nodes[k]) ) )
+    	    	{
+        	    	console.log(rssi_str);
+
+        	    	
+
+        		var new_html = '<td>'+k+'</td>'+'<td>'+data.nodes[k].NodeLocation+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td class="">'+rssi_str+'<canvas id="bar_'+printk+'"></canvas></td><td id="reciver_'+printk+'">  </td></td><td id="value_k'+printk+'">0%</td><td id="freq_row'+printk+'"></td><td class="flex-nowrap"> - </td>'
+  
+    			 			
+	 	  		$('#row'+printk+'').html(new_html);
 	 	  		$('#row'+printk+'').removeClass("font-weight-bold");
+	 	  		
+    	    	}
+    	
+    		
 	 	  		
     			
     		}
@@ -416,19 +473,34 @@ for(var k in data.nodes){
 	    		$('#row'+remove_notgouiltychar(k)+'').addClass("table-secondary");
 	    	}
 	    	
-	    	create_bar('bar_'+remove_notgouiltychar(k));
-	    	
     		if(mqtt_station_array[k])
     		{
+    			rssi_str1 ='<canvas id="bar_RSSI_'+printk+'"></canvas><br />';
+    			rssi_str1 =rssi_str1+ ' <canvas id="bar_'+printk+'"></canvas>';
+    			
+    			$('#rssi_canas_'+printk).html(rssi_str1);
+
+    			
     			create_bar_rssi('bar_RSSI_'+remove_notgouiltychar(k));
     			
     		}
+
+    		
+	    	
+	    	create_bar('bar_'+remove_notgouiltychar(k));
+	    	
+
     		//create_bar_rssi('bar_RSSI_'+remove_notgouiltychar(k));
 	    	
     	 }
     	 else
     	 {
-	  		$('#Reflektortable').append('<tbody class="table-striped"><tr data-toggle="collapse" data-target="#group-of-'+printk+'" aria-expanded="false" aria-controls="group-of-'+printk+'" class="" id="row'+printk+'"><td>'+k+'</td>'+'<td>'+data.nodes[k].NodeLocation+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td ><canvas id="bar_RSSI_'+printk+'"></canvas><canvas id="bar_'+printk+'"></canvas></td><td id="reciver_'+printk+'">  </td><td id="value_k'+printk+'">0%</td></td><td id="freq_row'+printk+'"></td><td class="flex-nowrap"><label id="minutes_'+data.nodes[k].tg+'"></label><label id="seconds_'+data.nodes[k].tg+'"></label></td> </tr> </tbody>');
+
+
+
+    		
+        	 
+	  		$('#Reflektortable').append('<tbody class="table-striped"><tr data-toggle="collapse" data-target="#group-of-'+printk+'" aria-expanded="false" aria-controls="group-of-'+printk+'" class="" id="row'+printk+'"><td>'+k+'</td>'+'<td>'+data.nodes[k].NodeLocation+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td id="rssi_canas_'+printk+'"> <canvas id="bar_'+printk+'"></canvas></td><td id="reciver_'+printk+'">  </td><td id="value_k'+printk+'">0%</td></td><td id="freq_row'+printk+'"></td><td class="flex-nowrap"><label id="minutes_'+data.nodes[k].tg+'"></label><label id="seconds_'+data.nodes[k].tg+'"></label></td> </tr> </tbody>');
 	  		create_bar('bar_'+printk);
 	  		//create_bar_rssi('bar_RSSI_'+printk)
 	    }
@@ -560,6 +632,8 @@ for(var k in data.nodes){
     }
 
     }
+    	old_json_pass=data;
+    	dryrun=0;
 });
     
        
