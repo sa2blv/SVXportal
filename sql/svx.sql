@@ -2,10 +2,10 @@
 -- version 4.6.6deb5
 -- https://www.phpmyadmin.net/
 --
--- VÃ¤rd: localhost
--- Tid vid skapande: 22 maj 2020 kl 22:02
--- Serverversion: 5.7.30-0ubuntu0.18.04.1
--- PHP-version: 7.2.24-0ubuntu0.18.04.4
+-- Värd: localhost
+-- Tid vid skapande: 07 nov 2020 kl 17:41
+-- Serverversion: 5.7.32-0ubuntu0.18.04.1
+-- PHP-version: 7.2.24-0ubuntu0.18.04.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Databas: `testinstall`
+-- Databas: `svxinstall`
 --
 
 -- --------------------------------------------------------
@@ -47,6 +47,21 @@ CREATE TABLE `Daylog` (
 -- --------------------------------------------------------
 
 --
+-- Tabellstruktur `Dtmf_command`
+--
+
+CREATE TABLE `Dtmf_command` (
+  `id` int(11) NOT NULL,
+  `Station_Name` varchar(90) NOT NULL,
+  `Station_id` int(11) NOT NULL,
+  `Command` varchar(20) NOT NULL,
+  `Description` text NOT NULL,
+  `Category` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Tabellstruktur `Filter`
 --
 
@@ -55,6 +70,35 @@ CREATE TABLE `Filter` (
   `JSON` text NOT NULL,
   `Filter` text NOT NULL,
   `Namn` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur `Infotmation_page`
+--
+
+CREATE TABLE `Infotmation_page` (
+  `id` int(11) NOT NULL,
+  `Station_Name` varchar(20) NOT NULL,
+  `Station_id` int(11) NOT NULL,
+  `Html` text NOT NULL,
+  `Hardware_page` text NOT NULL,
+  `Image` varchar(90) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur `Operation_log`
+--
+
+CREATE TABLE `Operation_log` (
+  `id` int(11) NOT NULL,
+  `Station_id` int(11) NOT NULL,
+  `Type` int(11) NOT NULL,
+  `Date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Message` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -91,7 +135,8 @@ CREATE TABLE `RefletorStations` (
   `Collor` text,
   `Last_Seen` datetime DEFAULT NULL,
   `Station_Down` int(11) NOT NULL,
-  `Station_Down_timmer_count` int(11) NOT NULL
+  `Station_Down_timmer_count` int(11) NOT NULL,
+  `Monitor` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -126,7 +171,7 @@ CREATE TABLE `Settings` (
 --
 
 INSERT INTO `Settings` (`id`, `Define`, `value`, `Name`, `type`) VALUES
-(1, 'PORTAL_VERSION', '2.3', 'protal version number ', 0),
+(1, 'PORTAL_VERSION', '2.4', 'protal version number ', 1),
 (2, 'HIDE_LANGUGE_BAR', '0', 'Hide the languge bar', 1),
 (3, 'USE_CUSTOM_SIDBAR_HEADER', '0', 'Use Custom header in sidebar', 1),
 (4, 'iframe_documentation_url', 'http://sk3w.se/dokuwiki/doku.php?id=svxreflector&do=export_xhtml', 'External dokumentation page', 2),
@@ -135,7 +180,12 @@ INSERT INTO `Settings` (`id`, `Define`, `value`, `Name`, `type`) VALUES
 (7, 'PLAYER_TALKGROUP_DEFAULT', '240', 'The default talkgroup for Recording statistic', 2),
 (8, 'SEND_MAIL_TO_SYSOP', '0', 'Send an email to sysop when the node goes down', 1),
 (9, 'SYSMATER_MAIL', 'info@a.se', 'Mail to system administrator', 2),
-(10, 'SYSTEM_MAIL', 'info@a.se', 'E-mail adress for the system', 2);
+(10, 'SYSTEM_MAIL', 'info@a.se', 'E-mail adress for the system', 2),
+(11, 'REFLEKTOR_SERVER_ADRESS', '127.0.0.1', 'Server adresss to svxreflektor', 2),
+(12, 'REFLEKTOR_SERVER_PORT', '5300', 'Svxreflektor server port ', 2),
+(13, 'API_KEY_TINY_CLOUD', 'no-api', 'TinyMCE Cloud API KEY', 2),
+(14, 'HIDE_MONITOR_BAR', '0', ' Hide the Monitor bar', 1),
+(15, 'USE_NODE_ADMIN_NOTIFICATION', '0', '\"Beta\" Node admin notfication', 1);
 
 -- --------------------------------------------------------
 
@@ -173,31 +223,62 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `Username`, `Password`, `level`, `Is_admin`, `Firstname`, `lastname`) VALUES
 (1, 'svxportal', 'cd4d75d7a6c085717688aab7c626847e', 3, 1, 'svxportal', 'install');
 
+-- --------------------------------------------------------
+
 --
--- Index fÃ¶r dumpade tabeller
+-- Tabellstruktur `User_Premission`
+--
+
+CREATE TABLE `User_Premission` (
+  `id` int(11) NOT NULL,
+  `Station_id` int(11) NOT NULL,
+  `User_id` int(11) NOT NULL,
+  `RW` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Index för dumpade tabeller
 --
 
 --
--- Index fÃ¶r tabell `covrige`
+-- Index för tabell `covrige`
 --
 ALTER TABLE `covrige`
   ADD PRIMARY KEY (`Id`);
 
 --
--- Index fÃ¶r tabell `Daylog`
+-- Index för tabell `Daylog`
 --
 ALTER TABLE `Daylog`
   ADD PRIMARY KEY (`ID`),
   ADD UNIQUE KEY `ID` (`ID`);
 
 --
--- Index fÃ¶r tabell `Filter`
+-- Index för tabell `Dtmf_command`
+--
+ALTER TABLE `Dtmf_command`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index för tabell `Filter`
 --
 ALTER TABLE `Filter`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index fÃ¶r tabell `RefletorNodeLOG`
+-- Index för tabell `Infotmation_page`
+--
+ALTER TABLE `Infotmation_page`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index för tabell `Operation_log`
+--
+ALTER TABLE `Operation_log`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index för tabell `RefletorNodeLOG`
 --
 ALTER TABLE `RefletorNodeLOG`
   ADD PRIMARY KEY (`Id`),
@@ -212,7 +293,7 @@ ALTER TABLE `RefletorNodeLOG`
   ADD KEY `Id` (`Id`);
 
 --
--- Index fÃ¶r tabell `RefletorStations`
+-- Index för tabell `RefletorStations`
 --
 ALTER TABLE `RefletorStations`
   ADD PRIMARY KEY (`ID`),
@@ -220,64 +301,90 @@ ALTER TABLE `RefletorStations`
   ADD KEY `Callsign_2` (`Callsign`);
 
 --
--- Index fÃ¶r tabell `repeater`
+-- Index för tabell `repeater`
 --
 ALTER TABLE `repeater`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index fÃ¶r tabell `Settings`
+-- Index för tabell `Settings`
 --
 ALTER TABLE `Settings`
   ADD PRIMARY KEY (`id`),
   ADD KEY `Define` (`Define`);
 
 --
--- Index fÃ¶r tabell `Talkgroup`
+-- Index för tabell `Talkgroup`
 --
 ALTER TABLE `Talkgroup`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Index fÃ¶r tabell `users`
+-- Index för tabell `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT fÃ¶r dumpade tabeller
+-- Index för tabell `User_Premission`
+--
+ALTER TABLE `User_Premission`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT för dumpade tabeller
 --
 
 --
--- AUTO_INCREMENT fÃ¶r tabell `covrige`
+-- AUTO_INCREMENT för tabell `covrige`
 --
 ALTER TABLE `covrige`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT fÃ¶r tabell `Daylog`
+-- AUTO_INCREMENT för tabell `Daylog`
 --
 ALTER TABLE `Daylog`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT fÃ¶r tabell `Filter`
+-- AUTO_INCREMENT för tabell `Dtmf_command`
+--
+ALTER TABLE `Dtmf_command`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT för tabell `Filter`
 --
 ALTER TABLE `Filter`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT fÃ¶r tabell `Settings`
+-- AUTO_INCREMENT för tabell `Infotmation_page`
+--
+ALTER TABLE `Infotmation_page`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT för tabell `Operation_log`
+--
+ALTER TABLE `Operation_log`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT för tabell `Settings`
 --
 ALTER TABLE `Settings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
--- AUTO_INCREMENT fÃ¶r tabell `Talkgroup`
+-- AUTO_INCREMENT för tabell `Talkgroup`
 --
 ALTER TABLE `Talkgroup`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT fÃ¶r tabell `users`
+-- AUTO_INCREMENT för tabell `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT för tabell `User_Premission`
+--
+ALTER TABLE `User_Premission`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

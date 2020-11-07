@@ -7,20 +7,14 @@ header("Content-Disposition: attachment; filename=".$_POST['Software']."-".date(
 header("Pragma: no-cache");
 header("Expires: 0");
 
-?>
-					This page was generated in <?php echo(number_format(microtime(true) - $start_time, 2)); ?> seconds.
 
-<?php 
 
 $json_data = file_get_contents($serveradress);
 $json = json_decode($json_data);
 
 
 
-?>
-					This page was generated in <?php echo(number_format(microtime(true) - $start_time, 2)); ?> seconds.
 
-<?php 
 //echo '<pre>';
 //var_dump($json->nodes->SK3W->qth[0]->rx);
 
@@ -56,7 +50,7 @@ if($_POST['index'])
 
 foreach($_POST['Stationexpot'] as $box)
 {
-    if(is_numeric(substr($box, -1)))
+    if(is_numeric(substr($box, -1))  && strpos($box, "-") === false)
     {
         $dubbelnode = substr($box, 0, -1) ;
     
@@ -149,7 +143,7 @@ foreach($json->nodes as $st => $station)
         {
            // 0,test,146.010000,,600.000000,TSQL,88.5,88.5,023,NN,FM,5.00,,,,,,
            
-            if(is_numeric(substr($st, -1)))
+            if(is_numeric(substr($st, -1)) && strpos($st, "-") === false)
             {
                 $st= substr($st, 0, -1);
             }

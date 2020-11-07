@@ -192,9 +192,9 @@ if($noheader != 1){?>
 
   
   
-      <nav class="navbar navbar-expand-lg navbar-light  bg-light" style="background-color: #e3f2fd;">
+      <nav class="navbar navbar-expand-sm navbar-light  bg-light" style="background-color: #e3f2fd;">
 		
-		<a class="navbar-brand" href="#"><?php echo _('CTSS map table')?></a>
+		<a class="navbar-brand" href="#"><?php echo _('CTCSS Map table')?></a>
 		
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -202,7 +202,7 @@ if($noheader != 1){?>
 
 
 
-           <li class="nav-item">
+           <li class="nav-item  d-none d-lg-inline-flex">
         
              
         <a class="nav-link " href="#" id="navbarDropdownMenuLink" onclick="PrintElem('print_export_log','<?php echo _('CTSS map table')?>')" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -211,7 +211,7 @@ if($noheader != 1){?>
         </a>
              
         </li>
-        <li>
+        <li class=" d-none d-lg-inline-flex">
                 <a class="nav-link " href="#" id="navbarDropdownMenuLink" onclick="fnExcelexport('ctcss_data_table')" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
              <i class="far fa-file-excel"></i>
           <?php echo _('Export xls')?>
@@ -220,9 +220,6 @@ if($noheader != 1){?>
         
 
   
-        	<a href="#menu-toggle" class="nav-link"" onclick="toogle_menu()"><i class="fab fa-elementor"></i> <?php echo _('Toggle menu')?></a>
-        </li>
-        
         
 
         
@@ -245,8 +242,9 @@ if($noheader != 1){?>
   
   <form action="Get_Node_CSV.php" method="POST" onsubmit="return validate_export()"  target="_blank">
   <div id="print_export_log">
-  <table class="table table-hover" id="ctcss_data_table" >
-    <thead>
+
+  <table class="table table-hover table-sm" id="ctcss_data_table" >
+    <thead class="dash_header">
       <tr>
         <th> </th>
         <th><?php echo _("Callsign")?></th>
@@ -276,6 +274,9 @@ if($noheader != 1){?>
 
      
         <?php 
+
+        
+        
         foreach(  $station_array  as $station => $st_object)
         {
             if(!$_GET['hiddeexport'])
@@ -283,7 +284,7 @@ if($noheader != 1){?>
             else
                 $chechbox ="";
             
-                if(is_numeric(substr($station, -1)))
+                if(is_numeric(substr($station, -1)) && strpos($station, "-") === false)
                 {
                     $station= substr($station, 0, -1);
                 }
@@ -332,7 +333,7 @@ if($noheader != 1){?>
             <input class="form-control" type="number" value="0" name="index" id="numberinpuet">
           </div>
           
-          <label for="countrypre" class="col-2 col-form-label"><?php echo _("Use thre last char in call")?></label>
+          <label for="countrypre" class="col-2 col-form-label"><?php echo _("Use three last char in call")?></label>
           <div class="col-10">
             <input class="form-control" type="checkbox" value="1" name="trimc" id="countrypre">
           </div>

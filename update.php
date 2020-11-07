@@ -57,7 +57,34 @@ foreach($tables as $mydata => $value)
 
 if($settings_nedel == 1) 
 {
-    echo "Allready upgraded to 2.3";
+
+    $sql = "SELECT value FROM Settings where Define = 'PORTAL_VERSION'";
+    $result = $mysqli -> query($sql);
+    
+    $data = $result -> fetch_array();
+
+    if($data['value'] == "2.3")
+    {
+        $sql = file_get_contents('sql/update 2.4.sql');
+
+        /* execute multi query */
+        
+        if ($mysqli->multi_query($sql))
+        {
+            echo "successfull upgrade to 2.4 db";
+
+        }
+        
+        
+        
+    }
+    else
+    {
+        echo "successfull upgrade  db";
+        echo "pleace log in on admin.php with usernme svxportal and password svxportal and change the password";
+        
+    }
+
 
         
         

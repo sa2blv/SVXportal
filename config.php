@@ -27,5 +27,29 @@ $default_lat ="62.676160";
 $default_long ="17.633479";
 $default_zoom =5;
 
+// default tg player
+//$default_tg_player = 240;
+
+// Default date
+//$start_date_defined ="2020-01-12";
+
+// Mysql_Reflektor
+$reflektor_db = 1 ;
+
+$reflektor_db_host =	 	"127.0.0.1";
+$reflektor_db_user = 	"";
+$reflektor_db_password = 	"";
+$reflektor_db_db = 		"";
+
+
+$use_mqtt=False;
+$mqtt_host = "";
+$mqtt_port = "";
+$mqtt_TLS = "";
+
+
+
+
+
 
 ?>

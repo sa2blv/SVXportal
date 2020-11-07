@@ -181,8 +181,8 @@ if(read_cache() != $json_data)
                         
                         $sql_insert = "INSERT INTO `RefletorNodeLOG` (`Id`, `Callsign`, `Type`, `Active`, `Talkgroup`, `NODE`, `Siglev`, `Duration`, `IsTalker`, `Time`,`Nodename`,`Talktime`) 
                                        VALUES (NULL, '$key', '2', '".$Rx->active."', '$value->tg', '$station', '".$Rx->siglev."', '0', '1', CURRENT_TIMESTAMP,'".$qth_value->name."','0');";
-        
-                        $conn->query($sql_insert);
+                        //if($value->tg == PLAYER_TALKGROUP_DEFAULT)
+                            $conn->query($sql_insert);
                     }
                     
                     
