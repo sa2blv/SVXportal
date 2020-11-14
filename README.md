@@ -2,6 +2,8 @@
 
 A web portal for SVXlink reflector
 
+
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
@@ -10,11 +12,11 @@ These instructions will get you a copy of the project up and running on your loc
 
 
 ```
-php5 > 
-mysql
-apache2 or ngnx
-
-
+* php5 and larger
+* mysql
+* apache2 or ngnx
+* crontab
+* screen 
 ```
 
 Step 1: Update your system
@@ -33,18 +35,34 @@ Step 5: Install Phpmyadmin(for database)
 
 sudo apt-get install phpmyadmin
 
+Alternativly use the combined lamp server 
+
+sudo tasksel install lamp-server
+
 ```
 
 ### Installing
 
-Login to phpmyadmin and create user for svxreflektor with a database
-install the sql file in the sql folder
-and add username and password to config.php
+1. clone or donload the files to your www location
+   ex /var/www/html.
 
-add adress to svxrefector proxy to config.php
+2. run the install.php from your browser
+this requirer that you hav setup an database / user in mysql 
 
-edit the $url parameter in the reflektorproxy/index.php director to match the 
-SVXreflector server.
+3. add this line to your corntab
+
+@reboot sleep 60 && screen  -d -m bash -c  'cd /var/www/ ; watch -n 1  php logdeamon.php;'
+@reboot sleep 60 && screen  -d -m bash -c  'cd /var/www/ ; watch -n 20  php station_heartbeat.php;'
+
+
+please note that the folder /var/www/ shall be your instalation folder.
+
+4. reboot or manualy start 
+
+screen  -d -m bash -c  'cd /var/www/ ; watch -n 20  php station_heartbeat.php;'
+screen  -d -m bash -c  'cd /var/www/ ; watch -n 1  php logdeamon.php;'
+
+
 
 
 
