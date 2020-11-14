@@ -34,9 +34,9 @@ Step 4: Install PHP (php7.0 latest version of PHP)
 
 sudo apt-get install libapache2-mod-php7.0 php7.0 php7.0-common php7.0-curl php7.0-dev php7.0-gd php-pear php-imagick php7.0-mcrypt php7.0-mysql php7.0-ps php7.0-xsl
 Step 5: Install Phpmyadmin(for database)
-```
 
 sudo apt-get install phpmyadmin
+```
 
 Alternativly use the combined lamp server 
 
