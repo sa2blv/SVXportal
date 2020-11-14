@@ -1,7 +1,8 @@
 # SVXportal
 
-A web portal for SVXlink reflector
+![Test Image 1](https://svxportal.sm2ampr.net/portalimage_git.png)
 
+A web portal for SVXlink reflector
 
 
 ## Getting Started
