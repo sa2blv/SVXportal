@@ -63,10 +63,7 @@ screen  -d -m bash -c  'cd /var/www/ ; watch -n 20  php station_heartbeat.php;'
 screen  -d -m bash -c  'cd /var/www/ ; watch -n 1  php logdeamon.php;'
 
 
-
-
-
-
+```
 
 ## License
 
