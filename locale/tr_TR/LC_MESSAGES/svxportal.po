@@ -6,64 +6,504 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-27 15:19+0200\n"
-"PO-Revision-Date: 2020-05-16 00:51+0300\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3.1\n"
-"Last-Translator: \n"
+"X-Generator: Poedit 2.4.2\n"
+"Last-Translator: TA3CP Haluk <ta3cp@yahoo.com>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Language: tr_TR\n"
 
-#: ctcss_map_table.php:186
-msgid "CTSS map table"
-msgstr "CTSS tablosu"
+#: SVXprotal-master/src/jquery-ui.min.js:10
+msgid "'"
+msgstr "'"
 
-#: ctcss_map_table.php:192 index.php:187 index.php:623 list_reciver.php:55
+#: admin.php:222
+msgid "admin interface"
+msgstr "Yönetici arabirimi"
+
+#: admin.php:237 admin/stations.php:40 admin/stations.php:50
+msgid "Stations"
+msgstr "İstasyonlar"
+
+#: admin.php:240 admin/talkgroup.php:75 index.php:4177 index1.php:4135
+#: index_old.php:3161 indexa.php:3162 requset_reflector_login.php:1019
+msgid "Talkgroup"
+msgstr "Konuşma Grubu"
+
+#: admin.php:244 admin/log.php:80
+msgid "Fault log"
+msgstr "Hata kaydı"
+
+#: admin.php:248 admin/users.php:117
+msgid "Users"
+msgstr "Kulanıcılar"
+
+#: admin.php:252
+msgid "Reflektor users"
+msgstr "Reflector kullanıcıları"
+
+#: admin.php:258 admin/Settings.php:76 edit_station.php:431
+msgid "Settings"
+msgstr "Ayarlar"
+
+#: admin/Reflektor_users.php:25 admin/users.php:16
+msgid "User created sucsessfully!"
+msgstr "Kullanıcı başarı ile oluşturuldu!"
+
+#: admin/Reflektor_users.php:41 admin/talkgroup.php:25 admin/users.php:31
+msgid "Please confirm user removal"
+msgstr "Kullanıcıyı silmeyi onaylayın"
+
+#: admin/Reflektor_users.php:57
+msgid "Please confirm user enable"
+msgstr "Kullanıcıyı aktifleştirmeyi onaylayın"
+
+#: admin/Reflektor_users.php:60
+msgid "Please confirm user disable"
+msgstr "Kullanıcıyı devre dışı bırakmayı onaylayın"
+
+#: admin/Reflektor_users.php:95 admin/users.php:72
+msgid "Password is updated!"
+msgstr "Parola değiştirildi!"
+
+#: admin/Reflektor_users.php:179
+msgid "Please enter your message"
+msgstr "Lütfen mesajınızı girin"
+
+#: admin/Reflektor_users.php:187 admin/Reflektor_users.php:207
+msgid "Message sent"
+msgstr "Mesaj gönderildi"
+
+#: admin/Reflektor_users.php:236
+msgid "Reflector users"
+msgstr "Reflector kullanıcıları"
+
+#: admin/Reflektor_users.php:246 admin/users.php:127
+msgid "Print Users"
+msgstr "Kullanıcıları yazdır"
+
+#: admin/Reflektor_users.php:248 admin/log.php:109 admin/stations.php:52
+#: admin/talkgroup.php:87 admin/users.php:129 ctcss_map_table.php:210
+#: index.php:1400 index.php:1793 index.php:3831 index1.php:1358 index1.php:1751
+#: index_old.php:772 index_old.php:1057 indexa.php:773 indexa.php:1058
+#: log.php:107
+msgid "Print"
+msgstr "Yazdır"
+
+#: admin/Reflektor_users.php:255 admin/log.php:116 admin/stations.php:59
+#: admin/talkgroup.php:94 admin/users.php:136 ctcss_map_table.php:217
+#: index.php:1395 index1.php:1353 index_old.php:779 index_old.php:1064
+#: indexa.php:780 indexa.php:1065 log.php:114
+msgid "Export xls"
+msgstr "xls olarak dışarı aktar"
+
+#: admin/Reflektor_users.php:262 admin/Reflektor_users.php:284
+#: admin/Reflektor_users.php:356 admin/users.php:143 admin/users.php:174
+#: admin/users.php:226 database_text.php:13
+msgid "Create user"
+msgstr "Kullanıcı oluştur"
+
+#: admin/Reflektor_users.php:288 admin/login.php:36 admin/users.php:178
+#: admin/users.php:245 index.php:1233 index.php:1234 index.php:3802
+#: index.php:3959 index1.php:1191 index1.php:1192 index1.php:3760
+#: index1.php:3917 index_old.php:3045 indexa.php:3046
+msgid "Username"
+msgstr "Kullanıcı adı"
+
+#: admin/Reflektor_users.php:296
+msgid "Generate Username"
+msgstr "Kullanıcı oluştur"
+
+#: admin/Reflektor_users.php:303 admin/Reflektor_users.php:484
+#: admin/login.php:43 admin/users.php:186 admin/users.php:406 index.php:1237
+#: index.php:3975 index1.php:1195 index1.php:3933
+#: requset_reflector_login.php:506 requset_reflector_login.php:509
+#: requset_reflector_login.php:1001
+msgid "Password"
+msgstr "Parola"
+
+#: admin/Reflektor_users.php:311 admin/Reflektor_users.php:490
+#: requset_reflector_login.php:512
+msgid "Generate password"
+msgstr "Parola oluştur"
+
+#: admin/Reflektor_users.php:323 admin/Reflektor_users.php:375
+#: admin/talkgroup.php:122 admin/talkgroup.php:164 edit_station.php:920
+#: edit_station.php:1033 edit_station.php:1117 requset_reflector_login.php:528
+#: requset_reflector_login.php:531 station_info.php:144
+msgid "Description"
+msgstr "Açıklama"
+
+#: admin/Reflektor_users.php:334 admin/Reflektor_users.php:376
+msgid "E-mail"
+msgstr "E-mail"
+
+#: admin/Reflektor_users.php:351 admin/Reflektor_users.php:377 index.php:2057
+#: index1.php:2015 index_old.php:1331 indexa.php:1332
+msgid "Enable"
+msgstr "Aktifleştir"
+
+#: admin/Reflektor_users.php:373
+msgid "Station login"
+msgstr "İstasyon giriş"
+
+#: admin/Reflektor_users.php:374
+msgid "Station password"
+msgstr "İstasyon parolası"
+
+#: admin/Reflektor_users.php:378 admin/users.php:248 database_text.php:15
+#: edit_station.php:922
+msgid "Action"
+msgstr "Aksiyon"
+
+#: admin/Reflektor_users.php:411 admin/Settings.php:25
+#: admin/get_reflector.php:35 admin/get_station.php:34 admin/get_users.php:23
+#: admin/stations.php:130 admin/users.php:270 database_text.php:17
+msgid "Yes"
+msgstr "Evet"
+
+#: admin/Reflektor_users.php:413 admin/Settings.php:19
+#: admin/get_reflector.php:37 admin/get_station.php:36 admin/get_users.php:25
+#: admin/stations.php:132 admin/users.php:272 database_text.php:16
+msgid "No"
+msgstr "Hayır"
+
+#: admin/Reflektor_users.php:436 admin/get_reflector.php:58
+msgid "Select action"
+msgstr "Aksiyon seç"
+
+#: admin/Reflektor_users.php:438 admin/get_reflector.php:60
+msgid "Enable user"
+msgstr "Kullanıcı aktifleştir"
+
+#: admin/Reflektor_users.php:440 admin/get_reflector.php:62
+msgid "Disable user"
+msgstr "Kullanıcıyı devre dışı bırak"
+
+#: admin/Reflektor_users.php:442 admin/get_reflector.php:64
+msgid "Send message to Sysadmin"
+msgstr "Sysadmin e mesaj gönder"
+
+#: admin/Reflektor_users.php:443 admin/get_reflector.php:65
+msgid "Send login credentaial to sysadmin"
+msgstr "Giriş bilgilerini Sysadmin e gönder"
+
+#: admin/Reflektor_users.php:444 admin/Reflektor_users.php:478
+#: admin/users.php:400
+msgid "Change user password"
+msgstr "Kullanıcı parolasını değiştir"
+
+#: admin/Reflektor_users.php:496 admin/stations.php:171 admin/talkgroup.php:221
+#: admin/users.php:367 admin/users.php:416 edit_station.php:692
+#: edit_station.php:1085 edit_station.php:1163 index.php:69 index.php:2072
+#: index1.php:69 index1.php:2030 index_old.php:59 indexa.php:60
+msgid "Close"
+msgstr "Kapat"
+
+#: admin/Reflektor_users.php:497 admin/stations.php:65 admin/stations.php:172
+#: admin/talkgroup.php:222 admin/users.php:368 admin/users.php:417
+#: edit_station.php:1156
+msgid "Update"
+msgstr "Güncelle"
+
+#: admin/Settings.php:67
+msgid "Settings is saved!"
+msgstr "Ayarlar kaydedildi!"
+
+#: admin/Settings.php:113 edit_station.php:459 edit_station.php:562
+#: edit_station.php:837
+msgid "Save"
+msgstr "Kaydet"
+
+#: admin/get_reflector.php:66
+msgid "Change node password"
+msgstr "Node parolasını değiştir"
+
+#: admin/get_users.php:31 admin/users.php:276
+msgid "- Select station -"
+msgstr "- İstasyon seçiniz  -"
+
+#: admin/get_users.php:32 admin/users.php:277
+msgid "User granded"
+msgstr "Kullanıcı yetkilendirildi"
+
+#: admin/get_users.php:48 admin/users.php:292
+msgid "Read only"
+msgstr "Salt okunur"
+
+#: admin/get_users.php:59 admin/users.php:302
+msgid "User not granded"
+msgstr "Kullanıcı yetkilendirilmedi"
+
+#: admin/log.php:89 log.php:87
+msgid "Page size"
+msgstr "Sayfa boyutu"
+
+#: admin/log.php:107 admin/talkgroup.php:85 log.php:105
+msgid "Log print"
+msgstr "Kayıtları yazdır"
+
+#: admin/log.php:138 index.php:424 index.php:1596 index1.php:395
+#: index1.php:1554 log.php:133
+msgid "Live"
+msgstr "Canlı"
+
+#: admin/log.php:142 admin/log.php:143 log.php:137 log.php:138
+msgid "Search"
+msgstr "Ara"
+
+#: admin/log.php:203 edit_station.php:677 edit_station.php:707 index.php:4240
+#: index1.php:4198 index_old.php:3202 indexa.php:3203 log.php:207
+#: station_info.php:190
+msgid "Date"
+msgstr "Tarih"
+
+#: admin/log.php:204 index.php:4276 index1.php:4234 index_old.php:3234
+#: indexa.php:3235 log.php:208 map_pick.php:93 requset_reflector_login.php:732
+msgid "Station"
+msgstr "İstasyon"
+
+#: admin/log.php:205 log.php:209
+msgid "Event"
+msgstr "Olay"
+
+#: admin/log.php:237 log.php:228
+msgid "is Talker on tg"
+msgstr "kg içinde konuşan mı"
+
+#: admin/log.php:239 log.php:230
+msgid "Stoped talk tg"
+msgstr "konuşması sonlanan KG"
+
+#: admin/log.php:243 driver/card/blv30.php:304 log.php:234
+msgid "Reciver"
+msgstr "Alıcı"
+
+#: admin/log.php:245 log.php:236
+msgid " is active signal level"
+msgstr "aktif sinyal seviyesi"
+
+#: admin/log.php:247 log.php:238
+msgid "has signal level"
+msgstr "sinyal seviyesi"
+
+#: admin/log.php:253 log.php:244
+msgid "Node"
+msgstr "Node"
+
+#: admin/log.php:255 log.php:246
+msgid "has dropt from reflektor"
+msgstr "reflektörden bağlantısı kesildi"
+
+#: admin/log.php:257 log.php:248
+msgid "has connected to  reflektor"
+msgstr "reflektöre bağlandı"
+
+#: admin/log.php:275
+msgid "Previous"
+msgstr "Önceki"
+
+#: admin/login.php:13 index.php:694 index1.php:665 index_old.php:504
+#: indexa.php:505
+msgid "Wrong username or password"
+msgstr "Kullanıcı adı veya parola hatalı"
+
+#: admin/login.php:27
+msgid "Sign In"
+msgstr "Giriş"
+
+#: admin/login.php:47 index.php:1335 index1.php:1293 index_old.php:696
+#: indexa.php:697
+msgid "Login"
+msgstr "Giriş"
+
+#: admin/stations.php:91 ctcss_map_table.php:249 index.php:258 index.php:1416
+#: index.php:1820 index1.php:253 index1.php:1374 index1.php:1778
+#: index_old.php:209 index_old.php:806 index_old.php:1098 indexa.php:210
+#: indexa.php:807 indexa.php:1099 list_reciver.php:58 list_reciver_2.php:58
+#: list_reciver_old.php:55 requset_reflector_login.php:387
+#: requset_reflector_login.php:518 requset_reflector_login.php:992
 msgid "Callsign"
-msgstr "Çağrı işareti"
+msgstr "Çağrı İşareti"
 
-#: ctcss_map_table.php:193 div_reciver.php:94 index.php:1056
-#: list_reciver.php:55
-msgid "Frequency"
-msgstr "Frekans"
-
-#: ctcss_map_table.php:194 index.php:1029 list_reciver.php:55
+#: admin/stations.php:92 ctcss_map_table.php:251 index.php:2029 index1.php:1987
+#: index_old.php:1303 indexa.php:1304 list_reciver.php:58 list_reciver_2.php:58
+#: list_reciver_old.php:55
 msgid "Location"
 msgstr "Konum"
 
-#: ctcss_map_table.php:200
+#: admin/stations.php:93 database_text.php:18
+msgid "Last seen"
+msgstr "Son görülme"
+
+#: admin/stations.php:94
+msgid "Station down"
+msgstr "İstasyon çevrimdışı"
+
+#: admin/stations.php:95 admin/stations.php:161 admin/talkgroup.php:131
+#: admin/talkgroup.php:167 admin/talkgroup.php:211 index.php:1823
+#: index1.php:1781 index_old.php:924 index_old.php:1101 indexa.php:925
+#: indexa.php:1102
+msgid "Color"
+msgstr "Renk"
+
+#: admin/stations.php:155 admin/talkgroup.php:205
+msgid "Change station color"
+msgstr "İstasyon rengini değiştir"
+
+#: admin/talkgroup.php:47
+msgid "talkgroup created!"
+msgstr "konuşma grubu oluşturuldu"
+
+#: admin/talkgroup.php:110 admin/talkgroup.php:146
+msgid "Create talkgroup"
+msgstr "Konuşma grubu oluştur"
+
+#: admin/talkgroup.php:114 admin/talkgroup.php:163 index.php:258 index.php:1818
+#: index1.php:253 index1.php:1776 index_old.php:209 index_old.php:1096
+#: indexa.php:210 indexa.php:1097 list_reciver.php:58 list_reciver_2.php:58
+#: list_reciver_old.php:55 requset_reflector_login.php:590
+msgid "TG#"
+msgstr "KG#"
+
+#: admin/talkgroup.php:142 admin/users.php:206 admin/users.php:244
+#: database_text.php:12
+msgid "Last name"
+msgstr "Son adı"
+
+#: admin/talkgroup.php:166 index.php:1941 index1.php:1899 index_old.php:1211
+#: indexa.php:1212
+msgid "Actions"
+msgstr "Aksiyonlar"
+
+#: admin/users.php:87
+msgid "Premission is updated!"
+msgstr "Yetkiler güncellendi!"
+
+#: admin/users.php:195 admin/users.php:243 database_text.php:11
+msgid "First name"
+msgstr "Adı"
+
+#: admin/users.php:221
+msgid "User is admin"
+msgstr "Kullanıcı yöneticidir"
+
+#: admin/users.php:246 database_text.php:14
+msgid "Is admin"
+msgstr "Yönetici mi"
+
+#: admin/users.php:247
+msgid "Station permission"
+msgstr "İstasyon yetkileri"
+
+#: admin/users.php:347
+msgid "Assign station permission for user"
+msgstr "Kullanıcı için istasyon yetkileri ata"
+
+#: admin/users.php:356
+msgid "Read only acsess"
+msgstr "Salt okunur erişim"
+
+#: admin/users.php:361
+msgid "Write acsess"
+msgstr "Yazma yetkisi"
+
+#: ctcss_map_table.php:197 ctcss_map_table.php:208
+msgid "CTSS map table"
+msgstr "CTCS eşleşme tablosu"
+
+#: ctcss_map_table.php:250 div_reciver.php:94 index.php:2056 index1.php:2014
+#: index_old.php:1330 indexa.php:1331 list_reciver.php:58 list_reciver_2.php:58
+#: list_reciver_old.php:55
+msgid "Frequency"
+msgstr "Frekans"
+
+#: ctcss_map_table.php:257
 msgid "Local"
 msgstr "Yerel"
 
-#: ctcss_map_table.php:260
+#: ctcss_map_table.php:318
 msgid "Software"
 msgstr "Yazılım"
 
-#: ctcss_map_table.php:274
+#: ctcss_map_table.php:327
+msgid "CSV index"
+msgstr "CSV indeks"
+
+#: ctcss_map_table.php:332
 msgid "Use thre last char in call"
 msgstr "Çağrıda son üç karakteri kullan"
 
-#: ctcss_map_table.php:279
+#: ctcss_map_table.php:337
 msgid "Export"
-msgstr "Dışa Aktar"
+msgstr "Dışarı aktar"
 
-#: div_reciver.php:8 index.php:830 list_reciver.php:455
+#: database_text.php:2
+msgid "Hide the languge bar"
+msgstr "Dil menüsünü gizle"
+
+#: database_text.php:3
+msgid "Use Custom header in sidebar"
+msgstr "Kenar çubuğunda özel üstbilgi kullan"
+
+#: database_text.php:4
+msgid "External dokumentation page"
+msgstr "Harici dokümantasyon sayfası"
+
+#: database_text.php:5
+msgid "Use login for player"
+msgstr "player ı kullanmak için giriş yapmalısınız"
+
+#: database_text.php:6
+msgid "Use external dokumentation page"
+msgstr "Harici dokümantasyon sayfası kullan"
+
+#: database_text.php:7
+msgid "The default talkgroup for Recording statistic"
+msgstr "Kayıt istatistikleri için varsayılan konuşma grubu"
+
+#: database_text.php:8
+msgid "Send an email to sysop when the node goes down"
+msgstr "node çevrim dışı olduğunda sistem yöneticisine email gönder"
+
+#: database_text.php:9
+msgid "Mail to system administrator"
+msgstr "Sistem yöneticisine E-mail gönder"
+
+#: database_text.php:10
+msgid "E-mail adress for the system"
+msgstr "Sistem için E-mail adresi"
+
+#: database_text.php:19
+msgid "color"
+msgstr "renk"
+
+#: database_text.php:21
+msgid "Hide the Monitor bar"
+msgstr "Monitör menüsünü gizle"
+
+#: div_reciver.php:8 index.php:1754 index1.php:1712 index_old.php:1024
+#: indexa.php:1025 list_reciver.php:724 list_reciver_2.php:669
+#: list_reciver_old.php:459
 msgid "All"
 msgstr "Tümü"
 
 #: div_reciver.php:85
 msgid "Signal values at"
-msgstr "Sinyal değerleri"
+msgstr "Sinyal değeri"
 
-#: div_reciver.php:94 list_reciver.php:55
+#: div_reciver.php:94 list_reciver.php:58 list_reciver_2.php:58
+#: list_reciver_old.php:55
 msgid "Receiver"
-msgstr "İstasyon"
+msgstr "Alıcı"
 
-#: div_reciver.php:94 index.php:729 list_reciver.php:55
+#: div_reciver.php:94 index.php:1650 index1.php:1608 index_old.php:912
+#: indexa.php:913 list_reciver.php:58 list_reciver_2.php:58
+#: list_reciver_old.php:55
 msgid "Signal"
 msgstr "Sinyal"
 
@@ -71,306 +511,965 @@ msgstr "Sinyal"
 msgid "Mhz"
 msgstr "Mhz"
 
-#: index.php:187 index.php:624 index.php:851 list_reciver.php:55
-msgid "TG"
-msgstr "KG"
+#: driver/card/blv30.php:81
+msgid "Card"
+msgstr "Kart"
 
-#: index.php:187
+#: driver/card/blv30.php:87
+msgid "RSSI"
+msgstr "RSSI"
+
+#: driver/card/blv30.php:92
+msgid "S-Value"
+msgstr "S-değeri"
+
+#: driver/card/blv30.php:96
+msgid "Tempeure"
+msgstr "Sıcaklık"
+
+#: driver/card/blv30.php:101
+msgid "SWR alarm"
+msgstr "SWR alarm"
+
+#: driver/card/blv30.php:105
+msgid "AC alarm"
+msgstr "AC alarm"
+
+#: driver/card/blv30.php:108
+msgid "PA alarm"
+msgstr "PA alarm"
+
+#: driver/card/blv30.php:283
+msgid "Tempeture"
+msgstr "Sıcaklık"
+
+#: driver/card/blv30.php:329
+msgid "Battery"
+msgstr "Batarya"
+
+#: driver/card/blv30.php:333
+msgid "alarm"
+msgstr "alarm"
+
+#: edit_station.php:132 edit_station.php:148
+msgid "Page is saved"
+msgstr "Sayfa kaydedildi"
+
+#: edit_station.php:160
+msgid "Settings is saved"
+msgstr "Ayarlar kaydedildi"
+
+#: edit_station.php:174
+msgid "Ticket is created"
+msgstr "Yardım isteği oluşturuldu"
+
+#: edit_station.php:358
+msgid "Premission Denied!"
+msgstr "Yetkiniz yok!"
+
+#: edit_station.php:382
+msgid "Station editor"
+msgstr "İstasyon güzenleyici"
+
+#: edit_station.php:392 list_reciver.php:727 list_reciver_2.php:672
+#: list_reciver_old.php:462 requset_reflector_login.php:346
+msgid "Back"
+msgstr "Geri"
+
+#: edit_station.php:404 station_info.php:77
+msgid "Information"
+msgstr "Bilgi"
+
+#: edit_station.php:407 station_info.php:78
+msgid "Hardware"
+msgstr "Donanım"
+
+#: edit_station.php:411
+msgid "DTMF commands"
+msgstr "DTMF komutları"
+
+#: edit_station.php:415 station_info.php:79
+msgid "Operating information"
+msgstr "Çalışma bilgileri"
+
+#: edit_station.php:425
+msgid "Driver dashboard"
+msgstr "Sürücü paneli"
+
+#: edit_station.php:496 requset_reflector_login.php:450
+msgid "Send command to node"
+msgstr "node için komut gönder"
+
+#: edit_station.php:504 edit_station.php:1029 edit_station.php:1113
+#: requset_reflector_login.php:458
+msgid "DTMF command"
+msgstr "DTMF komutu"
+
+#: edit_station.php:512 requset_reflector_login.php:466
+msgid "Scheduled date"
+msgstr "Planlanan tarih"
+
+#: edit_station.php:516 requset_reflector_login.php:470
+msgid "Send commnd to repeater"
+msgstr "Röleye komut gönder"
+
+#: edit_station.php:627 edit_station.php:902
+msgid "New"
+msgstr "Yeni"
+
+#: edit_station.php:645
+msgid "New ticket"
+msgstr "Yeni yardım isteği"
+
+#: edit_station.php:660
+msgid "Text"
+msgstr "Metin"
+
+#: edit_station.php:667 function.php:211
+msgid "Info"
+msgstr "Bilgi"
+
+#: edit_station.php:668 function.php:212
+msgid "Warning"
+msgstr "Uyarı"
+
+#: edit_station.php:669 function.php:213
+msgid "Fault"
+msgstr "Hata"
+
+#: edit_station.php:670 function.php:214
+msgid "Done"
+msgstr "Tamam"
+
+#: edit_station.php:693 edit_station.php:1078
+msgid "Create"
+msgstr "Oluştur"
+
+#: edit_station.php:708 station_info.php:191
+msgid "Message"
+msgstr "Mesaj"
+
+#: edit_station.php:709 edit_station.php:921 edit_station.php:1038
+#: edit_station.php:1125 station_info.php:192
+msgid "Category"
+msgstr "Kategori"
+
+#: edit_station.php:773
+msgid "Radio Image"
+msgstr "Cihaz resmi"
+
+#: edit_station.php:775 edit_station.php:806
+msgid "None"
+msgstr "Hiçbiri"
+
+#: edit_station.php:804
+msgid "Driver"
+msgstr "Sürücü"
+
+#: edit_station.php:919 station_info.php:80
+msgid "DTMF"
+msgstr "DTMF"
+
+#: edit_station.php:939 edit_station.php:999
+msgid "Command is created"
+msgstr "Komut oluşturuldu"
+
+#: edit_station.php:1021
+msgid "New DTMF Command "
+msgstr "Yeni DTMF komutu"
+
+#: edit_station.php:1105
+msgid "Edit DTMF Command "
+msgstr "DTMF komutunu düzenle"
+
+#: function.php:198
+msgid "General"
+msgstr "Genel"
+
+#: function.php:199
+msgid "Echolink"
+msgstr "Echolink"
+
+#: function.php:200
+msgid "Reflektor"
+msgstr "Reflektor"
+
+#: function.php:201
+msgid "Shortcut"
+msgstr "Kısayol"
+
+#: function.php:202
+msgid "Macro"
+msgstr "Makro"
+
+#: index.php:70 index1.php:70 index_old.php:60 indexa.php:61
+msgid "Today"
+msgstr "Bugün"
+
+#: index.php:71 index.php:2833 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
+msgid "January"
+msgstr "Ocak"
+
+#: index.php:71 index.php:2833 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
+msgid "February"
+msgstr "Şubat"
+
+#: index.php:71 index.php:2833 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
+msgid "March"
+msgstr "Mart"
+
+#: index.php:71 index.php:2833 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
+msgid "April"
+msgstr "Nisan"
+
+#: index.php:71 index.php:2833 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
+msgid "May"
+msgstr "Mayıs"
+
+#: index.php:71 index.php:2833 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
+msgid "June"
+msgstr "Haziran"
+
+#: index.php:71 index.php:2833 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
+msgid "July"
+msgstr "Temmuz"
+
+#: index.php:71 index.php:2833 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
+msgid "August"
+msgstr "Ağustos"
+
+#: index.php:71 index.php:2833 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
+msgid "September"
+msgstr "Eylül"
+
+#: index.php:71 index.php:2833 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
+msgid "October"
+msgstr "Ekim"
+
+#: index.php:71 index.php:2833 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
+msgid "November"
+msgstr "Kasım"
+
+#: index.php:71 index.php:2833 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
+msgid "December"
+msgstr "Aralık"
+
+#: index.php:72 index1.php:72 index_old.php:62 indexa.php:63
+msgid "Su"
+msgstr "Paz"
+
+#: index.php:72 index1.php:72 index_old.php:62 indexa.php:63
+msgid "Mo"
+msgstr "Pzt"
+
+#: index.php:72 index1.php:72 index_old.php:62 indexa.php:63
+msgid "Tu"
+msgstr "Sal"
+
+#: index.php:72 index1.php:72 index_old.php:62 indexa.php:63
+msgid "We"
+msgstr "Çrş"
+
+#: index.php:72 index1.php:72 index_old.php:62 indexa.php:63
+msgid "Th"
+msgstr "Per"
+
+#: index.php:72 index1.php:72 index_old.php:62 indexa.php:63
+msgid "Fr"
+msgstr "Cum"
+
+#: index.php:72 index1.php:72 index_old.php:62 indexa.php:63
+msgid "Sa"
+msgstr "Cmt"
+
+#: index.php:73 index1.php:73 index_old.php:63 indexa.php:64
+msgid "Monday"
+msgstr "Pazartesi"
+
+#: index.php:73 index1.php:73 index_old.php:63 indexa.php:64
+msgid "Tuesday"
+msgstr "Salı"
+
+#: index.php:73 index1.php:73 index_old.php:63 indexa.php:64
+msgid "Wednesday"
+msgstr "Çarşamba"
+
+#: index.php:73 index1.php:73 index_old.php:63 indexa.php:64
+msgid "Thursday"
+msgstr "Perşembe"
+
+#: index.php:73 index1.php:73 index_old.php:63 indexa.php:64
+msgid "Friday"
+msgstr "Cuma"
+
+#: index.php:73 index1.php:73 index_old.php:63 indexa.php:64
+msgid "Saturday"
+msgstr "Cumartesi"
+
+#: index.php:73 index1.php:73 index_old.php:63 indexa.php:64
+msgid "Sunday"
+msgstr "Pazar"
+
+#: index.php:145 index1.php:145 index_old.php:129 indexa.php:130
+msgid "No data"
+msgstr "Veri yok"
+
+#: index.php:258 index1.php:253 index_old.php:209 indexa.php:210
 msgid "Is talker"
-msgstr "konuşan mı"
+msgstr "Konuşan mı"
 
-#: index.php:187
+#: index.php:258 index1.php:253 index_old.php:209 indexa.php:210
 msgid "Monitored TGs"
 msgstr "İzlenen KG"
 
-#: index.php:187 list_reciver.php:55
+#: index.php:258 index1.php:253
+msgid "Start talk"
+msgstr "Konuşma başlama"
+
+#: index.php:258 index.php:4241 index1.php:253 index1.php:4199
+#: index_old.php:209 index_old.php:3203 indexa.php:210 indexa.php:3204
+#: list_reciver.php:58 list_reciver_2.php:58 list_reciver_old.php:55
 msgid "Talk time"
 msgstr "Konuşma zamanı"
 
-#: index.php:187
-msgid "Active RX"
-msgstr "Aktif RX"
-
-#: index.php:199
+#: index.php:301 index1.php:272 index_old.php:221 indexa.php:222
 msgid "NO"
-msgstr "Hayır"
+msgstr "HAYIR"
 
-#: index.php:208
+#: index.php:311 index1.php:282 index_old.php:230 indexa.php:231
 msgid "YES"
 msgstr "EVET"
 
-#: index.php:489
-msgid "Login sucsess"
-msgstr "Giriş Başarılı"
+#: index.php:441 index1.php:412
+msgid "Pleace select station"
+msgstr "Lütfen istasyon seçiniz"
 
-#: index.php:491
-msgid "Wrong username or password"
-msgstr "Kullanıcı adı veya parola hatalı"
+#: index.php:1146 index1.php:1104
+msgid "Select your language"
+msgstr "Dil seçiniz"
 
-#: index.php:532
-msgid "Reflector clients"
-msgstr "Reflector istemcileri"
+#: index.php:1149 index1.php:1107
+msgid "English"
+msgstr "İngilizce"
 
-#: index.php:534
-msgid "Monitor"
-msgstr "İzle"
+#: index.php:1151 index1.php:1109
+msgid "Swedish"
+msgstr "İsveç"
 
-#: index.php:536
-msgid "System description"
-msgstr "Sistem açıklaması"
+#: index.php:1154 index1.php:1112
+msgid "Norwegian"
+msgstr "Norveç"
 
-#: index.php:538 index.php:1030
-msgid "Talkgroups"
-msgstr "Konuşma Grupları"
+#: index.php:1156 index1.php:1114
+msgid "Ukrainian"
+msgstr "Ukrayna"
 
-#: index.php:540
-msgid "List receiver"
-msgstr "Alıcıları listele"
+#: index.php:1158 index1.php:1116
+msgid "Italian"
+msgstr "Italyanca"
 
-#: index.php:543
-msgid "Statistics"
-msgstr "İstatistikler"
+#: index.php:1160 index1.php:1118
+msgid "Turkish"
+msgstr "Türkçe"
 
-#: index.php:548
-msgid "Receivers"
-msgstr "Alıcılar"
+#: index.php:1198 index1.php:1156
+msgid "Admin interface"
+msgstr "Yönetici arabirimi"
 
-#: index.php:550
-msgid "Log"
-msgstr "Kayıtlar"
+#: index.php:1207 index1.php:1165
+msgid "Sign out"
+msgstr "Çıkış"
 
-#: index.php:552
-msgid "CTCSS map table"
-msgstr "CTCSS tablosu"
-
-#: index.php:561
-msgid "Map"
-msgstr "Harita"
-
-#: index.php:563
-msgid "Login"
-msgstr "Giriş"
-
-#: index.php:625
-msgid "Ver"
-msgstr "Ver"
-
-#: index.php:626
-msgid "TGs"
-msgstr "KGları"
-
-#: index.php:637
-msgid "QSO Monitor"
-msgstr "QSO izleyici"
-
-#: index.php:689
-msgid "repeat"
-msgstr ""
-
-#: index.php:690
-msgid "shuffle"
-msgstr "karıştır"
-
-#: index.php:691
-msgid "full screen"
-msgstr "tam ekran"
-
-#: index.php:715
-msgid "Listen LIVE"
-msgstr "CANLI Dinle"
-
-#: index.php:717 index.php:832 index.php:841 index.php:974
-msgid "Toggle menu"
-msgstr "Menüyü kapat aç"
-
-#: index.php:719
-msgid "Select date to listen"
-msgstr "Dinleyeceğiniz tarih"
-
-#: index.php:721
-msgid "to use player you must login"
-msgstr "player ı kullanmak için giriş yapmalısınız"
-
-#: index.php:730
-msgid "Signal value  from Reciver"
-msgstr "Alıcıdan gelen sinyal değeri"
-
-#: index.php:738 index.php:852
-msgid "Name"
-msgstr "Ad"
-
-#: index.php:739
-msgid "Openings"
-msgstr "Açılıyor"
-
-#: index.php:740 index.php:2696
-msgid "Uptime"
-msgstr "Çalışma süresi"
-
-#: index.php:741 index.php:856
-msgid "Color"
-msgstr "Renk"
-
-#: index.php:853
-msgid "Last active"
-msgstr "Son Aktif Olan"
-
-#: index.php:854
-msgid "Time"
-msgstr "Zaman"
-
-#: index.php:855
-msgid "Time Total"
-msgstr "Süre"
-
-#: index.php:927
-msgid "Coverage"
-msgstr "Kapsama"
-
-#: index.php:930
-msgid "Show"
-msgstr "Göster"
-
-#: index.php:931
-msgid "Remove"
-msgstr "Sil"
-
-#: index.php:937
-msgid "Actions"
-msgstr "İşlemler"
-
-#: index.php:955
-msgid "Remove bars"
-msgstr "Çubukları sil"
-
-#: index.php:957
-msgid "Remove ALL stations"
-msgstr "Tüm istasyonları sil"
-
-#: index.php:958
-msgid "Show Receivers"
-msgstr "Alıcıları göster"
-
-#: index.php:963
-msgid "Toggle AutoFollow"
-msgstr "Otomatik izleyi kapat aç"
-
-#: index.php:969
-msgid "Reload Map"
-msgstr "Haritayı yenile"
-
-#: index.php:1013
-msgid "Station info for"
-msgstr "İstasyon bilgisi"
-
-#: index.php:1031
-msgid "Version"
-msgstr "Versiyon"
-
-#: index.php:1032
-msgid "CurrentTG"
-msgstr "Mevcut KG"
-
-#: index.php:1033
-msgid "Sysop"
-msgstr "Sysop"
-
-#: index.php:1054
-msgid "RX Name"
-msgstr "RX Adı"
-
-#: index.php:1055
-msgid "SqlType"
-msgstr "SQL Tipi"
-
-#: index.php:1057
-msgid "Enable"
-msgstr "Etkinleştir"
-
-#: index.php:1800
-msgid "Talkgroup activity"
-msgstr "Konuşma Grubu activitesi"
-
-#: index.php:1944
-msgid "Reflektor time in S"
-msgstr "Reflektor zamanı S olarak"
-
-#: index.php:1968
-msgid "Hour activity "
-msgstr "Aktivite süresi "
-
-#: index.php:2156
-msgid "Station activity"
-msgstr "İstasyon aktivitesi"
-
-#: index.php:2613
-msgid "Username"
-msgstr "Kullanıcı"
-
-#: index.php:2614
-msgid "password"
-msgstr "parola"
-
-#: index.php:2615
+#: index.php:1222 index.php:1229 index.php:1241 index.php:3804 index1.php:1180
+#: index1.php:1187 index1.php:1199 index1.php:3762 index_old.php:3047
+#: indexa.php:3048
 msgid "Log In"
 msgstr "Giriş"
 
-#: index.php:2630
-msgid "Statistics for Network"
-msgstr "Network için istatistikler"
+#: index.php:1238 index.php:3803 index1.php:1196 index1.php:3761
+#: index_old.php:3046 indexa.php:3047
+msgid "password"
+msgstr "parola"
 
-#: index.php:2642
+#: index.php:1281 index.php:1398 index1.php:1239 index1.php:1356
+#: index_old.php:665 index_old.php:770 indexa.php:666 indexa.php:771
+msgid "Reflector clients"
+msgstr "Reflector istemcileri"
+
+#: index.php:1288 index1.php:1246 index_old.php:667 indexa.php:668
+msgid "Monitor"
+msgstr "İzle"
+
+#: index.php:1295 index1.php:1253
+msgid "Station informtation"
+msgstr "İstasyon bilgileri"
+
+#: index.php:1298 index1.php:1256 index_old.php:669 indexa.php:670
+msgid "System description"
+msgstr "Sistem açıklaması"
+
+#: index.php:1300 index.php:1780 index.php:1791 index.php:2030 index.php:4052
+#: index1.php:1258 index1.php:1738 index1.php:1749 index1.php:1988
+#: index1.php:4010 index_old.php:671 index_old.php:1045 index_old.php:1055
+#: index_old.php:1304 indexa.php:672 indexa.php:1046 indexa.php:1056
+#: indexa.php:1305
+msgid "Talkgroups"
+msgstr "Konuşma Grupları"
+
+#: index.php:1302 index1.php:1260 index_old.php:673 indexa.php:674
+msgid "List receiver"
+msgstr "Alıcıları listele"
+
+#: index.php:1305 index1.php:1263 index_old.php:676 indexa.php:677
+msgid "Statistics"
+msgstr "İstatistikler"
+
+#: index.php:1308 index1.php:1266 index_old.php:683 indexa.php:684 log.php:78
+msgid "Log"
+msgstr "Kayıtlar"
+
+#: index.php:1313 index1.php:1271 index_old.php:681 indexa.php:682
+msgid "Receivers"
+msgstr "Alıcılar"
+
+#: index.php:1320 index1.php:1278 index_old.php:685 indexa.php:686
+msgid "CTCSS map table"
+msgstr "CTCSS eşleşme tablosu"
+
+#: index.php:1324 index1.php:1282
+msgid "My stations"
+msgstr "İstasyonlarım"
+
+#: index.php:1333 index1.php:1291 index_old.php:694 indexa.php:695
+msgid "Map"
+msgstr "Harita"
+
+#: index.php:1386 index1.php:1344
+msgid "Active Nodes"
+msgstr "Aktif node lar"
+
+#: index.php:1392 index1.php:1350
+msgid "Action menu"
+msgstr "Aksiyon menüsü"
+
+#: index.php:1417 index.php:1460 index1.php:1375 index1.php:1418
+#: index_old.php:807 indexa.php:808
+msgid "TG"
+msgstr "KG"
+
+#: index.php:1418 index1.php:1376 index_old.php:808 indexa.php:809
+msgid "Ver"
+msgstr "Ver"
+
+#: index.php:1419 index1.php:1377 index_old.php:809 indexa.php:810
+msgid "TGs"
+msgstr "KG"
+
+#: index.php:1431 index1.php:1389
+msgid "Talker"
+msgstr "Konuşan"
+
+#: index.php:1451 index1.php:1409
+msgid "Active talkgroups"
+msgstr "Aktif Konuşma Grupları"
+
+#: index.php:1463 index.php:4081 index1.php:1421 index1.php:4039
+msgid "Nodes"
+msgstr "Node lar"
+
+#: index.php:1499 index1.php:1457
+msgid "Player"
+msgstr "Oynatıcı"
+
+#: index.php:1546 index1.php:1504 index_old.php:872 indexa.php:873
+msgid "repeat"
+msgstr "tekrarla"
+
+#: index.php:1547 index1.php:1505 index_old.php:873 indexa.php:874
+msgid "shuffle"
+msgstr "Karıştır"
+
+#: index.php:1548 index1.php:1506 index_old.php:874 indexa.php:875
+msgid "full screen"
+msgstr "tam ekran"
+
+#: index.php:1602 index1.php:1560
+msgid "Select channel"
+msgstr "Kanal seçiniz"
+
+#: index.php:1606 index1.php:1564
+msgid "Default"
+msgstr "Varsayılan"
+
+#: index.php:1625 index1.php:1583 index_old.php:898 indexa.php:899
+msgid "Listen LIVE"
+msgstr "CANLI Dinle"
+
+#: index.php:1632 index1.php:1590 index_old.php:902 indexa.php:903
+msgid "Select date to listen"
+msgstr "Dinleyeceğiniz tarih"
+
+#: index.php:1637 index1.php:1595 index_old.php:904 indexa.php:905
+msgid "to use player you must login"
+msgstr "player ı kullanmak için giriş yapmalısınız"
+
+#: index.php:1653 index1.php:1611 index_old.php:913 indexa.php:914
+msgid "Signal value  from Reciver"
+msgstr "Alıcıdaki sinyal seviyesi"
+
+#: index.php:1752 index1.php:1710 index_old.php:1022 indexa.php:1023
+msgid "Filter"
+msgstr "Filitre"
+
+#: index.php:1819 index1.php:1777 index_old.php:1097 indexa.php:1098
+msgid "Talkgroup Name"
+msgstr "Konuşma Grubu Adı"
+
+#: index.php:1821 index1.php:1779 index_old.php:1099 indexa.php:1100
+msgid "Last active"
+msgstr "En son aktiflik"
+
+#: index.php:1931 index1.php:1889 index_old.php:1201 indexa.php:1202
+msgid "Coverage"
+msgstr "Kapsama"
+
+#: index.php:1934 index1.php:1892 index_old.php:1204 indexa.php:1205
+msgid "Show"
+msgstr "Göster"
+
+#: index.php:1935 index1.php:1893 index_old.php:1205 indexa.php:1206
+msgid "Remove"
+msgstr "Sil"
+
+#: index.php:1959 index1.php:1917 index_old.php:1229 indexa.php:1230
+msgid "Remove bars"
+msgstr "Menüleri sil"
+
+#: index.php:1961 index1.php:1919 index_old.php:1231 indexa.php:1232
+msgid "Remove ALL stations"
+msgstr "Tüm istasyonları sil"
+
+#: index.php:1962 index1.php:1920 index_old.php:1232 indexa.php:1233
+msgid "Show Receivers"
+msgstr "Alıcıları göster"
+
+#: index.php:1967 index1.php:1925 index_old.php:1237 indexa.php:1238
+msgid "Toggle AutoFollow"
+msgstr "Otomatik izleyi kapat aç"
+
+#: index.php:1973 index1.php:1931 index_old.php:1243 indexa.php:1244
+msgid "Reload Map"
+msgstr "Haritayı yeniden yükle"
+
+#: index.php:2013 index1.php:1971 index_old.php:1287 indexa.php:1288
+msgid "Station info for"
+msgstr "İstasyon bilgisi"
+
+#: index.php:2031 index1.php:1989 index_old.php:1305 indexa.php:1306
+msgid "Version"
+msgstr "Versiyon"
+
+#: index.php:2032 index1.php:1990 index_old.php:1306 indexa.php:1307
+msgid "CurrentTG"
+msgstr "MevcutKG"
+
+#: index.php:2033 index1.php:1991 index_old.php:1307 indexa.php:1308
+msgid "Sysop"
+msgstr "Sysop"
+
+#: index.php:2054 index1.php:2012 index_old.php:1328 indexa.php:1329
+msgid "RX Name"
+msgstr "RX Adı"
+
+#: index.php:2055 index1.php:2013 index_old.php:1329 indexa.php:1330
+msgid "SqlType"
+msgstr "SqlTipi"
+
+#: index.php:2074 index1.php:2032
+msgid "Show covreage"
+msgstr "Kapsama alanını göster"
+
+#: index.php:2835 index1.php:2793 index_old.php:2087 indexa.php:2088
+msgid "Total"
+msgstr "Toplam"
+
+#: index.php:2864 index1.php:2822 index_old.php:2116 indexa.php:2117
+msgid "Year statistics"
+msgstr "Yıllık istatistikler"
+
+#: index.php:2944 index1.php:2902 index_old.php:2196 indexa.php:2197
+msgid "Talkgroup activity"
+msgstr "Konuşma Grubu activitesi"
+
+#: index.php:3088 index1.php:3046 index_old.php:2340 indexa.php:2341
+msgid "Reflektor time in S"
+msgstr "Reflektor zamanı S olarak"
+
+#: index.php:3112 index1.php:3070 index_old.php:2364 indexa.php:2365
+msgid "Hour activity "
+msgstr "Saatlik aktivite"
+
+#: index.php:3190 index1.php:3148 index_old.php:2442 indexa.php:2443
+msgid "time"
+msgstr "Zaman"
+
+#: index.php:3300 index1.php:3258 index_old.php:2552 indexa.php:2553
+msgid "Station activity"
+msgstr "İstasyon aktivitesi"
+
+#: index.php:3819 index1.php:3777 station_info.php:55
+msgid "Station infromation"
+msgstr "İstasyon bilgileri"
+
+#: index.php:3856 index1.php:3814
+msgid "Select station"
+msgstr "İstasyon seçiniz"
+
+#: index.php:3899 index1.php:3857
+msgid "Passwords aren same"
+msgstr "Parolalar eşleşmiyor"
+
+#: index.php:3911 index1.php:3869
+msgid "User already exist!"
+msgstr "Kullanıcı zaten mevcut!"
+
+#: index.php:3915 index1.php:3873
+msgid "User is creadted!"
+msgstr "Kullanıcı oluşturuldu!"
+
+#: index.php:3933 index.php:3994 index1.php:3891 index1.php:3952
+msgid "Register"
+msgstr "Kaydol"
+
+#: index.php:3940 index1.php:3898
+msgid "Firstname"
+msgstr "Adı"
+
+#: index.php:3942 index1.php:3900
+msgid "jay"
+msgstr ""
+
+#: index.php:3947 index1.php:3905
+msgid "Lastname"
+msgstr "Soyadı"
+
+#: index.php:3949 index1.php:3907
+msgid "Shmit"
+msgstr "Gönder"
+
+#: index.php:3968 index1.php:3926
+msgid "Email"
+msgstr "Email"
+
+#: index.php:3970 index1.php:3928
+msgid "info@test.nu"
+msgstr "info@test.nu"
+
+#: index.php:3977 index1.php:3935
+msgid "Password should be at least 8 characters"
+msgstr "Parola en az 8 karakter olmalıdır"
+
+#: index.php:3982 index1.php:3940
+msgid "Password (Confirm)"
+msgstr "Parola (Doğrula)"
+
+#: index.php:3984 index1.php:3942
+msgid "Please confirm password"
+msgstr "Lütfen parolayı doğrulayın"
+
+#: index.php:3993 index1.php:3951
+msgid "Clear"
+msgstr "Temizle"
+
+#: index.php:4019 index1.php:3977 index_old.php:3084 indexa.php:3085
 msgid "Day"
 msgstr "Gün"
 
-#: index.php:2643
+#: index.php:4020 index1.php:3978 index_old.php:3085 indexa.php:3086
 msgid "Hour"
 msgstr "Saat"
 
-#: index.php:2696 log.php:20
-msgid "Station"
-msgstr "İstasyon"
+#: index.php:4021 index1.php:3979 index_old.php:3086 indexa.php:3087
+msgid "Year"
+msgstr "Yıl"
 
-#: index.php:2696
+#: index.php:4111 index1.php:4069
+msgid "Hour chart"
+msgstr "Saatlik grafik"
+
+#: index.php:4143 index1.php:4101 index_old.php:3142 indexa.php:3143
+msgid "No Repeater Filter"
+msgstr "Röle filtreleme yok"
+
+#: index.php:4144 index1.php:4102 index_old.php:3143 indexa.php:3144
+msgid "Repeater"
+msgstr "Röle"
+
+#: index.php:4176 index1.php:4134 index_old.php:3160 indexa.php:3161
+#: requset_reflector_login.php:1018
+msgid "No Talkgroup Filter"
+msgstr "Konuşma Grubu filtresi yok"
+
+#: index.php:4233 index1.php:4191 index_old.php:3195 indexa.php:3196
+msgid "Toplist 10 days"
+msgstr "Son 10 gün en çok duyulanlar"
+
+#: index.php:4276 index1.php:4234 index_old.php:923 index_old.php:3234
+#: indexa.php:924 indexa.php:3235
+msgid "Uptime"
+msgstr "Çalışma süresi"
+
+#: index.php:4276 index1.php:4234 index_old.php:3234 indexa.php:3235
 msgid "Network Usage 24 hour"
 msgstr "Son 24 saatte network kullanımı"
 
-#: index.php:2696
+#: index.php:4276 index1.php:4234 index_old.php:3234 indexa.php:3235
 msgid "Usage last 24 hour"
 msgstr "Son 24 saatteki kullanım"
 
-#: index.php:2696
+#: index.php:4276 index1.php:4234 index_old.php:3234 indexa.php:3235
 msgid "Most used receiver"
 msgstr "En çok kullanılan istasyon"
 
-#: list_reciver.php:15
+#: index_old.php:209 indexa.php:210
+msgid "Active RX"
+msgstr "Aktif RX"
+
+#: index_old.php:502 indexa.php:503
+msgid "Login sucsess"
+msgstr "Giriş Başarılı"
+
+#: index_old.php:761 indexa.php:762
+msgid " Reflector clients"
+msgstr "Reflector istemcileri"
+
+#: index_old.php:785 index_old.php:900 index_old.php:1026 index_old.php:1035
+#: index_old.php:1069 index_old.php:1258 index_old.php:3076 indexa.php:786
+#: indexa.php:901 indexa.php:1027 indexa.php:1036 indexa.php:1070
+#: indexa.php:1259 indexa.php:3077
+msgid "Toggle menu"
+msgstr "Menüyü kapat aç"
+
+#: index_old.php:820 indexa.php:821
+msgid "QSO Monitor"
+msgstr "QSO izleyici"
+
+#: index_old.php:921 indexa.php:922
+msgid "Name"
+msgstr "Ad"
+
+#: index_old.php:922 indexa.php:923
+msgid "Openings"
+msgstr "Açılıyor"
+
+#: index_old.php:1100 indexa.php:1101
+msgid "Time Total"
+msgstr "Toplam süre"
+
+#: index_old.php:3063 indexa.php:3064
+msgid "Statistics for Network"
+msgstr "Network için istatistikler"
+
+#: list_reciver.php:16 list_reciver_2.php:16 list_reciver_old.php:15
 msgid "Receiver Monitor"
 msgstr "Alıcı izleme"
 
-#: list_reciver.php:454
+#: list_reciver.php:723 list_reciver_2.php:668 list_reciver_old.php:458
 msgid "Talkgroup filter"
-msgstr "Konuşma Gruplarını filtrele"
+msgstr "Konuşma Grubu filtrele"
 
-#: log.php:19
-msgid "Date"
-msgstr "Tarih"
+#: requset_reflector_login.php:240
+msgid "Station already exist!"
+msgstr "İstasyon zaten mevcut!"
 
-#: log.php:21
-msgid "Event"
-msgstr "Olay"
+#: requset_reflector_login.php:247
+msgid "Thanks for your registration an admin will contact you soon"
+msgstr "Kayıt olduğunuz için teşekkür ederiz, bir yönetici yakında sizinle iletişime geçecek. 73"
 
-#: log.php:40
-msgid "is Talker on tg"
-msgstr "konuşuyor şu Konuşma Grubunda"
+#: requset_reflector_login.php:336
+msgid "Network acsess"
+msgstr "Network erişimi"
 
-#: log.php:42
-msgid "Stoped talk tg"
-msgstr "konuşması sonlandı şu KG"
+#: requset_reflector_login.php:358
+msgid "My Stations"
+msgstr "İstasyonlarım"
 
-#: log.php:48
-msgid " is active signal level"
-msgstr " aktif ve sinyal değeri"
+#: requset_reflector_login.php:361
+msgid "Request repeater Login"
+msgstr "Röle girişi talep et"
 
-#: log.php:50
-msgid "has signal level"
-msgstr "nin sinyal seviyesi"
+#: requset_reflector_login.php:365
+msgid "Generate node_info.json"
+msgstr "node_info.json oluştur"
+
+#: requset_reflector_login.php:370
+msgid "Generate svx.config parameters"
+msgstr "svx.config parametreleri oluştur"
+
+#: requset_reflector_login.php:388
+msgid "Lastseen"
+msgstr "Son görülme"
+
+#: requset_reflector_login.php:389
+msgid "Send Command"
+msgstr "Komu gönder"
+
+#: requset_reflector_login.php:418
+msgid "Send DTMF to node"
+msgstr "node için DTMF komutu gönder"
+
+#: requset_reflector_login.php:421
+msgid "Send Command to Nod"
+msgstr "Nod için komut gönder"
+
+#: requset_reflector_login.php:424
+msgid "Edit Repeater"
+msgstr "Röleyi düzenle"
+
+#: requset_reflector_login.php:493
+msgid "User Credentals"
+msgstr "Kullanıcı bilgileri"
+
+#: requset_reflector_login.php:497
+msgid "Email address"
+msgstr "Email adresi"
+
+#: requset_reflector_login.php:500
+msgid "Enter email"
+msgstr "Email adresi girin"
+
+#: requset_reflector_login.php:538
+msgid "Register User"
+msgstr "Kullanıcı kaydet"
+
+#: requset_reflector_login.php:549
+msgid "Repater information"
+msgstr "Röle bilgileri"
+
+#: requset_reflector_login.php:552
+msgid "Station location ( Area )"
+msgstr "İstasyon Konumu (Bölge)"
+
+#: requset_reflector_login.php:555
+msgid "Node location"
+msgstr "Node lokasyon"
+
+#: requset_reflector_login.php:562
+msgid "System operator"
+msgstr "Sistem sorumlu operatörü"
+
+#: requset_reflector_login.php:582
+msgid "Tone To Talkgroup Mapping"
+msgstr "Konuşma grubuna bağlanacak Tone"
+
+#: requset_reflector_login.php:589
+msgid "CTCSS"
+msgstr "CTCSS"
+
+#: requset_reflector_login.php:610
+msgid "#TG"
+msgstr "#KG"
+
+#: requset_reflector_login.php:652
+msgid "QTH Settings"
+msgstr "QTH ayarları"
+
+#: requset_reflector_login.php:784
+msgid "Location name"
+msgstr "Konum adı"
+
+#: requset_reflector_login.php:787
+msgid "Stockholm"
+msgstr "Stockholm"
+
+#: requset_reflector_login.php:793
+msgid "Latitude"
+msgstr "Enlem"
+
+#: requset_reflector_login.php:805
+msgid "Longitude"
+msgstr "Boylam"
+
+#: requset_reflector_login.php:815
+msgid "Locator"
+msgstr "Locator"
+
+#: requset_reflector_login.php:824
+msgid "Tx Letter \"Get From svxlink.conf\""
+msgstr "TX harfi \"svxlink.conf dosyasından getir\""
+
+#: requset_reflector_login.php:834
+msgid "RX letter \"Get From svxlink.conf\""
+msgstr "RX harfi \"svxlink.conf dosyasından getir\""
+
+#: requset_reflector_login.php:844
+msgid "Sql type"
+msgstr "SQL tipi"
+
+#: requset_reflector_login.php:858
+msgid "Transmitter Power w"
+msgstr "Verici gücü Watt"
+
+#: requset_reflector_login.php:868
+msgid "Antenna Directon"
+msgstr "Anten Yönü"
+
+#: requset_reflector_login.php:879
+msgid "Antenna Height"
+msgstr "Anten Yüksekliği"
+
+#: requset_reflector_login.php:889
+msgid "Antenna Description"
+msgstr "Anten Açıklaması"
+
+#: requset_reflector_login.php:898
+msgid "TX Frequency"
+msgstr "TX Frekansı"
+
+#: requset_reflector_login.php:907
+msgid "RX Frequency"
+msgstr "RX Frekansı"
+
+#: requset_reflector_login.php:921
+msgid "Parameters dor Svxlink.conf"
+msgstr "Svxlink.conf için parametreler"
+
+#: requset_reflector_login.php:925 requset_reflector_login.php:935
+msgid "Parameter"
+msgstr "Parametre"
+
+#: requset_reflector_login.php:970
+msgid "Generate JSON / Paramters"
+msgstr "JSON / Parametreleri oluştur"
+
+#: requset_reflector_login.php:1009
+msgid "Select talkgroups to monitor"
+msgstr "İzleyeceğiniz konuşma grubunu seçiniz"
+
+#: requset_reflector_login.php:1040
+msgid "Generate config"
+msgstr "Konfigürasyon oluştur"
+
+#: station_info.php:143
+msgid "DTMF Command"
+msgstr "DTMF Komutu"
+
+#: station_info.php:245
+msgid "Radio"
+msgstr "Cihaz"
+
+#: station_info.php:266
+msgid "Logic status"
+msgstr "Logic durumu"
