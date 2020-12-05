@@ -52,7 +52,16 @@ sudo tasksel install lamp-server
 2. run the install.php from your browser
 this requirer that you hav setup an database / user in mysql 
 
-3. add this line to your corntab
+3. Add a user to mysql "if you self host" manualy you can use php myadmin
+   
+  mysql
+   $ mysql> CREATE DATABASE Svxportal;
+   $ mysql> CREATE USER 'Svxportal'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Change me password';
+   $ mysql>  GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, INDEX, DROP, ALTER, CREATE TEMPORARY TABLES, LOCK TABLES ON Svxportal.* TO 'Svxportal'@'localhost';
+
+"this is an examle of Mysql user setup"
+
+4. add this line to your corntab
 
 @reboot sleep 60 && screen  -d -m bash -c  'cd /var/www/ ; watch -n 1  php logdeamon.php;'
 @reboot sleep 60 && screen  -d -m bash -c  'cd /var/www/ ; watch -n 20  php station_heartbeat.php;'
@@ -60,7 +69,7 @@ this requirer that you hav setup an database / user in mysql
 
 please note that the folder /var/www/ shall be your instalation folder.
 
-4. reboot or manualy start 
+5. reboot or manualy start 
 
 screen  -d -m bash -c  'cd /var/www/ ; watch -n 20  php station_heartbeat.php;'
 screen  -d -m bash -c  'cd /var/www/ ; watch -n 1  php logdeamon.php;'
