@@ -399,8 +399,11 @@ LEFT JOIN Infotmation_page on Infotmation_page.Station_id = User_Premission.Stat
 WHERE User_Premission.User_id ='$user_id' ");
 
 
+
+
 // Associative array
 while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+
 
    ?>
    
@@ -423,7 +426,15 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
    <i class="fas fa-cogs" data-toggle="tooltip" title="<?php echo  _('Send Command to Nod')?>" ></i>
    <?php }?>
    
-   <a href="edit_station.php?Station_idnr=<?php echo  $row['Station_id']?>"><i class="fas fa-file"  data-toggle="tooltip" title="<?php echo  _('Edit Repeater')?>" ></i></a>
+   <a href="edit_station.php?Station_idnr=<?php echo  $row['ID']?>"><i class="fas fa-file"  data-toggle="tooltip" title="<?php echo  _('Edit Repeater')?>" ></i></a>
+   
+   <?php 
+   
+
+   
+   
+   ?>
+   
    <?php if( $row['Module'] != "")
    {?>
    <a href="station_dash.php?Station_idnr=<?php  echo  $row['Station_id']?>"><i class="fas fa-tachometer-alt"  data-toggle="tooltip" title="<?php echo  _('Station Dashboard')?>" ></i></a>

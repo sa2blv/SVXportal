@@ -396,6 +396,9 @@ for(var k in data.nodes){
     	}
     	else
     	{
+        	if(totalSeconds[k] == undefined )
+        		totalSeconds[k]=0;
+            	
     		//tr class="table-info">
     		$('#Reflektortable_row_'+k).html('<td class="text-nowrap">'+k+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td class="green_collor" ><?php echo _("YES")?></td><td class="text-primary">'+text+'</td><td><label id="Start_talk_'+k+'"></label></td><td  class="d-none d-md-table-cell" ><label id="minutes_'+k+'">00</label>:<label id="seconds_'+k+'">00</label></td>');
     		$('#Reflektortable_row_'+k).addClass( "table-info" );
@@ -413,7 +416,7 @@ for(var k in data.nodes){
                 
     
                 var d = new Date();
-                d.setSeconds(d.getSeconds() - totalSeconds);
+                d.setSeconds(d.getSeconds() - totalSeconds[k]);
                 var h = addZero(d.getHours());
                 var m = addZero(d.getMinutes());
                 var s = addZero(d.getSeconds());
@@ -1363,6 +1366,8 @@ ul.dropdown-lr {
         	
         	<a onclick="load_languge('it_IT')" class="dropdown-item table-primary" href="#"><img  src="images/flags/it.svg" width="30px" alt="it"> <?php echo _('Italian')?></a>
         	
+        	<a onclick="load_languge('de_DE')" class="dropdown-item table-primary" href="#"><img  src="images/flags/de.svg" width="30px" alt="it"> <?php echo _('German')?></a>
+        	
         	<a  onclick="load_languge('tr_TR')" class="dropdown-item table-secondary" href="#"><img src="images/flags/tr.svg" width="30px" alt="tr_TR"> <?php echo _('Turkish')?></a>
         	
         	</div>
@@ -1399,11 +1404,10 @@ ul.dropdown-lr {
 ?>
                  <?php if( $_SESSION['is_admin'] > 0  ){?>
                 
-                <a class="dropdown-item" href="admin.php" id="">
-                <i class="fa fa-id-card" aria-hidden="true"></i>
-                  <?php echo _('Admin interface')?> </a>
-              
-                
+                    <a class="dropdown-item" href="admin.php" id="">
+                    <i class="fa fa-id-card" aria-hidden="true"></i>
+                    <?php echo _('admin interface')?> </a>
+
                 <?php }?>
 
 
@@ -1500,7 +1504,7 @@ ul.dropdown-lr {
 						<?php }?>
 					
 					<li class="nav-item"><a class="nav-link " href="#stationinfor"  onclick="hide_menu_click()"
-						data-toggle="tab"><i class="fas fa-info-circle"></i> <?php echo _("Station informtation")?> </a></li>				
+						data-toggle="tab"><i class="fas fa-info-circle"></i> <?php echo _("Station information")?> </a></li>				
 					
 					<li class="nav-item"><a class="nav-link" href="#Echolink"	data-toggle="tab" onclick="hide_menu_click()">  
 					<i class="fas fa-terminal"></i> <?php echo _("System description")?></a></li>
@@ -1597,7 +1601,7 @@ ul.dropdown-lr {
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400 "></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" style="">
-                      <div class="dropdown-header"><?php echo _('Action menu')?></div>
+                      <div class="dropdown-header"><?php echo _('Action menu');?></div>
                           <a class="nav-link " href="#" id="navbarDropdownMenuLink" onclick="fnExcelexport('Reflektortable')" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             				 <i class="far fa-file-excel"></i>
               						<?php echo _('Export xls')?>
@@ -1995,7 +1999,7 @@ if($usefile != null)
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400 "></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" style="">
-                      <div class="dropdown-header">Action menu</div>
+                      <div class="dropdown-header"><?php echo _('Action menu')?></div>
                           <a class="nav-link  " href="#" id="navbarDropdownMenuLink" onclick="fnExcelexport('dictornay_taklgroup_data')" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             				 <i class="far fa-file-excel"></i>
               						Export xls      					 </a>
@@ -3059,7 +3063,7 @@ function get_year_static()
         					"#DAA520",
         					"#808080",
         					"#808080",
-        					"#F5FFFA"
+        					"#234d80"
         					
         					
         				],
@@ -3456,12 +3460,15 @@ function get_station_chat()
 	var Stations_collor = new Array()
 	var j=0;
 	$("#nodes_activity > tbody").html("");
+	$("#nodes_activity > tfoot").html("");
 	$.get( "get_statistics.php", { date: date_value,qrv :1} )
 	  .done(function( data ) {
 		  //console.log("chart");
 		  console.log(data);
 		 
 		  var Stations_json = JSON.parse(data); 
+		  var total_time_secunds =0;
+		  var total_present =0;
 
 	
 		  for(var station in Stations_json.data)
@@ -3469,6 +3476,7 @@ function get_station_chat()
 			  console.log(Stations_json.data[j]);
 			  Stations_timesum[j]=0;
 			  Stations_timesum[j] = Stations_json.data[j].time;
+			  total_time_secunds = total_time_secunds+ parseInt(Stations_json.data[j].time);
 			  console.log(Stations_json.data[j].time);
 			  Stations[j] =  Stations_json.data[j].call;
 			  if(node_collors[Stations_json.data[j].call]["color"] != null)
@@ -3480,13 +3488,16 @@ function get_station_chat()
 			  	Stations_collor[j] = Hex_random_css_collor();
 			  }
 			  var preccent= (((Stations_json.data[j].time)/86400) * 100).toFixed(3);
+			  total_present=total_present+parseFloat(preccent);
 			  var preccent_network= (((Stations_json.data[j].time)/Stations_json.total_secounds) * 100).toFixed(3);
 			  
-			  $("#nodes_activity").append('<tr><td>'+Stations_json.data[j].call+'</td><td>'+Stations_json.data[j].Secound+"</td><td>"+preccent_network+"%</td><td>"+preccent+"%</td><td>"+Stations_json.data[j].reciver+"</td><tr>");
+			  $("#nodes_activity > tbody").append('<tr><td>'+Stations_json.data[j].call+'</td><td>'+Stations_json.data[j].Secound+"</td><td>"+preccent_network+"%</td><td>"+preccent+"%</td><td>"+Stations_json.data[j].reciver+"</td></tr>");
 			  j++;
 
 			 
 		  }
+		  console.log(total_time_secunds);
+		  $("#nodes_activity > tfoot").append('<tr><td><?php echo _('Total')?></td><td>'+secondsToDayHMS(total_time_secunds)+'</td><td></td><td>'+total_present+'%</td><td></td></tr>');
 		
 	
 
@@ -3568,6 +3579,27 @@ function secondsToDHMS(seconds) {
             return "00:00:00";
             
 }
+
+function secondsToDayHMS(seconds) {
+    var totalSeconds = parseInt(seconds);
+    if(totalSeconds >0)
+    {
+    	days=  Math.floor(totalSeconds / 86400);
+    	totalSeconds %= 86400;
+    	hours = Math.floor(totalSeconds / 3600);
+    	totalSeconds %= 3600;
+    	minutes = Math.floor(totalSeconds / 60);
+    	seconds = totalSeconds % 60;
+        
+        
+        return (days)+":"+numberconvert(hours)+":"+numberconvert(+minutes)+":"+numberconvert(seconds);
+
+    }
+       else
+            return "00:00:00";
+            
+}
+
 
 
 
@@ -4490,7 +4522,11 @@ function fnExcelexport(table)
     			<div class="card shadow mb-4">
            
                     
-    				<table id="nodes_activity" class="table" ><thead class="thead-dark"><tr><th><?php echo _("Station")?></th><th><?php echo _("Uptime")?></th><th><?php echo _("Network Usage 24 hour")?></th><th><?php echo _("Usage last 24 hour")?></th><th><?php echo _("Most used receiver")?></th></tr></thead></table>
+    				<table id="nodes_activity" class="table" ><thead class="thead-dark"><tr><th><?php echo _("Station")?></th><th><?php echo _("Uptime")?></th><th><?php echo _("Network Usage 24 hour")?></th><th><?php echo _("Usage last 24 hour")?></th><th><?php echo _("Most used receiver")?></th></tr></thead>
+    				<tbody class="tbody"></tbody>
+    				<tfoot style ="font-weight: bold;"></tfoot>
+    				
+    				</table>
     			</div>
     			</div>	
     			</div>

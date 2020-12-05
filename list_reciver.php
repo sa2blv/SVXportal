@@ -1,5 +1,4 @@
 <?php
-
 include 'config.php';
 $link->set_charset("utf8");
 include 'function.php';
@@ -61,8 +60,8 @@ function add_header()
 
 var mqtt;
 var reconnectTimeout = 2000;
-var host="mqttportal.drift.sm2ampr.net"; //change this
-var port=10001;
+var host="<?php echo $mqtt_host;?>"; //change this
+var port=<?php echo $mqtt_port;?>;
 
 var mqtt_station_array = new Array();
 
@@ -76,6 +75,8 @@ function onConnect() {
 
 
 function MQTTconnect() {
+<?php if($use_mqtt == "true")
+{?>
 
 	var number = Math.random() // 0.9394456857981651
 	number.toString(36); // '0.xtis06h6'
@@ -98,10 +99,8 @@ function MQTTconnect() {
 	mqtt.onMessageArrived = onMessageArrived
 	mqtt.onConnectionLost = onConnectionLost;  // Callback when lost connectio
 		
-
-	 
 	mqtt.connect(options); //connect
-	
+<?php } ?>	
 	}
 
 
@@ -133,8 +132,8 @@ function onMessageArrived(msg){
 		mqtt_station_array[payload_topic[0]] ["RSSI"] ="-200";
 		mqtt_station_array[payload_topic[0]] ["Sval"] ="S0";
 
-		
 	}
+	
 
 	mqtt_station_array[payload_topic[0]] [payload_topic[1]] =msg.payloadString;
 
@@ -145,9 +144,13 @@ function onMessageArrived(msg){
 	
 	out_msg="Message received "+msg.payloadString+"<br>";
 	out_msg=out_msg+"Message received Topic "+msg.destinationName;
-	//console.log(out_msg);
 
-	Mqtt_sys_msg(msg)
+
+
+
+	Mqtt_sys_msg(msg);
+	echolink_msg(msg);
+	
 
 }
 
@@ -171,6 +174,116 @@ function Mqtt_sys_msg(msg)
 //  create_message_toast(message,title,type,color)
 
 
+
+}
+var echolink_array = new Array();
+var echolink_length = new Array();
+var echolink_length_old = new Array();
+var echolink_talker = new Array();
+
+function echolink_msg(msg)
+{
+	var payload_topic =  msg.destinationName.split("/"); 
+
+	if(payload_topic[1] == "EchoLink" && payload_topic[2] == "List")
+	{
+	
+		delete echolink_array[payload_topic[0]];
+		var data =msg.payloadString;
+// 		console.log(data.split("\n"));
+		var array =data.split("\n");
+		var last = array.pop();
+
+		
+
+		echolink_array[payload_topic[0]] = array;
+		
+
+
+
+		
+		
+//     	echolink_array[payload_topic[0]][payload_topic[3]] =;
+//     	console.log(payload_topic);
+
+	}
+	if(payload_topic[1] == "EchoLink" && payload_topic[2] == "Size")
+	{
+		echolink_length[payload_topic[0]] =msg.payloadString;
+
+	}
+	if(payload_topic[1] == "EchoLink" && payload_topic[2] == "Talker")
+	{
+		var incoming_message = msg.payloadString;
+		var incoming_message_array = incoming_message.split(' ');
+		var talker_state =  incoming_message_array[2];
+		var talker_action = talker_state.replace(/(\r\n|\n|\r)/gm," ");
+
+		if(talker_action.trim() == 'stop')
+			echolink_talker[payload_topic[0]] ="";
+		if(talker_action.trim() == 'start')
+			echolink_talker[payload_topic[0]] = incoming_message_array[1];
+		
+		//if(msg.payloadString == )
+		//echolink_length[payload_topic[0]] =;
+
+	}
+
+	
+	
+}
+function apeend_echolink(obj,stn)
+{
+	
+    if(echolink_array[stn] != null)
+    {
+    	$('#group-of-'+stn).html('');
+
+			echolink_length_old[stn]  = echolink_length[stn]
+			
+        	for(var a in echolink_array[stn])
+        	{
+        		
+            	
+
+        	    	
+            	var rxobj = new Array();
+     
+            	var name =echolink_array[stn][a];
+
+            	
+
+
+            	if(echolink_array[stn][a] == echolink_talker[stn])
+        
+            	    rxobj["E"]= {active: true, enabled: true, name: echolink_array[stn][a] ,siglev:100, sqlType: "Echolink",sql_open: true, virtual_rx:"Echolink"}
+            	else
+            		rxobj["E"]= {active: false, enabled: true, name: echolink_array[stn][a] ,siglev:0, sqlType: "Echolink",sql_open: false, virtual_rx:"Echolink"}
+            	 
+            	 rxarray= {name:echolink_array[stn][a] , rx:rxobj};
+
+        
+            	 
+            	 
+                	 
+            	
+            	//rxarray["rx"]["E"][] 
+        
+        
+            	obj.qth[a] = rxarray
+    			}
+
+
+    	
+        /*
+    	obj.rx[stn].name =echolink_array[stn][0];
+    	obj.rx[stn].active = false;
+    	obj.rx[stn].sql_open= false;
+    	obj.rx[qth1].siglev ="0";
+    	obj.rx[qth1].freq ="";
+    	*/
+    }
+    return obj;
 
 }
 
@@ -248,9 +361,6 @@ function generate_coulor()
             		
             		
             		
-            		
-            		
-            		
             		?>
 
             		tg_collors[<?php echo $row["TG"]?>]["TXT_collor"] = "<?php echo $color_text?>";
@@ -323,7 +433,7 @@ $('tr[id^="row"]').each(function( index ) {
 	   	  if(!nodes.hasOwnProperty(res))
     	  {
 
-    		  console.log($( this).parent().attr('id'));
+
     		  $( this ).addClass('table-warning text-muted');
     	  }
     	  else
@@ -402,7 +512,7 @@ for(var k in data.nodes){
        	{
 
     		var rssi_str ="";
-    		if(mqtt_station_array[k])
+    		if(mqtt_station_array[k] && mqtt_station_array[k]["RSSI"] != "-200")
     		{
     			rssi_str ='<canvas id="bar_RSSI_'+printk+'"></canvas><br />';
 
@@ -422,7 +532,8 @@ for(var k in data.nodes){
 
     			if((JSON.stringify(data.nodes[k]) != JSON.stringify(old_json_pass.nodes[k]) ) )
     	    	{
-        	    	console.log(rssi_str);
+
+    			     
 
         	    	
 
@@ -473,7 +584,7 @@ for(var k in data.nodes){
 	    		$('#row'+remove_notgouiltychar(k)+'').addClass("table-secondary");
 	    	}
 	    	
-    		if(mqtt_station_array[k])
+    		if(mqtt_station_array[k]  && mqtt_station_array[k]["RSSI"] != "-200")
     		{
     			rssi_str1 ='<canvas id="bar_RSSI_'+printk+'"></canvas><br />';
     			rssi_str1 =rssi_str1+ ' <canvas id="bar_'+printk+'"></canvas>';
@@ -500,7 +611,7 @@ for(var k in data.nodes){
 
     		
         	 
-	  		$('#Reflektortable').append('<tbody class="table-striped"><tr data-toggle="collapse" data-target="#group-of-'+printk+'" aria-expanded="false" aria-controls="group-of-'+printk+'" class="" id="row'+printk+'"><td>'+k+'</td>'+'<td>'+data.nodes[k].NodeLocation+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td id="rssi_canas_'+printk+'"> <canvas id="bar_'+printk+'"></canvas></td><td id="reciver_'+printk+'">  </td><td id="value_k'+printk+'">0%</td></td><td id="freq_row'+printk+'"></td><td class="flex-nowrap"><label id="minutes_'+data.nodes[k].tg+'"></label><label id="seconds_'+data.nodes[k].tg+'"></label></td> </tr> </tbody>');
+	  		$('#Reflektortable').append('<tbody class="table-striped" id="body-of-'+printk+'"><tr data-toggle="collapse" data-target="#group-of-'+printk+'" aria-expanded="false" aria-controls="group-of-'+printk+'" class="" id="row'+printk+'"><td>'+k+'</td>'+'<td>'+data.nodes[k].NodeLocation+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td id="rssi_canas_'+printk+'"> <canvas id="bar_'+printk+'"></canvas></td><td id="reciver_'+printk+'">  </td><td id="value_k'+printk+'">0%</td></td><td id="freq_row'+printk+'"></td><td class="flex-nowrap"><label id="minutes_'+data.nodes[k].tg+'"></label><label id="seconds_'+data.nodes[k].tg+'"></label></td> </tr> </tbody>');
 	  		create_bar('bar_'+printk);
 	  		//create_bar_rssi('bar_RSSI_'+printk)
 	    }
@@ -531,10 +642,21 @@ for(var k in data.nodes){
     }
 // if qth is defined
 
+ 	data.nodes[k] =  apeend_echolink(data.nodes[k],k);
+
+ 
     for(var qth in data.nodes[k].qth)
     {
+ 
+    	var counter_tbody =0;
+    	var counter_tbody_max =0;
+
+
     	for(var qth1 in data.nodes[k].qth[qth].rx)
         	{
+        	
+    	
+        	
     
   
            	var qth_name =data.nodes[k].qth[qth].rx[qth1].name;
@@ -546,7 +668,23 @@ for(var k in data.nodes){
 
            	Freqvensy = parseFloat(Freqvensy);
            	Freqvensy = Freqvensy.toFixed(4); 
+
+
+
+           	
            	Freqvensy = String(Freqvensy);
+           	if(Freqvensy == "NaN")
+           	{
+           		Freqvensy="";
+           	}
+           	if(data.nodes[k].qth[qth].rx[qth1].virtual_rx)
+           	{
+           		Freqvensy= data.nodes[k].qth[qth].rx[qth1].virtual_rx;
+           	}
+           	
+
+           	
+           	
            
       
            	var name_id =data.nodes[k].qth[qth].name+qth1;
@@ -561,6 +699,8 @@ for(var k in data.nodes){
         	   class_row = ""
            }
 
+  
+
 
      	  if(document.getElementById('row'+remove_notgouiltychar(name_id)))
      	  {
@@ -568,15 +708,36 @@ for(var k in data.nodes){
               qth_html_add ='<td> * '+qth_name+'</td><td></td><td></td><td colspan="1" id="td'+k+'_'+qth_name+'"><canvas id="bar_'+printk+'_'+qth_name+'"></canvas></p> </td><td></td><td>'+parseInt(value)+'%</td><td>'+Freqvensy+'</td><td></td>';
               $('#row'+remove_notgouiltychar(name_id)).html(qth_html_add);
               $('#row'+remove_notgouiltychar(name_id)).addClass("class_row");
+
+        
               
               
               //create_bar('bar_'+k);
      	  }
      	  else
      	  {
-              qth_html_add ='<tbody id="group-of-'+printk+'" class="collapse"><tr class="table-striped  '+class_row+' table-borderless" id="row'+name_id+'"  ><td> * '+qth_name+'</td><td></td><td></td><td colspan="" id="td'+printk+'_'+qth_name+'"><canvas id="bar_'+printk+'_'+qth_name+'"></canvas> </td><td></td><td>'+parseInt(value)+'%</td><td>'+Freqvensy+'</td><td></td></tr></tbody>';
-              $('#Reflektortable').append(qth_html_add);
+     		  qth_html_add_a="";
+         	  if(counter_tbody == 0 && !($('#group-of-'+printk+'').length))
+         	  {
+         		qth_html_add_a ='<tbody id="group-of-'+printk+'" class="collapse"></tbody>'
+
+         		 $('#body-of-'+printk+'').after(qth_html_add_a);
+         	  }
+  
+              
+
+         	
+         	  
+              qth_html_add ='<tr class="table-striped  '+class_row+' table-borderless" id="row'+name_id+'"  ><td> * '+qth_name+'</td><td></td><td></td><td colspan="" id="td'+printk+'_'+qth_name+'"><canvas id="bar_'+printk+'_'+qth_name+'"></canvas> </td><td></td><td>'+parseInt(value)+'%</td><td>'+Freqvensy+'</td><td></td></tr>';
+
+              $('#group-of-'+printk).append(qth_html_add);
+   
+              //$('#Reflektortable').append(qth_html_add);
               $('#row'+remove_notgouiltychar(name_id)+'').removeClass("class_row");
+              
+              counter_tbody++;
+     
+   
               
      	  }
           
@@ -600,7 +761,7 @@ for(var k in data.nodes){
     		update_bar('bar_'+k,value,k);
     		$("#freq_row"+k).html(Freqvensy);
 
-    		if(mqtt_station_array[k])
+    		if(mqtt_station_array[k]  && mqtt_station_array[k]["RSSI"] != "-200")
     		{
     		
     			$("#reciver_"+k).html(Math.round(mqtt_station_array[k]["RSSI"])+" dBm<br/>"+qth_name);
@@ -679,7 +840,7 @@ function create_bar_rssi(id)
 function update_bar(id,value,k)
 {
 
-	if(mqtt_station_array[k])
+	if(mqtt_station_array[k] && mqtt_station_array[k]["RSSI"] != "-200")
 	{
 		update_bar_rssi('bar_RSSI_'+k,mqtt_station_array[k]["RSSI"],k)
 	}
