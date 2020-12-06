@@ -16,3 +16,11 @@ _('Action');
 _('No');
 _('Yes');
 _('Last seen');
+_('color');
+
+_('Hide the Monitor bar');
+_('Server adresss to svxreflektor');
+_('Svxreflektor server port');
+_('TinyMCE Cloud API KEY');
+_('Hide the Monitor bar');
+_('"Beta" Node admin notfication');

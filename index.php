@@ -1337,7 +1337,7 @@ ul.dropdown-lr {
 
 			<li class="nav-item dropdown">
 			
-            <a class="nav-link d-none d-xl-inline-flex d-lg-inline-flex" href="#register" onclick="" data-toggle="tab"><i class="far fa-plus-square"  style="color: #fff; padding-top:5px" ></i>&nbsp;<?php echo ('Register');?></a>
+            <a class="nav-link d-none d-xl-inline-flex d-lg-inline-flex" href="#register" onclick="" data-toggle="tab"><i class="far fa-plus-square"  style="color: #fff; padding-top:5px" ></i>&nbsp;<?php echo _('Register');?></a>
             
             <?php }?>
             <?php  if(HIDE_LANGUGE_BAR == 0){?>
@@ -1504,7 +1504,7 @@ ul.dropdown-lr {
 						<?php }?>
 					
 					<li class="nav-item"><a class="nav-link " href="#stationinfor"  onclick="hide_menu_click()"
-						data-toggle="tab"><i class="fas fa-info-circle"></i> <?php echo _("Station information")?> </a></li>				
+						data-toggle="tab"><i class="fas fa-info-circle"></i> <?php echo _("Station information");?> </a></li>				
 					
 					<li class="nav-item"><a class="nav-link" href="#Echolink"	data-toggle="tab" onclick="hide_menu_click()">  
 					<i class="fas fa-terminal"></i> <?php echo _("System description")?></a></li>
@@ -3497,7 +3497,7 @@ function get_station_chat()
 			 
 		  }
 		  console.log(total_time_secunds);
-		  $("#nodes_activity > tfoot").append('<tr><td><?php echo _('Total')?></td><td>'+secondsToDayHMS(total_time_secunds)+'</td><td></td><td>'+total_present+'%</td><td></td></tr>');
+		  $("#nodes_activity > tfoot").append('<tr><td><?php echo _('Total')?></td><td>'+secondsToDayHMS(total_time_secunds)+'</td><td></td><td>'+total_present.toFixed(2)+'%</td><td></td></tr>');
 		
 	
 
@@ -4205,7 +4205,7 @@ function fnExcelexport(table)
 
           
             <div class="form-group">
-                <label class="control-label col-sm-2" for="email"><?php echo  _('Username')?>:</label>
+                <label class="control-label col-sm-2" for="username"><?php echo  _('Username')?>:</label>
                 <div class="col-sm-10">
                   <input type="text" class="form-control" id="username" name="username" placeholder="SA%RME">
                 </div>
@@ -4214,7 +4214,7 @@ function fnExcelexport(table)
           <input type="hidden"  id="registernewuser" name="registernewuser" value="1">
           
            <div class="form-group">
-                <label class="control-label col-sm-2" for="E"><?php echo  _('Email')?>:</label>
+                <label class="control-label col-sm-2" for="E"><?php echo  _('E-mail')?>:</label>
                 <div class="col-sm-10">
                   <input type="text" class="form-control" id="Email" name="Email" placeholder="<?php echo _('info@test.nu') ?>">
                 </div>

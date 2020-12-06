@@ -225,7 +225,7 @@ function fnExcelexport(table)
    </div>
 
   <div class="topnav-right" >
-  <a href="index.php" onclick="" class="btn btn-outline-success my-2 my-sm-0" id="menu-toggle">Tillbaka</a>
+  <a href="index.php" onclick="" class="btn btn-outline-success my-2 my-sm-0" id="menu-toggle"><?php echo _('Back')?></a>
   </div>
 </nav> 
     </header>

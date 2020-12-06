@@ -5,6 +5,21 @@
 #
 msgid ""
 msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-06 14:03+0100\n"
+"PO-Revision-Date: 2020-12-06 14:06+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: sv_SE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: driver/card\n"
 
 #: SVXprotal-master/src/jquery-ui.min.js:10
 msgid "'"
@@ -1490,3 +1505,68 @@ msgstr ""
 #: station_info.php:266
 msgid "Logic status"
 msgstr ""
+
+#~ msgid "Live Log"
+#~ msgstr "Realtid "
+
+#~ msgid "Card"
+#~ msgstr "Kort"
+
+#~ msgid "RSSI"
+#~ msgstr "RSSI"
+
+#~ msgid "S-Value"
+#~ msgstr "S-Värde"
+
+#~ msgid "Tempeure"
+#~ msgstr "Temperatur"
+
+#~ msgid "SWR alarm"
+#~ msgstr "SWR Larm"
+
+#~ msgid "AC alarm"
+#~ msgstr "Ström larm"
+
+#~ msgid "PA alarm"
+#~ msgstr "AC alarm"
+
+#, fuzzy
+#~| msgid "Battery"
+#~ msgid "On battery"
+#~ msgstr "Batteri"
+
+#~ msgid "Tempeture"
+#~ msgstr "Temperatur"
+
+#~ msgid "Battery"
+#~ msgstr "Batteri"
+
+#~ msgid "alarm"
+#~ msgstr "larm"
+
+#~ msgid "Admin interface"
+#~ msgstr "Admin gränssnitt"
+
+#~ msgid "Show covrige"
+#~ msgstr "Visa täckning"
+
+#~ msgid "Chart"
+#~ msgstr "Diagram"
+
+#~ msgid "Pie"
+#~ msgstr "Paj"
+
+#~ msgid "Svxportal  Reflector clients"
+#~ msgstr "Klienter"
+
+#~ msgid "Svxportal Talkgroups"
+#~ msgstr "Svxportal Talgrupper"
+
+#~ msgid "Time"
+#~ msgstr "Tid"
+
+#~ msgid "Svxportal Log"
+#~ msgstr "Svxportal log"
+
+#~ msgid "Toggle menu<"
+#~ msgstr "ta bort meny"

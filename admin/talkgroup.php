@@ -138,9 +138,7 @@ function reaload_tg_table()
   
   
     <div class="form-group">
-  	<div class="col-sm-4">
-    	<label for="lastname1"><?php echo _('Last name')?></label>
-    </div>
+
 
       <div class="col-sm-4">
       	 <button type="submit" class="btn btn-primary"><?php echo _('Create talkgroup')?></button>
