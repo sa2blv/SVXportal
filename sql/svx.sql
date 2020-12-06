@@ -2,7 +2,7 @@
 -- version 4.6.6deb5
 -- https://www.phpmyadmin.net/
 --
--- Värd: localhost
+-- VÃ¤rd: localhost
 -- Tid vid skapande: 07 nov 2020 kl 17:41
 -- Serverversion: 5.7.32-0ubuntu0.18.04.1
 -- PHP-version: 7.2.24-0ubuntu0.18.04.7
@@ -237,48 +237,48 @@ CREATE TABLE `User_Premission` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Index för dumpade tabeller
+-- Index fÃ¶r dumpade tabeller
 --
 
 --
--- Index för tabell `covrige`
+-- Index fÃ¶r tabell `covrige`
 --
 ALTER TABLE `covrige`
   ADD PRIMARY KEY (`Id`);
 
 --
--- Index för tabell `Daylog`
+-- Index fÃ¶r tabell `Daylog`
 --
 ALTER TABLE `Daylog`
   ADD PRIMARY KEY (`ID`),
   ADD UNIQUE KEY `ID` (`ID`);
 
 --
--- Index för tabell `Dtmf_command`
+-- Index fÃ¶r tabell `Dtmf_command`
 --
 ALTER TABLE `Dtmf_command`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index för tabell `Filter`
+-- Index fÃ¶r tabell `Filter`
 --
 ALTER TABLE `Filter`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index för tabell `Infotmation_page`
+-- Index fÃ¶r tabell `Infotmation_page`
 --
 ALTER TABLE `Infotmation_page`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index för tabell `Operation_log`
+-- Index fÃ¶r tabell `Operation_log`
 --
 ALTER TABLE `Operation_log`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index för tabell `RefletorNodeLOG`
+-- Index fÃ¶r tabell `RefletorNodeLOG`
 --
 ALTER TABLE `RefletorNodeLOG`
   ADD PRIMARY KEY (`Id`),
@@ -293,7 +293,7 @@ ALTER TABLE `RefletorNodeLOG`
   ADD KEY `Id` (`Id`);
 
 --
--- Index för tabell `RefletorStations`
+-- Index fÃ¶r tabell `RefletorStations`
 --
 ALTER TABLE `RefletorStations`
   ADD PRIMARY KEY (`ID`),
@@ -301,90 +301,95 @@ ALTER TABLE `RefletorStations`
   ADD KEY `Callsign_2` (`Callsign`);
 
 --
--- Index för tabell `repeater`
+-- Index fÃ¶r tabell `repeater`
 --
 ALTER TABLE `repeater`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index för tabell `Settings`
+-- Index fÃ¶r tabell `Settings`
 --
 ALTER TABLE `Settings`
   ADD PRIMARY KEY (`id`),
   ADD KEY `Define` (`Define`);
 
 --
--- Index för tabell `Talkgroup`
+-- Index fÃ¶r tabell `Talkgroup`
 --
 ALTER TABLE `Talkgroup`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Index för tabell `users`
+-- Index fÃ¶r tabell `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index för tabell `User_Premission`
+-- Index fÃ¶r tabell `User_Premission`
 --
 ALTER TABLE `User_Premission`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT för dumpade tabeller
+-- AUTO_INCREMENT fÃ¶r dumpade tabeller
 --
 
 --
--- AUTO_INCREMENT för tabell `covrige`
+-- AUTO_INCREMENT fÃ¶r tabell `covrige`
 --
 ALTER TABLE `covrige`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT för tabell `Daylog`
+-- AUTO_INCREMENT fÃ¶r tabell `Daylog`
 --
 ALTER TABLE `Daylog`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT för tabell `Dtmf_command`
+-- AUTO_INCREMENT fÃ¶r tabell `Dtmf_command`
 --
 ALTER TABLE `Dtmf_command`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT för tabell `Filter`
+-- AUTO_INCREMENT fÃ¶r tabell `Filter`
 --
 ALTER TABLE `Filter`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT för tabell `Infotmation_page`
+-- AUTO_INCREMENT fÃ¶r tabell `Infotmation_page`
 --
 ALTER TABLE `Infotmation_page`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT för tabell `Operation_log`
+-- AUTO_INCREMENT fÃ¶r tabell `Operation_log`
 --
 ALTER TABLE `Operation_log`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT för tabell `Settings`
+-- AUTO_INCREMENT fÃ¶r tabell `Settings`
 --
 ALTER TABLE `Settings`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
--- AUTO_INCREMENT för tabell `Talkgroup`
+-- AUTO_INCREMENT fÃ¶r tabell `Talkgroup`
 --
 ALTER TABLE `Talkgroup`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT för tabell `users`
+-- AUTO_INCREMENT fÃ¶r tabell `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT för tabell `User_Premission`
+-- AUTO_INCREMENT fÃ¶r tabell `User_Premission`
 --
 ALTER TABLE `User_Premission`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+ALTER TABLE `users` ADD `email` TEXT NOT NULL AFTER `lastname`; 
+
