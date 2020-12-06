@@ -4,6 +4,8 @@ include_once 'function.php';
 include_once "Mqtt_driver.php";
 $no_header = $_GET['no_header'];
 $callsign =$_GET['callsign'];
+define_settings();
+set_laguage();
 
 $callsign = $link->real_escape_string($callsign);
 

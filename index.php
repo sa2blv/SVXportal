@@ -3491,7 +3491,7 @@ function get_station_chat()
 			  total_present=total_present+parseFloat(preccent);
 			  var preccent_network= (((Stations_json.data[j].time)/Stations_json.total_secounds) * 100).toFixed(3);
 			  
-			  $("#nodes_activity > tbody").append('<tr><td>'+Stations_json.data[j].call+'</td><td>'+Stations_json.data[j].Secound+"</td><td>"+preccent_network+"%</td><td>"+preccent+"%</td><td>"+Stations_json.data[j].reciver+"</td></tr>");
+			  $("#nodes_activity > tbody").append('<tr><td><span class="text-nowrap">'+Stations_json.data[j].call+'</span></td><td>'+Stations_json.data[j].Secound+"</td><td>"+preccent_network+"%</td><td>"+preccent+"%</td><td>"+Stations_json.data[j].reciver+"</td></tr>");
 			  j++;
 
 			 
