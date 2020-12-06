@@ -60,9 +60,23 @@ function add_header()
 
 var mqtt;
 var reconnectTimeout = 2000;
+<?php if($use_mqtt == "true")
+{?>
 var host="<?php echo $mqtt_host;?>"; //change this
 var port=<?php echo $mqtt_port;?>;
 
+<?php }
+else
+{
+?>
+
+	var host=""; //change this
+	var port="";
+<?php
+
+}
+
+?>
 var mqtt_station_array = new Array();
 
 function onConnect() {
