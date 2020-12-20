@@ -275,7 +275,7 @@ function fnExcelexport(table)
   <?php include "admin/talkgroup.php";?>
   
   </div>  
-    <?php if($reflektor_db == 1){?>
+    <?php if($reflektor_db == 1 && isset($reflektor_db)){?>
     
     <div class="tab-pane fade" id="ReflektorUsers" role="tabpanel" aria-labelledby="ReflektorUsers-tab">
   
