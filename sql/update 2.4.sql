@@ -153,6 +153,7 @@ ALTER TABLE `User_Premission`
 
 ALTER TABLE `users` ADD `email` TEXT NOT NULL AFTER `lastname`; 
 
+ALTER TABLE `Infotmation_page` ADD `Module` VARCHAR(90) NOT NULL AFTER `Station_id`;
 
 COMMIT;
 

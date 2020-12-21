@@ -293,6 +293,8 @@ if($_GET["Station_idnr"])
     
     
     $call =$row_id['Callsign'];
+    $call = $link->real_escape_string($call);
+    
     
     $result = mysqli_query($link, "SELECT Html , Hardware_page, id, Station_Name, Station_id, Module, Image FROM `Infotmation_page` WHERE Station_Name='".$call."'");
     
