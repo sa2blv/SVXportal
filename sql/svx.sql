@@ -395,3 +395,6 @@ ALTER TABLE `users` ADD `email` TEXT NOT NULL AFTER `lastname`;
 
 ALTER TABLE `Infotmation_page` ADD `Module` VARCHAR(90) NOT NULL AFTER `Station_id`;
 
+ALTER TABLE `RefletorNodeLOG` CHANGE `Id` `Id` INT(11) NOT NULL AUTO_INCREMENT; 
+
+
