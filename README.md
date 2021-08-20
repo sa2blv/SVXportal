@@ -61,13 +61,16 @@ this requirer that you hav setup an database / user in mysql
 
 "this is an examle of Mysql user setup"
 
-4. add this line to your corntab
+4. Open your browser ang go to 
+http://yoururl/install.php and follow the instructions.
+if yo want to upgrade from an previus version use
+http://yoururl/update.php
 
-@reboot sleep 60 && screen  -d -m bash -c  'cd /var/www/ ; watch -n 1  php logdeamon.php;'
-@reboot sleep 60 && screen  -d -m bash -c  'cd /var/www/ ; watch -n 20  php station_heartbeat.php;'
 
 
-please note that the folder /var/www/ shall be your instalation folder.
+
+
+
 
 5. reboot or manualy start 
 
