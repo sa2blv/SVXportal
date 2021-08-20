@@ -49,6 +49,10 @@ function set_laguage() {
         case 'uk':
             $lang ="uk_UA";
             break;
+        case 'fr':
+            $lang ="fr_FR";
+            break;
+        
         default:
             $lang = key($langs);
             break;
@@ -70,6 +74,7 @@ function set_laguage() {
     $lang= trim($lang);
     
     $directory = dirname(__FILE__).'/locale';
+
     $domain = 'svxportal';
 
     $locale =$lang; //like pt_BR.utf8";
@@ -80,8 +85,7 @@ function set_laguage() {
     }
     
     $current_lagnuge= $locale;
-    
-    
+
     putenv("LANG=".$locale); //not needed for my tests, but people say it's useful for windows
     
     setlocale( LC_MESSAGES, $locale);
@@ -248,6 +252,8 @@ function return_flag($lang)
         echo '<img  src="images/flags/tr.svg" width=25px" alt="tr_TR"> <span class="'.$class.'">TR</span>';
     elseif($lang == "de_DE")
         echo '<img  src="images/flags/de.svg" width=25px" alt="tr_TR"> <span class="'.$class.'">DE</span>';
+    elseif($lang == "fr_FR")
+        echo '<img  src="images/flags/fr.svg" width=25px" alt="tr_TR"> <span class="'.$class.'">FR</span>';
     else
         echo '<img  src="images/flags/gb.svg" width="25px" alt="GB" style=""> <span class="'.$class.'">ENG</span>';
     
@@ -399,6 +405,30 @@ function return_diff_to_darkness($collor)
     $colloar_array =hex2rgb(trim($collor));
     
     return brghtdiff($colloar_array['red'],$colloar_array['green'],$colloar_array['blue'],0,0,0);
+    
+}
+
+function translate_folder_page($url)
+{
+    global $Use_translate_default_lang;
+    
+    if($Use_translate_default_lang == $_SESSION['languge'])
+    {
+
+        return $url;
+        
+    }
+    else
+    {
+
+        $url = str_replace(".htm", "", $url);
+
+        return $url."_" .$_SESSION['languge'].".htm";
+        
+    }
+   
+    
+
     
 }
 

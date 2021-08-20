@@ -31,7 +31,7 @@ $folder = explode('/',$splitdata);
 
 $filename= $folder[(sizeof($folder)-1)];
 
-$filetime_nr = filemtime($dir."/".$filename);
+$filetime_nr = @filemtime($dir."/".$filename);
 $filetime_nr = ($filetime_nr -$time)-2;
 $upper = date("Y-m-d H:i:s",$filetime_nr);
 $lower = date("Y-m-d H:i:s",$filetime_nr-1);

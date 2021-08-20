@@ -138,6 +138,7 @@ if( $_SESSION['loginid'] >0 )
         
         $Driver= $link->real_escape_string($_POST['Driver']);
         $radio_image= $link->real_escape_string($_POST['radio_image']);
+        $GrafanaUrl= $link->real_escape_string($_POST['GrafanaUrl']);
 
         
         $Update_id = $link->real_escape_string($_POST['Update_id']);
@@ -146,7 +147,7 @@ if( $_SESSION['loginid'] >0 )
         
         if($premission_rw >0)
         
-           $link->query("UPDATE `Infotmation_page` SET `Module` = '$Driver', `Image` = '$radio_image' WHERE `Infotmation_page`.`id` = '$Update_id'; ");
+           $link->query("UPDATE `Infotmation_page` SET `Module` = '$Driver', `Image` = '$radio_image' , GrafanaUrl= '$GrafanaUrl' WHERE `Infotmation_page`.`id` = '$Update_id'; ");
         
         
     }

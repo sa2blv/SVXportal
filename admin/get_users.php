@@ -11,14 +11,22 @@ if($_SESSION['is_admin'] >0 && $_SESSION['loginid'] >0 ){
     
     
     while($row = $result->fetch_assoc()) {
-        
+        $idarray= array();
         ?>
           
           <tr>
           <th scope="row"><?php echo $row['id']?></th>
+          <?php 
+          if($row['image_url'] == null)
+              $row['image_url'] ="user.svg"; 
+           
+          ?>
+          <td><img onclick="expand_image(this.src)" class"img-fluid" src="<?php echo $row['image_url']?>" width="30px;"></td>
+      
           <td><?php echo $row['Firstname']?></td>
           <td><?php echo $row['lastname']?></td>
           <td><?php echo $row['Username']?></td>
+          <td><a  class="link-primary"  target="_blank" href="mailto:<?php echo $row['email']?>"><?php echo $row['email']?></a></td>
         <?php   if($row['Is_admin'] == 1){?>
           <td><?php echo _('Yes')?></td>
         <?php }else{?>
@@ -59,14 +67,16 @@ while ($row1 = mysqli_fetch_array($result1, MYSQLI_ASSOC))
    <optgroup label="<?php echo _('User not granded'); ?>">
    
 <?php 
-$idin= join(",",$idarray);
+
+  $idin= join(",",$idarray);
 
 if(sizeof ($idarray) == 0)
     $result2 = mysqli_query($link, "SELECT * FROM `RefletorStations`  WHERE Callsign !='' ");
 else
-    $result2 = mysqli_query($link, "SELECT * FROM `RefletorStations`  WHERE ID NOT IN($idin) AND Callsign !='' ");
+{
+    $result2 = mysqli_query($link, "SELECT * FROM `RefletorStations`  WHERE ID NOT IN(".$idin.") AND Callsign !='' ");
     unset($idarray);
-
+}
 
 // Associative array
 while ($row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC)) 

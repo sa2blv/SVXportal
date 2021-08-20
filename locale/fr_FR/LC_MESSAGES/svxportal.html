@@ -1,0 +1,2224 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+  <style>
+
+
+/*
+Based on Minimal CSS (minimalcss.com) under the MIT license.
+*/
+
+/* Reset */
+* { margin: 0; padding: 0; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+
+/* Layout */
+body { background-color: #fff; color: #333;	font: 14px/20px -apple-system, "HelveticaNeue", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+
+header { width: 100%; margin: 0 auto; position: relative; padding: 20px 0; margin-bottom: 20px; }
+
+nav ul { margin: 0; }
+nav ul li { display: inline; margin-right: 20px; font-size: 16px; line-height: 28px; color: #333; }
+nav ul li a { color: #333; }
+
+.container { position: relative; max-width: 90%; margin: 0 auto; }
+
+footer { border-top:1px solid #ccc; font-size:11px; line-height:26px; color:#999; }
+footer a { color:#999999; }
+footer a:hover { color:#105CB6; }
+footer ul li { display:inline; list-style:none; padding-left:20px; }
+
+/* Typography */
+a { color: #105CB6; text-decoration: none; }
+a:hover, a:focus { color: #105CB6; text-decoration: underline; }
+a:active { color: #105CB6; }
+
+h1 { font-size: 24px; line-height: 20px; margin: 10px 0; }
+h2 { font-size: 20px; line-height: 20px; margin: 10px 0; }
+h3 { font-size: 16px; line-height: 20px; margin: 10px 0; }
+h4 { font-size: 14px; line-height: 20px; margin: 10px 0; }
+h5 { font-size: 12px; line-height: 20px; margin: 10px 0; }
+h5 { font-size: 10px; line-height: 20px; margin: 10px 0; }
+h1,h2,h3,h4,h5,h6 { color: #333; }
+
+p { margin-bottom: 10px; }
+
+.float-left     { float: left; }
+.float-right    { float: right; }
+img.float-left  { float: left; margin: 0 20px 20px 0; }
+img.float-right { float: right; margin: 0 0 20px 20px; }
+img.center      { margin: 0 auto; display: block; }
+
+.text-left    { text-align: left; }
+.text-center  { text-align: center; }
+.text-right   { text-align: right; }
+.text-justify { text-align: justify; }
+
+/* Misc */
+hr { background-color: #ccc; border: 0px; color: #ccc; height: 1px; margin: 8px 0 20px 0; }
+pre, code { background:#E0ECF6; display:block; margin-bottom: 20px; padding:10px; }
+
+blockquote { margin: 10px 10px 20px; padding: 9px; background-color: #f8f8f8; color: #666; border-left: 5px solid #ddd; font: 14px/20px Georgia, Times, serif; quotes: "\201C" "\201D"; }
+blockquote p { margin: 0; }
+blockquote:before { content: open-quote; font-weight: bold; }
+blockquote:after  { content: close-quote; font-weight: bold; }
+
+/* List */
+ul { list-style-position:inside; }
+ol { list-style-position:inside; }
+
+/* Table */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+th { font-weight: bold; }
+tfoot { font-style: italic; }
+
+/* Metadata part */
+
+.metadata {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-size: 90%;
+}
+table.metadata td {
+  padding-right: 20px;
+}
+
+.stats {
+  padding-top: 5px;
+  padding-bottom: 20px;
+}
+.graph {
+  width: 100%;
+}
+.graph div { float: left; }
+.graph div:first-child { border-top-left-radius: 3px; border-bottom-left-radius: 3px; }
+.graph div:last-child { border-top-right-radius: 3px; border-bottom-right-radius: 3px; }
+.percent-done    { background-color: rgb(90, 228, 140); height: 10px; }
+.percent-fuzzy   { background-color: rgb(255, 167, 52); height: 10px; }
+.percent-untrans { background-color: #F1F1F1; height: 10px; }
+.legend {
+  font-size: smaller;
+  color: #aaa;
+  padding-top: 12px;
+  text-align: center;
+}
+
+/* Translations */
+table.translations {
+  width: 100%;
+  table-layout: fixed;
+}
+table.translations th, table.translations td {
+  padding: 5px 10px;
+  vertical-align: top;
+  border-bottom: 1px solid #E1E1E1;
+}
+table.translations th {
+  text-align: left;
+}
+table.translations th:first-child, table.translations td:first-child { padding-left: 0; }
+table.translations th:last-child, table.translations td:last-child { padding-right: 0; }
+
+.with-comments td {
+  border-bottom: none !important;
+}
+tr.comments div {
+  float: left;
+  max-width: 90%;
+  font-size: smaller;
+  color: #aaa;
+}
+tr.comments div p:last-child { margin-bottom: 0; }
+tr.comments td { padding-top: 0; }
+
+.fuzzy .tra {
+  color: rgb(218, 123, 0);
+}
+
+.msgctxt {
+  color: rgb(70, 109, 137);
+  font-size: smaller;
+  background-color: rgb(217, 232, 242);
+  border-radius: 2px;
+  padding: 2px 4px;
+  margin-right: 4px;
+}
+
+
+  </style>
+</head>
+<body>
+<div class='container'>
+<table class='metadata'>
+<tr><td>Språk:</td><td>tyska</td></tr>
+</table>
+<div class='stats'>
+  <div class='graph'>
+    <div class='percent-done' style='width: 99.1202%'>&nbsp;</div>
+    <div class='percent-untrans' style='width: 0.879765%'>&nbsp;</div>
+  </div>
+  <div class='legend'>Översatt: 338 av 341 (99 %)  •  Återstår: 3  </div>
+</div>
+<table class='translations'>
+  <thead>
+    <tr>
+      <th>Källtext — engelska</th>
+      <th>Översättning — tyska</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+'</td>
+<td class='tra'  lang='de'>
+</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+admin interface</td>
+<td class='tra'  lang='de'>
+Admin-Oberfläche</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Stations</td>
+<td class='tra'  lang='de'>
+Radiosender</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Talkgroup</td>
+<td class='tra'  lang='de'>
+Gesprächsgruppe</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Fault log</td>
+<td class='tra'  lang='de'>
+Fehlerprotokoll</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Users</td>
+<td class='tra'  lang='de'>
+Benutzer</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Reflektor users</td>
+<td class='tra'  lang='de'>
+Reflektor Benutzer</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Settings</td>
+<td class='tra'  lang='de'>
+die Einstellungen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+User created sucsessfully!</td>
+<td class='tra'  lang='de'>
+Benutzer erfolgreich erstellt!</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Please confirm user removal</td>
+<td class='tra'  lang='de'>
+Bitte bestätigen Sie die Entfernung des Benutzers</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Please confirm user enable</td>
+<td class='tra'  lang='de'>
+Bitte bestätigen Sie die Benutzeraktivierung</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Please confirm user disable</td>
+<td class='tra'  lang='de'>
+Bitte bestätigen Sie die Deaktivierung des Benutzers</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Password is updated!</td>
+<td class='tra'  lang='de'>
+Passwort wird aktualisiert!</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Please enter your message</td>
+<td class='tra'  lang='de'>
+Bitte gib deine Nachricht ein</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Message sent</td>
+<td class='tra'  lang='de'>
+Nachricht gesendet</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Reflector users</td>
+<td class='tra'  lang='de'>
+Reflektorbenutzer</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Print Users</td>
+<td class='tra'  lang='de'>
+Benutzer drucken</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Print</td>
+<td class='tra'  lang='de'>
+Drucken</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Export xls</td>
+<td class='tra'  lang='de'>
+Exportiere xls</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Create user</td>
+<td class='tra'  lang='de'>
+Benutzer erstellen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Username</td>
+<td class='tra'  lang='de'>
+Nutzername</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Generate Username</td>
+<td class='tra'  lang='de'>
+Benutzernamen generieren</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Password</td>
+<td class='tra'  lang='de'>
+Passwort</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Generate password</td>
+<td class='tra'  lang='de'>
+Generiere Passwort</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Description</td>
+<td class='tra'  lang='de'>
+Beschreibung</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+E-mail</td>
+<td class='tra'  lang='de'>
+Email</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Enable</td>
+<td class='tra'  lang='de'>
+Aktivieren</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Station login</td>
+<td class='tra'  lang='de'>
+Stationsanmeldung</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Station password</td>
+<td class='tra'  lang='de'>
+Stationspasswort</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Action</td>
+<td class='tra'  lang='de'>
+Aktion</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Yes</td>
+<td class='tra'  lang='de'>
+Ja</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+No</td>
+<td class='tra'  lang='de'>
+Nein</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Select action</td>
+<td class='tra'  lang='de'>
+Aktion auswählen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Enable user</td>
+<td class='tra'  lang='de'>
+Benutzer aktivieren</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Disable user</td>
+<td class='tra'  lang='de'>
+Benutzer deaktivieren</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Send message to Sysadmin</td>
+<td class='tra'  lang='de'>
+Nachricht an Sysadmin senden</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Send login credentaial to sysadmin</td>
+<td class='tra'  lang='de'>
+Senden Sie die Anmeldeinformationen an sysadmin</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Change user password</td>
+<td class='tra'  lang='de'>
+Ändern Sie das Benutzerpasswort</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Close</td>
+<td class='tra'  lang='de'>
+Schließen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Update</td>
+<td class='tra'  lang='de'>
+Aktualisieren</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Settings is saved!</td>
+<td class='tra'  lang='de'>
+Einstellungen werden gespeichert!</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Save</td>
+<td class='tra'  lang='de'>
+Sparen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Change node password</td>
+<td class='tra'  lang='de'>
+Ändern Sie das Knotenkennwort</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+- Select station -</td>
+<td class='tra'  lang='de'>
+- Sender auswählen -</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+User granded</td>
+<td class='tra'  lang='de'>
+Benutzer gewährt</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Read only</td>
+<td class='tra'  lang='de'>
+Schreibgeschützt</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+User not granded</td>
+<td class='tra'  lang='de'>
+Benutzer nicht gewährt</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Page size</td>
+<td class='tra'  lang='de'>
+Seitengröße</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Log print</td>
+<td class='tra'  lang='de'>
+Protokolldruck</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Live</td>
+<td class='tra'  lang='de'>
+Liveübertragung</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Search</td>
+<td class='tra'  lang='de'>
+Suche</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Date</td>
+<td class='tra'  lang='de'>
+Datum</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Station</td>
+<td class='tra'  lang='de'>
+Radiosender</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Event</td>
+<td class='tra'  lang='de'>
+Veranstaltung</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+is Talker on tg</td>
+<td class='tra'  lang='de'>
+ist Sprecher in der Gesprächsgruppe</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Stoped talk tg</td>
+<td class='tra'  lang='de'>
+Gespräch in Gesprächsgruppe unterbrochen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Reciver</td>
+<td class='tra'  lang='de'>
+Funkempfänger</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+ is active signal level</td>
+<td class='tra'  lang='de'>
+ist aktiver Signalpegel</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+has signal level</td>
+<td class='tra'  lang='de'>
+hat Signalpegel</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Node</td>
+<td class='tra'  lang='de'>
+Knoten</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+has dropt from reflektor</td>
+<td class='tra'  lang='de'>
+ist vom Reflektor gefallen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+has connected to  reflektor</td>
+<td class='tra'  lang='de'>
+hat sich mit Reflektor verbunden</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Previous</td>
+<td class='tra'  lang='de'>
+Bisherige</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Wrong username or password</td>
+<td class='tra'  lang='de'>
+Falscher Benutzername oder falsches Passwort</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Sign In</td>
+<td class='tra'  lang='de'>
+Einloggen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Login</td>
+<td class='tra'  lang='de'>
+Einloggen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Callsign</td>
+<td class='tra'  lang='de'>
+Rufzeichen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Location</td>
+<td class='tra'  lang='de'>
+Ort</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Last seen</td>
+<td class='tra'  lang='de'>
+Zuletzt gesehen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Station down</td>
+<td class='tra'  lang='de'>
+Radiosender ausgefallen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Color</td>
+<td class='tra'  lang='de'>
+Farbe</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Change station color</td>
+<td class='tra'  lang='de'>
+Ändern Sie die Farbe der Station</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+talkgroup created!</td>
+<td class='tra'  lang='de'>
+Gesprächsgruppe erstellt!</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Create talkgroup</td>
+<td class='tra'  lang='de'>
+Gesprächsgruppe erstellen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+TG#</td>
+<td class='tra'  lang='de'>
+TG#</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Last name</td>
+<td class='tra'  lang='de'>
+Nachname</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Actions</td>
+<td class='tra'  lang='de'>
+Aktionen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Premission is updated!</td>
+<td class='tra'  lang='de'>
+Erlaubnis wird aktualisiert!</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+First name</td>
+<td class='tra'  lang='de'>
+Vorname</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+User is admin</td>
+<td class='tra'  lang='de'>
+Benutzer ist Administrator</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Is admin</td>
+<td class='tra'  lang='de'>
+Ist Administrator</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Station permission</td>
+<td class='tra'  lang='de'>
+Stationserlaubnis</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Assign station permission for user</td>
+<td class='tra'  lang='de'>
+Weisen Sie dem Benutzer die Stationsberechtigung zu</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Read only acsess</td>
+<td class='tra'  lang='de'>
+Lesezugriff</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Write acsess</td>
+<td class='tra'  lang='de'>
+Schreibzugriff</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+CTSS map table</td>
+<td class='tra'  lang='de'>
+CTSS-Kartentabelle</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Frequency</td>
+<td class='tra'  lang='de'>
+Frequenz</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Local</td>
+<td class='tra'  lang='de'>
+Lokal</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Software</td>
+<td class='tra'  lang='de'>
+Software</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+CSV index</td>
+<td class='tra'  lang='de'>
+CSV-Index</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Use thre last char in call</td>
+<td class='tra'  lang='de'>
+Verwenden Sie das letzte Zeichen im Anruf</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Export</td>
+<td class='tra'  lang='de'>
+Export</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Hide the languge bar</td>
+<td class='tra'  lang='de'>
+Verstecke die Sprachleiste</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Use Custom header in sidebar</td>
+<td class='tra'  lang='de'>
+Verwenden Sie die benutzerdefinierte Kopfzeile in der Seitenleiste</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+External dokumentation page</td>
+<td class='tra'  lang='de'>
+Externe Dokumentationsseite</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Use login for player</td>
+<td class='tra'  lang='de'>
+Verwenden Sie den Login für den Player</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Use external dokumentation page</td>
+<td class='tra'  lang='de'>
+Verwenden Sie eine externe Dokumentationsseite</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+The default talkgroup for Recording statistic</td>
+<td class='tra'  lang='de'>
+Die Standard-Gesprächsgruppe für die Aufzeichnungsstatistik</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Send an email to sysop when the node goes down</td>
+<td class='tra'  lang='de'>
+Senden Sie eine E-Mail an sysop, wenn der Knoten ausfällt</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Mail to system administrator</td>
+<td class='tra'  lang='de'>
+Mail an den Systemadministrator</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+E-mail adress for the system</td>
+<td class='tra'  lang='de'>
+E-Mail-Adresse für das System</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+color</td>
+<td class='tra'  lang='de'>
+Farbe</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Hide the Monitor bar</td>
+<td class='tra'  lang='de'>
+Blenden Sie die Monitorleiste aus</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+All</td>
+<td class='tra'  lang='de'>
+Alles</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Signal values at</td>
+<td class='tra'  lang='de'>
+Signalwerte bei</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Receiver</td>
+<td class='tra'  lang='de'>
+Funkempfänger</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Signal</td>
+<td class='tra'  lang='de'>
+Signal</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Mhz</td>
+<td class='tra'  lang='de'>
+Mhz</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Card</td>
+<td class='tra'  lang='de'>
+Karte</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+RSSI</td>
+<td class='tra'  lang='de'>
+RSSI</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+S-Value</td>
+<td class='tra'  lang='de'>
+S-Wert</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Tempeure</td>
+<td class='tra'  lang='de'>
+Tempeure</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+SWR alarm</td>
+<td class='tra'  lang='de'>
+SWR-Alarm</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+AC alarm</td>
+<td class='tra'  lang='de'>
+AC-Alarm</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+PA alarm</td>
+<td class='tra'  lang='de'>
+Verstärkt Alarme</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Tempeture</td>
+<td class='tra'  lang='de'>
+Temperatur</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Battery</td>
+<td class='tra'  lang='de'>
+Batterie</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+alarm</td>
+<td class='tra'  lang='de'>
+Alarm</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Page is saved</td>
+<td class='tra'  lang='de'>
+Seite wird gespeichert</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Settings is saved</td>
+<td class='tra'  lang='de'>
+Einstellungen werden gespeichert</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Ticket is created</td>
+<td class='tra'  lang='de'>
+Ticket wird erstellt</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Premission Denied!</td>
+<td class='tra'  lang='de'>
+Erlaubnis verweigert!</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Station editor</td>
+<td class='tra'  lang='de'>
+Stationseditor</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Back</td>
+<td class='tra'  lang='de'>
+Zurück</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Information</td>
+<td class='tra'  lang='de'>
+Information</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Hardware</td>
+<td class='tra'  lang='de'>
+Hardware</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+DTMF commands</td>
+<td class='tra'  lang='de'>
+DTMF-Befehle</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Operating information</td>
+<td class='tra'  lang='de'>
+Betriebsinformationen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Driver dashboard</td>
+<td class='tra'  lang='de'>
+Fahrer-Dashboard</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Send command to node</td>
+<td class='tra'  lang='de'>
+Befehl an Knoten senden</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+DTMF command</td>
+<td class='tra'  lang='de'>
+DTMF-Befehl</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Scheduled date</td>
+<td class='tra'  lang='de'>
+Geplantes Datum</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Send commnd to repeater</td>
+<td class='tra'  lang='de'>
+Befehl an Repeater senden</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+New</td>
+<td class='tra'  lang='de'>
+Neu</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+New ticket</td>
+<td class='tra'  lang='de'>
+Neues Ticket</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Text</td>
+<td class='tra'  lang='de'>
+Text</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Info</td>
+<td class='tra'  lang='de'>
+Die Info</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Warning</td>
+<td class='tra'  lang='de'>
+Warnung</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Fault</td>
+<td class='tra'  lang='de'>
+Fehler</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Done</td>
+<td class='tra'  lang='de'>
+Erledigt</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Create</td>
+<td class='tra'  lang='de'>
+Erstellen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Message</td>
+<td class='tra'  lang='de'>
+Meldung</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Category</td>
+<td class='tra'  lang='de'>
+Kategorie</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Radio Image</td>
+<td class='tra'  lang='de'>
+Radiobild</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+None</td>
+<td class='tra'  lang='de'>
+Keiner</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Driver</td>
+<td class='tra'  lang='de'>
+Treiber</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+DTMF</td>
+<td class='tra'  lang='de'>
+DTMF</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Command is created</td>
+<td class='tra'  lang='de'>
+Befehl wird erstellt</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+New DTMF Command </td>
+<td class='tra'  lang='de'>
+Neuer DTMF-Befehl</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Edit DTMF Command </td>
+<td class='tra'  lang='de'>
+DTMF-Befehl bearbeiten</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+General</td>
+<td class='tra'  lang='de'>
+Allgemeines</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Echolink</td>
+<td class='tra'  lang='de'>
+Echolink</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Reflektor</td>
+<td class='tra'  lang='de'>
+Reflektor</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Shortcut</td>
+<td class='tra'  lang='de'>
+Abkürzung</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Macro</td>
+<td class='tra'  lang='de'>
+Makro</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Today</td>
+<td class='tra'  lang='de'>
+Heute</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+January</td>
+<td class='tra'  lang='de'>
+Januari</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+February</td>
+<td class='tra'  lang='de'>
+Februar</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+March</td>
+<td class='tra'  lang='de'>
+März</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+April</td>
+<td class='tra'  lang='de'>
+April</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+May</td>
+<td class='tra'  lang='de'>
+Mai</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+June</td>
+<td class='tra'  lang='de'>
+Juni</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+July</td>
+<td class='tra'  lang='de'>
+Juli</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+August</td>
+<td class='tra'  lang='de'>
+August</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+September</td>
+<td class='tra'  lang='de'>
+September</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+October</td>
+<td class='tra'  lang='de'>
+Oktober</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+November</td>
+<td class='tra'  lang='de'>
+November</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+December</td>
+<td class='tra'  lang='de'>
+Dezember</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Su</td>
+<td class='tra'  lang='de'>
+So</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Mo</td>
+<td class='tra'  lang='de'>
+Mo</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Tu</td>
+<td class='tra'  lang='de'>
+Di</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+We</td>
+<td class='tra'  lang='de'>
+Mi</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Th</td>
+<td class='tra'  lang='de'>
+Do</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Fr</td>
+<td class='tra'  lang='de'>
+Fr</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Sa</td>
+<td class='tra'  lang='de'>
+Sa</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Monday</td>
+<td class='tra'  lang='de'>
+Montag</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Tuesday</td>
+<td class='tra'  lang='de'>
+Dienstag</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Wednesday</td>
+<td class='tra'  lang='de'>
+Mittwoch</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Thursday</td>
+<td class='tra'  lang='de'>
+Donnerstag</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Friday</td>
+<td class='tra'  lang='de'>
+Freitag</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Saturday</td>
+<td class='tra'  lang='de'>
+Samstag</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Sunday</td>
+<td class='tra'  lang='de'>
+Sonntag</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+No data</td>
+<td class='tra'  lang='de'>
+Keine Daten</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Is talker</td>
+<td class='tra'  lang='de'>
+Ist Sprecher</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Monitored TGs</td>
+<td class='tra'  lang='de'>
+Überwachte Gesprächsgruppen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Start talk</td>
+<td class='tra'  lang='de'>
+Fangen Sie an zu reden</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Talk time</td>
+<td class='tra'  lang='de'>
+Sprechzeit</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+NO</td>
+<td class='tra'  lang='de'>
+NEIN</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+YES</td>
+<td class='tra'  lang='de'>
+JA</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Pleace select station</td>
+<td class='tra'  lang='de'>
+Bitte Station auswählen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Select your language</td>
+<td class='tra'  lang='de'>
+Wähle deine Sprache</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+English</td>
+<td class='tra'  lang='de'>
+Englisch</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Swedish</td>
+<td class='tra'  lang='de'>
+Schwedisch</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Norwegian</td>
+<td class='tra'  lang='de'>
+Norwegisch</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Ukrainian</td>
+<td class='tra'  lang='de'>
+Ukrainisch</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Italian</td>
+<td class='tra'  lang='de'>
+Italienisch</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Turkish</td>
+<td class='tra'  lang='de'>
+Türkisch</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Admin interface</td>
+<td class='tra'  lang='de'>
+Admin-Oberfläche</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Sign out</td>
+<td class='tra'  lang='de'>
+Ausloggen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Log In</td>
+<td class='tra'  lang='de'>
+Einloggen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+password</td>
+<td class='tra'  lang='de'>
+Passwort</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Reflector clients</td>
+<td class='tra'  lang='de'>
+Reflektor-Clients</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Monitor</td>
+<td class='tra'  lang='de'>
+Monitor</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Station informtation</td>
+<td class='tra'  lang='de'>
+Stationsinformationen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+System description</td>
+<td class='tra'  lang='de'>
+Systembeschreibung</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Talkgroups</td>
+<td class='tra'  lang='de'>
+Gesprächsgruppen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+List receiver</td>
+<td class='tra'  lang='de'>
+Empfänger auflisten</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Statistics</td>
+<td class='tra'  lang='de'>
+Statistiken</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Log</td>
+<td class='tra'  lang='de'>
+Log</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Receivers</td>
+<td class='tra'  lang='de'>
+Funkempfänger</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+CTCSS map table</td>
+<td class='tra'  lang='de'>
+CTCSS-Kartentabelle</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+My stations</td>
+<td class='tra'  lang='de'>
+Meine Stationen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Map</td>
+<td class='tra'  lang='de'>
+Karte</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Active Nodes</td>
+<td class='tra'  lang='de'>
+Aktive Knoten</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Action menu</td>
+<td class='tra'  lang='de'>
+Aktionsmenü</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+TG</td>
+<td class='tra'  lang='de'>
+GG</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Ver</td>
+<td class='tra'  lang='de'>
+Ver</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+TGs</td>
+<td class='tra'  lang='de'>
+TGs</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Talker</td>
+<td class='tra'  lang='de'>
+Sprecher</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Active talkgroups</td>
+<td class='tra'  lang='de'>
+Aktive Gesprächsgruppen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Nodes</td>
+<td class='tra'  lang='de'>
+Knoten</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Player</td>
+<td class='tra'  lang='de'>
+Musikspieler</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+repeat</td>
+<td class='tra'  lang='de'>
+wiederholen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+shuffle</td>
+<td class='tra'  lang='de'>
+Mischen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+full screen</td>
+<td class='tra'  lang='de'>
+Vollbild</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Select channel</td>
+<td class='tra'  lang='de'>
+Kanal auswählen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Default</td>
+<td class='tra'  lang='de'>
+Standard</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Listen LIVE</td>
+<td class='tra'  lang='de'>
+Live hören</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Select date to listen</td>
+<td class='tra'  lang='de'>
+Wählen Sie das Datum zum Anhören aus</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+to use player you must login</td>
+<td class='tra'  lang='de'>
+Um den Player zu verwenden, müssen Sie sich anmelden</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Signal value  from Reciver</td>
+<td class='tra'  lang='de'>
+Signalwert vom Empfänger</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Filter</td>
+<td class='tra'  lang='de'>
+Filter</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Talkgroup Name</td>
+<td class='tra'  lang='de'>
+Name der Gesprächsgruppe</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Last active</td>
+<td class='tra'  lang='de'>
+Letzte Aktivität</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Coverage</td>
+<td class='tra'  lang='de'>
+Abdeckung</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Show</td>
+<td class='tra'  lang='de'>
+Show</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Remove</td>
+<td class='tra'  lang='de'>
+Entfernen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Remove bars</td>
+<td class='tra'  lang='de'>
+Stangen entfernen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Remove ALL stations</td>
+<td class='tra'  lang='de'>
+Entfernen Sie ALLE Stationen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Show Receivers</td>
+<td class='tra'  lang='de'>
+Empfänger anzeigen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Toggle AutoFollow</td>
+<td class='tra'  lang='de'>
+Automatische Verfolgung umschalten</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Reload Map</td>
+<td class='tra'  lang='de'>
+Karte neu laden</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Station info for</td>
+<td class='tra'  lang='de'>
+Stationsinfo für</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Version</td>
+<td class='tra'  lang='de'>
+Ausführung</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+CurrentTG</td>
+<td class='tra'  lang='de'>
+Aktuell</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Sysop</td>
+<td class='tra'  lang='de'>
+Sysop</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+RX Name</td>
+<td class='tra'  lang='de'>
+Empfangsname</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+SqlType</td>
+<td class='tra'  lang='de'>
+SqlType</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Show covreage</td>
+<td class='tra'  lang='de'>
+Berichterstattung anzeigen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Total</td>
+<td class='tra'  lang='de'>
+Gesamt</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Year statistics</td>
+<td class='tra'  lang='de'>
+Jahresstatistik</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Talkgroup activity</td>
+<td class='tra'  lang='de'>
+Gesprächsgruppenaktivität</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Reflektor time in S</td>
+<td class='tra'  lang='de'>
+Reflektorzeit in S.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Hour activity </td>
+<td class='tra'  lang='de'>
+Stundenaktivität</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+time</td>
+<td class='tra'  lang='de'>
+Zeit</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Station activity</td>
+<td class='tra'  lang='de'>
+Stationsaktivität</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Station infromation</td>
+<td class='tra'  lang='de'>
+Stationsinformationen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Select station</td>
+<td class='tra'  lang='de'>
+Sender auswählen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Passwords aren same</td>
+<td class='tra'  lang='de'>
+Passwörter sind nicht gleich</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+User already exist!</td>
+<td class='tra'  lang='de'>
+Benutzer existiert bereits!</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+User is creadted!</td>
+<td class='tra'  lang='de'>
+Benutzer wird erstellt!</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Register</td>
+<td class='tra'  lang='de'>
+Registrieren</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Firstname</td>
+<td class='tra'  lang='de'>
+Vorname</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+jay</td>
+<td class='tra'  lang='de'>
+</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Lastname</td>
+<td class='tra'  lang='de'>
+Nachname</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Shmit</td>
+<td class='tra'  lang='de'>
+Schmidt</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Email</td>
+<td class='tra'  lang='de'>
+Email</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+info@test.nu</td>
+<td class='tra'  lang='de'>
+</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Password should be at least 8 characters</td>
+<td class='tra'  lang='de'>
+Das Passwort sollte mindestens 8 Zeichen lang sein</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Password (Confirm)</td>
+<td class='tra'  lang='de'>
+Passwort (Bestätigen)</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Please confirm password</td>
+<td class='tra'  lang='de'>
+Bitte bestätigen Sie das Passwort</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Clear</td>
+<td class='tra'  lang='de'>
+klar</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Day</td>
+<td class='tra'  lang='de'>
+Tag</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Hour</td>
+<td class='tra'  lang='de'>
+Stunde</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Year</td>
+<td class='tra'  lang='de'>
+Jahr</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Hour chart</td>
+<td class='tra'  lang='de'>
+Stundenplan</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+No Repeater Filter</td>
+<td class='tra'  lang='de'>
+Kein Repeater-Filter</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Repeater</td>
+<td class='tra'  lang='de'>
+Verstärker</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+No Talkgroup Filter</td>
+<td class='tra'  lang='de'>
+Kein Gesprächsgruppenfilter</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Toplist 10 days</td>
+<td class='tra'  lang='de'>
+Toplist 10 Tage</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Uptime</td>
+<td class='tra'  lang='de'>
+Betriebszeit</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Network Usage 24 hour</td>
+<td class='tra'  lang='de'>
+Netzwerknutzung 24 Stunden</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Usage last 24 hour</td>
+<td class='tra'  lang='de'>
+Nutzung dauert 24 Stunden</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Most used receiver</td>
+<td class='tra'  lang='de'>
+Meist verwendeter Empfänger</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Active RX</td>
+<td class='tra'  lang='de'>
+Aktiver Empfang</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Login sucsess</td>
+<td class='tra'  lang='de'>
+Erfolgreich eingeloggt</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+ Reflector clients</td>
+<td class='tra'  lang='de'>
+Reflektor-Clients</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Toggle menu</td>
+<td class='tra'  lang='de'>
+Menü umschalten</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+QSO Monitor</td>
+<td class='tra'  lang='de'>
+QSO-Monitor</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Name</td>
+<td class='tra'  lang='de'>
+Name</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Openings</td>
+<td class='tra'  lang='de'>
+Öffnungen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Time Total</td>
+<td class='tra'  lang='de'>
+Zeit insgesamt</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Statistics for Network</td>
+<td class='tra'  lang='de'>
+Statistiken für das Netzwerk</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Receiver Monitor</td>
+<td class='tra'  lang='de'>
+Empfängermonitor</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Talkgroup filter</td>
+<td class='tra'  lang='de'>
+Gesprächsgruppenfilter</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Station already exist!</td>
+<td class='tra'  lang='de'>
+Station existiert bereits!</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Thanks for your registration an admin will contact you soon</td>
+<td class='tra'  lang='de'>
+Vielen Dank für Ihre Registrierung. Ein Administrator wird Sie bald kontaktieren</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Network acsess</td>
+<td class='tra'  lang='de'>
+Netzwerkzugang</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+My Stations</td>
+<td class='tra'  lang='de'>
+Meine Stationen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Request repeater Login</td>
+<td class='tra'  lang='de'>
+Repeater-Login anfordern</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Generate node_info.json</td>
+<td class='tra'  lang='de'>
+Generieren Sie node_info.json</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Generate svx.config parameters</td>
+<td class='tra'  lang='de'>
+Generieren Sie die Parameter svx.config</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Lastseen</td>
+<td class='tra'  lang='de'>
+Zuletzt gesehen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Send Command</td>
+<td class='tra'  lang='de'>
+Befehl senden</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Send DTMF to node</td>
+<td class='tra'  lang='de'>
+DTMF an Knoten senden</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Send Command to Nod</td>
+<td class='tra'  lang='de'>
+Befehl an Nod senden</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Edit Repeater</td>
+<td class='tra'  lang='de'>
+Repeater bearbeiten</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+User Credentals</td>
+<td class='tra'  lang='de'>
+Benutzeranmeldeinformationen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Email address</td>
+<td class='tra'  lang='de'>
+E-Mail-Adresse</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Enter email</td>
+<td class='tra'  lang='de'>
+Email eingeben</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Register User</td>
+<td class='tra'  lang='de'>
+Benutzer registrieren</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Repater information</td>
+<td class='tra'  lang='de'>
+Repeater-Informationen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Station location ( Area )</td>
+<td class='tra'  lang='de'>
+Stationsstandort (Bereich)</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Node location</td>
+<td class='tra'  lang='de'>
+Knotenposition</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+System operator</td>
+<td class='tra'  lang='de'>
+Systembetreiber</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Tone To Talkgroup Mapping</td>
+<td class='tra'  lang='de'>
+Ton zur Gesprächsgruppenzuordnung</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+CTCSS</td>
+<td class='tra'  lang='de'>
+CTCSS</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+#TG</td>
+<td class='tra'  lang='de'>
+#GG</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+QTH Settings</td>
+<td class='tra'  lang='de'>
+QTH-Einstellungen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Location name</td>
+<td class='tra'  lang='de'>
+Standortnamen</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Stockholm</td>
+<td class='tra'  lang='de'>
+Stockholm</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Latitude</td>
+<td class='tra'  lang='de'>
+Breite</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Longitude</td>
+<td class='tra'  lang='de'>
+Längengrad</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Locator</td>
+<td class='tra'  lang='de'>
+Locator</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Tx Letter "Get From svxlink.conf"</td>
+<td class='tra'  lang='de'>
+Tx Letter "Get From svxlink.conf"</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+RX letter "Get From svxlink.conf"</td>
+<td class='tra'  lang='de'>
+Empfangsbuchstabe "Get From svxlink.conf"</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Sql type</td>
+<td class='tra'  lang='de'>
+SQL-Typ</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Transmitter Power w</td>
+<td class='tra'  lang='de'>
+Sendeleistung w</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Antenna Directon</td>
+<td class='tra'  lang='de'>
+Antennenrichtung</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Antenna Height</td>
+<td class='tra'  lang='de'>
+Antennenhöhe</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Antenna Description</td>
+<td class='tra'  lang='de'>
+Antennenbeschreibung</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+TX Frequency</td>
+<td class='tra'  lang='de'>
+TX-Frequenz</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+RX Frequency</td>
+<td class='tra'  lang='de'>
+Empfangsfrequenz</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Parameters dor Svxlink.conf</td>
+<td class='tra'  lang='de'>
+Parameter für Svxlink.conf</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Parameter</td>
+<td class='tra'  lang='de'>
+Parameter</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Generate JSON / Paramters</td>
+<td class='tra'  lang='de'>
+Generieren Sie JSON / Parameter</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Select talkgroups to monitor</td>
+<td class='tra'  lang='de'>
+Wählen Sie die zu überwachenden Gesprächsgruppen aus</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Generate config</td>
+<td class='tra'  lang='de'>
+Generieren Sie config</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+DTMF Command</td>
+<td class='tra'  lang='de'>
+DTMF-Befehl</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Radio</td>
+<td class='tra'  lang='de'>
+Funkempfänger</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Logic status</td>
+<td class='tra'  lang='de'>
+Logikstatus</td>
+</tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>

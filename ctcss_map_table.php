@@ -9,13 +9,15 @@ $station_array= array();
 
 function Get_station_from_json() {
     global $serveradress;
-    
 
-    $context = stream_context_create(array('http' => array('header'=>'Connection: close\r\n')));
+
+   $context = stream_context_create(array('http' => array('header'=>'Connection: close\r\n')));
     $json_data = file_get_contents($serveradress,false,$context);
 
     
     //$json_data = file_get_contents($serveradress);
+    $json_data = iconv("utf-8", "utf-8//ignore", $json_data);
+    
     $json = json_decode($json_data);
     global $talkgroup_array;
     global $station_array;
@@ -29,8 +31,7 @@ function Get_station_from_json() {
         {
  
             
-        
-            
+       
             $station_first_RX =array();
             $station_first_TX =array();
             $a=0;
@@ -64,14 +65,14 @@ function Get_station_from_json() {
                 }
                 else
                 {
-                    $offset =$station_first_TX[$int]-$station_first_RX[$int];
+                    $offset = floatval($station_first_TX[$int])-floatval($station_first_RX[$int]);
                 }
                 
                 $ofset_char ="";
                 
                 if($offset != 0)
                 {
-                    if (($station_first_RX[$int]-$station_first_TX[$int]) <0)
+                    if ((floatval($station_first_RX[$int])-floatval($station_first_TX[$int])) <0)
                     {
                         $ofset_char="-";
                     }
@@ -89,7 +90,7 @@ function Get_station_from_json() {
                 
                 
                 
-                $offset =$station_first_TX[$int]-$station_first_RX[$int];
+                $offset =floatval($station_first_TX[$int])-floatval($station_first_RX[$int]);
                 
                 foreach($station->toneToTalkgroup as $tonegroup => $talkgroup)
                 {
@@ -147,6 +148,8 @@ var_dump($station_array);
 
 <?php 
 
+
+$noheader =$_GET['NOHEAD'];
 
 if($noheader != 1){?>
 <!DOCTYPE html>

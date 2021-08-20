@@ -254,9 +254,16 @@ function fnExcelexport(table)
   
   <?php }?>
   
-	<li class="nav-item">
+  <li class="nav-item">
     <a class="nav-link" id="settings-tab" data-toggle="tab" href="#Settings" role="tab" aria-controls="Settings" aria-selected="false"><?php echo _('Settings')?></a>
   </li>
+  
+  	<li class="nav-item">
+    <a class="nav-link" id="" href="requset_reflector_login.php"><?php echo _('My stations')?></a>
+  </li>
+  
+  
+  
 </ul>
 
 

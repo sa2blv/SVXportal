@@ -1,1 +1,192 @@
- 
+
+                                                            <!-- wikipage start -->
+
+
+<h1 class="sectionedit1" id="anvaendning_av_svxreflector">Användning av SvxReflector</h1>
+<div class="level1">
+
+<p>
+SvxReflector är en server som kopplar ihop ett antal Repeatrar och Simplex-länkar, som använder mjukvaran SvxLink (Uttalas Svixlink).
+</p>
+
+<p>
+Talgrupper kan användas för att separera trafiken. En talgrupp kan ses som en specifik kanal, och en repeater eller länk kan vara kopplad till talgrupp i taget. Som standard ligger all trafik i talgrupp 240 (TG240), förutom Kalixlinjen som lyssnar på 24021. Alla repeatrar/länkar monitorerar den talgruppen (TG240) samt den distrikts-talgrupp den tillhör, t.ex 2403 för repeatrar i SM3. När det kommer trafik på en av dessa talgrupper sänds det direkt ut på repeatern, eller simplexlänken.
+</p>
+
+
+</div>
+
+<h1 class="sectionedit2" id="val_av_talgrupp">Val av Talgrupp</h1>
+<div class="level1">
+
+<p>
+Om man vill använda en specifik talgrupp kan den väljas på två sätt, med DTMF eller Subton (CTCSS).
+</p>
+
+</div>
+
+<h2 class="sectionedit3" id="dtmf">DTMF</h2>
+<div class="level2">
+
+<p>
+För att aktivera talgrupp 2405 med DTMF trycker man:
+</p>
+<pre class="code">912405#</pre>
+
+<p>
+Repeatern kommer att annonsera ut att den skiftar till Talgrupp 2405 när man släpper PTT.
+</p>
+
+</div>
+
+<h2 class="sectionedit4" id="subton_ctcss">Subton (CTCSS)</h2>
+<div class="level2">
+
+<p>
+En lista på talgrupper som kan aktiveras med Subton finns i tabellen nedan.
+</p>
+
+<p>
+För att aktivera talgrupp 2405 med Subton, CTCSS, väljer man Subton 91.5Hz. Efter första sändningspasset annonserar repeatern ut vilken talgrupp den skiftar till, när man släpper PTT.
+</p>
+
+<p>
+Om ingen trafik sker på vald talgrupp skiftar systemet till vilande läge efter 30 sekunder (inställbart av sysop) och väntar på aktivitet på monitorerade talgrupper, typiskt TG240 samt distriktstalgrupp (TG240x). Det hörs ett litet ”FLIRRP” när repeatern eller simplexlänken går ner sitt standardläge.
+</p>
+
+</div>
+
+<h1 class="sectionedit5" id="uppkopplade_repeatrar_och_simplex-laenkar">Uppkopplade repeatrar och simplex-länkar</h1>
+<div class="level1">
+<div class="table sectionedit6"><table class="inline">
+	<tbody><tr class="row0">
+		<th class="col0 centeralign" colspan="3">  Nodinformation                            </th><th class="col3 centeralign" colspan="10">  Mappning subton till talgruppsnummer eller DTMF (Kalix)                                                                                  </th><th class="col13 leftalign"> Monitorerar    </th>
+	</tr>
+	<tr class="row1">
+		<th class="col0 leftalign"> Callsign         </th><th class="col1 leftalign"> Frekvens  </th><th class="col2 rightalign">           Ort </th><th class="col3 leftalign"> Ingen TG                                                  </th><th class="col4 rightalign">  TG240 </th><th class="col5 leftalign"> TG2400  </th><th class="col6 leftalign"> TG2401  </th><th class="col7 leftalign"> TG2402  </th><th class="col8 leftalign"> TG2403  </th><th class="col9 leftalign"> TG2404  </th><th class="col10 leftalign"> TG2405  </th><th class="col11 leftalign"> TG2406  </th><th class="col12 leftalign"> TG2407  </th><th class="col13 leftalign"> Talgrupp       </th>
+	</tr>
+	<tr class="row2">
+		<td class="col0 leftalign"> SK2AZ            </td><td class="col1 centeralign">  Många    </td><td class="col2 rightalign">   Kalixlinjen </td><td class="col3 leftalign">                                                           </td><td class="col4 rightalign">  D240# </td><td class="col5 rightalign">  D2400# </td><td class="col6 rightalign">  D2401# </td><td class="col7 rightalign">  D2402# </td><td class="col8 rightalign">  D2403# </td><td class="col9 rightalign">  D2404# </td><td class="col10 rightalign">  D2405# </td><td class="col11 rightalign">  D2406# </td><td class="col12 leftalign"> D2407#  </td><td class="col13 leftalign"> 2402 24021     </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0 leftalign"> SJ2W             </td><td class="col1 rightalign">   434.525 </td><td class="col2 rightalign">      Burträsk </td><td class="col3 rightalign">                                                     136.5 </td><td class="col4 rightalign">  107.2 </td><td class="col5 rightalign">   123.0 </td><td class="col6 rightalign">   233.6 </td><td class="col7 rightalign">   233.6 </td><td class="col8 rightalign">   141.3 </td><td class="col9 rightalign">   151.4 </td><td class="col10 rightalign">    91.5 </td><td class="col11 leftalign">         </td><td class="col12 leftalign">         </td><td class="col13 leftalign"> 240 2402       </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0 leftalign"> SK2RIU           </td><td class="col1 rightalign">   434.725 </td><td class="col2 rightalign">          Umeå </td><td class="col3 rightalign">                                                     136.5 </td><td class="col4 rightalign">  107.2 </td><td class="col5 rightalign">   123.0 </td><td class="col6 rightalign">   233.6 </td><td class="col7 rightalign">   146.2 </td><td class="col8 rightalign">   141.3 </td><td class="col9 rightalign">   151.4 </td><td class="col10 rightalign">    91.5 </td><td class="col11 rightalign">   118.8 </td><td class="col12 rightalign">   156.7 </td><td class="col13 leftalign"> 240 2402       </td>
+	</tr>
+	<tr class="row5">
+		<td class="col0 leftalign"> SK3GW            </td><td class="col1 rightalign">   434.825 </td><td class="col2 rightalign">   Gästrikland </td><td class="col3 leftalign">                                                           </td><td class="col4 rightalign">  127.3 </td><td class="col5 rightalign">   123.0 </td><td class="col6 leftalign">         </td><td class="col7 rightalign">   146.2 </td><td class="col8 rightalign">   141.3 </td><td class="col9 rightalign">   151.4 </td><td class="col10 rightalign">    91.5 </td><td class="col11 leftalign">         </td><td class="col12 leftalign">         </td><td class="col13 leftalign"> 240 2403       </td>
+	</tr>
+	<tr class="row6">
+		<td class="col0 leftalign"> SK3GW            </td><td class="col1 rightalign">   434.875 </td><td class="col2 rightalign">         Gävle </td><td class="col3 leftalign">                                                           </td><td class="col4 rightalign">  127.3 </td><td class="col5 rightalign">   123.0 </td><td class="col6 leftalign">         </td><td class="col7 rightalign">   146.2 </td><td class="col8 rightalign">   141.3 </td><td class="col9 rightalign">   151.4 </td><td class="col10 rightalign">    91.5 </td><td class="col11 leftalign">         </td><td class="col12 leftalign">         </td><td class="col13 leftalign"> 240 2403       </td>
+	</tr>
+	<tr class="row7">
+		<td class="col0 leftalign"> SK3W             </td><td class="col1 rightalign">   144.550 </td><td class="col2 rightalign">  Österfärnebo </td><td class="col3 leftalign">                                                           </td><td class="col4 rightalign">  127.3 </td><td class="col5 rightalign">   123.0 </td><td class="col6 rightalign">   233.6 </td><td class="col7 rightalign">   146.2 </td><td class="col8 rightalign">   141.3 </td><td class="col9 rightalign">   151.4 </td><td class="col10 rightalign">    91.5 </td><td class="col11 rightalign">   118.8 </td><td class="col12 rightalign">   156.7 </td><td class="col13 leftalign"> 240 2403       </td>
+	</tr>
+	<tr class="row8">
+		<td class="col0 leftalign"> SM4JST           </td><td class="col1 rightalign">   145.425 </td><td class="col2 rightalign">     Hällefors </td><td class="col3 rightalign">                                                     136.5 </td><td class="col4 rightalign">   88.5 </td><td class="col5 rightalign">   123.0 </td><td class="col6 leftalign">         </td><td class="col7 rightalign">   146.2 </td><td class="col8 rightalign">   141.3 </td><td class="col9 rightalign">   151.4 </td><td class="col10 rightalign">    91.5 </td><td class="col11 leftalign">         </td><td class="col12 leftalign">         </td><td class="col13 leftalign"> 240 2404       </td>
+	</tr>
+	<tr class="row9">
+		<td class="col0 leftalign"> SA5BJM           </td><td class="col1 rightalign">   144.575 </td><td class="col2 rightalign">       Fjuckby </td><td class="col3 rightalign">                                                     136.5 </td><td class="col4 rightalign">   82.5 </td><td class="col5 rightalign">   123.0 </td><td class="col6 leftalign">         </td><td class="col7 rightalign">   146.2 </td><td class="col8 rightalign">   141.3 </td><td class="col9 rightalign">   151.4 </td><td class="col10 rightalign">    91.5 </td><td class="col11 rightalign">   118.8 </td><td class="col12 rightalign">   156.7 </td><td class="col13 leftalign"> 240 2403 2405  </td>
+	</tr>
+	<tr class="row10">
+		<td class="col0 leftalign"> SM5GXQ           </td><td class="col1 rightalign">   145.425 </td><td class="col2 rightalign">    Norrköping </td><td class="col3 leftalign">                                                           </td><td class="col4 rightalign">   82.5 </td><td class="col5 leftalign">         </td><td class="col6 leftalign">         </td><td class="col7 leftalign">         </td><td class="col8 leftalign">         </td><td class="col9 leftalign">         </td><td class="col10 leftalign">         </td><td class="col11 leftalign">         </td><td class="col12 leftalign">         </td><td class="col13 leftalign"> 240 2405 2407  </td>
+	</tr>
+	<tr class="row11">
+		<td class="col0 leftalign"> SA0CAM           </td><td class="col1 rightalign">   144.600 </td><td class="col2 rightalign">    Sollentuna </td><td class="col3 rightalign">                                                     136.5 </td><td class="col4 rightalign">   77.0 </td><td class="col5 rightalign">   123.0 </td><td class="col6 leftalign">         </td><td class="col7 rightalign">   146.2 </td><td class="col8 rightalign">   141.3 </td><td class="col9 rightalign">   151.4 </td><td class="col10 rightalign">    91.5 </td><td class="col11 leftalign">         </td><td class="col12 leftalign">         </td><td class="col13 leftalign"> 240 2400       </td>
+	</tr>
+	<tr class="row12">
+		<td class="col0 leftalign"> SK0BO            </td><td class="col1 leftalign"> 145.5125  </td><td class="col2 rightalign">      Essingen </td><td class="col3 leftalign">                                                           </td><td class="col4 rightalign">   77.0 </td><td class="col5 leftalign">         </td><td class="col6 leftalign">         </td><td class="col7 leftalign">         </td><td class="col8 leftalign">         </td><td class="col9 leftalign">         </td><td class="col10 leftalign">         </td><td class="col11 leftalign">         </td><td class="col12 leftalign">         </td><td class="col13 leftalign"> 240 2400       </td>
+	</tr>
+	<tr class="row13">
+		<td class="col0 leftalign"> SM0SVX-L         </td><td class="col1 rightalign">   433.475 </td><td class="col2 rightalign">    Mälaröarna </td><td class="col3 rightalign">                                                     136.5 </td><td class="col4 rightalign">   77.0 </td><td class="col5 rightalign">   123.0 </td><td class="col6 rightalign">   233.6 </td><td class="col7 rightalign">   146.2 </td><td class="col8 rightalign">   141.3 </td><td class="col9 rightalign">   151.4 </td><td class="col10 rightalign">    91.5 </td><td class="col11 rightalign">   118.8 </td><td class="col12 rightalign">   156.7 </td><td class="col13 leftalign"> 240 2400       </td>
+	</tr>
+</tbody></table></div>
+
+<p>
+<a href="http://www.sk2hg.se/wp/?page_id=3234" class="urlextern" title="http://www.sk2hg.se/wp/?page_id=3234" rel="nofollow">Länk till SK2HG med information om repeatrar i Norrbotten</a>
+</p>
+
+</div>
+
+<h1 class="sectionedit7" id="tips">Tips</h1>
+<div class="level1">
+
+<p>
+Programmera in flera minneskanaler med olika subtoner, för att kunna aktivera repeatern/simplexlänken med rätt talgrupp direkt.
+</p>
+
+<p>
+För de noder som har en subton som inte är kopplad till någon talgrupp, kolumn ”Ingen TG” ovan, kan tjänster på noden användas utan att någon talgrupp kopplas upp. Det kan vara praktiskt för användning av diverse moduler i SvxLink som Parrot, EchoLink, Voice mail etc. Det möjliggör också lokala QSO:n på kanalen utan att någon talgrupp aktiveras utifrån. På samma sätt som när en talgrupp är aktiv krävs att kanalen är vilande under en tid innan uppkoppling av talgrupper kan ske, både fjärrmässigt och med subton. Tiden är inställbar av sysop men är som standard 30 sekunder. Det går dock alltid att aktivera en talgrupp med DTMF-kommandon.
+</p>
+
+</div>
+
+<h1 class="sectionedit8" id="qsy">QSY</h1>
+<div class="level1">
+
+<p>
+Under ett QSO på en talgrupp finns det möjlighet att flytta alla aktiva noder till en annan talgrupp. Som aktiv nod räknas de noder som har haft lokal aktivitet sedan talgruppen aktiverades, dvs att brusspärren har öppnat åtminstone en gång. QSY-funktionen styrs med DTMF-kommandon.
+</p>
+<ul>
+<li class="level1"><div class="li"> <strong>92#</strong>    – QSY till en tillfällig talgrupp som automatiskt väljs av reflectorservern</div>
+</li>
+<li class="level1"><div class="li"> <strong>92nnn#</strong> – QSY till talgrupp nnn</div>
+</li>
+<li class="level1"><div class="li"> <strong>93#</strong>    – Följ senaste QSY</div>
+</li>
+</ul>
+
+<p>
+QSY till tillfällig talgrupp används lämpligen på så sätt att anrop till en början sker på en bredare talgrupp, t ex 240 för hela Sverige. När alla deltagare har ”ropat in” på talgruppen används QSY kommandot (92#) för att flytta alla aktiva noder till den tillfälliga talgruppen. Den bredare talgruppen blir då åter igen ledig för anrop.
+</p>
+
+<p>
+QSY till en angiven talgrupp kan användas för att lägga till fler noder till ett pågående QSO. Anta att ett QSO har påbörjats på talgrupp 2403, dvs SM3. Under QSO:t vill man utöka med noder i SM5 också, alltså talgrupp 2405. Kommandot 922405# kan då användas till detta. Alla noder som för tillfället är aktiva på 2403 kommer att flyttas till 2405 och alla noder som monitorerar 2405 kommer att ansluta till talgruppen.
+</p>
+
+<p>
+En passiv nod kan också manuellt fås att följa senaste QSY med kommandot 93#. Detta kan vara bra om man inte har hunnit ”ropa in” före det att någon användare på en annan nod har initierat QSY.
+</p>
+
+<p>
+Notera skillnaden mellan QSY och lokalt val av TG. QSY-kommandot 922405# flyttar alla aktiva noder till talgrupp 2405 medan 912405# bara flyttar den lokala noden till talgrupp 2405.
+</p>
+
+</div>
+
+<h1 class="sectionedit9" id="dtmf_kommandon">DTMF kommandon</h1>
+<div class="level1">
+<div class="table sectionedit10"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0 leftalign"> Kommando  </th><th class="col1 leftalign"> Exempel  </th><th class="col2 leftalign"> Beskrivning                                                                </th>
+	</tr>
+	</thead>
+	<tbody><tr class="row1">
+		<td class="col0 leftalign"> 91nnn#    </td><td class="col1 leftalign"> 912405#  </td><td class="col2 leftalign"> Aktivera talgrupp 2405                                                     </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0 leftalign"> 91#       </td><td class="col1 leftalign">          </td><td class="col2 leftalign"> Hoppa tillbaka till tidigare vald talgrupp                                 </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0 leftalign"> 92#       </td><td class="col1 leftalign">          </td><td class="col2 leftalign"> QSY till en tillfällig talgrupp som automatiskt väljs av reflectorservern  </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0 leftalign"> 92nnn#    </td><td class="col1 leftalign"> 922405#  </td><td class="col2 leftalign"> QSY alla aktiva noder till en specifik talgrupp                            </td>
+	</tr>
+	<tr class="row5">
+		<td class="col0 leftalign"> 93#       </td><td class="col1 leftalign">          </td><td class="col2 leftalign"> Följ med QSY om man bara lyssnat                                           </td>
+	</tr>
+	<tr class="row6">
+		<td class="col0 leftalign"> 94nnnn#   </td><td class="col1"> 9424021# </td><td class="col2 leftalign"> Lägg till monitorering av talgrupp temporärt                               </td>
+	</tr>
+	<tr class="row7">
+		<td class="col0 leftalign"> 9*#       </td><td class="col1 leftalign">          </td><td class="col2 leftalign"> Information/Status                                                         </td>
+	</tr>
+</tbody></table></div>
+
+</div>
+
+                    <!-- wikipage stop -->
+                                    

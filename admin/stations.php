@@ -85,7 +85,7 @@ function reaload_user_stations()
  
  <div id="station_data>">
 
-    <table class="table" id="station_table_date">
+    <table class="table table-sm" id="station_table_date">
       <thead class="thead-dark">
         <tr>
           <th scope="col"><?php echo _('Callsign')?></th>
@@ -103,16 +103,21 @@ function reaload_user_stations()
       $result = mysqli_query($link, "SELECT * FROM `RefletorStations` where Callsign != '' ");
       
       
+      $count_up =0;
+      $count_down =0;
       
       while($row = $result->fetch_assoc()) {
           
           if($row['Station_Down'] == 1)
           {
               $class ="table-danger";
+              $count_down++;
           }
           else
           {
               $class ="table-success";
+              $count_up++;
+              
           }
           if($row['Monitor'] == 0)
           {
@@ -142,6 +147,9 @@ function reaload_user_stations()
     
 
   </tbody>
+  <tfoot class="table-dark">
+  <tr><td colspan ="2"><?php echo _('Total up / down')?></td><td><?php echo $count_up ." / ". $count_down?></td><td></td><td><?php  ?></td></tr>
+  </tfoot>
 </table>
 </div>
 

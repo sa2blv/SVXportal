@@ -197,8 +197,8 @@ if(!$_GET['only_table'])
     
     <div id="log_table">
 <?php }?>
-<table class="table" id="log_table_data">
-  <thead>
+<table class="table table-sm" id="log_table_data">
+  <thead class="thead-dark">
     <tr>
       <th scope="col"><?php echo _("Date")?></th>
       <th scope="col"><?php echo _("Station")?></th>

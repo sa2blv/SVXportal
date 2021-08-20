@@ -2,6 +2,7 @@
 include 'config.php';
 $link->set_charset("utf8");
 include 'function.php';
+define_settings();
 set_laguage();
 
 
@@ -28,6 +29,20 @@ set_laguage();
 <script src="./lib/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="lib/css/bootstrap.min.css">
 
+<link href="./fontawesome/css/all.css" rel="stylesheet">
+
+<style type="text/css">
+
+#Reflektortable tr
+{
+ cursor: pointer;
+}
+.normal_pounter
+{
+ cursor: default !important;
+}
+
+</style>
 
 <script>
 
@@ -44,6 +59,18 @@ $(document).ready(function(){
 	generate_coulor();
 	call_svxrefelktor();
 	MQTTconnect();
+	
+	$('#Reflektortable').on('shown.bs.collapse', function () {
+	    update_icons_expand();
+	});
+
+	$('#Reflektortable').on('hidden.bs.collapse', function () {
+	   update_icons_expand();
+	});
+
+
+
+	
 
 });
 
@@ -54,7 +81,7 @@ var tg_collors = new Array();
 function add_header()
 {
 
-	$('#Reflektortable').html('<thead class="thead-dark"><tr><th scope="col" class="col-xs-2 text-left" ><?php echo _('Callsign')?> &emsp;&emsp;&emsp;&emsp;</th><th scope="col" class="col-xs-1" ><?php echo _('Location')?></th><th scope="col" class="col-xs-1 text-left"><?php echo _('TG#')?></th><th scope="col" class="col-xs-1"></th><th scope="col" class="col-xs-2"><?php echo _('Receiver')?></th><th scope="col" class="col-xs-1"><?php echo _('Signal')?></th><th scope="col" class="col-xs-2"><?php echo _('Frequency')?></th><th class="col-xs-2"><?php echo _('Talk time')?></th></tr></thead>');
+	$('#Reflektortable').html('<thead class="thead-dark"><tr><th style="width:1%"></th><th scope="col" class="col-xs-2 text-left" ><?php echo _('Callsign')?> &emsp;&emsp;&emsp;&emsp;</th><th scope="col" class="col-xs-1" ><?php echo _('Location')?></th><th scope="col" class="col-xs-1 text-left"><?php echo _('TG#')?></th><th scope="col" class="col-xs-1"></th><th scope="col" class="col-xs-2"><?php echo _('Receiver')?></th><th scope="col" class="col-xs-1"><?php echo _('Signal')?></th><th scope="col" class="col-xs-2"><?php echo _('Frequency')?></th><th class="col-xs-2"><?php echo _('Talk time')?></th></tr></thead>');
  	
 }
 
@@ -194,23 +221,32 @@ var echolink_array = new Array();
 var echolink_length = new Array();
 var echolink_length_old = new Array();
 var echolink_talker = new Array();
+var echolink_Mode = new Array();
+
 
 function echolink_msg(msg)
 {
 	var payload_topic =  msg.destinationName.split("/"); 
 
-	if(payload_topic[1] == "EchoLink" && payload_topic[2] == "List")
+	if(payload_topic[1] == "Aux" && payload_topic[3] == "List")
 	{
 	
-		delete echolink_array[payload_topic[0]];
+		//delete echolink_array[payload_topic[0]][payload_topic[2]];
 		var data =msg.payloadString;
 // 		console.log(data.split("\n"));
 		var array =data.split("\n");
 		var last = array.pop();
 
-		
 
-		echolink_array[payload_topic[0]] = array;
+		//console.log(echolink_array[payload_topic[0]]);
+
+		if (echolink_array[payload_topic[0]] == undefined) {
+			
+			echolink_array[payload_topic[0]] = new Array();
+		}
+	
+		echolink_array[payload_topic[0]][payload_topic[2]] = array;
+		//echolink_Mode[payload_topic[0]] =  payload_topic[2];
 		
 
 
@@ -221,26 +257,38 @@ function echolink_msg(msg)
 //     	console.log(payload_topic);
 
 	}
-	if(payload_topic[1] == "EchoLink" && payload_topic[2] == "Size")
+
+	if(payload_topic.length >2)
 	{
-		echolink_length[payload_topic[0]] =msg.payloadString;
 
-	}
-	if(payload_topic[1] == "EchoLink" && payload_topic[2] == "Talker")
-	{
-		var incoming_message = msg.payloadString;
-		var incoming_message_array = incoming_message.split(' ');
-		var talker_state =  incoming_message_array[2];
-		var talker_action = talker_state.replace(/(\r\n|\n|\r)/gm," ");
+	
+    	if(payload_topic[2] == "EchoLink" && payload_topic[3] == "Size")
+    	{
+    		echolink_length[payload_topic[0]] =msg.payloadString;
+    
+    	}
+    
+    	//(payload_topic[2] == "EchoLink" &&  
+    	if( payload_topic[3] == "Talker")
+    	{
+    		//console.log("a");
+    		
+    		var incoming_message = msg.payloadString;
+    		var incoming_message_array = incoming_message.split(' ');
+    		//var talker_state =  incoming_message_array[2];
+    		//var talker_action = talker_state.replace(/(\r\n|\n|\r)/gm," ");
+    
+    		//if(talker_action.trim() == 'stop')
+    		//	echolink_talker[payload_topic[0]] ="";
+    		//if(talker_action.trim() == 'start')
+    			echolink_talker[payload_topic[0]] = incoming_message.replace(/(\r\n|\n|\r)/gm,"");
+    		
+    		//if(msg.payloadString == )
+    		//echolink_length[payload_topic[0]] =;
 
-		if(talker_action.trim() == 'stop')
-			echolink_talker[payload_topic[0]] ="";
-		if(talker_action.trim() == 'start')
-			echolink_talker[payload_topic[0]] = incoming_message_array[1];
-		
-		//if(msg.payloadString == )
-		//echolink_length[payload_topic[0]] =;
-
+        	//console.log(echolink_talker);
+    
+    	}
 	}
 
 	
@@ -248,44 +296,62 @@ function echolink_msg(msg)
 }
 function apeend_echolink(obj,stn)
 {
-	
+
+
     if(echolink_array[stn] != null)
     {
+    	//console.log(obj);
+    	
     	$('#group-of-'+stn).html('');
 
-			echolink_length_old[stn]  = echolink_length[stn]
+			//echolink_length_old[stn]  = echolink_length[stn]
+
+
+     	
+			//console.log(obj.qth.length);
 			
-        	for(var a in echolink_array[stn])
-        	{
-        		
-            	
+			for(var mode in echolink_array[stn])
+			{
+			
 
-        	    	
-            	var rxobj = new Array();
-     
-            	var name =echolink_array[stn][a];
+				var current_length = obj.qth.length;
+			    
+            	for(var a in echolink_array[stn][mode])
+            	{
+  
+                	var rxobj = new Array();
+         
+                	var name =echolink_array[stn][mode][a];
+    
+                	//var mode = echolink_Mode[stn] ;
+                	//console.log(echolink_array[stn][a].trim());
+                	//console.log(echolink_talker[stn]);
+                	mode_id= mode.replace(/[^a-zA-Z0-9]/g, '');
 
-            	
-
-
-            	if(echolink_array[stn][a] == echolink_talker[stn])
-        
-            	    rxobj["E"]= {active: true, enabled: true, name: echolink_array[stn][a] ,siglev:100, sqlType: "Echolink",sql_open: true, virtual_rx:"Echolink"}
-            	else
-            		rxobj["E"]= {active: false, enabled: true, name: echolink_array[stn][a] ,siglev:0, sqlType: "Echolink",sql_open: false, virtual_rx:"Echolink"}
-            	 
-            	 rxarray= {name:echolink_array[stn][a] , rx:rxobj};
-
-        
-            	 
-            	 
+    
+                	if(echolink_array[stn][mode][a].trim() == echolink_talker[stn])
+            
+                	    rxobj["E"+a+mode_id]= {active: true, enabled: true, name: echolink_array[stn][mode][a] ,siglev:100, sqlType: mode ,sql_open: true, virtual_rx:mode}
+                	else
+                		rxobj["E"+a+mode_id]= {active: false, enabled: true, name: echolink_array[stn][mode][a] ,siglev:0, sqlType: mode,sql_open: false, virtual_rx:mode}
                 	 
-            	
-            	//rxarray["rx"]["E"][] 
-        
-        
-            	obj.qth[a] = rxarray
-    			}
+                	 rxarray= {name:echolink_array[stn][mode][a] , rx:rxobj};
+    
+            
+  
+                	 
+                    	 
+                	
+                	//rxarray["rx"]["E"][] 
+            
+            
+            
+                    //console.log(a+current_length);
+                	obj.qth[current_length++] = rxarray
+        			}
+
+			}
+			//console.log(obj);
 
 
     	
@@ -297,6 +363,9 @@ function apeend_echolink(obj,stn)
     	obj.rx[qth1].freq ="";
     	*/
     }
+
+
+	
     return obj;
 
 }
@@ -321,9 +390,61 @@ function remove_notgouiltychar(string)
 	return string;
 }
 
+	var sorting_nr =[];
+	var sorting_id =0;
+
+function update_icons_expand()
+{
+
+	$( "#Reflektortable tr" ).each(function( i ) {
+
+	    var aria_e = $(this).attr('aria-expanded');
+	    var element_id ="";
+	    element_id =String($(this).attr('id'));
+	    element_id = element_id.replace("row","icon_");
+
+
+	    if(element_id != "")
+	    {
+    	    if(aria_e  == "true")
+    	    {
+    	      console.log("#"+element_id);
+    	      if($("#"+element_id).hasClass( "fa-plus-circle" ))
+    	      {
+    	        $("#"+element_id).removeClass('fa-plus-circle');
+    	        $("#"+element_id).addClass('fa-minus-circle');
+    	      }
+    	    }
+    	    else
+    	    {
+    	       if($("#"+element_id).hasClass( "fa-minus-circle" ))
+    	      {
+    	        $("#"+element_id).removeClass('fa-plus-circle');
+    	        $("#"+element_id).addClass('fa-plus-circle');
+    	      }
+    
+    
+    	    }
+	    }
+
+
+
+	});
+
+	
+	
+}
+
+
+	
+	
+
 function generate_coulor()
 {
     $.getJSON( "<?php echo $serveradress ?>", function( data ) {
+
+    	 sorting_nr =[];
+    	 sorting_id =0;
     
     
     	for(var k in data.nodes){
@@ -336,6 +457,8 @@ function generate_coulor()
     			tg_collors[data.nodes[k].monitoredTGs[nodes]]["TXT"] ="";
     			tg_collors[data.nodes[k].monitoredTGs[nodes]]["TXT_collor"] ="color:black;";
     			totalSeconds[data.nodes[k].tg]=0;
+    			sorting_nr[sorting_id] = data.nodes[k].monitoredTGs[nodes];
+    			sorting_id++;
     		}
     
     		tg_collors[data.nodes[k].tg]= new Array();
@@ -343,12 +466,14 @@ function generate_coulor()
     		tg_collors[data.nodes[k].tg]["color"] =random_css_collor();
     		tg_collors[data.nodes[k].tg]["TXT"] ="";
     		totalSeconds[data.nodes[k].tg]=0;
+    		sorting_nr[sorting_id] =data.nodes[k].tg;
+    		sorting_id++;
     
     	}
     	
     	<?php
 
-    			$result = mysqli_query($link, "SELECT * FROM `Talkgroup` ORDER BY `Talkgroup`.`TG` ASC");
+    			$result = mysqli_query($link, "SELECT *, CAST(TG as SIGNED) AS TG_column FROM `Talkgroup` ORDER BY TG_column ASC");
 
     			// Numeric array
 
@@ -358,7 +483,10 @@ function generate_coulor()
     				tg_collors[<?php echo $row["TG"]?>]= new Array();
             		tg_collors[<?php echo $row["TG"]?>]["id"] =<?php echo $row["TG"]?>;
             		tg_collors[<?php echo $row["TG"]?>]["color"] = "<?php echo $row["Collor"]?>";      
-            		tg_collors[<?php echo $row["TG"]?>]["TXT"] = "<?php echo $row["TXT"]?>";          
+            		tg_collors[<?php echo $row["TG"]?>]["TXT"] = "<?php echo $row["TXT"]?>";     
+            		sorting_nr[sorting_id] =<?php echo $row["TG"]?>;
+            		sorting_id++;
+            		     
 
             		<?php 
             		
@@ -379,19 +507,61 @@ function generate_coulor()
 
             		tg_collors[<?php echo $row["TG"]?>]["TXT_collor"] = "<?php echo $color_text?>";
 
+          
+            			
+
 
 
             		   
     <?php }?>
 
-    for(var k in tg_collors){
+
+
+   
+
+    sorting_nr = removeDups(sorting_nr)
+
+    sorting_nr.sort(function (a, b) {
+        if (a === b) {
+            return 0;
+        }
+        if (typeof a === typeof b) {
+            return a < b ? -1 : 1;
+        }
+        return typeof a < typeof b ? -1 : 1;
+    });
+
+
+   	$('#selects').append($('<optgroup>', {
+   		label: "<?php echo _('Talkgroups')?>"
+   	}));
+   
+    
+
+
+
+    for(var k in sorting_nr){
+
+
+        k=sorting_nr[k];
+        var font_str ="";
+
+        if(k.length <= 4)
+        {
+     
+           font_str ="font-weight: bold;";
+        }
         
-      	$('#selects').append($('<option>', {
-      	    value: k,
-      	    text: k+"		"+tg_collors[k]["TXT"],
-      	  style:"background-color: "+tg_collors[k]["color"] +";"+tg_collors[k]["TXT_collor"]+";"
-      	}));
-      }
+        
+        
+       	$('#selects').append($('<option>', {
+       	    value: k,
+       	    text: k+"		"+tg_collors[k]["TXT"],
+       	  style:"background-color: "+tg_collors[k]["color"] +";"+tg_collors[k]["TXT_collor"]+";"+font_str
+       	}));
+       }
+
+    
 	
     });
 
@@ -399,12 +569,55 @@ function generate_coulor()
 
     
 }
+function isset(variable) {
+    return typeof variable !== typeof undefined;
+}
+
+
+
+function removeDups(names) {
+	  let unique = {};
+	  names.forEach(function(i) {
+	    if(!unique[i]) {
+	      unique[i] = true;
+	    }
+	  });
+	  return Object.keys(unique);
+	}
+
+
+
+//regular expression to get the alphabetic and the number parts, if any
+var regex = /^([a-z]*)(\d*)/i;
+
+function sortFn(a, b) {
+  var _a = a.match(regex);
+  var _b = b.match(regex);
+
+  // if the alphabetic part of a is less than that of b => -1
+  if (_a[1] < _b[1]) return -1;
+  // if the alphabetic part of a is greater than that of b => 1
+  if (_a[1] > _b[1]) return 1;
+
+  // if the alphabetic parts are equal, check the number parts
+  var _n = parseInt(_a[2]) - parseInt(_b[2]);
+  if(_n == 0) // if the number parts are equal start a recursive test on the rest
+      return sortFn(a.substr(_a[0].length), b.substr(_b[0].length));
+  // else, just sort using the numbers parts
+  return _n;
+}
+
+
+
+
+
 var filter_station = "";
 var old_json_pass="";
 function update_filter(value) {
 	filter_station = value;
 //	$('#Reflektortable').html("<th>Callsign</th><th>TG</th><th>Ver</th><th>Monitored TGs</th>");
 	$('#Reflektortable').find('tbody').detach();
+	console.log(filter_station);
 	add_header();
 	call_svxrefelktor();
 
@@ -419,10 +632,27 @@ $.getJSON( "<?php echo $serveradress ?>", function( data ) {
 	if(filter_station != "")
 	{
     	for(var k in data.nodes){
-    		if(data.nodes[k].tg != filter_station)
+
+    		if(filter_station == 'A' && data.nodes[k].tg == '0')
+    		{
+       
+    			delete data.nodes[k];
+    			$('#body-of-'+remove_notgouiltychar(k)).remove();
+    			$('#group-of-'+remove_notgouiltychar(k)).remove();
+    			$('#row'+remove_notgouiltychar(k)+'').remove();
+    			
+
+    
+    			
+    		}
+    		else if(data.nodes[k].tg != filter_station && filter_station != 'A')
     		{
     			delete data.nodes[k];
+    			$('#body-of-'+remove_notgouiltychar(k)).remove();
+    			$('#group-of-'+remove_notgouiltychar(k)).remove();
+    			$('#row'+remove_notgouiltychar(k)+'').remove();
     		}
+    	
     		
     	}
 	}
@@ -446,19 +676,18 @@ $('tr[id^="row"]').each(function( index ) {
 	  {
 	   	  if(!nodes.hasOwnProperty(res))
     	  {
-
-
     		  $( this ).addClass('table-warning text-muted');
     	  }
     	  else
     	  {
     		  $( this ).removeClass('table-warning text-muted');
     	  }
-		  
+
 
 	  }
 	  else
 	  {
+
 
 	  }
 });
@@ -490,6 +719,13 @@ for(var k in data.nodes){
     	delete data.nodes[k];
     	
     }
+    if ( k.includes("/")) {
+		var new_call = k.replace("/",'-');
+    	data.nodes[new_call] = data.nodes[k]; 
+        delete data.nodes[k];
+    }
+
+    
 }
 
 for(var k in data.nodes){
@@ -501,10 +737,23 @@ for(var k in data.nodes){
 	}
 	var printk =remove_notgouiltychar(k)
 	
+	
+	data.nodes[k] =  apeend_echolink(data.nodes[k],k);
+	
+	
 	//k=remove_notgouiltychar(k);
 
-	
-	
+	  var cirkel_string = "<i id=\"icon_"+printk+"\"  class=\"far fa-circle\"></i>";
+
+	  
+	  if(typeof  data.nodes[k].qth  != 'undefined' )
+	  {
+		  if(data.nodes[k].qth.length > 0)
+		  {
+		   cirkel_string = "<i id=\"icon_"+printk+"\" class=\"fas fa-plus-circle\"></i>";
+		  }
+	  }
+
 
 
 		var image= '<img src="images/talking.gif" alt="talk" id="talking" width="25px">';	
@@ -547,11 +796,8 @@ for(var k in data.nodes){
     			if((JSON.stringify(data.nodes[k]) != JSON.stringify(old_json_pass.nodes[k]) ) )
     	    	{
 
-    			     
-
-        	    	
-
-        		var new_html = '<td>'+k+'</td>'+'<td>'+data.nodes[k].NodeLocation+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td class="">'+rssi_str+'<canvas id="bar_'+printk+'"></canvas></td><td id="reciver_'+printk+'">  </td></td><td id="value_k'+printk+'">0%</td><td id="freq_row'+printk+'"></td><td class="flex-nowrap"> - </td>'
+    			             	    	
+        		var new_html = '<td>'+cirkel_string+'</td><td>'+k+'</td>'+'<td>'+data.nodes[k].NodeLocation+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td class="">'+rssi_str+'<canvas id="bar_'+printk+'"></canvas></td><td id="reciver_'+printk+'">  </td></td><td id="value_k'+printk+'">0%</td><td id="freq_row'+printk+'"></td><td class="flex-nowrap"> - </td>'
   
     			 			
 	 	  		$('#row'+printk+'').html(new_html);
@@ -565,11 +811,13 @@ for(var k in data.nodes){
     		}
     		else
     		{
-	 	  		$('#row'+printk+'').html('<td>'+k+'</td>'+'<td>'+data.nodes[k].NodeLocation+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td class="" >'+rssi_str+'<canvas id="bar_'+printk+'"></canvas></td><td id="reciver_'+printk+'">  </td><td id="value_k'+printk+'">0%</td><td id="freq_row'+printk+'"></td><td class="flex-nowrap" ><label id="minutes_'+data.nodes[k].tg+'">00</label>:<label id="seconds_'+data.nodes[k].tg+'">00</label></td>');
+	 	  		$('#row'+printk+'').html('<td>'+cirkel_string+'</td><td>'+k+'</td>'+'<td>'+data.nodes[k].NodeLocation+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td class="" >'+rssi_str+'<canvas id="bar_'+printk+'"></canvas></td><td id="reciver_'+printk+'">  </td><td id="value_k'+printk+'">0%</td><td id="freq_row'+printk+'"></td><td class="flex-nowrap" ><label id="minutes_'+data.nodes[k].tg+'">00</label>:<label id="seconds_'+data.nodes[k].tg+'">00</label></td>');
 	 	  		$('#row'+printk+'').addClass("font-weight-bold");	
 
 	 	  		
 	    	}
+
+	    	
 	    	if(data.nodes[k].tg != 0)
 	    	{
 		    	if(tg_collors[data.nodes[k].tg]== null)
@@ -620,16 +868,16 @@ for(var k in data.nodes){
     	 }
     	 else
     	 {
-
-
-
-    		
-        	 
-	  		$('#Reflektortable').append('<tbody class="table-striped" id="body-of-'+printk+'"><tr data-toggle="collapse" data-target="#group-of-'+printk+'" aria-expanded="false" aria-controls="group-of-'+printk+'" class="" id="row'+printk+'"><td>'+k+'</td>'+'<td>'+data.nodes[k].NodeLocation+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td id="rssi_canas_'+printk+'"> <canvas id="bar_'+printk+'"></canvas></td><td id="reciver_'+printk+'">  </td><td id="value_k'+printk+'">0%</td></td><td id="freq_row'+printk+'"></td><td class="flex-nowrap"><label id="minutes_'+data.nodes[k].tg+'"></label><label id="seconds_'+data.nodes[k].tg+'"></label></td> </tr> </tbody>');
+    		 $("#minutes_"+data.nodes[k].tg).remove(); 
+    		 $("#seconds_"+data.nodes[k].tg).remove(); 	 
+	  		$('#Reflektortable').append('<tbody class="table-striped" id="body-of-'+printk+'"><tr data-toggle="collapse" data-target="#group-of-'+printk+'" aria-expanded="false" aria-controls="group-of-'+printk+'" class="" id="row'+printk+'"><td>'+cirkel_string+'</td><td>'+k+'</td>'+'<td>'+data.nodes[k].NodeLocation+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td id="rssi_canas_'+printk+'"> <canvas id="bar_'+printk+'"></canvas></td><td id="reciver_'+printk+'">  </td><td id="value_k'+printk+'">0%</td></td><td id="freq_row'+printk+'"></td><td class="flex-nowrap"><label id="minutes_'+data.nodes[k].tg+'"></label><label id="seconds_'+data.nodes[k].tg+'"></label></td> </tr> </tbody>');
 	  		create_bar('bar_'+printk);
 	  		//create_bar_rssi('bar_RSSI_'+printk)
 	    }
-		  if(current_talker[data.nodes[k].tg] == k)
+
+
+	    
+	 if(current_talker[data.nodes[k].tg] == k)
 	  {
 		//totalSeconds=0;
 	  }	
@@ -656,7 +904,7 @@ for(var k in data.nodes){
     }
 // if qth is defined
 
- 	data.nodes[k] =  apeend_echolink(data.nodes[k],k);
+ 	
 
  
     for(var qth in data.nodes[k].qth)
@@ -664,17 +912,21 @@ for(var k in data.nodes){
  
     	var counter_tbody =0;
     	var counter_tbody_max =0;
-
+		var qth_node_name =data.nodes[k].qth[qth].name
 
     	for(var qth1 in data.nodes[k].qth[qth].rx)
         	{
-        	
-    	
-        	
-    
-  
+
+
+
            	var qth_name =data.nodes[k].qth[qth].rx[qth1].name;
+        	var qth_name_location =data.nodes[k].qth[qth].name;
+
            	var rx_active =data.nodes[k].qth[qth].rx[qth1].active;
+
+
+           	
+           	
            	var rx_sql =data.nodes[k].qth[qth].rx[qth1].sql_open;
            	var sql = data.nodes[k].qth[qth].name;
            	var value =data.nodes[k].qth[qth].rx[qth1].siglev;
@@ -683,6 +935,7 @@ for(var k in data.nodes){
            	Freqvensy = parseFloat(Freqvensy);
            	Freqvensy = Freqvensy.toFixed(4); 
 
+        	  var QTHlocation= qth_node_name+"";
 
 
            	
@@ -694,6 +947,7 @@ for(var k in data.nodes){
            	if(data.nodes[k].qth[qth].rx[qth1].virtual_rx)
            	{
            		Freqvensy= data.nodes[k].qth[qth].rx[qth1].virtual_rx;
+           		QTHlocation="";
            	}
            	
 
@@ -702,6 +956,7 @@ for(var k in data.nodes){
            
       
            	var name_id =data.nodes[k].qth[qth].name+qth1;
+           	var name_id =k+qth1;
            	name_id = name_id.trim();
            	if(value == undefined)
                	value =0;
@@ -713,18 +968,48 @@ for(var k in data.nodes){
         	   class_row = ""
            }
 
-  
+          var sub_icon ='<i class="fas fa-long-arrow-alt-right"></i>';
+          sub_icon ='<i class="fas fa-broadcast-tower"></i>';
+
+           
+          if(qth_name == "Headset")
+          {
+        	  sub_icon ='<i class="fas fa-headset"></i>';
+          }
+          if(qth_name == "Speaker")
+          {
+        	  sub_icon ='<i class="fas fa-volume-up"></i>';
+          }
 
 
+
+          if(Freqvensy.includes("Echo"))
+          {
+        	  sub_icon ='<img src="images/EchoLinkIcon.gif" width="20px">';
+
+          }
+          
+          if(Freqvensy.includes("DMR"))
+          {
+        	  sub_icon ='<img src="images/dmr.png" width="20px">';
+          }          
+
+          
+          //if(printk == "SK2RIU")
+          //console.log('bar_'+printk+'_'+qth_name+qth1);
+
+    
      	  if(document.getElementById('row'+remove_notgouiltychar(name_id)))
      	  {
 
-              qth_html_add ='<td> * '+qth_name+'</td><td></td><td></td><td colspan="1" id="td'+k+'_'+qth_name+'"><canvas id="bar_'+printk+'_'+qth_name+'"></canvas></p> </td><td></td><td>'+parseInt(value)+'%</td><td>'+Freqvensy+'</td><td></td>';
+
+  
+              qth_html_add ='<td>'+sub_icon+'</td><td>'+qth_name+'</td><td>'+QTHlocation+'</td><td></td><td colspan="1" id="td'+k+'_'+qth_name+qth1+'"><canvas id="bar_'+printk+'_'+qth_name+qth1+'"></canvas></p> </td><td></td><td>'+parseInt(value)+'%</td><td>'+Freqvensy+'</td><td></td>';
               $('#row'+remove_notgouiltychar(name_id)).html(qth_html_add);
               $('#row'+remove_notgouiltychar(name_id)).addClass("class_row");
-
-        
+              $('#row'+remove_notgouiltychar(name_id)).addClass("normal_pounter");
               
+  
               
               //create_bar('bar_'+k);
      	  }
@@ -741,8 +1026,8 @@ for(var k in data.nodes){
               
 
          	
-         	  
-              qth_html_add ='<tr class="table-striped  '+class_row+' table-borderless" id="row'+name_id+'"  ><td> * '+qth_name+'</td><td></td><td></td><td colspan="" id="td'+printk+'_'+qth_name+'"><canvas id="bar_'+printk+'_'+qth_name+'"></canvas> </td><td></td><td>'+parseInt(value)+'%</td><td>'+Freqvensy+'</td><td></td></tr>';
+        
+              qth_html_add ='<tr class="table-striped  '+class_row+'  table-borderless normal_pounter" id="row'+name_id+'"  ><td>'+sub_icon+'</td><td>  '+qth_name+'</td><td>'+QTHlocation+'</td><td></td><td colspan="" id="td'+printk+'_'+qth_name+qth1+'"><canvas id="bar_'+printk+'_'+qth_name+qth1+'"></canvas> </td><td></td><td>'+parseInt(value)+'%</td><td>'+Freqvensy+'</td><td></td></tr>';
 
               $('#group-of-'+printk).append(qth_html_add);
    
@@ -754,8 +1039,18 @@ for(var k in data.nodes){
    
               
      	  }
+
+
+			
           
-           var canvas = document.getElementById('bar_'+printk+'_'+qth_name);
+           var canvas = document.getElementById('bar_'+printk+'_'+qth_name+qth1);
+			if(canvas == null)
+			{
+	
+				canvas = document.getElementById('bar_'+printk+'_'+qth_name);
+			}
+           
+
            var context = canvas.getContext('2d');
            width= 0.2 *window.innerWidth
            var value_scale =width/100;
@@ -772,17 +1067,26 @@ for(var k in data.nodes){
     	{
     		 
     		context.fillStyle ="#1932F7";
-    		update_bar('bar_'+k,value,k);
+    		
+            var canvas = document.getElementById('bar_'+printk+'_'+qth_name);
+			if(canvas != null)
+			{
+				update_bar('bar_'+k,value,k);
+			}
+			else
+			{
+    			update_bar('bar_'+k,value,k);
+			}
     		$("#freq_row"+k).html(Freqvensy);
 
     		if(mqtt_station_array[k]  && mqtt_station_array[k]["RSSI"] != "-200")
     		{
     		
-    			$("#reciver_"+k).html(Math.round(mqtt_station_array[k]["RSSI"])+" dBm<br/>"+qth_name);
+    			$("#reciver_"+k).html(Math.round(mqtt_station_array[k]["RSSI"])+" dBm<br/>"+qth_name_location);
     		}
     		else
     		{
-    			$("#reciver_"+k).html(qth_name);
+    			$("#reciver_"+k).html(qth_name_location);
     		}
     		
  		
@@ -803,7 +1107,7 @@ for(var k in data.nodes){
     	else if (value >=100)
     		context.fillRect(1, 1 , width-3,8);
 
-    	}
+	}
     }
 
     }
@@ -856,10 +1160,12 @@ function update_bar(id,value,k)
 
 	if(mqtt_station_array[k] && mqtt_station_array[k]["RSSI"] != "-200")
 	{
-		update_bar_rssi('bar_RSSI_'+k,mqtt_station_array[k]["RSSI"],k)
+		update_bar_rssi('bar_RSSI_'+k,mqtt_station_array[k]["RSSI"],value,k)
+
 	}
 	else
 	{
+
 		$("#value_k"+k).html(parseInt(value)+" %")
 	}
 
@@ -902,12 +1208,12 @@ function scale_rssi(val)
 
 
 
-function update_bar_rssi(id,value,k)
+function update_bar_rssi(id,value,siglev,k)
 {
     var canvas = document.getElementById(id);
     var context = canvas.getContext('2d');
     width= 0.2 *window.innerWidth
-    var value_scale =width/100;
+    var value_scale =width/70;
     canvas.setAttribute('width', width);
 
     value=scale_rssi(value)
@@ -955,7 +1261,7 @@ function update_bar_rssi(id,value,k)
 
     context.rect(10, 10, 150, 100);
 
-	$("#value_k"+k).html(mqtt_station_array[k]["Sval"]+"<br />"+parseInt(value)+" %")
+	$("#value_k"+k).html(mqtt_station_array[k]["Sval"]+"<br />"+parseInt(siglev)+" %")
 	
 }
 
@@ -1064,6 +1370,48 @@ function update_bar_rssi(id,value,k)
         }
 
 
+    function seek() {
+    	  // Declare variables
+    	  var input, filter, table, tr, td, i, txtValue;
+    	  input = document.getElementById("seek");
+    	  filter = input.value.toUpperCase();
+    	  table = document.getElementById("Reflektortable");
+    	  tr = table.getElementsByTagName("tr");
+    
+    	  // Loop through all table rows, and hide those who don't match the search query
+    	  for (i = 0; i < tr.length; i++) 
+    	  {
+
+    		id = tr[i];
+
+    		parent = tr[i].parentElement.getAttribute("id"); 
+    	    td = tr[i].getElementsByTagName("td")[1];
+	
+
+
+    	    
+    	    if(parent == null)
+    	    {
+    	    	parent= "";
+    	    }
+    	    data_str =     parent.toString();   
+    	    if(!(data_str.indexOf("group-of-") !== -1))
+    	    { 	    	 
+        	    if (td) {
+        	      txtValue = td.textContent || td.innerText;
+
+        	      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        	        tr[i].style.display = "";
+        	      } else {
+        	        tr[i].style.display = "none";
+        	      }
+        	    }
+    	    }
+    	  }
+    	}
+
+    	
+
 
         
 
@@ -1107,11 +1455,48 @@ function update_bar_rssi(id,value,k)
 ?>
 <div class="w-screen ">
     <nav class="navbar navbar-dark  text-light sidebar_collor">
-    			<label for="selects"><?php echo _('Talkgroup filter')?>:</label><select id="selects"  class="w-25" onchange="update_filter(this.value)">
-    				<option value="">-- <?php echo _('All')?> --</option>
+    
+    <div>
+
+    			
+        
+    
+   <a class="navbar-brand" href="index.php">
+    <img src="loggo.png" alt="Logo" style="width:40px;">
+
+  </a>
+   <a class="navbar-brand wite_font" href="index.php">
+     SVX Portal
+   </a>
+
+
+    
+
+
+
+  
+  </div>
+  
+  
+    
+    			<select id="selects"  class="form-control form-control-sm w-25" onchange="update_filter(this.value)">
+    			 <optgroup label="<?php echo _('Default')?>s">
+    				<option value="">-- <?php echo _('Talkgroup filter')?> --</option>
+    				<option value="A">-- <?php echo _('All active')?> --</option>
+				 <optgroup label="">
     			</select>
-    <a href="index.php" onclick="" class="btn btn-outline-success my-2 my-sm-0"
-    						id="menu-toggle"><?php echo _('Back')?></a>
+    			
+    
+    <div id="form-inline my-2 my-lg-2">		
+    	<div class="form-inline">	
+         <input type="text" class="form-control" id="seek" onkeyup="seek()" placeholder="<?php echo _('Search for Node')?>"> &nbsp;&nbsp;
+    
+        			 
+        			
+            <a href="index.php" onclick="" class="btn btn-outline-success my-2 my-sm-0"
+            						id="menu-toggle"><?php echo _('Back')?></a>
+      </div>
+	</div>
     		</nav>
     		
     <table id="Reflektortable" class="table  table-hover">

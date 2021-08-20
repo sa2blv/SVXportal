@@ -271,15 +271,44 @@ function create_station($station_id) {
     
     $temp = mysqli_fetch_array($res, MYSQLI_ASSOC);
     
+ 
+    
     $calls = $temp['Callsign'];
     $idnr =$temp['ID'];
     
-    
+
     
     if($temp != null)
     {
+
         $default_info ="";
         $default_hw ="";
+        
+        
+     
+        $handle = @fopen("./driver/core/DefaultHardware.php", "r");
+        if ($handle) {
+            while (($buffer = fgets($handle, 4096)) !== false) {
+                $default_hw.= $buffer;
+            }
+            if (!feof($handle)) {
+               
+            }
+            fclose($handle);
+        }
+
+        
+        // Outputs an empty string
+        $default_hw= htmlentities(($default_hw), ENT_QUOTES | ENT_IGNORE, "UTF-8");
+       //$default_hw= ;
+        $default_hw = $link->real_escape_string($default_hw);
+        
+
+        
+        
+        
+        
+        
         
         mysqli_query($link, "INSERT INTO `Infotmation_page` (`id`, `Station_Name`, `Station_id`, `Module`, `Html`, `Hardware_page`, `Image`) VALUES (NULL, '$calls', '$idnr', '', '$default_info', '$default_hw', '');");
     }
@@ -307,7 +336,7 @@ else
     
     $id = $_GET["Station_id"];
     $id = $link->real_escape_string($id);
-    $result = mysqli_query($link, "SELECT Html , Hardware_page, id, Station_Name, Station_id, Module, Image FROM `Infotmation_page` WHERE id='".$id."'");
+    $result = mysqli_query($link, "SELECT Html , Hardware_page, id, Station_Name, Station_id, Module, Image, GrafanaUrl FROM `Infotmation_page` WHERE id='".$id."'");
     
     
     
@@ -317,6 +346,8 @@ else
 
 
 $station_data = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+
 
 if($station_data == NULL)
 {
@@ -835,6 +866,19 @@ $premission_rw =check_premission_station_RW($_GET["Station_idnr"],$_SESSION['log
             ?>
 	 </select>
    </div>
+   
+   <div class="form-group">
+    <label for="GrafanaUrl"><?php echo _('Graphana url')?>:</label>
+    <input type="url" class="form-control" id="GrafanaUrl" name="GrafanaUrl" aria-describedby="emailHelp" placeholder="http://" value="<?php echo $station_data['GrafanaUrl']?>">
+    
+    
+    
+    
+    
+
+   </div>
+   
+   
 
   <button type="submit" class="btn btn-primary"><?php echo _('Save')?></button>
 </form> 
@@ -1018,7 +1062,6 @@ function  Update_dtmf()
     <div class="modal-dialog modal-lg">
     
       <!-- Modal content-->
-      <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title"><?php echo _('New DTMF Command ')?></h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
