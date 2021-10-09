@@ -30,10 +30,10 @@ $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
 if($_SESSION['is_admin'] >0 && $_SESSION['loginid'] >0 )
 {
+    
+    if(isset($_POST["site_id"]) && $_POST['site_id'] !="" ) {
+        
 
-    if(isset($_POST["submit"]) && $_POST['site_id'] !="" ) {
-        
-        
        
         $unzip = new ZipArchive;
         $out = $unzip->open($_FILES["fileToUpload"]["tmp_name"]);
