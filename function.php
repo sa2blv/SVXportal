@@ -402,8 +402,12 @@ function hex2rgb( $colour ) {
 
 function return_diff_to_darkness($collor)
 {
-    $colloar_array =hex2rgb(trim($collor));
-    
+    if($collor == '')
+        return 0;
+    else
+    {
+        $colloar_array =hex2rgb(trim($collor));
+    }
     return brghtdiff($colloar_array['red'],$colloar_array['green'],$colloar_array['blue'],0,0,0);
     
 }
