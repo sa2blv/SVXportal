@@ -437,3 +437,40 @@ UPDATE `Settings` SET `value` = '2.5' WHERE `Settings`.`Define` = 'PORTAL_VERSIO
 
 ALTER TABLE `users` CHANGE `Reset_token` `Reset_token` VARCHAR(99) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL; 
 
+
+
+CREATE TABLE `Station_day_statistic` (
+  `Id` int NOT NULL,
+  `Station_id` int NOT NULL,
+  `Date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Active_secunds` int NOT NULL,
+  `Max_reciver` text NOT NULL,
+  `minsiglev` float NOT NULL,
+  `avrige` float NOT NULL,
+  `maxsiglev` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Statistcs for reciver day by day';
+
+--
+-- Index för dumpade tabeller
+--
+
+--
+-- Index för tabell `Station_day_statistic`
+--
+ALTER TABLE `Station_day_statistic`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- AUTO_INCREMENT för dumpade tabeller
+--
+
+--
+-- AUTO_INCREMENT för tabell `Station_day_statistic`
+--
+ALTER TABLE `Station_day_statistic`
+  MODIFY `Id` int NOT NULL AUTO_INCREMENT;
+
+
+ALTER TABLE `RefletorStations` CHANGE `ID` `ID` INT NOT NULL AUTO_INCREMENT; 
+
+UPDATE `Settings` SET `value` = '2.5' WHERE `Settings`.`Define` = 'PORTAL_VERSION'; 

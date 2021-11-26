@@ -36,3 +36,5 @@ UPDATE `Settings` SET `value` = '2.5' WHERE `Settings`.`Define` = 'PORTAL_VERSIO
 
 
 ALTER TABLE `users` CHANGE `Reset_token` `Reset_token` VARCHAR(99) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL; 
+
+ALTER TABLE `RefletorStations` CHANGE `ID` `ID` INT NOT NULL AUTO_INCREMENT; 
