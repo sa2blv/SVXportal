@@ -87,7 +87,7 @@ function set_laguage() {
     $current_lagnuge= $locale;
 
     putenv("LANG=".$locale); //not needed for my tests, but people say it's useful for windows
-    
+    putenv("LANGUAGE=".$locale); 
     setlocale( LC_MESSAGES, $locale);
     bindtextdomain($domain, $directory);
     textdomain($domain);
