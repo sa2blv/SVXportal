@@ -8,7 +8,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 */
 include_once  'config.php';
-$file = 'tmp/cache_json.txt';
+$file = '/tmp/cache_json.txt';
 // Create connection
 $conn = new mysqli($host, $user, $password, $db);
 // Check connection
