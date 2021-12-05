@@ -102,6 +102,8 @@ ALTER TABLE `Station_day_statistic`
   MODIFY `Id` int NOT NULL AUTO_INCREMENT;
 
 
+ALTER TABLE `RefletorStations` CHANGE `ID` `ID` INT NOT NULL AUTO_INCREMENT; 
 
+UPDATE `Settings` SET `value` = '2.5' WHERE `Settings`.`Define` = 'PORTAL_VERSION'; 
 
 
