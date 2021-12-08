@@ -128,17 +128,43 @@ CREATE TABLE `RefletorNodeLOG` (
 -- Tabellstruktur `RefletorStations`
 --
 
+--
+-- Tabellstruktur `RefletorStations`
+--
+
 CREATE TABLE `RefletorStations` (
-  `ID` int(11) NOT NULL,
+  `ID` int NOT NULL,
   `Callsign` varchar(40) CHARACTER SET utf8 COLLATE utf8_swedish_ci NOT NULL,
   `Location` text NOT NULL,
   `Collor` text,
   `Last_Seen` datetime DEFAULT NULL,
-  `Station_Down` int(11) NOT NULL,
-  `Station_Down_timmer_count` int(11) NOT NULL,
-  `Monitor` int(11) NOT NULL DEFAULT '1'
+  `Station_Down` int NOT NULL,
+  `Station_Down_timmer_count` int NOT NULL,
+  `Monitor` int NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Index för dumpade tabeller
+--
+
+--
+-- Index för tabell `RefletorStations`
+--
+ALTER TABLE `RefletorStations`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Callsign` (`Callsign`),
+  ADD KEY `Callsign_2` (`Callsign`);
+
+--
+-- AUTO_INCREMENT för dumpade tabeller
+--
+
+--
+-- AUTO_INCREMENT för tabell `RefletorStations`
+--
+ALTER TABLE `RefletorStations`
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT;
+COMMIT;
 -- --------------------------------------------------------
 
 --
@@ -292,13 +318,6 @@ ALTER TABLE `RefletorNodeLOG`
   ADD KEY `Time` (`Time`),
   ADD KEY `Id` (`Id`);
 
---
--- Index fÃ¶r tabell `RefletorStations`
---
-ALTER TABLE `RefletorStations`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `Callsign` (`Callsign`),
-  ADD KEY `Callsign_2` (`Callsign`);
 
 --
 -- Index fÃ¶r tabell `repeater`
@@ -427,7 +446,7 @@ ALTER TABLE `Infotmation_page` CHANGE `GrafanaUrl` `GrafanaUrl` TEXT CHARACTER S
 
 ALTER TABLE `users` ADD `image_url` VARCHAR(255) NULL DEFAULT NULL AFTER `email`; 
 
-ALTER TABLE `Infotmation_page` ADD `Module` VARCHAR(90) NOT NULL AFTER `Station_id`;
+
 
 ALTER TABLE `RefletorNodeLOG` CHANGE `Id` `Id` INT(11) NOT NULL AUTO_INCREMENT; 
 
@@ -470,7 +489,5 @@ ALTER TABLE `Station_day_statistic`
 ALTER TABLE `Station_day_statistic`
   MODIFY `Id` int NOT NULL AUTO_INCREMENT;
 
-
-ALTER TABLE `RefletorStations` CHANGE `ID` `ID` INT NOT NULL AUTO_INCREMENT; 
 
 UPDATE `Settings` SET `value` = '2.5' WHERE `Settings`.`Define` = 'PORTAL_VERSION'; 
