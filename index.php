@@ -64,6 +64,11 @@ set_laguage();
 <script type="text/javascript">
 
 var get_push ="0";
+var kill_loop =0;
+var secret_santa =0;
+
+
+
 function show_notifications_nodes()
 {
 	alert("Notifcation beta");
@@ -411,7 +416,6 @@ var start_talk_var;
 
 
 
-
 function reflector_handler()
 {
     $.getJSON( "<?php echo $serveradress ?>", function( data )
@@ -499,6 +503,7 @@ var totalSeconds =  new Array();
 var current_talker= new Array();
 
 
+
 function call_svxrefelktor(data) {
 var node_count =0;
 var talkgroups_active = new Array();
@@ -511,7 +516,7 @@ var talkgroups_active = new Array();
 for(var k in data.nodes)
 {
 		
-	    if(data.nodes[k].hidden == true)
+	    if(data.nodes[k].hidden == true && secret_santa == 0) 
 	    {
 	    	delete data.nodes[k];
 	    }
@@ -2332,6 +2337,11 @@ if($usefile != null)
        					 <a class="nav-link  " href="#" id="navbarDropdownMenuLink" onclick="PrintElem('dictornay_taklgroup_print','<?php echo _('Talkgroups')?>')" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   				 <i class="fas fa-print"></i>
              						 <?php echo _('Print') ?>          					 </a>
+             						 
+             			<a class="nav-link  " href="other/anytone/analog_adressbook.php" target="_blank aria-haspopup="true" aria-expanded="false">
+                  				 <i class="fa fa-users"></i>
+             						 <?php echo _('Export Antyone') ?>          					 </a>
+             						 
             
             
 
@@ -3258,7 +3268,7 @@ function prosess_json_reflecktor()
     
 		for(var k in data.nodes){
 			
-		    if(data.nodes[k].hidden == true)
+		    if(data.nodes[k].hidden == true && secret_santa == 0)
 		    {
 		    	delete data.nodes[k];
 		    	
@@ -3293,8 +3303,8 @@ function prosess_json_reflecktor()
 		        for(var qth1 in data.nodes[k].qth[qth].rx)
 			    {
 			        
-    				var lat =data.nodes[k].qth[qth].pos.lat
-    				var lon =data.nodes[k].qth[qth].pos.long;
+    				var lat =parseFloat(data.nodes[k].qth[qth].pos.lat);
+    				var lon =parseFloat(data.nodes[k].qth[qth].pos.long);
 
    
     				
@@ -4380,7 +4390,7 @@ function add_tx_station()
 		});
 	
 }
-var kill_loop =0;
+
 function update_tx_station_loop(data)
 {
 
@@ -4414,8 +4424,8 @@ function update_tx_station_loop(data)
 			
 		    for(var qth in data.nodes[k].qth){
 		        for(var qth1 in data.nodes[k].qth[qth].tx){
-				var lat =data.nodes[k].qth[qth].pos.lat
-				var lon =data.nodes[k].qth[qth].pos.long;
+				var lat =parseFloat(data.nodes[k].qth[qth].pos.lat)
+				var lon =parseFloat(data.nodes[k].qth[qth].pos.long);
 
 
 				var talkgroup =data.nodes[k].tg;
@@ -4444,10 +4454,10 @@ function update_tx_station_loop(data)
 		        for(var qth1 in data.nodes[k].qth[qth].rx)
 		        {
 		        
-        			var lat =data.nodes[k].qth[qth].pos.lat
+        			var lat =parseFloat(data.nodes[k].qth[qth].pos.lat)
 
     				
-        			var lon =data.nodes[k].qth[qth].pos.long;
+        			var lon =parseFloat(data.nodes[k].qth[qth].pos.long);
         			var name = k+" "+data.nodes[k].qth[qth].rx[qth1].name;
         			var talkgroup =data.nodes[k].tg;
         			var idn=k+data.nodes[k].qth[qth].rx[qth1].name;
