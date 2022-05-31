@@ -829,6 +829,23 @@ function Load_station_intofmation(value)
 
 
 
+
+function Load_log()
+{
+
+
+
+	$.get( "log.php", {  } )
+	  .done(function( data ) {
+
+		  $('#logdiv1').html(data);
+			
+	  });
+	
+}
+
+
+
 <?php
 
 if($use_mqtt == true){
@@ -1664,6 +1681,8 @@ ul.dropdown-lr {
         	
         	<a  onclick="load_languge('tr_TR')" class="dropdown-item table-secondary" href="#"><img src="images/flags/tr.svg" width="30px" alt="tr_TR"> <?php echo _('Turkish')?></a>
         	
+        	<a  onclick="load_languge('pl_PL')" class="dropdown-item table-secondary" href="#"><img src="images/flags/pl.svg" width="30px" alt="tr_TR"> <?php echo _('Polish')?></a>
+        	
         	</div>
         	
     
@@ -1830,7 +1849,7 @@ ul.dropdown-lr {
 					<li class="nav-item"><a class="nav-link" href="#Statistics" onclick="get_statistics();hide_menu_click();"  
 						data-toggle="tab"><i class="fas fa-chart-bar"></i>  <?php echo _("Statistics")?></a></li>
 
-				<li class="nav-item"><a class="nav-link" href="#Log"  onclick="hide_menu_click()"
+				<li class="nav-item"><a class="nav-link" href="#Log"  onclick="hide_menu_click();Load_log()"
 						data-toggle="tab"><i class="fas  fa-align-justify"></i> <?php echo _("Log")?></a></li>
 						
 
@@ -2460,7 +2479,7 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
 
 					
 					<div id="logdiv1" class="col-xs-6">
-					<?php include_once 'log.php';?>
+					<?php //include_once 'log.php';?>
 					</div>
 
 				</div>

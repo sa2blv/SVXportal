@@ -52,7 +52,9 @@ function set_laguage() {
         case 'fr':
             $lang ="fr_FR";
             break;
-        
+        case 'pl':
+            $lang ="pl_PL";
+            break;
         default:
             $lang = key($langs);
             break;
@@ -254,6 +256,8 @@ function return_flag($lang)
         echo '<img  src="images/flags/de.svg" width=25px" alt="tr_TR"> <span class="'.$class.'">DE</span>';
     elseif($lang == "fr_FR")
         echo '<img  src="images/flags/fr.svg" width=25px" alt="tr_TR"> <span class="'.$class.'">FR</span>';
+    elseif($lang == "pl_PL")
+        echo '<img  src="images/flags/pl.svg" width=25px" alt="tr_TR"> <span class="'.$class.'">PL</span>';
     else
         echo '<img  src="images/flags/gb.svg" width="25px" alt="GB" style=""> <span class="'.$class.'">ENG</span>';
     
