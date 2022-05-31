@@ -1,18 +1,25 @@
 <?php
 include_once 'config.php';
 
+include_once 'function.php';
+
 $link->set_charset("utf8");
 
 
 $talkgroup_array= array();
 $station_array= array();
+$json_data ="";
 
-function Get_station_from_json() {
+function Get_station_from_json() 
+{
     global $serveradress;
+    global $json_data;
 
 
-   $context = stream_context_create(array('http' => array('header'=>'Connection: close\r\n')));
+    //$context = stream_context_create(array('http' => array('header'=>'Connection: close\r\n')));
+
     $json_data = file_get_contents($serveradress,false,$context);
+    
 
     
     //$json_data = file_get_contents($serveradress);
@@ -147,7 +154,7 @@ var_dump($station_array);
 ?>
 
 <?php 
-
+set_laguage();
 
 $noheader =$_GET['NOHEAD'];
 
@@ -244,9 +251,11 @@ if($noheader != 1){?>
   
   
   <form action="Get_Node_CSV.php" method="POST" onsubmit="return validate_export()"  target="_blank">
-  <div id="print_export_log">
+  <div id="print_export_log" >
 
-  <table class="table table-hover table-sm" id="ctcss_data_table" >
+ <div style="overflow-x:auto;overflow-y: hidden;" >
+ 
+  <table class="table table-hover table-sm" id="ctcss_data_table"  >
     <thead class="dash_header">
       <tr>
         <th> </th>
@@ -314,6 +323,9 @@ if($noheader != 1){?>
 
     </tbody>
   </table>
+  </div>
+  <br />
+  
   </div>
   <?php if(!$_GET['hiddeexport']){?>
   

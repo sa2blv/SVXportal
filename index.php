@@ -5,6 +5,7 @@ include 'function.php';
 include "Mqtt_driver.php";
 define_settings();
 set_laguage();
+
 ?>
 <?php $start_time = microtime(true); ?>
 <!DOCTYPE html>
@@ -896,7 +897,6 @@ $.getJSON('recording.php?date='+date, function (data) {
     
       myPlaylist.add({
         title:title,
-        artist:"Svxlink",
         oga:data[i].file
        // poster: "http://www.rfwireless-world.com/images/VHF-UHF-repeater.jpg"
       });
@@ -2062,7 +2062,7 @@ ul.dropdown-lr {
 
 
 
-								<div class="jp-type-playlist">
+								<div class="jp-type-playlist" lang="" > 
 									<div id="jquery_jplayer_N" class="jp-jplayer"></div>
 									<div id="Player_bar" class="jp-gui fixed-bottom">
 
