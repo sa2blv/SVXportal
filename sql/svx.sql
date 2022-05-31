@@ -491,3 +491,6 @@ ALTER TABLE `Station_day_statistic`
 
 
 UPDATE `Settings` SET `value` = '2.5' WHERE `Settings`.`Define` = 'PORTAL_VERSION'; 
+
+
+INSERT INTO `RefletorStations` (`ID`, `Callsign`, `Location`, `Collor`, `Sysop`, `Version`, `Last_Seen`, `Station_Down`, `Station_Down_timmer_count`, `Monitor`) VALUES (NULL, 'dummy', '', NULL, NULL, NULL, NULL, '1', '1', '1');
