@@ -41,8 +41,8 @@ $json_array["qth"][0]["tx"][$_POST["Txl"]]["pwr"] =            $_POST['power'];
 $json_array["qth"][0]["tx"][$_POST["Txl"]]["ant"]["comment"] = $_POST['ant_comment'];
 $json_array["qth"][0]["tx"][$_POST["Txl"]]["ant"]["height"] =  $_POST['anth'];
 $json_array["qth"][0]["tx"][$_POST["Txl"]]["ant"]["dir"] =     $_POST['Adir'];
-
-
+$json_array["qth"][0]["tx"][$_POST["Txl"]]["ant"]["gain"] =  $_POST['antg'];
+$json_array["qth"][0]["tx"][$_POST["Txl"]]["ant"]["Antenna_type"] =  $_POST['antt'];
 
 
 print_r( json_encode($json_array,JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));

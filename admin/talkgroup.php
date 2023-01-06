@@ -153,7 +153,7 @@ function reaload_tg_table()
 
 <div id="talkgourp_print_d">
     
-    <table class="table" id="talkgourp_print">
+    <table class="table table-sm" id="talkgourp_print">
     
       <thead class="thead-dark">
         <tr>

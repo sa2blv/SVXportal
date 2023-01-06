@@ -40,8 +40,8 @@ function get_fcontent( $url,  $javascript_loop = 0, $timeout = 5 ) {
         }
     }
     // clean temp from cookie data
-    array_map('unlink', glob("/tmp/cookie.txt*"));
-    array_map('unlink', glob("/tmp/CURLCOOKIE*"));
+    @array_map('unlink', glob("/tmp/cookie.txt*"));
+    @array_map('unlink', glob("/tmp/CURLCOOKIE*"));
 
 
     if (    ( preg_match("/>[[:space:]]+window\.location\.replace\('(.*)'\)/i", $content, $value) || preg_match("/>[[:space:]]+window\.location\=\"(.*)\"/i", $content, $value) ) && $javascript_loop < 5) {

@@ -78,6 +78,23 @@ if($settings_nedel == 1)
         
         
     }
+    elseif($data['value'] == "2.4")
+    {
+        $sql = file_get_contents('sql/update2-5.sql');
+        
+        /* execute multi query */
+        
+        if ($mysqli->multi_query($sql))
+        {
+            echo "successfull upgrade to 2.5 db";
+            
+        }
+        
+        
+        
+    }
+    
+
     else
     {
         echo "successfull upgrade  db";

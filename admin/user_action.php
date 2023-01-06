@@ -68,9 +68,10 @@ if($_SESSION['is_admin'] >0 && $_SESSION['loginid'] >0 ){
         $isadmin = $link->real_escape_string($_POST['isadmin']);
         $passwd= md5($passwd);
         
+        echo "INSERT INTO `users` (`id`, `Username`, `Password`, `level`, `Is_admin`, `Firstname`, `lastname`, `email`) VALUES (NULL, '$username', '$passwd', '1', '$isadmin', '$firstname', '$lastname',''); ";
         
         
-        $link->query("INSERT INTO `users` (`id`, `Username`, `Password`, `level`, `Is_admin`, `Firstname`, `lastname`) VALUES (NULL, '$username', '$passwd', '1', '$isadmin', '$firstname', '$lastname'); ");
+        $link->query("INSERT INTO `users` (`id`, `Username`, `Password`, `level`, `Is_admin`, `Firstname`, `lastname`, `email`) VALUES (NULL, '$username', '$passwd', '1', '$isadmin', '$firstname', '$lastname',''); ");
 
         $link->commit();
         $link->close();

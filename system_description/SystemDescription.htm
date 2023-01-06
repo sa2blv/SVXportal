@@ -1,0 +1,233 @@
+<img src="reflektor.png" alt="nodemap"  class="rounded col-12  col-xl-5" style="float:right">
+<h1>Systembeskrivning - SvxLink/SvxReflector </h1>
+<p>SvxReflector (tidigare även kallad &quot;Östkustlänken&quot;) är ett Nationellt Nätverk 
+av Svenska analoga Repeatrar, som länkats samman med hjälp av
+<a href="http://www.svxlink.org/"  target="_blank">SvxLink</a>, vanligen över Internet. </p>
+<p>I nätet används <b>Talgrupper</b> för att separera trafiken. En Talgrupp kan 
+liknas vid en logisk &quot;kanal&quot;. </p>
+<ul style="line-height: 150%">
+	<li>En repeater kan passa (monitorera) flera Talgrupper. Vilka talgrupper 
+	som passas av respektive repeater, framgår av SvxPortalens startsida. </li>
+	<li>En Talgrupp kan väljas manuellt av den lokale användaren, genom 
+	DTMF-kommandon eller Subton (CTCSS). </li>
+	<li>Repeatern kan också ha en lokal standardtalgrupp, som aktiveras 
+	automatiskt vid lokal start (om användaren inte gör något aktivt val).</li>
+</ul>
+<p>Däremot kan en repeater aldrig vara <u>aktiv</u> på mer än en Talgrupp 
+samtidigt. </p>
+<p>Inkommande trafik på en monitorerad Talgrupp kommer att starta repeatern 
+automatiskt, men kan normalt inte bryta in under ett pågående QSO. </p>
+<p style="margin-bottom: 0">Repeatrar och Simplexnoder i nätet monitorerar 
+statiskt: </p>
+<ul style="line-height: 150%; margin-top: 0">
+	<li>Talgrupp 240, som täcker hela Sverige. </li>
+	<li>Egen Distriktstalgrupp - t ex 2405 för SM5. </li>
+	<li>Ev närliggande Repeatrar och Distrikt. </li>
+	<li>Ev egen lokal Talgrupp - t ex 240515 för Eskilstuna. <i>Denna kan då 
+	användas för att &quot;adressera&quot; enbart denna repeater. </i></li>
+	<li>Ev Klustertalgrupp - t ex 24078 för SK7RFL+SK7RN på Öland, eller 24021 
+	för &quot;Kalix-linjen&quot;. </li>
+</ul>
+<p><b>Hela systemet kan övervakas i realtid via Svx-Portalen (denna webbplats).
+</b></p>
+<p>Senaste information finns på en mailinglista:
+<a href="https://svxreflector-sm.groups.io/"  target="_blank">https://svxreflector-sm.groups.io/
+</a></p>
+<p><b>Repeaterskolan på</b> <a href="https://sk7rfl.se/"  target="_blank">SK7RFL.se</a>:
+<a href="https://www.sk7rfl.se/446546397" target="_blank">https://www.sk7rfl.se/446546397</a>
+</p>
+<p></p>
+<h2>Val av Talgrupp </h2>
+<p>Om man vill använda en specifik Talgrupp, kan den väljas på två sätt - med 
+DTMF eller Subton (CTCSS). </p>
+<p>Om ingen trafik sker på vald Talgrupp, skiftar systemet till vilande läge 
+efter 30 sekunder (inställbart av sysop) och väntar på aktivitet på monitorerade 
+talgrupper. Det hörs ett litet ”FLIRRP”, när repeatern eller simplexnoden 
+återtar sitt standardläge. På SK7RFL, SK7RN och SK5BN sker detta alltid i 
+samband med att Repeatern stänger ned. </p>
+<h3>DTMF </h3>
+<p>För att aktivera talgrupp 2405 med DTMF trycker man: </p>
+<pre class="col-12  col-xl-7">912405# </pre>
+<p>Repeatern kommer att annonsera ut att den skiftar till Talgrupp 2405 när man 
+släpper PTT. </p>
+<h3>Subton (CTCSS) </h3>
+<p>En lista på Talgrupper som kan aktiveras med Subton finns här på
+<a href="https://svxportal.sm2ampr.net/index.php"  target="_blank">SvxPortalen</a>. </p>
+<p>För att aktivera t ex Talgrupp 2405 med Subton, CTCSS, väljer man Subton 
+91.5Hz. Efter första sändningspasset annonserar Tepeatern ut vilken Talgrupp den 
+skiftar till, när man släpper PTT. </p>
+<p>Aktivering med subton kan endast ske från repeaterns viloläge, dvs inte under 
+pågående QSO. </p>
+<h3>Tabell med Subtoner för varje Repeater och Simplexnod i Systemet </h3>
+<p><a href="https://svxportal.sm2ampr.net/ctcss_map_table.php" target="_blank">
+https://svxportal.sm2ampr.net/ctcss_map_table.php</a> </p>
+<h2>Tips </h2>
+<p>Programmera in flera minneskanaler med olika Subtoner, för att kunna aktivera 
+Repeatern/Simplexnoden med rätt Talgrupp direkt. </p>
+<p>För de noder som har en Subton som inte är kopplad till någon Talgrupp, 
+kolumn ”Lokal” i listan, kan tjänster på noden användas utan att någon Talgrupp 
+kopplas upp. Det kan vara praktiskt för användning av diverse moduler i SvxLink 
+som Papegoja, EchoLink, Voice mail etc. Det möjliggör också lokala QSO:n på 
+kanalen, utan att någon Talgrupp aktiveras utifrån. </p>
+<p>På samma sätt som när en Talgrupp är aktiv, krävs att kanalen är vilande 
+under en tid innan uppkoppling av talgrupper kan ske, både fjärrmässigt och med 
+subton. Tiden är inställbar av sysop, men är som standard 30 sekunder. </p>
+<p>Det går dock alltid att närsomhelst aktivera/byta Talgrupp med DTMF-kommandon. </p>
+<h2>QSY </h2>
+<p>Under ett QSO på en Talgrupp finns det möjlighet att flytta alla aktiva noder 
+till en annan Talgrupp. Som aktiv nod räknas de noder som har haft lokal 
+aktivitet sedan Talgruppen aktiverades, dvs att brusspärren har öppnat 
+åtminstone en gång. </p>
+<p>QSY-funktionen styrs med DTMF-kommandon. </p>
+<table cellspacing="0" cellpadding="5" class="table table-bordered col-12  col-xl-7">
+	<tr>
+		<th>92#</th>
+		<td>QSY till en tillfällig talgrupp som automatiskt väljs av 
+		reflectorservern </td>
+	</tr>
+	<tr>
+		<th>92nnn# </th>
+		<td>QSY till talgrupp nnn </td>
+	</tr>
+	<tr>
+		<th>93#</th>
+		<td>Följ senaste QSY </td>
+	</tr>
+</table>
+<p>QSY till tillfällig talgrupp används lämpligen på så sätt, att anrop till en 
+början sker på en bredare Talgrupp, t ex 240 för hela Sverige. När alla 
+deltagare har ”ropat in” på talgruppen, används QSY kommandot (<b>92#</b>) - för 
+att flytta alla aktiva noder till den tillfälliga talgruppen. Den bredare 
+talgruppen blir då återigen ledig för anrop.
+</p>
+<p>På Talgrupp 240 sker även en automatisk QSY, efter 5 minuter.
+</p>
+<p>QSY till en angiven Talgrupp kan användas för att lägga till fler noder till 
+ett pågående QSO. Anta att ett QSO har påbörjats på Talgrupp 2403, dvs SM3. 
+Under QSO:t vill man utöka med noder i SM5 också, alltså Talgrupp 2405. 
+Kommandot <b>922405#</b> kan då användas till detta. Alla noder som för 
+tillfället är aktiva på 2403 kommer att flyttas till 2405 och alla noder som 
+monitorerar 2405 kommer att ansluta till talgruppen. </p>
+<p>I nyare versioner av SvxLink, kan man väldigt enkelt följa med i ett QSY. När 
+QSY sker, säger repeatern &quot;<i>QSY 24099nn pending</i>&quot;. Om man inom ca 15 
+sekunder trycker PTT, kommer repeatern att följa med i detta QSY. I annat fall 
+säger repeatern &quot;<i>QSY [24099nn] ignored</i>&quot;. </p>
+<p>En passiv nod kan också manuellt fås att följa senaste QSY med kommandot <b>
+93#</b>. Detta kan vara bra om man inte har hunnit sända innan QSY skedde eller 
+hunnit trycka PTT inom 15 sekunder efter QSY. </p>
+<p style="margin-bottom: 0">Notera skillnaden mellan QSY och lokalt val av TG. </p>
+<ul style="line-height: 150%; margin-top: 0">
+	<li><b>922405#</b> flyttar alla aktiva noder till talgrupp 2405 (QSY).</li>
+	<li><b>912405#</b> flyttar endast den lokala noden till talgrupp 2405 
+	(talgruppsval).</li>
+</ul>
+<h2>DTMF kommandon </h2>
+<table border="0" cellspacing="0" cellpadding="5" class="table table-sm table-stripedcol-12  col-xl-7">
+<thead class="dash_header">
+	<tr>
+		<th nowrap align="left">Kommando </th>
+		<th nowrap align="left">Exempel </th>
+		<th nowrap align="left">Beskrivning </th>
+	
+	</tr>
+</thead>
+	<tr>
+		<td>91nnn# </td>
+		<td>912405#</td>
+		<td>Aktivera Talgrupp (2405). </td>
+
+	</tr>
+	<tr>
+		<td>91#</td>
+		<td>&nbsp;</td>
+		<td>Hoppa tillbaka till tidigare vald Talgrupp. <i>På SK7RFL, SK7RN samt 
+		SK5BN =aktivera standardtalgrupp.</i></td>
+
+	</tr>
+	<tr>
+		<td>92#</td>
+		<td>&nbsp;</td>
+		<td>QSY alla aktiva noder till en tillfällig Talgrupp som automatiskt 
+		väljs av Reflektorn. </td>
+
+	</tr>
+	<tr>
+		<td>92nnn#</td>
+		<td>&nbsp;</td>
+		<td>QSY alla aktiva noder till en specifik Talgrupp</td>
+
+	</tr>
+	<tr>
+		<td>93#</td>
+		<td>&nbsp;</td>
+		<td>Följ med QSY om man bara lyssnat. Även PTT inom 15 sekunder efter <i>
+		QSY Pending</i>.</td>
+
+	</tr>
+	<tr>
+		<td>94nnnn# </td>
+		<td>9424070#</td>
+		<td>Lägg till monitorering av extra Talgrupp temporärt</td>
+
+	</tr>
+	<tr>
+		<td>9*# </td>
+		<td>&nbsp;</td>
+		<td>Information/Status (talgrupper)</td>
+		
+	</tr>
+	<tr>
+		<td>1#</td>
+		<td>&nbsp;</td>
+		<td>Aktivera Papegojan (avslutas med <b>#</b>).</td>
+
+	</tr>
+	<tr>
+		<td>2#</td>
+		<td>&nbsp;</td>
+		<td>Aktivera EchoLink (avslutas med <b>#</b>).</td>
+
+	</tr>
+	<tr>
+		<td>5# </td>
+		<td>&nbsp;</td>
+		<td>Väder (METAR) för närliggande flygplats.</td>
+
+	</tr>
+	<tr>
+		<td>0#</td>
+		<td>&nbsp;</td>
+		<td>Hjälp. </td>
+
+	</tr>
+</table>
+<h2>SSA-bulletin </h2>
+<p>Utsändning av SSA-bulletin kan ske lokalt på varje repeater. Det finns i 
+systemet även två bulletiner, som kan avlyssnas över hela eller delar av nätet. </p>
+<ul style="line-height: 150%">
+	<li>SK2SSA, söndagar kl 20:00 på Talgrupp 24020. </li>
+	<li>SK3SSA, söndagar kl 21:00 på Talgrupp 24033. </li>
+	<li><a href="https://www.sk7rfl.se/447021515"  target="_blank">SK7SSA</a>, söndagar kl 09:00 på Talgrupp 24070. </li>
+</ul>
+<p>Om den lokala Repeatern inte monitorerar önskad bulletintalgrupp, kan denna 
+läggas till med kommandot <b>94</b> enligt ovan. </p>
+<h2>Överkurs </h2>
+<p>Mappningen mellan Subtoner och Talgrupper är enligt SSA’s lista för CTCSS. 
+Den andra tonen i varje distrikt (“Sekundär 1”) är mappad mot talgrupp för det 
+distriktet. </p>
+<p>Om man vill koppla ner en Talgrupp direkt, utan att vänta 30 sekunder, kan 
+man trycka <b>910#</b> (TG0). Bra att använda om man råkar välja fel Talgrupp. </p>
+<p>Man kan inte aktivera flera Talgrupper samtidigt. </p>
+<p>Om man aktiverat en specifik Talgrupp, till exempel TG2403, kommer trafik 
+från andra Talgrupper vara blockerat tills trafiken på slutat på TG2403 och 30 
+sekunder passerat. </p>
+<p>SvxReflectorn är inte ihopkopplad med DMR/Brandmeister, men använder liknande 
+namn och nummer på Talgrupper. </p>
+<h2>Sysop-instruktion </h2>
+<p>Regler och konfigurationstips finns här:
+<a href="https://svxreflector-sm.groups.io/g/sysops/wiki" target="_blank">
+sysops@svxreflector-sm.groups.io | Wiki </a> </p>
+<p>Om du har skapat ett konto på denna Portal, finns även flera verktyg för att 
+generera konfiguration (under Mina Stationer).</p>
+
+
