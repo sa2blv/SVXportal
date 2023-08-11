@@ -1,7 +1,8 @@
 <?php
-include '../svx/config.php';
+set_time_limit(800);
+include '../config.php';
 $link->set_charset("utf8");
-include '../svx/function.php';
+include '../function.php';
 define_settings();
 set_laguage();
 
