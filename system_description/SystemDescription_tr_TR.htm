@@ -1,0 +1,154 @@
+<img src="reflektor.png" alt="nodemap"  class="rounded col-12  col-xl-5" style="float:right">
+
+<h1>Sistem açıklaması - SvxLink / SvxReflector </h1>
+<p>SvxReflector (eski adıyla "Östkustlänken"), <a href="http://www.svxlink.org/" target="_blank">SvxLink'in yardımıyla</a> , genellikle İnternet üzerinden birbirine bağlanan bir İsveç analog Tekrarlayıcılar Ulusal <a href="http://www.svxlink.org/" target="_blank">Ağıdır</a> .</p>
+<p>Ağda, trafiği ayırmak için Konuşma <strong>Grupları</strong> kullanılır. Bir konuşma grubu mantıksal bir "kanala" benzetilebilir.</p>
+<ul>
+  <li>Tekrarlayıcı birkaç Konuşma Grubuna sığabilir (izleyebilir). Her tekrarlayıcı için hangi konuşma gruplarının uygun olduğu SvxPortalen'in ana sayfasında belirtilmiştir.</li>
+  <li>Bir Ses grubu, DTMF komutları veya Altton (CTCSS) kullanılarak yerel kullanıcı tarafından manuel olarak seçilebilir. </li>
+  <li>Tekrarlayıcı   ayrıca yerel başlangıçta otomatik olarak etkinleştirilen yerel bir   varsayılan numara grubuna sahip olabilir (kullanıcı etkin bir seçim   yapmazsa).</li>
+</ul>
+<p>Öte yandan, bir tekrarlayıcı aynı anda birden fazla Konuşma Grubunda asla <u>etkin</u> olamaz.</p>
+<p>İzlenen   bir Ses Grubuna gelen trafik, tekrarlayıcıyı otomatik olarak başlatır,   ancak devam eden bir QSO sırasında normalde araya giremez. </p>
+<p>Ağdaki tekrarlayıcılar ve Tek Yönlü düğümler statik olarak izler: </p>
+<ul>
+  <li>Tüm İsveç'i kapsayan konuşma grubu 240. </li>
+  <li>Kendi Bölge Numarası Grubu - ör. SM5 için 2405. </li>
+  <li>Yakınlarda Olası Tekrarlayıcılar ve Bölgeler. </li>
+  <li>Muhtemelen yerel numara grubuna sahip - örneğin Eskilstuna için 240515. <em>Bu daha sonra yalnızca bu tekrarlayıcıyı "adreslemek" için kullanılabilir.</em></li>
+  <li>Muhtemelen Küme numarası grubu - örneğin karada SK7RFL + SK7RN için 24078 veya "Kalix hattı" için 24021. </li>
+</ul>
+<p><strong>Tüm sistem, Svx Portalı (bu web sitesi) aracılığıyla gerçek zamanlı olarak izlenebilir. </strong></p>
+<p>En son bilgiler bir posta listesinde bulunabilir: <a href="https://svxreflector-sm.groups.io/" target="_blank">https://svxreflector-sm.groups.io/</a></p>
+<p> <a href="https://sk7rfl.se/" target="_blank">SK7RFL.se'de </a><strong>tekrarlayıcı okulu</strong> : <a href="https://sk7rfl.se/repeaterskolan/" target="_blank">https://sk7rfl.se/repeaterskolan/</a></p>
+<h2>Konuşma Grubu Seçimi </h2>
+<p>Belirli bir Konuşma Grubunu kullanmak istiyorsanız, DTMF veya Subton (CTCSS) ile iki şekilde seçilebilir. </p>
+<p>Seçilen   Konuşma Grubunda trafik yoksa, sistem 30 saniye sonra boş moda geçer   (sysop ile ayarlanabilir) ve izlenen konuşma gruplarında etkinlik için   bekler. Tekrarlayıcı veya tek yönlü düğüm varsayılan konumuna döndüğünde küçük bir "FLIRRP" duyulur. SK7RFL, SK7RN ve SK5BN'de bu her zaman Tekrarlayıcının kapanmasıyla bağlantılı olarak gerçekleşir.</p>
+<h3>DTMF </h3>
+<p>2405 ses grubunu DTMF ile etkinleştirmek için şu tuşa basın: </p>
+<pre class="col-12  col-xl-7">912405#</pre>
+<p>Tekrarlayıcı, PTT'yi bıraktığınızda Konuşma Grubu 2405'e geçeceğini duyuracaktır. </p>
+<h3>Subton (CTCSS) </h3>
+<p>Subton ile etkinleştirilebilen Konuşma Gruplarının bir listesi burada <a href="index.php" target="_blank">SvxPortal'da bulunabilir</a> .</p>
+<p>Örneğin Subton, CTCSS ile Konuşma grubu 2405'i etkinleştirmek için Subton 91.5Hz'yi seçin. İlk yayın seansının ardından Tepeatern, PTT'yi bıraktığınızda hangi Konuşma Grubuna geçeceğini duyurur.</p>
+<p>Bir alt tonla aktivasyon yalnızca tekrarlayıcının uyku modundan yapılabilir, yani mevcut QSO sırasında değil. </p>
+<h3>Sistemdeki her Tekrarlayıcı ve Tek Yönlü Düğüm için Alt Tonları içeren Tablo </h3>
+<p><a href="ctcss_map_table.php" target="_blank"> https://svxportal.sm2ampr.net/ctcss_map_table.php</a></p>
+<h2>İpucu </h2>
+<p>Tekrarlayıcı   / Tek Yönlü düğümünü doğru Konuşma Grubuyla doğrudan etkinleştirebilmek   için farklı Alt Tonlara sahip birkaç bellek kanalı programlayın. </p>
+<p>Herhangi   bir Konuşma Grubuna bağlı olmayan bir Alttonu olan düğümler için,   listede yerel sütun, düğümdeki hizmetler herhangi bir Ses grubu   bağlanmadan kullanılabilir. Papegoja,   EchoLink, Sesli posta vb. Gibi SvxLink'te çeşitli modülleri kullanmak   için pratik olabilir. Ayrıca, dışarıdan herhangi bir Konuşma grubu   etkinleştirilmeden kanalda yerel QSO'ların olmasını mümkün kılar.</p>
+<p>Bir   Ses Grubunun aktif olduğu zaman olduğu gibi, hem uzaktan hem de alt   tonla ses gruplarının bağlantısının gerçekleşebilmesi için kanalın bir   süre hareketsiz kalması gerekir. Zaman sysop tarafından ayarlanabilir, ancak varsayılan olarak 30 saniyedir.</p>
+<p>Bununla birlikte, Konuşma Grubunu DTMF komutlarıyla her zaman etkinleştirmek / değiştirmek her zaman mümkündür. </p>
+<h2>QSY </h2>
+<p>Bir Konuşma Grubundaki bir QSO sırasında, tüm aktif düğümleri başka bir Konuşma Grubuna taşımak mümkündür. Aktif   düğüm, Konuşma Grubunun etkinleştirilmesinden bu yana yerel aktiviteye   sahip olan, yani gürültü bariyerinin en az bir kez açıldığı düğümdür.</p>
+<p>QSY işlevi, DTMF komutlarıyla kontrol edilir. </p>
+<table cellspacing="0" cellpadding="5" class="table table-bordered  col-12  col-xl-7">
+  <tbody>
+    <tr>
+      <th>92 #</th>
+      <td>Reflektör sunucusu tarafından otomatik olarak seçilen rastgele bir sayı grubuna QSY </td>
+    </tr>
+    <tr>
+      <th>92nnn # </th>
+      <td>QSY'den konuşma grubuna nnn </td>
+    </tr>
+    <tr>
+      <th>93 #</th>
+      <td>En son QSY'yi takip edin </td>
+    </tr>
+  </tbody>
+</table>
+<p>Geçici   konuşma grubu için QSY, uygun bir şekilde, bir başlangıca çağrıların   daha geniş bir konuşma grubunda, örneğin tüm İsveç için 240 şeklinde   yapılacağı şekilde kullanılır. Tüm katılımcılar konuşma grubunu aradıklarında , tüm aktif düğümleri geçici konuşma grubuna taşımak için QSY komutu ( <strong>92 #</strong> ) kullanılır. Daha geniş numara grubu daha sonra tekrar aramalar için ücretsiz olacaktır.</p>
+<p>5 dakika sonra Konuşma Grubu 240 üzerinde de otomatik bir QSY gerçekleştirilir. </p>
+<p>Belirli bir Konuşma Grubuna yönelik QSY, devam eden bir QSO'ya daha fazla düğüm eklemek için kullanılabilir. Talgroup 2403, yani SM3 üzerinde bir QSO'nun başladığını varsayalım. QSO altında, SM5'teki düğümlerle de genişletmek istiyorsunuz, yani Numara grubu 2405. Bunun için <strong>922405 #</strong> komutu daha sonra kullanılabilir. Şu anda 2403'te aktif olan tüm düğümler 2405'e taşınacak ve 2405'i izleyen tüm düğümler konuşma grubuna bağlanacaktır.</p>
+<p>SvxLink'in daha yeni sürümlerinde, bir QSY'yi çok kolay bir şekilde takip edebilirsiniz. QSY oluştuğunda, tekrarlayıcı " <em>QSY 24099nn beklemede</em> " <em>der</em> . Yaklaşık 15 saniye içinde PTT'ye basarsanız, tekrarlayıcı bu QSY'yi takip edecektir. Aksi takdirde, tekrarlayıcı " <em>QSY [24099nn] dikkate alınmadı</em> " der .</p>
+<p><strong>93 #</strong> komutuyla en son QSY'yi takip etmek için manuel olarak bir pasif düğüm de yapılabilir . Bu,   QSY gerçekleşmeden önce göndermek için zamanınız yoksa veya QSY'den   sonraki 15 saniye içinde PTT'ye basmak için zamanınız yoksa iyi   olabilir.</p>
+<p>QSY ile yerel TG seçimi arasındaki farka dikkat edin. </p>
+<ul>
+  <li><strong>922405 #</strong> , tüm aktif düğümleri 2405 (QSY) konuşma grubuna taşır.</li>
+  <li><strong>912405 #</strong> , yerel düğümü yalnızca ses grubuna 2405 (ses grubu seçimi) taşır.</li>
+</ul>
+<h2>DTMF komutları </h2>
+<table cellspacing="0" cellpadding="5" border="0" class="table table-sm table-striped col-12  col-xl-7">
+  <thead class="dash_header">
+    <tr>
+      <th nowrap="nowrap" align="left">Komut </th>
+      <th nowrap="nowrap" align="left">Misal </th>
+      <th nowrap="nowrap" align="left">Açıklama </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>91nnn# </td>
+      <td>912405#</td>
+      <td>Konuşma Grubunu (2405) etkinleştirin. </td>
+    </tr>
+    <tr>
+      <td>91#</td>
+      <td> </td>
+      <td>Önceden seçilen Konuşma Grubuna geri dönün. <em>SK7RFL'de, SK7RN ve SK5BN = standart numara grubunu etkinleştirin.</em></td>
+    </tr>
+    <tr>
+      <td>92#</td>
+      <td> </td>
+      <td>Reflektör tarafından otomatik olarak seçilen rastgele bir Konuşma Grubuna tüm aktif düğümleri QSY. </td>
+    </tr>
+    <tr>
+      <td>92nnn#</td>
+      <td> </td>
+      <td>Tüm aktif düğümleri belirli bir Konuşma Grubuna QSY</td>
+    </tr>
+    <tr>
+      <td>93#</td>
+      <td> </td>
+      <td>Az önce dinlediyseniz QSY'yi takip edin. Ayrıca <em>QSY Beklemeden</em> sonraki 15 saniye içinde PTT .</td>
+    </tr>
+    <tr>
+      <td>94nnnn# </td>
+      <td>9424070#</td>
+      <td>Geçici olarak ekstra Konuşma Grubu izleme ekleyin</td>
+    </tr>
+    <tr>
+      <td>9*# </td>
+      <td> </td>
+      <td>Bilgi / Durum (konuşma grupları)</td>
+    </tr>
+    <tr>
+      <td>1#</td>
+      <td> </td>
+      <td>Papağanı etkinleştirin ( <strong>#</strong> ile biter ).</td>
+    </tr>
+    <tr>
+      <td>2#</td>
+      <td> </td>
+      <td>EchoLink'i etkinleştirin ( <strong>#</strong> ile biter ).</td>
+    </tr>
+    <tr>
+      <td>5# </td>
+      <td> </td>
+      <td>Yakındaki havaalanı için hava durumu (METAR).</td>
+    </tr>
+    <tr>
+      <td>0#</td>
+      <td> </td>
+      <td>Yardım </td>
+    </tr>
+  </tbody>
+</table>
+<h2>SSA Bülteni </h2>
+<p>SSA bülteni her tekrarlayıcıda yerel olarak gönderilebilir. Ayrıca sistemde ağın tamamı veya bir kısmı üzerinden dinlenebilecek iki adet bülten bulunmaktadır.</p>
+<ul>
+  <li>SK2SSA, Pazar günleri saat 20: 00'de, Talgrupp 24020'de. </li>
+  <li>SK3SSA, Pazar günleri saat 21: 00'de, Talgrupp 24033'te. </li>
+  <li><a href="https://sk7rfl.se/bulletin" target="_blank">SK7SSA</a> , Pazar günleri 09:00, Talgrupp 24070.</li>
+</ul>
+<p>Yerel Tekrarlayıcı istenen mermi numarası grubunu izlemezse, bu yukarıdaki gibi <strong>94</strong> komutuyla eklenebilir .</p>
+<h2>Ekstra bilgi</h2>
+<p>Alt Tonlar ve Konuşma Grupları arasındaki eşleştirme, SSA'nın CTCSS listesine göredir. Her bölgedeki ikinci ton (İkincil 1), o bölgenin konuşma grubuna eşlenir.</p>
+<p>Bir Konuşma Grubunun bağlantısını 30 saniye beklemeden doğrudan kesmek istiyorsanız, <strong>910 #</strong> (TG0) tuşuna basabilirsiniz . Yanlış Konuşma Grubunu seçerseniz kullanışlıdır.</p>
+<p>Aynı anda birden fazla Konuşma Grubunu etkinleştiremezsiniz. </p>
+<p>Belirli   bir Konuşma Grubunu etkinleştirdiyseniz, örneğin TG2403, diğer Konuşma   Gruplarından gelen trafik, trafik TG2403 üzerinde durana ve 30 saniye   geçene kadar engellenecektir. </p>
+<p>SvxReflector, DMR / Brandmeister'e bağlı değildir, ancak Konuşma Gruplarında benzer adlar ve numaralar kullanır. </p>
+<h2>Sysop talimatı </h2>
+<p>Kurallar ve yapılandırma ipuçları burada bulunabilir: <a href="https://svxreflector-sm.groups.io/g/sysops/wiki" target="_blank">sysops@svxreflector-sm.groups.io | Wiki</a></p>
+<p>Bu Portalda bir hesap oluşturduysanız, konfigürasyon oluşturmak için birkaç araç da vardır (My Stations altında).</p>

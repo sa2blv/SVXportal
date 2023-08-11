@@ -1,0 +1,154 @@
+<img src="reflektor.png" alt="nodemap"  class="rounded col-12  col-xl-5" style="float:right">
+
+<h1>Descrizione del sistema - SvxLink / SvxReflector </h1>
+<p>SvxReflector   (precedentemente chiamato anche "Östkustlänken") è una rete nazionale   di ripetitori analogici svedesi, che è collegata insieme con l'aiuto di <a href="http://www.svxlink.org/" target="_blank">SvxLink</a> , di solito su Internet.</p>
+<p>Nella rete, i <strong>gruppi</strong> vocali <strong>vengono</strong> utilizzati per separare il traffico. Un gruppo vocale può essere paragonato a un "canale" logico.</p>
+<ul>
+  <li>Un ripetitore può contenere (monitorare) diversi gruppi vocali. Quali gruppi vocali sono adatti a ciascun ripetitore è indicato sulla home page di SvxPortalen.</li>
+  <li>Un gruppo di voci può essere selezionato manualmente dall'utente locale, utilizzando i comandi DTMF o Subton (CTCSS). </li>
+  <li>Il   ripetitore può anche avere un gruppo di numeri predefiniti locali, che   viene attivato automaticamente all'avvio locale (se l'utente non   effettua una selezione attiva).</li>
+</ul>
+<p>D'altra parte, un ripetitore non può mai essere <u>attivo</u> su più di un gruppo vocale alla volta.</p>
+<p>Il   traffico in entrata su un gruppo vocale monitorato avvierà   automaticamente il ripetitore, ma normalmente non può irrompere durante   un QSO in corso. </p>
+<p>Ripetitori e nodi Simplex nel monitor di rete staticamente: </p>
+<ul>
+  <li>Discorso gruppo 240, che copre l'intera Svezia. </li>
+  <li>Proprio gruppo di numeri di distretto - ad es. 2405 per SM5. </li>
+  <li>Possibili ripetitori e distretti nelle vicinanze. </li>
+  <li>Possibilmente possedere un gruppo di numeri locali - ad es. 240515 per Eskilstuna. <em>Questo può quindi essere utilizzato per "indirizzare" solo questo ripetitore.</em></li>
+  <li>Possibilmente gruppo numero di cluster - ad esempio 24078 per SK7RFL + SK7RN a terra, o 24021 per la "linea Kalix". </li>
+</ul>
+<p><strong>L'intero sistema può essere monitorato in tempo reale tramite il portale Svx (questo sito). </strong></p>
+<p>Le informazioni più recenti possono essere trovate su una mailing list: <a href="https://svxreflector-sm.groups.io/" target="_blank">https://svxreflector-sm.groups.io/</a></p>
+<p><strong>Scuola di ripetitori </strong> <a href="https://sk7rfl.se/" target="_blank">su SK7RFL.se</a> : <a href="https://sk7rfl.se/repeaterskolan/" target="_blank">https://sk7rfl.se/repeaterskolan/</a></p>
+<h2>Scelta del gruppo vocale </h2>
+<p>Se si desidera utilizzare un gruppo vocale specifico, è possibile selezionarlo in due modi: con DTMF o Subton (CTCSS). </p>
+<p>Se   non si verifica traffico sul gruppo vocale selezionato, il sistema   passa alla modalità inattiva dopo 30 secondi (regolabile da sysop) e   attende l'attività sui gruppi vocali monitorati. Quando il ripetitore o il nodo simplex torna alla posizione predefinita, si sente un piccolo "FLIRRP". Su SK7RFL, SK7RN e SK5BN, ciò avviene sempre in relazione alla chiusura del ripetitore.</p>
+<h3>DTMF </h3>
+<p>Per attivare il gruppo vocale 2405 con DTMF, premere: </p>
+<pre class="col-12  col-xl-7">912405#</pre>
+<p>Il ripetitore annuncerà che passerà al gruppo vocale 2405 quando si rilascia PTT. </p>
+<h3>Subton (CTCSS) </h3>
+<p>Un elenco di gruppi vocali che possono essere attivati ​​con Subton può essere trovato qui su <a href="index.php" target="_blank">SvxPortal</a> .</p>
+<p>Per attivare, ad esempio, il gruppo vocale 2405 con Subton, CTCSS, selezionare Subton 91,5Hz. Dopo la prima sessione di trasmissione, Tepeatern annuncia a quale gruppo vocale passerà quando rilasci PTT.</p>
+<p>L'attivazione con un sottotono può avvenire solo dalla modalità sleep del ripetitore, cioè non durante il QSO corrente. </p>
+<h3>Tabella con sottotoni per ogni ripetitore e nodo simplex nel sistema </h3>
+<p><a href="ctcss_map_table.php" target="_blank"> https://svxportal.sm2ampr.net/ctcss_map_table.php</a></p>
+<h2>Mancia </h2>
+<p>Programmare   più canali di memoria con sottotoni differenti, in modo da poter   attivare direttamente il nodo Ripetitore / Simplex con il corretto   Speech Group. </p>
+<p>Per   quei nodi che hanno un Subton che non è connesso ad alcun gruppo   vocale, colonna locale nell'elenco, i servizi sul nodo possono essere   utilizzati senza che sia connesso alcun gruppo vocale. Può   essere pratico per utilizzare vari moduli in SvxLink come Papegoja,   EchoLink, Voice mail, ecc. Inoltre rende possibile avere QSO locali sul   canale, senza che alcun gruppo vocale venga attivato dall'esterno.</p>
+<p>Allo   stesso modo di quando un gruppo vocale è attivo, è necessario che il   canale rimanga inattivo per un po 'prima che possa avvenire la   connessione dei gruppi vocali, sia in remoto che con un sottotono. Il tempo è regolabile da sysop, ma per impostazione predefinita è di 30 secondi.</p>
+<p>Tuttavia, è sempre possibile attivare / modificare il gruppo vocale con i comandi DTMF in qualsiasi momento. </p>
+<h2>QSY </h2>
+<p>Durante un QSO su un gruppo vocale, è possibile spostare tutti i nodi attivi in ​​un altro gruppo vocale. Il   nodo attivo è il nodo che ha avuto attività locale da quando lo Speech   Group è stato attivato, cioè che la barriera antirumore è stata aperta   almeno una volta.</p>
+<p>La funzione QSY è controllata dai comandi DTMF. </p>
+<table cellspacing="0" cellpadding="5" class="table table-bordered  col-12  col-xl-7">
+  <tbody>
+    <tr>
+      <th>92 #</th>
+      <td>QSY a un gruppo di numeri casuali selezionato automaticamente dal server reflector </td>
+    </tr>
+    <tr>
+      <th>92nnn # </th>
+      <td>QSY al gruppo vocale nnn </td>
+    </tr>
+    <tr>
+      <th>93 #</th>
+      <td>Segui l'ultimo QSY </td>
+    </tr>
+  </tbody>
+</table>
+<p>QSY   per gruppo vocale temporaneo è opportunamente utilizzato in modo tale   che le chiamate all'inizio siano effettuate su un gruppo vocale più   ampio, ad esempio 240 per l'intera Svezia. Quando tutti i partecipanti hanno chiamato il gruppo vocale, viene utilizzato il comando QSY ( <strong>92 #</strong> ) per spostare tutti i nodi attivi nel gruppo vocale temporaneo. Il gruppo di numeri più ampio sarà quindi nuovamente libero per le chiamate.</p>
+<p>Un QSY automatico viene eseguito anche su Speech Group 240, dopo 5 minuti. </p>
+<p>QSY a un gruppo vocale specificato può essere utilizzato per aggiungere più nodi a un QSO in corso. Supponiamo che un QSO sia iniziato su Talgroup 2403, cioè SM3. Sotto il QSO, vuoi espandere anche con i nodi in SM5, cioè il gruppo di numeri 2405. Il comando <strong>922405 #</strong> può quindi essere usato per questo. Tutti   i nodi attualmente attivi su 2403 verranno spostati in 2405 e tutti i   nodi che monitorano 2405 si connetteranno al gruppo vocale.</p>
+<p>Nelle versioni più recenti di SvxLink, puoi seguire molto facilmente un QSY. Quando si verifica QSY, il ripetitore <em>dice</em> " <em>QSY 24099nn in sospeso</em> ". Se si preme PTT entro circa 15 secondi, il ripetitore seguirà questo QSY. Altrimenti il ​​ripetitore dice " <em>QSY [24099nn] ignorato</em> ".</p>
+<p>Un nodo passivo può anche essere fatto manualmente per seguire l'ultima QSY con il comando <strong>93 #</strong> . Questo   può essere utile se non hai avuto il tempo di inviare prima che QSY   avesse luogo o se hai avuto il tempo di premere PTT entro 15 secondi   dopo QSY.</p>
+<p>Notare la differenza tra QSY e la scelta locale di TG. </p>
+<ul>
+  <li><strong>922405#</strong> sposta tutti i nodi attivi nel gruppo vocale 2405 (QSY).</li>
+  <li><strong>912405#</strong> sposta solo il nodo locale al gruppo vocale 2405 (selezione del gruppo vocale).</li>
+</ul>
+<h2>Comandi DTMF </h2>
+<table cellspacing="0" cellpadding="5" border="0" class="table table-sm table-striped col-12  col-xl-7">
+  <thead class="dash_header">
+    <tr>
+      <th nowrap="nowrap" align="left">Comando </th>
+      <th nowrap="nowrap" align="left">Esempio </th>
+      <th nowrap="nowrap" align="left">Descrizione </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>91nnn# </td>
+      <td>912405#</td>
+      <td>Attiva Speech Group (2405). </td>
+    </tr>
+    <tr>
+      <td>91#</td>
+      <td> </td>
+      <td>Torna al gruppo vocale selezionato in precedenza. <em>Su SK7RFL, SK7RN e SK5BN = attiva il gruppo di numeri standard.</em></td>
+    </tr>
+    <tr>
+      <td>92#</td>
+      <td> </td>
+      <td>QSY tutti i nodi attivi in ​​un gruppo vocale casuale selezionato automaticamente dal riflettore. </td>
+    </tr>
+    <tr>
+      <td>92nnn#</td>
+      <td> </td>
+      <td>QSY tutti i nodi attivi in ​​un gruppo vocale specifico</td>
+    </tr>
+    <tr>
+      <td>93#</td>
+      <td> </td>
+      <td>Segui QSY se hai appena ascoltato. Anche PTT entro 15 secondi dopo <em>QSY in attesa</em> .</td>
+    </tr>
+    <tr>
+      <td>94nnnn# </td>
+      <td>9424070#</td>
+      <td>Aggiungi temporaneamente un ulteriore monitoraggio del gruppo vocale</td>
+    </tr>
+    <tr>
+      <td>9*# </td>
+      <td> </td>
+      <td>Informazioni / Stato (gruppi vocali)</td>
+    </tr>
+    <tr>
+      <td>1#</td>
+      <td> </td>
+      <td>Attiva il Parrot (termina con <strong>#</strong> ).</td>
+    </tr>
+    <tr>
+      <td>2#</td>
+      <td> </td>
+      <td>Attiva EchoLink (termina con <strong>#</strong> ).</td>
+    </tr>
+    <tr>
+      <td>5# </td>
+      <td> </td>
+      <td>Meteo (METAR) per l'aeroporto vicino.</td>
+    </tr>
+    <tr>
+      <td>0#</td>
+      <td> </td>
+      <td>Aiuto </td>
+    </tr>
+  </tbody>
+</table>
+<h2>Bollettino SSA </h2>
+<p>Il bollettino SSA può essere inviato localmente su ogni ripetitore. Ci sono anche due bollettini nel sistema, che possono essere ascoltati su tutta o parte della rete.</p>
+<ul>
+  <li>SK2SSA, domenica alle 20:00 su Talgrupp 24020. </li>
+  <li>SK3SSA, domenica alle 21:00 su Talgrupp 24033. </li>
+  <li><a href="https://sk7rfl.se/bulletin" target="_blank">SK7SSA</a> , domenica alle 09:00 su Talgrupp 24070.</li>
+</ul>
+<p>Se il ripetitore locale non controlla il gruppo di numeri di proiettile desiderato, questo può essere aggiunto con il comando <strong>94</strong> come sopra.</p>
+<h2>Ulteriori informazioni</h2>
+<p>La mappatura tra Sottotoni e Talkgroup è conforme all'elenco di SSA per CTCSS. Il secondo tono in ogni distretto (Secondario 1) è mappato al gruppo di discorso per quel distretto.</p>
+<p>Se si desidera disconnettere direttamente un gruppo vocale, senza attendere 30 secondi, è possibile premere <strong>910 #</strong> (TG0). Buono da usare se ti capita di scegliere il gruppo vocale sbagliato.</p>
+<p>Non è possibile attivare più gruppi vocali contemporaneamente. </p>
+<p>Se   è stato attivato un gruppo vocale specifico, ad esempio TG2403, il   traffico proveniente da altri gruppi vocali verrà bloccato fino a quando   il traffico non si arresta su TG2403 e non sono trascorsi 30 secondi. </p>
+<p>Lo SvxReflector non è connesso a DMR / Brandmeister, ma utilizza nomi e numeri simili nei gruppi vocali. </p>
+<h2>Istruzioni Sysop </h2>
+<p>Regole e suggerimenti per la configurazione possono essere trovati qui: <a href="https://svxreflector-sm.groups.io/g/sysops/wiki" target="_blank">sysops@svxreflector-sm.groups.io | Wiki</a></p>
+<p>Se   hai creato un account su questo portale, ci sono anche diversi   strumenti per la generazione della configurazione (sotto Le mie   stazioni).</p>

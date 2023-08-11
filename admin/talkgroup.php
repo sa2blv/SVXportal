@@ -153,14 +153,14 @@ function reaload_tg_table()
 
 <div id="talkgourp_print_d">
     
-    <table class="table" id="talkgourp_print">
+    <table class="table table-sm" id="talkgourp_print">
     
       <thead class="thead-dark">
         <tr>
 
           <th scope="col"><?php echo _('TG#')?></th>
           <th scope="col"><?php echo _('Description')?></th>
-          
+          <th scope="col"><?php echo _('Restricted')?></th>
           <th scope="col"><?php echo _('Actions')?></th>
           <th scope="col"><?php echo _('Color')?></th>
         </tr>
@@ -183,6 +183,17 @@ function reaload_tg_table()
 
       <td><?php echo $row['TG']?></td>
       <td><?php echo $row['TXT']?></td>
+      <?php 
+      if($reflektor_db == 1){
+      ?>
+     	 <td ><a class="btn btn-primary btn-sm" href="#" onclick="tg_acl_admin('<?php echo $row['TG'] ?>')" role="button"><?php echo  _('Reflector ACL')?></a></td>
+      <?php }else{?>
+      	<td ><button type="button" class="btn btn-secondary  btn-sm" disabled><?php echo  _('Reflector ACL')?></button></td>
+      
+     
+      <?php }?>
+      
+ 
 
             <td><i class="fas fa-trash" onclick="Delete_tg(<?php echo $row['ID']?>)"></i></td>
       
@@ -224,6 +235,21 @@ function reaload_tg_table()
 
   </div>
 </div>
+
+<script type="text/javascript">
+
+function tg_acl_admin(tg)
+{
+
+
+	window.open ("admin/reflektor_acl.php?TG="+tg,
+	"mywindow","menubar=1,resizable=1,width=800,height=800");
+
+	
+}
+
+
+</script>
       
       
       

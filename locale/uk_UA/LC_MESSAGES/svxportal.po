@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-16 01:29+0200\n"
-"PO-Revision-Date: 2020-05-17 01:43+0300\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2020-12-06 11:53+0200\n"
 "Last-Translator: UR3QJW ur3qjw@ukr.net\n"
 "Language-Team: \n"
 "Language: uk_UA\n"
@@ -16,61 +16,490 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.0.6\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: ctcss_map_table.php:197 ctcss_map_table.php:208
-msgid "CTSS map table"
-msgstr "CTCSS керування"
+#: SVXprotal-master/src/jquery-ui.min.js:10
+msgid "'"
+msgstr "'"
 
-#: ctcss_map_table.php:210 index.php:769 index.php:1049 log.php:107
+#: admin.php:222 index.php:1409 index1.php:1156
+msgid "admin interface"
+msgstr "Адмінка"
+
+#: admin.php:228 edit_station.php:394 list_reciver.php:1100
+#: list_reciver_2.php:672 list_reciver_old.php:462
+#: requset_reflector_login.php:346 station_dash.php:352
+msgid "Back"
+msgstr "Назад"
+
+#: admin.php:237 admin/stations.php:40 admin/stations.php:50
+msgid "Stations"
+msgstr "Вузли"
+
+#: admin.php:240 admin/talkgroup.php:75 index.php:4426 index1.php:4135
+#: index_old.php:3161 indexa.php:3162 requset_reflector_login.php:1035
+msgid "Talkgroup"
+msgstr "Розмовні групи"
+
+#: admin.php:244 admin/log.php:80
+msgid "Fault log"
+msgstr "Журнал помилок"
+
+#: admin.php:248 admin/users.php:117
+msgid "Users"
+msgstr "Користувачі"
+
+#: admin.php:252
+msgid "Reflektor users"
+msgstr "Клієнти рефлектора"
+
+#: admin.php:258 admin/Settings.php:76 edit_station.php:433
+msgid "Settings"
+msgstr "Налаштування"
+
+#: admin/Reflektor_users.php:25 admin/users.php:16
+msgid "User created sucsessfully!"
+msgstr "Користувача створено успішно!"
+
+#: admin/Reflektor_users.php:41 admin/talkgroup.php:25 admin/users.php:31
+msgid "Please confirm user removal"
+msgstr "Підтвердити видалення користувача"
+
+#: admin/Reflektor_users.php:57
+msgid "Please confirm user enable"
+msgstr "Підтвердіть активацію користувача"
+
+#: admin/Reflektor_users.php:60
+msgid "Please confirm user disable"
+msgstr "Підтвердіть де-активацію користувача"
+
+#: admin/Reflektor_users.php:95 admin/users.php:72
+msgid "Password is updated!"
+msgstr "Пароль оновлено!"
+
+#: admin/Reflektor_users.php:179
+msgid "Please enter your message"
+msgstr "Будь-ласка, введіть своє повідомлення"
+
+#: admin/Reflektor_users.php:187 admin/Reflektor_users.php:207
+msgid "Message sent"
+msgstr "Повідомлення надіслано"
+
+#: admin/Reflektor_users.php:236
+msgid "Reflector users"
+msgstr "Клієнти рефлектора"
+
+#: admin/Reflektor_users.php:246 admin/users.php:127
+msgid "Print Users"
+msgstr "Друк користувачів"
+
+#: admin/Reflektor_users.php:248 admin/log.php:109 admin/stations.php:52
+#: admin/talkgroup.php:87 admin/users.php:129 ctcss_map_table.php:210
+#: index.php:1612 index.php:2009 index.php:4080 index1.php:1358 index1.php:1751
+#: index_old.php:772 index_old.php:1057 indexa.php:773 indexa.php:1058
+#: log.php:223
 msgid "Print"
 msgstr "Друк"
 
-#: ctcss_map_table.php:217 index.php:776 index.php:1056 log.php:114
+#: admin/Reflektor_users.php:255 admin/log.php:116 admin/stations.php:59
+#: admin/talkgroup.php:94 admin/users.php:136 ctcss_map_table.php:217
+#: index.php:1607 index1.php:1353 index_old.php:779 index_old.php:1064
+#: indexa.php:780 indexa.php:1065 log.php:230
 msgid "Export xls"
 msgstr "Експорт xls"
 
-#: ctcss_map_table.php:223 index.php:782 index.php:897 index.php:1018
-#: index.php:1027 index.php:1061 index.php:1250 index.php:3068 log.php:120
-msgid "Toggle menu"
-msgstr "Сховати меню"
+#: admin/Reflektor_users.php:262 admin/Reflektor_users.php:284
+#: admin/Reflektor_users.php:356 admin/users.php:143 admin/users.php:174
+#: admin/users.php:226 database_text.php:13
+msgid "Create user"
+msgstr "Додати користувача"
 
-#: ctcss_map_table.php:252 index.php:203 index.php:803 index.php:1090
-#: list_reciver.php:55
+#: admin/Reflektor_users.php:288 admin/login.php:36 admin/users.php:178
+#: admin/users.php:245 index.php:1445 index.php:1446 index.php:4051
+#: index.php:4208 index1.php:1191 index1.php:1192 index1.php:3760
+#: index1.php:3917 index_old.php:3045 indexa.php:3046
+msgid "Username"
+msgstr "Логін"
+
+#: admin/Reflektor_users.php:296
+msgid "Generate Username"
+msgstr "Згенерувати Логін"
+
+#: admin/Reflektor_users.php:303 admin/Reflektor_users.php:484
+#: admin/login.php:43 admin/users.php:186 admin/users.php:406 index.php:1449
+#: index.php:4224 index1.php:1195 index1.php:3933
+#: requset_reflector_login.php:522 requset_reflector_login.php:525
+#: requset_reflector_login.php:1017
+msgid "Password"
+msgstr "Пароль"
+
+#: admin/Reflektor_users.php:311 admin/Reflektor_users.php:490
+#: requset_reflector_login.php:528
+msgid "Generate password"
+msgstr "Згенерувати пароль"
+
+#: admin/Reflektor_users.php:323 admin/Reflektor_users.php:375
+#: admin/talkgroup.php:122 admin/talkgroup.php:164 edit_station.php:922
+#: edit_station.php:1035 edit_station.php:1119 requset_reflector_login.php:544
+#: requset_reflector_login.php:547 station_info.php:144
+msgid "Description"
+msgstr "Опис"
+
+#: admin/Reflektor_users.php:334 admin/Reflektor_users.php:376
+msgid "E-mail"
+msgstr "E-mail"
+
+#: admin/Reflektor_users.php:351 admin/Reflektor_users.php:377 index.php:2273
+#: index1.php:2015 index_old.php:1331 indexa.php:1332
+msgid "Enable"
+msgstr "Працює"
+
+#: admin/Reflektor_users.php:373
+msgid "Station login"
+msgstr "Логін вузла"
+
+#: admin/Reflektor_users.php:374
+msgid "Station password"
+msgstr "Пароль вузла"
+
+#: admin/Reflektor_users.php:378 admin/users.php:248 database_text.php:15
+#: edit_station.php:924
+msgid "Action"
+msgstr "Дії"
+
+#: admin/Reflektor_users.php:411 admin/Settings.php:25
+#: admin/get_reflector.php:35 admin/get_station.php:34 admin/get_users.php:23
+#: admin/stations.php:130 admin/users.php:270 database_text.php:17
+msgid "Yes"
+msgstr "Так"
+
+#: admin/Reflektor_users.php:413 admin/Settings.php:19
+#: admin/get_reflector.php:37 admin/get_station.php:36 admin/get_users.php:25
+#: admin/stations.php:132 admin/users.php:272 database_text.php:16
+msgid "No"
+msgstr "Ні"
+
+#: admin/Reflektor_users.php:436 admin/get_reflector.php:58
+msgid "Select action"
+msgstr "Видеріть дію"
+
+#: admin/Reflektor_users.php:438 admin/get_reflector.php:60
+msgid "Enable user"
+msgstr "Активовано користувача"
+
+#: admin/Reflektor_users.php:440 admin/get_reflector.php:62
+msgid "Disable user"
+msgstr "Де-активовано користувача"
+
+#: admin/Reflektor_users.php:442 admin/get_reflector.php:64
+msgid "Send message to Sysadmin"
+msgstr "Надіслати повідомлення Адміністратору"
+
+#: admin/Reflektor_users.php:443 admin/get_reflector.php:65
+msgid "Send login credentaial to sysadmin"
+msgstr "Надіслати адміністратору"
+
+#: admin/Reflektor_users.php:444 admin/Reflektor_users.php:478
+#: admin/users.php:400
+msgid "Change user password"
+msgstr "Змінити пароль користувача"
+
+#: admin/Reflektor_users.php:496 admin/stations.php:171 admin/talkgroup.php:221
+#: admin/users.php:367 admin/users.php:416 edit_station.php:694
+#: edit_station.php:1087 edit_station.php:1165 index.php:81 index.php:2288
+#: index1.php:69 index1.php:2030 index_old.php:59 indexa.php:60
+msgid "Close"
+msgstr "Закрити"
+
+#: admin/Reflektor_users.php:497 admin/stations.php:65 admin/stations.php:172
+#: admin/talkgroup.php:222 admin/users.php:368 admin/users.php:417
+#: edit_station.php:1158
+msgid "Update"
+msgstr "Оновити"
+
+#: admin/Settings.php:67
+msgid "Settings is saved!"
+msgstr "Налаштування збережено!"
+
+#: admin/Settings.php:113 edit_station.php:461 edit_station.php:564
+#: edit_station.php:839
+msgid "Save"
+msgstr "Зберегти"
+
+#: admin/get_reflector.php:66
+msgid "Change node password"
+msgstr "Змінити пароль вузла"
+
+#: admin/get_users.php:31 admin/users.php:276
+msgid "- Select station -"
+msgstr "- Виберіть станцію -"
+
+#: admin/get_users.php:32 admin/users.php:277
+msgid "User granded"
+msgstr "Користувачу надано"
+
+#: admin/get_users.php:48 admin/users.php:292
+msgid "Read only"
+msgstr "Тільки читання"
+
+#: admin/get_users.php:59 admin/users.php:302
+msgid "User not granded"
+msgstr "Користувачу не надано"
+
+#: admin/log.php:89 log.php:155
+msgid "Page size"
+msgstr "Розмір сторінки"
+
+#: admin/log.php:107 admin/talkgroup.php:85 log.php:221
+msgid "Log print"
+msgstr "Друк журналу"
+
+#: admin/log.php:138 index.php:521 index.php:1812 index1.php:395
+#: index1.php:1554 log.php:249
+msgid "Live"
+msgstr "Наживо"
+
+#: admin/log.php:142 admin/log.php:143 log.php:253 log.php:254
+msgid "Search"
+msgstr "Пошук"
+
+#: admin/log.php:203 edit_station.php:679 edit_station.php:709 index.php:4489
+#: index1.php:4198 index_old.php:3202 indexa.php:3203 log.php:323
+#: station_info.php:190
+msgid "Date"
+msgstr "Дата"
+
+#: admin/log.php:204 index.php:4525 index1.php:4234 index_old.php:3234
+#: indexa.php:3235 log.php:324 map_pick.php:93 requset_reflector_login.php:748
+msgid "Station"
+msgstr "Вузол"
+
+#: admin/log.php:205 log.php:325
+msgid "Event"
+msgstr "Подія"
+
+#: admin/log.php:237 log.php:344
+msgid "is Talker on tg"
+msgstr "Активний в TG"
+
+#: admin/log.php:239
+msgid "Stoped talk tg"
+msgstr "Завершує активність в TG"
+
+#: admin/log.php:243 log.php:350
+msgid "Reciver"
+msgstr "Приймає"
+
+#: admin/log.php:245
+msgid " is active signal level"
+msgstr " з рівнем сигналу"
+
+#: admin/log.php:247 log.php:354
+msgid "has signal level"
+msgstr "має рівень сигналу"
+
+#: admin/log.php:253 log.php:360
+msgid "Node"
+msgstr "Вузол"
+
+#: admin/log.php:255
+msgid "has dropt from reflektor"
+msgstr "від'єднався від рефлектора"
+
+#: admin/log.php:257
+msgid "has connected to  reflektor"
+msgstr "приєднався до рефлектора"
+
+#: admin/log.php:275
+msgid "Previous"
+msgstr "Попередній"
+
+#: admin/login.php:13 index.php:791 index1.php:665 index_old.php:504
+#: indexa.php:505
+msgid "Wrong username or password"
+msgstr "Неправильне ім'я користувача або пароль"
+
+#: admin/login.php:27
+msgid "Sign In"
+msgstr "Увійти"
+
+#: admin/login.php:47 index.php:1547 index1.php:1293 index_old.php:696
+#: indexa.php:697
+msgid "Login"
+msgstr "Увійти"
+
+#: admin/stations.php:91 ctcss_map_table.php:250 index.php:1628 index.php:2036
+#: index1.php:253 index1.php:1374 index1.php:1778 index_old.php:209
+#: index_old.php:806 index_old.php:1098 indexa.php:210 indexa.php:807
+#: indexa.php:1099 list_reciver.php:57 list_reciver_2.php:58
+#: list_reciver_old.php:55 requset_reflector_login.php:387
+#: requset_reflector_login.php:534 requset_reflector_login.php:1008
 msgid "Callsign"
-msgstr "Станція"
+msgstr "Вузол"
 
-#: ctcss_map_table.php:253 div_reciver.php:94 index.php:1322
-#: list_reciver.php:55
-msgid "Frequency"
-msgstr "Частота"
-
-#: ctcss_map_table.php:254 index.php:1295 list_reciver.php:55
+#: admin/stations.php:92 ctcss_map_table.php:252 index.php:2245 index1.php:1987
+#: index_old.php:1303 indexa.php:1304 list_reciver.php:57 list_reciver_2.php:58
+#: list_reciver_old.php:55
 msgid "Location"
 msgstr "Розташування"
 
-#: ctcss_map_table.php:260
+#: admin/stations.php:93 database_text.php:18
+msgid "Last seen"
+msgstr "Минула активність"
+
+#: admin/stations.php:94
+msgid "Station down"
+msgstr "Вузол від'єднано"
+
+#: admin/stations.php:95 admin/stations.php:161 admin/talkgroup.php:131
+#: admin/talkgroup.php:167 admin/talkgroup.php:211 index.php:2039
+#: index1.php:1781 index_old.php:924 index_old.php:1101 indexa.php:925
+#: indexa.php:1102
+msgid "Color"
+msgstr "Колір"
+
+#: admin/stations.php:155 admin/talkgroup.php:205
+msgid "Change station color"
+msgstr "Змінити колір вузла"
+
+#: admin/talkgroup.php:47
+msgid "talkgroup created!"
+msgstr "розмовну групу створено!"
+
+#: admin/talkgroup.php:110 admin/talkgroup.php:146
+msgid "Create talkgroup"
+msgstr "Створити розмовну групу"
+
+#: admin/talkgroup.php:114 admin/talkgroup.php:163 index.php:1628
+#: index.php:2034 index1.php:253 index1.php:1776 index_old.php:209
+#: index_old.php:1096 indexa.php:210 indexa.php:1097 list_reciver.php:57
+#: list_reciver_2.php:58 list_reciver_old.php:55
+#: requset_reflector_login.php:606
+msgid "TG#"
+msgstr "TG#"
+
+#: admin/talkgroup.php:142 admin/users.php:206 admin/users.php:244
+#: database_text.php:12
+msgid "Last name"
+msgstr "Прізвище"
+
+#: admin/talkgroup.php:166 index.php:2157 index1.php:1899 index_old.php:1211
+#: indexa.php:1212
+msgid "Actions"
+msgstr "Дії"
+
+#: admin/users.php:87
+msgid "Premission is updated!"
+msgstr "Дозвіл оновлено!"
+
+#: admin/users.php:195 admin/users.php:243 database_text.php:11
+msgid "First name"
+msgstr "Ім'я"
+
+#: admin/users.php:221
+msgid "User is admin"
+msgstr "Це адміністратор"
+
+#: admin/users.php:246 database_text.php:14
+msgid "Is admin"
+msgstr "Адміністратор"
+
+#: admin/users.php:247
+msgid "Station permission"
+msgstr "Дозвіл вузла"
+
+#: admin/users.php:347
+msgid "Assign station permission for user"
+msgstr "Призначити дозвіл станції для користувача"
+
+#: admin/users.php:356
+msgid "Read only acsess"
+msgstr "Доступ - тільки для читання"
+
+#: admin/users.php:361
+msgid "Write acsess"
+msgstr "Доступ - для запису"
+
+#: ctcss_map_table.php:197
+msgid "CTCSS Map table"
+msgstr "CTCSS Керування"
+
+#: ctcss_map_table.php:208
+msgid "CTSS map table"
+msgstr "CTCSS керування"
+
+#: ctcss_map_table.php:251 div_reciver.php:94 index.php:2272 index1.php:2014
+#: index_old.php:1330 indexa.php:1331 list_reciver.php:57 list_reciver_2.php:58
+#: list_reciver_old.php:55
+msgid "Frequency"
+msgstr "Частота"
+
+#: ctcss_map_table.php:258
 msgid "Local"
 msgstr "Локальна"
 
-#: ctcss_map_table.php:321
+#: ctcss_map_table.php:322
 msgid "Software"
 msgstr "Програма"
 
-#: ctcss_map_table.php:330
+#: ctcss_map_table.php:331
 msgid "CSV index"
 msgstr "CSV індекс"
 
-#: ctcss_map_table.php:335
-msgid "Use thre last char in call"
-msgstr "Використовувати останню літеру у кличному"
+#: ctcss_map_table.php:336
+msgid "Use three last char in call"
+msgstr "Використати три останні символи у кличному"
 
-#: ctcss_map_table.php:340
+#: ctcss_map_table.php:341
 msgid "Export"
 msgstr "Експорт"
 
-#: div_reciver.php:8 index.php:1016 list_reciver.php:455
+#: database_text.php:2
+msgid "Hide the languge bar"
+msgstr "Сховати мовну панель"
+
+#: database_text.php:3
+msgid "Use Custom header in sidebar"
+msgstr "Використовувати користувацький заголовок на панелі"
+
+#: database_text.php:4
+msgid "External dokumentation page"
+msgstr "Сторінка зовнішньої документації"
+
+#: database_text.php:5
+msgid "Use login for player"
+msgstr "Використати авторизацію для відтворення записів"
+
+#: database_text.php:6
+msgid "Use external dokumentation page"
+msgstr "Використати сторінку зовнішньої документації"
+
+#: database_text.php:7
+msgid "The default talkgroup for Recording statistic"
+msgstr "Задана розмовна група для запису статистики"
+
+#: database_text.php:8
+msgid "Send an email to sysop when the node goes down"
+msgstr "Якщо вузол відпадає - відправили e-mail оператору вузла"
+
+#: database_text.php:9
+msgid "Mail to system administrator"
+msgstr "Написати системному адміністратору"
+
+#: database_text.php:10
+msgid "E-mail adress for the system"
+msgstr "Адреса ел. пошти для системи"
+
+#: database_text.php:19
+msgid "color"
+msgstr "Колір"
+
+#: database_text.php:21
+msgid "Hide the Monitor bar"
+msgstr "Сховати панель: QSO монітор"
+
+#: div_reciver.php:8 index.php:1970 index1.php:1712 index_old.php:1024
+#: indexa.php:1025 list_reciver.php:1097 list_reciver_2.php:669
+#: list_reciver_old.php:459
 msgid "All"
 msgstr "Всі"
 
@@ -78,11 +507,14 @@ msgstr "Всі"
 msgid "Signal values at"
 msgstr "Рівень сигналу від"
 
-#: div_reciver.php:94 list_reciver.php:55
+#: div_reciver.php:94 list_reciver.php:57 list_reciver_2.php:58
+#: list_reciver_old.php:55
 msgid "Receiver"
 msgstr "Приймає"
 
-#: div_reciver.php:94 index.php:909 list_reciver.php:55
+#: div_reciver.php:94 index.php:1866 index1.php:1608 index_old.php:912
+#: indexa.php:913 list_reciver.php:57 list_reciver_2.php:58
+#: list_reciver_old.php:55
 msgid "Signal"
 msgstr "Сигнал"
 
@@ -90,478 +522,973 @@ msgstr "Сигнал"
 msgid "Mhz"
 msgstr "MHz"
 
-#: index.php:59
-msgid "Close"
-msgstr "Закрити"
+#: edit_station.php:132 edit_station.php:148 station_dash.php:132
+#: station_dash.php:148
+msgid "Page is saved"
+msgstr "Сторінку збережено!"
 
-#: index.php:60
+#: edit_station.php:160 station_dash.php:160
+msgid "Settings is saved"
+msgstr "Налаштування збережено!"
+
+#: edit_station.php:174 station_dash.php:174
+msgid "Ticket is created"
+msgstr ""
+
+#: edit_station.php:360 station_dash.php:318
+msgid "Premission Denied!"
+msgstr "В доступі відмовлено!"
+
+#: edit_station.php:384
+msgid "Station editor"
+msgstr ""
+
+#: edit_station.php:406 station_info.php:77
+msgid "Information"
+msgstr "Інформація"
+
+#: edit_station.php:409 station_info.php:78
+msgid "Hardware"
+msgstr "Залізо"
+
+#: edit_station.php:413
+msgid "DTMF commands"
+msgstr "DTMF команди"
+
+#: edit_station.php:417 station_info.php:79
+msgid "Operating information"
+msgstr ""
+
+#: edit_station.php:427
+msgid "Driver dashboard"
+msgstr ""
+
+#: edit_station.php:498 requset_reflector_login.php:466
+msgid "Send command to node"
+msgstr ""
+
+#: edit_station.php:506 edit_station.php:1031 edit_station.php:1115
+#: requset_reflector_login.php:474
+msgid "DTMF command"
+msgstr ""
+
+#: edit_station.php:514 requset_reflector_login.php:482
+msgid "Scheduled date"
+msgstr ""
+
+#: edit_station.php:518 requset_reflector_login.php:486
+msgid "Send commnd to repeater"
+msgstr ""
+
+#: edit_station.php:629 edit_station.php:904
+msgid "New"
+msgstr ""
+
+#: edit_station.php:647
+msgid "New ticket"
+msgstr ""
+
+#: edit_station.php:662
+msgid "Text"
+msgstr "Текст"
+
+#: edit_station.php:669 function.php:213
+msgid "Info"
+msgstr "Інфо"
+
+#: edit_station.php:670 function.php:214
+msgid "Warning"
+msgstr ""
+
+#: edit_station.php:671 function.php:215
+msgid "Fault"
+msgstr ""
+
+#: edit_station.php:672 function.php:216
+msgid "Done"
+msgstr ""
+
+#: edit_station.php:695 edit_station.php:1080
+msgid "Create"
+msgstr ""
+
+#: edit_station.php:710 station_info.php:191
+msgid "Message"
+msgstr ""
+
+#: edit_station.php:711 edit_station.php:923 edit_station.php:1040
+#: edit_station.php:1127 station_info.php:192
+msgid "Category"
+msgstr ""
+
+#: edit_station.php:775
+msgid "Radio Image"
+msgstr ""
+
+#: edit_station.php:777 edit_station.php:808
+msgid "None"
+msgstr ""
+
+#: edit_station.php:806
+msgid "Driver"
+msgstr ""
+
+#: edit_station.php:921 station_info.php:80
+msgid "DTMF"
+msgstr ""
+
+#: edit_station.php:941 edit_station.php:1001
+msgid "Command is created"
+msgstr ""
+
+#: edit_station.php:1023
+msgid "New DTMF Command "
+msgstr ""
+
+#: edit_station.php:1107
+msgid "Edit DTMF Command "
+msgstr ""
+
+#: function.php:200
+msgid "General"
+msgstr ""
+
+#: function.php:201
+msgid "Echolink"
+msgstr ""
+
+#: function.php:202 log.php:206
+msgid "Reflektor"
+msgstr ""
+
+#: function.php:203
+msgid "Shortcut"
+msgstr ""
+
+#: function.php:204
+msgid "Macro"
+msgstr ""
+
+#: index.php:82 index1.php:70 index_old.php:60 indexa.php:61
 msgid "Today"
 msgstr "Сьогодні"
 
-#: index.php:61 index.php:2077
+#: index.php:83 index.php:3051 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
 msgid "January"
 msgstr "Січень"
 
-#: index.php:61 index.php:2077
+#: index.php:83 index.php:3051 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
 msgid "February"
 msgstr "Лютий"
 
-#: index.php:61 index.php:2077
+#: index.php:83 index.php:3051 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
 msgid "March"
 msgstr "Березень"
 
-#: index.php:61 index.php:2077
+#: index.php:83 index.php:3051 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
 msgid "April"
 msgstr "Квітень"
 
-#: index.php:61 index.php:2077
+#: index.php:83 index.php:3051 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
 msgid "May"
 msgstr "Травень"
 
-#: index.php:61 index.php:2077
+#: index.php:83 index.php:3051 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
 msgid "June"
 msgstr "Червень"
 
-#: index.php:61 index.php:2077
+#: index.php:83 index.php:3051 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
 msgid "July"
 msgstr "Липень"
 
-#: index.php:61 index.php:2077
+#: index.php:83 index.php:3051 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
 msgid "August"
 msgstr "Серпень"
 
-#: index.php:61 index.php:2077
+#: index.php:83 index.php:3051 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
 msgid "September"
 msgstr "Вересень"
 
-#: index.php:61 index.php:2077
+#: index.php:83 index.php:3051 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
 msgid "October"
 msgstr "Жовтень"
 
-#: index.php:61 index.php:2077
+#: index.php:83 index.php:3051 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
 msgid "November"
 msgstr "Листопад"
 
-#: index.php:61 index.php:2077
+#: index.php:83 index.php:3051 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
 msgid "December"
 msgstr "Грудень"
 
-#: index.php:62
+#: index.php:84 index1.php:72 index_old.php:62 indexa.php:63
 msgid "Su"
 msgstr "Нд"
 
-#: index.php:62
+#: index.php:84 index1.php:72 index_old.php:62 indexa.php:63
 msgid "Mo"
 msgstr "Пн"
 
-#: index.php:62
+#: index.php:84 index1.php:72 index_old.php:62 indexa.php:63
 msgid "Tu"
 msgstr "Вт"
 
-#: index.php:62
+#: index.php:84 index1.php:72 index_old.php:62 indexa.php:63
 msgid "We"
 msgstr "Ср"
 
-#: index.php:62
+#: index.php:84 index1.php:72 index_old.php:62 indexa.php:63
 msgid "Th"
 msgstr "Чт"
 
-#: index.php:62
+#: index.php:84 index1.php:72 index_old.php:62 indexa.php:63
 msgid "Fr"
 msgstr "Пт"
 
-#: index.php:62
+#: index.php:84 index1.php:72 index_old.php:62 indexa.php:63
 msgid "Sa"
 msgstr "Сб"
 
-#: index.php:63
+#: index.php:85 index1.php:73 index_old.php:63 indexa.php:64
 msgid "Monday"
 msgstr "Понеділок"
 
-#: index.php:63
+#: index.php:85 index1.php:73 index_old.php:63 indexa.php:64
 msgid "Tuesday"
 msgstr "Вівторок"
 
-#: index.php:63
+#: index.php:85 index1.php:73 index_old.php:63 indexa.php:64
 msgid "Wednesday"
 msgstr "Середа"
 
-#: index.php:63
+#: index.php:85 index1.php:73 index_old.php:63 indexa.php:64
 msgid "Thursday"
 msgstr "Четвер"
 
-#: index.php:63
+#: index.php:85 index1.php:73 index_old.php:63 indexa.php:64
 msgid "Friday"
 msgstr "П'ятниця"
 
-#: index.php:63
+#: index.php:85 index1.php:73 index_old.php:63 indexa.php:64
 msgid "Saturday"
 msgstr "Субота"
 
-#: index.php:63
+#: index.php:85 index1.php:73 index_old.php:63 indexa.php:64
 msgid "Sunday"
 msgstr "Неділя"
 
-#: index.php:203 index.php:804
-msgid "TG"
-msgstr "TG"
+#: index.php:160 index1.php:145 index_old.php:129 indexa.php:130
+msgid "No data"
+msgstr "Даних немає"
 
-#: index.php:203
-msgid "Is talker"
-msgstr "Активна"
-
-#: index.php:203
-msgid "Monitored TGs"
-msgstr "Моніторить TG"
-
-#: index.php:203 index.php:3195 list_reciver.php:55
-msgid "Talk time"
-msgstr "Час розмови"
-
-#: index.php:203
-msgid "Active RX"
-msgstr "Активні RX"
-
-#: index.php:215
+#: index.php:392 index1.php:272 index_old.php:221 indexa.php:222
 msgid "NO"
 msgstr "Ні"
 
-#: index.php:224
+#: index.php:403 index1.php:282 index_old.php:230 indexa.php:231
 msgid "YES"
 msgstr "Так"
 
-#: index.php:496
-msgid "Login sucsess"
-msgstr "Вхід успішний"
+#: index.php:538 index1.php:412
+msgid "Pleace select station"
+msgstr "Виберіть станцію"
 
-#: index.php:498
-msgid "Wrong username or password"
-msgstr "Неправильне ім'я користувача або пароль"
+#: index.php:1355 index1.php:1104
+msgid "Select your language"
+msgstr "Select your language"
 
-#: index.php:659 index.php:767
-msgid "Reflector clients"
-msgstr "Клієнти рефлектора"
+#: index.php:1358 index1.php:1107
+msgid "English"
+msgstr "English"
 
-#: index.php:661
-msgid "Monitor"
-msgstr "QSO монітор"
+#: index.php:1360 index1.php:1109
+msgid "Swedish"
+msgstr "Swedish"
 
-#: index.php:663
-msgid "System description"
-msgstr "Опис системи"
+#: index.php:1363 index1.php:1112
+msgid "Norwegian"
+msgstr "Norwegian"
 
-#: index.php:665 index.php:1037 index.php:1047 index.php:1296
-msgid "Talkgroups"
-msgstr "Розмовні групи"
+#: index.php:1365 index1.php:1114
+msgid "Ukrainian"
+msgstr "Ukrainian"
 
-#: index.php:667
-msgid "List receiver"
-msgstr "Список станцій"
+#: index.php:1367 index1.php:1116
+msgid "Italian"
+msgstr "Italian"
 
-#: index.php:670
-msgid "Statistics"
-msgstr "Статистика"
+#: index.php:1369
+msgid "German"
+msgstr "German"
 
-#: index.php:675
-msgid "Receivers"
-msgstr "Приймачі"
+#: index.php:1371 index1.php:1118
+msgid "Turkish"
+msgstr "Turkish"
 
-#: index.php:677 log.php:78
-msgid "Log"
-msgstr "Журнал роботи"
+#: index.php:1417 index1.php:1165
+msgid "Sign out"
+msgstr "Вийти"
 
-#: index.php:679
-msgid "CTCSS map table"
-msgstr "CTCSS керування"
-
-#: index.php:688
-msgid "Map"
-msgstr "Мапа покриття"
-
-#: index.php:690
-msgid "Login"
-msgstr "Логін"
-
-#: index.php:758
-msgid " Reflector clients"
-msgstr " Клієнти рефлектора"
-
-#: index.php:805
-msgid "Ver"
-msgstr "Вер"
-
-#: index.php:806
-msgid "TGs"
-msgstr "TGs"
-
-#: index.php:817
-msgid "QSO Monitor"
-msgstr "QSO монітор"
-
-#: index.php:869
-msgid "repeat"
-msgstr "повтор"
-
-#: index.php:870
-msgid "shuffle"
-msgstr "змішати"
-
-#: index.php:871
-msgid "full screen"
-msgstr "весь екран"
-
-#: index.php:895
-msgid "Listen LIVE"
-msgstr "Слухати Наживо"
-
-#: index.php:899
-msgid "Select date to listen"
-msgstr "Виберіть дату відтворення"
-
-#: index.php:901
-msgid "to use player you must login"
-msgstr "щоб прослухати, введіть логін"
-
-#: index.php:910
-msgid "Signal value  from Reciver"
-msgstr "Рівень сигналу  від Приймача"
-
-#: index.php:918
-msgid "Name"
-msgstr "Назва"
-
-#: index.php:919
-msgid "Openings"
-msgstr "Відкрито"
-
-#: index.php:920 index.php:3226
-msgid "Uptime"
-msgstr "Час роботи"
-
-#: index.php:921 index.php:1093
-msgid "Color"
-msgstr "Колір"
-
-#: index.php:1088 list_reciver.php:55
-msgid "TG#"
-msgstr "TG#"
-
-#: index.php:1089
-msgid "Talkgroup Name"
-msgstr "Розмовні групи"
-
-#: index.php:1091
-msgid "Last active"
-msgstr "Активність"
-
-#: index.php:1092
-msgid "Time Total"
-msgstr "Загальний час"
-
-#: index.php:1193
-msgid "Coverage"
-msgstr "Покриття"
-
-#: index.php:1196
-msgid "Show"
-msgstr "Показати"
-
-#: index.php:1197
-msgid "Remove"
-msgstr "Видалити"
-
-#: index.php:1203
-msgid "Actions"
-msgstr "Дії"
-
-#: index.php:1221
-msgid "Remove bars"
-msgstr "Видалити стовпці"
-
-#: index.php:1223
-msgid "Remove ALL stations"
-msgstr "Видалити ВСІ станції"
-
-#: index.php:1224
-msgid "Show Receivers"
-msgstr "Показати приймачі"
-
-#: index.php:1229
-msgid "Toggle AutoFollow"
-msgstr "Автозаповнення"
-
-#: index.php:1235
-msgid "Reload Map"
-msgstr "Оновити мапу"
-
-#: index.php:1279
-msgid "Station info for"
-msgstr "Інформація про"
-
-#: index.php:1297
-msgid "Version"
-msgstr "Версія"
-
-#: index.php:1298
-msgid "CurrentTG"
-msgstr "Поточна TG"
-
-#: index.php:1299
-msgid "Sysop"
-msgstr "Оператор"
-
-#: index.php:1320
-msgid "RX Name"
-msgstr "RX Назва"
-
-#: index.php:1321
-msgid "SqlType"
-msgstr "Тип SQL"
-
-#: index.php:1323
-msgid "Enable"
-msgstr "Працює"
-
-#: index.php:2079
-msgid "Total"
-msgstr "Загальна"
-
-#: index.php:2108
-msgid "Year statistics"
-msgstr "Річна статистика"
-
-#: index.php:2188
-msgid "Talkgroup activity"
-msgstr "Активність розмовних груп"
-
-#: index.php:2332
-msgid "Reflektor time in S"
-msgstr "Час рефлектора в сек."
-
-#: index.php:2356
-msgid "Hour activity "
-msgstr "Погодинна активність "
-
-#: index.php:2434
-msgid "time"
-msgstr "час"
-
-#: index.php:2544
-msgid "Station activity"
-msgstr "Активність станцій"
-
-#: index.php:3037
-msgid "Username"
-msgstr "Логін"
-
-#: index.php:3038
-msgid "password"
-msgstr "пароль"
-
-#: index.php:3039
+#: index.php:1432 index.php:1441 index.php:1453 index.php:4053 index1.php:1180
+#: index1.php:1187 index1.php:1199 index1.php:3762 index_old.php:3047
+#: indexa.php:3048
 msgid "Log In"
 msgstr "Увійти"
 
-#: index.php:3055
-msgid "Statistics for Network"
-msgstr "Статистика мережі"
+#: index.php:1450 index.php:4052 index1.php:1196 index1.php:3761
+#: index_old.php:3046 indexa.php:3047
+msgid "password"
+msgstr "Пароль"
 
-#: index.php:3076
+#: index.php:1493 index.php:1610 index1.php:1239 index1.php:1356
+#: index_old.php:665 index_old.php:770 indexa.php:666 indexa.php:771
+msgid "Reflector clients"
+msgstr "Клієнти рефлектора"
+
+#: index.php:1500 index1.php:1246 index_old.php:667 indexa.php:668
+msgid "Monitor"
+msgstr "QSO монітор"
+
+#: index.php:1507
+msgid "Station information"
+msgstr ""
+
+#: index.php:1510 index1.php:1256 index_old.php:669 indexa.php:670
+msgid "System description"
+msgstr "Опис системи"
+
+#: index.php:1512 index.php:1996 index.php:2007 index.php:2246 index.php:4301
+#: index1.php:1258 index1.php:1738 index1.php:1749 index1.php:1988
+#: index1.php:4010 index_old.php:671 index_old.php:1045 index_old.php:1055
+#: index_old.php:1304 indexa.php:672 indexa.php:1046 indexa.php:1056
+#: indexa.php:1305
+msgid "Talkgroups"
+msgstr "Розмовні групи"
+
+#: index.php:1514 index1.php:1260 index_old.php:673 indexa.php:674
+msgid "List receiver"
+msgstr "Список вузлів"
+
+#: index.php:1517 index1.php:1263 index_old.php:676 indexa.php:677
+msgid "Statistics"
+msgstr "Статистика"
+
+#: index.php:1520 index1.php:1266 index_old.php:683 indexa.php:684 log.php:146
+msgid "Log"
+msgstr "Журнал роботи"
+
+#: index.php:1525 index1.php:1271 index_old.php:681 indexa.php:682
+msgid "Receivers"
+msgstr "Приймачі"
+
+#: index.php:1532 index1.php:1278 index_old.php:685 indexa.php:686
+msgid "CTCSS map table"
+msgstr "CTCSS керування"
+
+#: index.php:1536 index1.php:1282
+msgid "My stations"
+msgstr "Мої вузли"
+
+#: index.php:1545 index1.php:1291 index_old.php:694 indexa.php:695
+msgid "Map"
+msgstr "Мапа покриття"
+
+#: index.php:1598 index1.php:1344
+msgid "Active Nodes"
+msgstr "Активні вузли"
+
+#: index.php:1604 index.php:2002 index1.php:1350
+msgid "Action menu"
+msgstr "Дії"
+
+#: index.php:1628 index1.php:253 index_old.php:209 indexa.php:210
+msgid "Is talker"
+msgstr "Активна"
+
+#: index.php:1628 index1.php:253 index_old.php:209 indexa.php:210
+msgid "Monitored TGs"
+msgstr "Моніторить TG"
+
+#: index.php:1628 index1.php:253
+msgid "Start talk"
+msgstr "Початок розмови"
+
+#: index.php:1628 index.php:4490 index1.php:253 index1.php:4199
+#: index_old.php:209 index_old.php:3203 indexa.php:210 indexa.php:3204
+#: list_reciver.php:57 list_reciver_2.php:58 list_reciver_old.php:55
+msgid "Talk time"
+msgstr "Час розмови"
+
+#: index.php:1642 index1.php:1389
+msgid "Talker"
+msgstr "Говорять"
+
+#: index.php:1645
+msgid "Dropped"
+msgstr "Від'єднано"
+
+#: index.php:1667 index1.php:1409
+msgid "Active talkgroups"
+msgstr "Активні групи"
+
+#: index.php:1676 index1.php:1375 index1.php:1418 index_old.php:807
+#: indexa.php:808
+msgid "TG"
+msgstr "TG"
+
+#: index.php:1679 index.php:4330 index1.php:1421 index1.php:4039
+msgid "Nodes"
+msgstr "Вузли"
+
+#: index.php:1715 index1.php:1457
+msgid "Player"
+msgstr "Програвач"
+
+#: index.php:1762 index1.php:1504 index_old.php:872 indexa.php:873
+msgid "repeat"
+msgstr "повтор"
+
+#: index.php:1763 index1.php:1505 index_old.php:873 indexa.php:874
+msgid "shuffle"
+msgstr "змішати"
+
+#: index.php:1764 index1.php:1506 index_old.php:874 indexa.php:875
+msgid "full screen"
+msgstr "весь екран"
+
+#: index.php:1818 index1.php:1560
+msgid "Select channel"
+msgstr "Виберіть канал"
+
+#: index.php:1822 index1.php:1564
+msgid "Default"
+msgstr "За замовчуванням"
+
+#: index.php:1841 index1.php:1583 index_old.php:898 indexa.php:899
+msgid "Listen LIVE"
+msgstr "Слухати Наживо"
+
+#: index.php:1848 index1.php:1590 index_old.php:902 indexa.php:903
+msgid "Select date to listen"
+msgstr "Виберіть дату відтворення"
+
+#: index.php:1853 index1.php:1595 index_old.php:904 indexa.php:905
+msgid "to use player you must login"
+msgstr "щоб прослухати, введіть логін"
+
+#: index.php:1869
+msgid "Signal value from receiver"
+msgstr "Рівень сигналу від Приймача"
+
+#: index.php:1968 index1.php:1710 index_old.php:1022 indexa.php:1023
+#: log.php:173
+msgid "Filter"
+msgstr "Фільтр"
+
+#: index.php:2035 index1.php:1777 index_old.php:1097 indexa.php:1098
+msgid "Talkgroup Name"
+msgstr "Розмовні групи"
+
+#: index.php:2037 index1.php:1779 index_old.php:1099 indexa.php:1100
+msgid "Last active"
+msgstr "Активність"
+
+#: index.php:2147 index1.php:1889 index_old.php:1201 indexa.php:1202
+msgid "Coverage"
+msgstr "Покриття"
+
+#: index.php:2150 index1.php:1892 index_old.php:1204 indexa.php:1205
+msgid "Show"
+msgstr "Показати"
+
+#: index.php:2151 index1.php:1893 index_old.php:1205 indexa.php:1206
+msgid "Remove"
+msgstr "Видалити"
+
+#: index.php:2175 index1.php:1917 index_old.php:1229 indexa.php:1230
+msgid "Remove bars"
+msgstr "Видалити стовпці"
+
+#: index.php:2177 index1.php:1919 index_old.php:1231 indexa.php:1232
+msgid "Remove ALL stations"
+msgstr "Видалити ВСІ вузли"
+
+#: index.php:2178 index1.php:1920 index_old.php:1232 indexa.php:1233
+msgid "Show Receivers"
+msgstr "Показати приймачі"
+
+#: index.php:2183 index1.php:1925 index_old.php:1237 indexa.php:1238
+msgid "Toggle AutoFollow"
+msgstr "Автозаповнення"
+
+#: index.php:2189 index1.php:1931 index_old.php:1243 indexa.php:1244
+msgid "Reload Map"
+msgstr "Оновити мапу"
+
+#: index.php:2229 index1.php:1971 index_old.php:1287 indexa.php:1288
+msgid "Station info for"
+msgstr "Інформація про"
+
+#: index.php:2247 index1.php:1989 index_old.php:1305 indexa.php:1306
+msgid "Version"
+msgstr "Версія SvxLink"
+
+#: index.php:2248 index1.php:1990 index_old.php:1306 indexa.php:1307
+msgid "CurrentTG"
+msgstr "Поточна TG"
+
+#: index.php:2249 index1.php:1991 index_old.php:1307 indexa.php:1308
+msgid "Sysop"
+msgstr "Оператор вузла"
+
+#: index.php:2270 index1.php:2012 index_old.php:1328 indexa.php:1329
+msgid "RX Name"
+msgstr "Назва RX"
+
+#: index.php:2271 index1.php:2013 index_old.php:1329 indexa.php:1330
+msgid "SqlType"
+msgstr "Тип SQL"
+
+#: index.php:2290 index1.php:2032
+msgid "Show covreage"
+msgstr "Показати покриття"
+
+#: index.php:3053 index.php:3500 index1.php:2793 index_old.php:2087
+#: indexa.php:2088
+msgid "Total"
+msgstr "Загальний"
+
+#: index.php:3082 index1.php:2822 index_old.php:2116 indexa.php:2117
+msgid "Year statistics"
+msgstr "Річна статистика"
+
+#: index.php:3163 index1.php:2902 index_old.php:2196 indexa.php:2197
+msgid "Talkgroup activity"
+msgstr "Активність розмовних груп"
+
+#: index.php:3308 index1.php:3046 index_old.php:2340 indexa.php:2341
+msgid "Reflektor time in S"
+msgstr "Час рефлектора в сек."
+
+#: index.php:3332 index1.php:3070 index_old.php:2364 indexa.php:2365
+msgid "Hour activity "
+msgstr "Погодинна активність "
+
+#: index.php:3410 index1.php:3148 index_old.php:2442 indexa.php:2443
+msgid "time"
+msgstr "час"
+
+#: index.php:3527 index1.php:3258 index_old.php:2552 indexa.php:2553
+msgid "Station activity"
+msgstr "Активність вузлів"
+
+#: index.php:4068 index1.php:3777 station_info.php:55
+msgid "Station infromation"
+msgstr "Інформація про вузли"
+
+#: index.php:4105 index1.php:3814
+msgid "Select station"
+msgstr "Виберіть вузол"
+
+#: index.php:4148 index1.php:3857
+msgid "Passwords aren same"
+msgstr "Паролі не співпадають!"
+
+#: index.php:4160 index1.php:3869
+msgid "User already exist!"
+msgstr "Користувач вже існує!"
+
+#: index.php:4164 index1.php:3873
+msgid "User is creadted!"
+msgstr "Користувач створений!"
+
+#: index.php:4182 index.php:4243 index1.php:3891 index1.php:3952
+msgid "Register"
+msgstr "Реєстрація"
+
+#: index.php:4189 index1.php:3898
+msgid "Firstname"
+msgstr "Ім'я"
+
+#: index.php:4191 index1.php:3900
+msgid "jay"
+msgstr "Анатолій"
+
+#: index.php:4196 index1.php:3905
+msgid "Lastname"
+msgstr "Прізвище"
+
+#: index.php:4198 index1.php:3907
+msgid "Shmit"
+msgstr "Ковальчук"
+
+#: index.php:4217 index1.php:3926
+msgid "Email"
+msgstr "Email"
+
+#: index.php:4219 index1.php:3928
+msgid "info@test.nu"
+msgstr "info@ukr.net"
+
+#: index.php:4226 index1.php:3935
+msgid "Password should be at least 8 characters"
+msgstr "Пароль повинен містити не менше 8 символів"
+
+#: index.php:4231 index1.php:3940
+msgid "Password (Confirm)"
+msgstr "Пароль (Підтвердити)"
+
+#: index.php:4233 index1.php:3942
+msgid "Please confirm password"
+msgstr "Будь-ласка, підтвердіть пароль"
+
+#: index.php:4242 index1.php:3951
+msgid "Clear"
+msgstr "Очистити"
+
+#: index.php:4268 index1.php:3977 index_old.php:3084 indexa.php:3085
 msgid "Day"
 msgstr "Добова"
 
-#: index.php:3077
+#: index.php:4269 index1.php:3978 index_old.php:3085 indexa.php:3086
 msgid "Hour"
 msgstr "Погодинна"
 
-#: index.php:3078
+#: index.php:4270 index1.php:3979 index_old.php:3086 indexa.php:3087
 msgid "Year"
 msgstr "Річна"
 
-#: index.php:3134
+#: index.php:4360 index1.php:4069
+msgid "Hour chart"
+msgstr "Погодинний графік"
+
+#: index.php:4392 index1.php:4101 index_old.php:3142 indexa.php:3143
 msgid "No Repeater Filter"
-msgstr "Немає Фільтра Станцій"
+msgstr "Фільтр Вузлів"
 
-#: index.php:3135
+#: index.php:4393 index1.php:4102 index_old.php:3143 indexa.php:3144
 msgid "Repeater"
-msgstr "Станції"
+msgstr "Вузли"
 
-#: index.php:3152
+#: index.php:4425 index1.php:4134 index_old.php:3160 indexa.php:3161
+#: requset_reflector_login.php:1034
 msgid "No Talkgroup Filter"
-msgstr "Немає Фільтра Розмовних груп"
+msgstr "Фільтр Розмовних груп"
 
-#: index.php:3153
-msgid "Talkgroup"
-msgstr "Розмовні групи"
-
-#: index.php:3187
+#: index.php:4482 index1.php:4191 index_old.php:3195 indexa.php:3196
 msgid "Toplist 10 days"
 msgstr "Кращі за 10 днів"
 
-#: index.php:3194 log.php:204
-msgid "Date"
-msgstr "Дата"
+#: index.php:4525 index1.php:4234 index_old.php:923 index_old.php:3234
+#: indexa.php:924 indexa.php:3235
+msgid "Uptime"
+msgstr "Час роботи"
 
-#: index.php:3226 log.php:205
-msgid "Station"
-msgstr "Станція"
-
-#: index.php:3226
+#: index.php:4525 index1.php:4234 index_old.php:3234 indexa.php:3235
 msgid "Network Usage 24 hour"
-msgstr "Використання мережі за 24 год."
+msgstr "Використання мережі за 24 год"
 
-#: index.php:3226
+#: index.php:4525 index1.php:4234 index_old.php:3234 indexa.php:3235
 msgid "Usage last 24 hour"
-msgstr "За минулі 24 год."
+msgstr "За минулі 24 год"
 
-#: index.php:3226
+#: index.php:4525 index1.php:4234 index_old.php:3234 indexa.php:3235
 msgid "Most used receiver"
 msgstr "Найчастіше використовується приймач"
 
-#: list_reciver.php:15
-msgid "Receiver Monitor"
-msgstr "Монітор станцій"
+#: index1.php:1253
+msgid "Station informtation"
+msgstr "Інформація про вузли"
 
-#: list_reciver.php:454
+#: index1.php:1376 index_old.php:808 indexa.php:809
+msgid "Ver"
+msgstr "Вер."
+
+#: index1.php:1377 index_old.php:809 indexa.php:810
+msgid "TGs"
+msgstr "TGs"
+
+#: index1.php:1611 index_old.php:913 indexa.php:914
+msgid "Signal value  from Reciver"
+msgstr "Рівень сигналу  від Приймача"
+
+#: index_old.php:209 indexa.php:210
+msgid "Active RX"
+msgstr "Активні RX"
+
+#: index_old.php:502 indexa.php:503
+msgid "Login sucsess"
+msgstr "Вхід успішний"
+
+#: index_old.php:761 indexa.php:762
+msgid " Reflector clients"
+msgstr " Клієнти рефлектора"
+
+#: index_old.php:785 index_old.php:900 index_old.php:1026 index_old.php:1035
+#: index_old.php:1069 index_old.php:1258 index_old.php:3076 indexa.php:786
+#: indexa.php:901 indexa.php:1027 indexa.php:1036 indexa.php:1070
+#: indexa.php:1259 indexa.php:3077
+msgid "Toggle menu"
+msgstr "Сховати меню"
+
+#: index_old.php:820 indexa.php:821
+msgid "QSO Monitor"
+msgstr "QSO монітор"
+
+#: index_old.php:921 indexa.php:922
+msgid "Name"
+msgstr "Вузол"
+
+#: index_old.php:922 indexa.php:923
+msgid "Openings"
+msgstr "Відкрито"
+
+#: index_old.php:1100 indexa.php:1101
+msgid "Time Total"
+msgstr "Загальний час"
+
+#: index_old.php:3063 indexa.php:3064
+msgid "Statistics for Network"
+msgstr "Статистика мережі"
+
+#: list_reciver.php:15 list_reciver_2.php:16 list_reciver_old.php:15
+msgid "Receiver Monitor"
+msgstr "Монітор вузлів"
+
+#: list_reciver.php:1096 list_reciver_2.php:668 list_reciver_old.php:458
 msgid "Talkgroup filter"
 msgstr "Фільтр розмовних груп"
 
-#: list_reciver.php:458
-msgid "Back"
-msgstr "Назад"
+#: log.php:191
+msgid "Repeater actions"
+msgstr ""
 
-#: log.php:87
-msgid "Page size"
-msgstr "Розмір сторінки"
+#: log.php:198
+msgid "S-values"
+msgstr ""
 
-#: log.php:105
-msgid "Log print"
-msgstr "Друк журналу"
+#: log.php:346
+msgid "Ended talk on tg"
+msgstr "Завершив активність в TG"
 
-#: log.php:139
-msgid "Live"
-msgstr "Наживо"
+#: log.php:352
+msgid " is active, signal level"
+msgstr " активний, з рівнем сигналу"
 
-#: log.php:143 log.php:144
-msgid "Search"
-msgstr "Пошук"
+#: log.php:362
+msgid "has dropped  from reflector"
+msgstr "від'єднався  від рефлектора"
 
-#: log.php:206
-msgid "Event"
-msgstr "Подія"
+#: log.php:364
+msgid "has connected to  reflector"
+msgstr "приєднався до  рефлектора"
 
-#: log.php:225
-msgid "is Talker on tg"
-msgstr "Активна в TG"
+#: requset_reflector_login.php:240
+msgid "Station already exist!"
+msgstr "Вузол вже існує!"
 
-#: log.php:227
-msgid "Stoped talk tg"
-msgstr "Завершує активність в TG"
+#: requset_reflector_login.php:247
+msgid "Thanks for your registration an admin will contact you soon"
+msgstr "Дякуємо за реєстрацію, адміністратор незабаром зв'яжеться з вами"
 
-#: log.php:233
-msgid " is active signal level"
-msgstr " з рівнем сигналу"
+#: requset_reflector_login.php:336
+msgid "Network acsess"
+msgstr "- доступ до мережі"
 
-#: log.php:235
-msgid "has signal level"
-msgstr "має рівень сигналу"
+#: requset_reflector_login.php:358
+msgid "My Stations"
+msgstr "Мої вузли"
+
+#: requset_reflector_login.php:361
+msgid "Request repeater Login"
+msgstr "Реєстрація вузла"
+
+#: requset_reflector_login.php:365
+msgid "Generate node_info.json"
+msgstr "Згенерувати node_info.json"
+
+#: requset_reflector_login.php:370
+msgid "Generate svx.config parameters"
+msgstr "Згенерувати параметри svx.config"
+
+#: requset_reflector_login.php:388
+msgid "Lastseen"
+msgstr "Минула активність"
+
+#: requset_reflector_login.php:389
+msgid "Send Command"
+msgstr "Надіслати команду"
+
+#: requset_reflector_login.php:423
+msgid "Send DTMF to node"
+msgstr "Надішлати DTMF на вузол"
+
+#: requset_reflector_login.php:426
+msgid "Send Command to Nod"
+msgstr "Надіслати Команду на Вузол"
+
+#: requset_reflector_login.php:429
+msgid "Edit Repeater"
+msgstr "Редагувати Ретранлятор"
+
+#: requset_reflector_login.php:440 station_dash.php:342
+msgid "Station Dashboard"
+msgstr ""
+
+#: requset_reflector_login.php:509
+msgid "User Credentals"
+msgstr "Данні користувача"
+
+#: requset_reflector_login.php:513
+msgid "Email address"
+msgstr "Поштова адреса"
+
+#: requset_reflector_login.php:516
+msgid "Enter email"
+msgstr "Введіть поштову адресу"
+
+#: requset_reflector_login.php:554
+msgid "Register User"
+msgstr "Зареєструвати Котистувача"
+
+#: requset_reflector_login.php:565
+msgid "Repater information"
+msgstr "Інформація ретранслятора"
+
+#: requset_reflector_login.php:568
+msgid "Station location ( Area )"
+msgstr "Розташування станції"
+
+#: requset_reflector_login.php:571
+msgid "Node location"
+msgstr "Розташування вузла"
+
+#: requset_reflector_login.php:578
+msgid "System operator"
+msgstr "Системний оператор"
+
+#: requset_reflector_login.php:598
+msgid "Tone To Talkgroup Mapping"
+msgstr "Додати тони розмовних груп"
+
+#: requset_reflector_login.php:605
+msgid "CTCSS"
+msgstr "CTCSS"
+
+#: requset_reflector_login.php:626
+msgid "#TG"
+msgstr "#TG"
+
+#: requset_reflector_login.php:668
+msgid "QTH Settings"
+msgstr "Налаштування QTH"
+
+#: requset_reflector_login.php:800
+msgid "Location name"
+msgstr "Розташування"
+
+#: requset_reflector_login.php:803
+msgid "Stockholm"
+msgstr "Stockholm"
+
+#: requset_reflector_login.php:809
+msgid "Latitude"
+msgstr "Широта"
+
+#: requset_reflector_login.php:821
+msgid "Longitude"
+msgstr "Довгота"
+
+#: requset_reflector_login.php:831
+msgid "Locator"
+msgstr "Локатор"
+
+#: requset_reflector_login.php:840
+msgid "Tx Letter \"Get From svxlink.conf\""
+msgstr "Tx літера: \"Отримана з svxlink.conf\""
+
+#: requset_reflector_login.php:850
+msgid "RX letter \"Get From svxlink.conf\""
+msgstr "RX літера: \"Отримана з svxlink.conf\""
+
+#: requset_reflector_login.php:860
+msgid "Sql type"
+msgstr "Тип Sql"
+
+#: requset_reflector_login.php:874
+msgid "Transmitter Power w"
+msgstr "Потужність передавача, W"
+
+#: requset_reflector_login.php:884
+msgid "Antenna Directon"
+msgstr "Напрям антени"
+
+#: requset_reflector_login.php:895
+msgid "Antenna Height"
+msgstr "Висота антени"
+
+#: requset_reflector_login.php:905
+msgid "Antenna Description"
+msgstr "Опис антени"
+
+#: requset_reflector_login.php:914
+msgid "TX Frequency"
+msgstr "Частота TX"
+
+#: requset_reflector_login.php:923
+msgid "RX Frequency"
+msgstr "Частота RX"
+
+#: requset_reflector_login.php:937
+msgid "Parameters dor Svxlink.conf"
+msgstr "Параметри для Svxlink.conf"
+
+#: requset_reflector_login.php:941 requset_reflector_login.php:951
+msgid "Parameter"
+msgstr "Параметр"
+
+#: requset_reflector_login.php:986
+msgid "Generate JSON / Paramters"
+msgstr "Згенерувати JSON / Параметри"
+
+#: requset_reflector_login.php:1025
+msgid "Select talkgroups to monitor"
+msgstr "Виберіть розмовні групи для моніторингу"
+
+#: requset_reflector_login.php:1056
+msgid "Generate config"
+msgstr "Створити конфігурацію"
+
+#: station_dash.php:279
+msgid "No station id"
+msgstr ""
+
+#: station_info.php:143
+msgid "DTMF Command"
+msgstr "DTMF Команда"
+
+#: station_info.php:245
+msgid "Radio"
+msgstr ""
+
+#: station_info.php:266
+msgid "Logic status"
+msgstr ""
+
+#~ msgid "RSSI"
+#~ msgstr "RSSI"
+
+#~ msgid "Admin interface"
+#~ msgstr "Адмінка"

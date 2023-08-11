@@ -6,6 +6,58 @@ set_laguage();
 
 mysqli_set_charset($link,"utf8");
 
+$station_svxlink_versions = array();
+
+
+function Get_version_from_json() {
+    global $serveradress;
+    global $station_svxlink_versions;
+    
+    
+    $context = stream_context_create(array('http' => array('header'=>'Connection: close\r\n')));
+    $json_data = file_get_contents($serveradress,false,$context);
+    
+    
+    $json_data = iconv("utf-8", "utf-8//ignore", $json_data);
+    
+    
+    //$json_data = file_get_contents($serveradress);
+    $json = json_decode($json_data);
+    
+    foreach($json->nodes as $st => $station)
+    {
+
+     $station_svxlink_versions[$st]=$station->swVer;
+        
+    }
+ 
+    
+}
+
+function station_class($station,$latest_version)
+{
+    $station = trim($station);
+    $latest_version = trim($latest_version);
+    
+    if($station == $latest_version && $station != "")
+    {
+        return "table-success";
+    }
+    elseif($station != $latest_version && $station != "")
+    {
+        
+        return "table-warning";
+    }
+    else
+    {
+        return "table-info";
+        
+    }
+    
+}
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -306,6 +358,61 @@ function send_command_to_node()
 }
 
 
+
+var current_mqtt="";
+var current_mqtt_page="";
+
+function mqtt_page(node,page) 
+ {
+
+	    $("#station_mqtt").html(node);
+		$("#mqtt").modal() 
+		
+		current_mqtt = node;
+		current_mqtt_page= page;
+		
+
+
+		$.get( "mqtt_admin/get_usertable.php", { node: node  } )
+		  .done(function( data ) {
+		    $("#box_data").html(data);
+		  });
+
+		
+
+
+		
+}
+
+
+function update_mqtt_user()
+{
+
+	var randomstring = Math.random().toString(36).slice(-8);
+	
+	let pass = prompt("<?php echo _('Enter passsord')?>",randomstring);
+
+
+	if (pass != null) 
+	{
+
+		$.post( "mqtt_admin/create_user_mqtt.php?action=Restore_Password&Station_idnr="+current_mqtt_page, { password: pass, node: current_mqtt })
+		  .done(function( data ) {
+			  mqtt_page(current_mqtt,current_mqtt_page);
+		  });
+
+
+		  
+
+	} 
+
+	
+}
+
+
+
+
+
     
 
 
@@ -371,6 +478,17 @@ function send_command_to_node()
   
   </li>
   
+  <?php if($_SESSION['is_admin'] >0 && $_SESSION['loginid'] >0 ){?>
+    
+   <li class="nav-item">
+    	<a class="nav-link" href="admin.php" onclick="" ><?php echo _('Admin interface')?></a>
+  
+  </li>
+  
+  
+  
+  <?php }?>
+  
 
 </ul>
 
@@ -379,13 +497,24 @@ function send_command_to_node()
  <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
+<?php 
 
+$svxlink_versonfile =  file_get_contents("https://raw.githubusercontent.com/sm0svx/svxlink/master/src/versions", 0, stream_context_create(["http"=>["timeout"=>1]]));
+$svxlink_verson_array =parse_ini_string($svxlink_versonfile);
+
+
+Get_version_from_json();
+
+
+
+?>
 
 <table class="table">
   <thead class="thead-dark">
     <tr>
       <th scope="col"><?php echo _('Callsign')?></th>
       <th scope="col"><?php echo _('Lastseen')?></th>
+      <th scope="col"><?php echo _('Svxlink version')." ". $svxlink_verson_array['SVXLINK']?> </th>
       <th scope="col"><?php echo _('Send Command')?></th>
 
     </tr>
@@ -397,6 +526,8 @@ $user_id= $_SESSION['loginid'];
 $result = mysqli_query($link, "SELECT * FROM User_Premission LEFT JOIN RefletorStations ON RefletorStations.ID = User_Premission.Station_id 
 LEFT JOIN Infotmation_page on Infotmation_page.Station_id = User_Premission.Station_id 
 WHERE User_Premission.User_id ='$user_id' ");
+
+
 
 
 
@@ -414,8 +545,24 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
    <td>
    <?php echo $row['Last_Seen'];?>
    </td>
+      <td class="<?php echo station_class($station_svxlink_versions[$row['Callsign']],$svxlink_verson_array['SVXLINK'])?>">
+   <?php echo $station_svxlink_versions[$row['Callsign']];?>
+   </td>
+   
+   
+   
    
       <td>
+      
+      
+         
+        <?php if($use_mqtt == True){?>
+        <button onclick="mqtt_page('<?php echo $row['Callsign']?>','<?php echo $row['ID']?>')" type="button" class="btn btn-primary btn-sm"><?php echo _('Mqtt')?></button>
+        <?php }else{?>
+
+        <?php } ?>
+        
+        &nbsp;
    
 
    
@@ -427,6 +574,11 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
    <?php }?>
    
    <a href="edit_station.php?Station_idnr=<?php echo  $row['ID']?>"><i class="fas fa-file"  data-toggle="tooltip" title="<?php echo  _('Edit Repeater')?>" ></i></a>
+   
+
+        
+        
+   
    
    <?php 
    
@@ -455,6 +607,58 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 
   </tbody>
 </table>
+
+
+  <div id="mqtt" class="modal fade" role="dialog">
+  <div class = "modal-dialog modal-lg">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        
+        <h4 class="modal-title"><?php echo _('MQTT admin') ?> &nbsp;<span id="station_mqtt"></span></h4>
+      </div>
+      
+      <div class="modal-body">
+      <div id="box_data">
+      
+      
+      
+      </div>
+
+      
+
+        
+      </div>
+      <div class="modal-footer">
+      
+        <button type="button" onclick="update_mqtt_user()" class="btn btn-default btn-primary " ><?php echo _('Change password')?></button>
+        <button type="button" class="btn btn-default btn-danger" data-dismiss="modal"><?php echo _('Close')?></button>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+
+<span class="mr-2">
+<i class="fas fa-circle text-success"></i> <?php echo _('Svxlink updated');?>     
+ </span>
+<span class="mr-2">
+<i class="fas fa-circle text-warning"></i> <?php echo _('New svxlink version avabel');?>                        
+ </span>
+ <span class="mr-2">
+<i class="fas fa-circle text-info"></i> <?php echo _('Node disconnected');?>                        
+ </span>
+ 
+
+
+
+
+
+
 
 
   <div class="modal fade" id="command_to_node" role="dialog">
@@ -555,7 +759,16 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 </form>
 
 
+
+
+
 </div>
+
+
+
+
+
+
 </div>
   <div class="tab-pane fade show " id="node" role="tabpanel" aria-labelledby="node-tab">
   
@@ -909,6 +1122,38 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             </div>
         </div>
     </div>   
+    
+    
+         <div class="form-group">
+        <label for="ant_comment"><?php echo _('Antenna Type')?></label>
+         <div class="row">
+       		 <div class="col-sm-8">
+              <select name="antt"   class="form-control" >
+              		<option value="omni" selected=""><?php echo _('Omni')?></option>
+        			<option value="ellipse"><?php echo _('Ellipse')?></option>
+        			<option value="cardio"><?php echo _('Cardio')?></option>
+        			<option value="yagi"><?php echo _('Yagi')?></option>
+        </select>           
+
+
+            </div>
+        </div>
+    </div>   
+    
+    
+      
+
+      
+      
+      <div class="form-group">
+        <label for="anth"><?php echo _('Antenna Gain')?></label>
+         <div class="row">
+       		 <div class="col-sm-8">
+            	<input type="text" class="form-control" name="antg" id="anth" placeholder="2 dBi">
+            </div>
+        </div>
+    </div>
+      
       
      <div class="form-group">
         <label for="TX_freq"><?php echo _('TX Frequency')?></label>

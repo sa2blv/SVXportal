@@ -19,6 +19,13 @@ $result = mysqli_query($link, "SELECT * FROM `Talkgroup` ");
     
           <td><?php echo $row['TG']?></td>
           <td><?php echo $row['TXT']?></td>
+         <?php if($reflektor_db == 1){ ?>
+     	 <td ><a class="btn btn-primary btn-sm" href="#" onclick="tg_acl_admin('<?php echo $row['TG'] ?>')" role="button"><?php echo  _('Reflector ACL')?></a></td>
+      	<?php }else{?>
+      	<td ><button type="button" class="btn btn-secondary  btn-sm" disabled><?php echo  _('Reflector ACL')?></button></td>
+   	   <?php }?>
+      
+      
     
                 <td><i class="fas fa-trash" onclick="Delete_tg(<?php echo $row['ID']?>)"></i></td>
           

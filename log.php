@@ -27,7 +27,7 @@ if($_GET['filter'])
     
     if($filter == "1,2,3,")
     {
-        $filter ="(Type ='1' OR (Type = '2' AND Active = '1') OR Type= '3')";
+        $filter ="Type ='1' OR (Type = '2' AND Active = '1') OR Type= '3'";
         
     }
     else
@@ -59,7 +59,7 @@ if($_GET['filter'])
                     }
                     
                     $filter.= "(Type = '2' AND Active = '1')";
-
+ 
                     break;
 
                 case "3":
@@ -96,8 +96,15 @@ if($_GET['search'])
 {
     $staion = $conn->real_escape_string($_GET['search']);
     $tg = $conn->real_escape_string($_GET['search']);
-    $staion_quvery ="AND (Callsign like '%$staion%' OR Talkgroup like '$tg') ";
-
+    if(!is_numeric($tg))
+    {
+        $staion_quvery ="AND Callsign like '$staion%'  ";
+        
+    }
+    else
+    {
+        $staion_quvery ="AND  Talkgroup = '$tg' ";
+    }
     
 
 
@@ -116,7 +123,11 @@ else
          $tg_quvery ="AND Talkgroup = '$tg' ";
      }
 }
-$sql ="SELECT * FROM `RefletorNodeLOG` where $filter   $staion_quvery $tg_quvery ORDER BY `RefletorNodeLOG`.`Id` DESC limit $logoffset,$size ";
+
+$sql ="SELECT * FROM `RefletorNodeLOG` where $filter   $staion_quvery $tg_quvery  ORDER BY `RefletorNodeLOG`.`Id` DESC  limit $logoffset,$size ";
+
+
+
 $result = $conn->query($sql);
 
 if(!$_GET['only_table'])
@@ -126,13 +137,21 @@ if(!$_GET['only_table'])
      * 
      * count nr of rows in log 
      */
-    $sql1 ="SELECT count(*) FROM `RefletorNodeLOG` where  $filter $staion_quvery $tg_quvery";
+    //$sql1 ="SELECT count(*) FROM `RefletorNodeLOG` where  $filter $staion_quvery $tg_quvery";
+    $sql1 ="SELECT count(*) FROM `RefletorNodeLOG` where Type ='1'  $staion_quvery $tg_quvery";
+    
     $result1 = $conn->query($sql1);
     
     
     $row = $result1->fetch_row();
     
     $row_cnt = $row[0];
+    // setting limit for large sites 
+    if($row_cnt > 16000)
+    {
+        $row_cnt = 16000;
+    }
+    
     $nrof_rows  = ((int)($row_cnt/$size));
     $tota_count = $nrof_rows;
     if($nrof_rows >20 )
@@ -186,7 +205,7 @@ $ceked_val_arr = explode(",", $filter);
 
           <div class="form-check">
        
-              <input class="form-check-input"  name="Log_filter_checkbox[]" type="checkbox" onclick="get_log_filter()" value="1" id="defaultCheck1" <?php  if (in_array("1", $ceked_val_arr)) echo "checked='checked'";?>:>
+              <input class="form-check-input"  name="Log_filter_checkbox[]" type="checkbox" onclick="get_log_filter()" value="1" id="defaultCheck1" <?php  if (in_array("1", $ceked_val_arr)) echo "checked='checked'"; ?>:>
               <label class="form-check-label" for="defaultCheck1" >
             <?php echo _('Repeater actions');?>
               </label>

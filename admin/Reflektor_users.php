@@ -366,7 +366,7 @@ function Send_password(id)
 </div>
 <br />
 <div id="reflektoruser_table_one_p">
-    <table class="table" id="reflektoruser_table_one">
+    <table class="table table-sm " id="reflektoruser_table_one">
       <thead class="thead-dark">
         <tr>
           <th scope="col">#</th>

@@ -1,0 +1,153 @@
+<img src="reflektor.png" alt="nodemap" class="rounded  col-12  col-xl-5" style="float:right">
+<h1>Systembeskrivelse - SvxLink / SvxReflector </h1>
+<p>SvxReflector   (tidligere også kalt "Östkustlänken") er et nasjonalt nettverk av   svenske analoge repeatere, som er koblet sammen ved hjelp av <a href="http://www.svxlink.org/" target="_blank">SvxLink</a> , vanligvis over Internett.</p>
+<p>I nettverket, talegrupper</strong> som brukes til å skille trafikken. En talegruppe kan sammenlignes med en logisk "kanal".</p>
+<ul>
+  <li>En repeater kan passe (overvåke) flere talegrupper. Hvilke talegrupper som passer for hver repeater, står på SvxPortalens hjemmeside.</li>
+  <li>En stemmegruppe kan velges manuelt av den lokale brukeren ved hjelp av DTMF-kommandoer eller Subton (CTCSS). </li>
+  <li>Repeateren   kan også ha en lokal standardnummergruppe, som aktiveres automatisk ved   lokal start (hvis brukeren ikke tar et aktivt valg).</li>
+</ul>
+<p>På den annen side kan en repeater aldri være <u>aktiv</u> på mer enn en Talegruppe om gangen.</p>
+<p>Innkommende   trafikk på en overvåket Voice-gruppe vil starte repeateren automatisk,   men kan normalt ikke bryte inn under en pågående QSO. </p>
+<p>Repeatere og Simplex-noder i nettverket overvåker statisk: </p>
+<ul>
+  <li>Talegruppe 240, som dekker hele Sverige. </li>
+  <li>Egen distriktsnummergruppe - f.eks. 2405 for SM5. </li>
+  <li>Mulige repeatere og distrikter i nærheten. </li>
+  <li>Muligens egen lokal nummergruppe - f.eks 240515 for Eskilstuna. <em>Dette kan da brukes til å "adressere" bare denne repeateren.</em></li>
+  <li>Eventuelt klyngenummergruppe - f.eks. 24078 for SK7RFL + SK7RN på land, eller 24021 for "Kalix-linjen". </li>
+</ul>
+<p><strong>Hele systemet kan overvåkes i sanntid via Svx Portal (dette nettstedet). </strong></p>
+<p>Siste informasjon finner du på en adresseliste: <a href="https://svxreflector-sm.groups.io/" target="_blank">https://svxreflector-sm.groups.io/</a></p>
+<p><strong>Repeater skolen </strong> <a href="https://sk7rfl.se/" target="_blank">på SK7RFL.se</a> : <a href="https://sk7rfl.se/repeaterskolan/" target="_blank">https://sk7rfl.se/repeaterskolan/</a></p>
+<h2>Valg av talegruppe </h2>
+<p>Hvis du vil bruke en bestemt talegruppe, kan den velges på to måter - med DTMF eller Subton (CTCSS). </p>
+<p>Hvis   det ikke er trafikk på den valgte talegruppen, bytter systemet til   inaktiv modus etter 30 sekunder (justerbar med sysop) og venter på   aktivitet på overvåkede talegrupper. En liten "FLIRRP" høres når repeateren eller simpleksnoden går tilbake til standardposisjonen. På SK7RFL, SK7RN og SK5BN skjer dette alltid i forbindelse med at repeateren stenger.</p>
+<h3>DTMF </h3>
+<p>For å aktivere talegruppe 2405 med DTMF, trykk på: </p>
+<pre class="col-12  col-xl-7">912405# </pre>
+<p>Repeateren vil kunngjøre at den vil bytte til talegruppe 2405 når du slipper PTT. </p>
+<h3>Subton (CTCSS) </h3>
+<p>En liste over talegrupper som kan aktiveres med Subton, finner du her på <a href="index.php" target="_blank">SvxPortal</a> .</p>
+<p>For å aktivere f.eks. Talegruppe 2405 med Subton, CTCSS, velg Subton 91,5Hz. Etter den første kringkastingsøkten kunngjør Tepeatern hvilken talegruppe den vil bytte til når du slipper PTT.</p>
+<p>Aktivering med en undertone kan bare skje fra repeaterens hvilemodus, dvs. ikke under gjeldende QSO. </p>
+<h3>Tabell med undertoner for hver repeater og Simplex-node i systemet </h3>
+<p><a href="ctcss_map_table.php" target="_blank"> https://svxportal.sm2ampr.net/ctcss_map_table.php</a></p>
+<h2>Tips </h2>
+<p>Programmer   flere minnekanaler med forskjellige undertoner, for å kunne aktivere   Repeater / Simplex-noden med riktig talegruppe direkte. </p>
+<p>For de nodene som har en Subton som ikke er koblet til noen talegruppe, kolonne â € ?? Localâ € ?? i listen kan tjenester på noden brukes uten at noen Voice-gruppe er tilkoblet. Det   kan være praktisk å bruke forskjellige moduler i SvxLink som Papegoja,   EchoLink, Voice mail osv. Det gjør det også mulig å ha lokale QSOer på   kanalen, uten at noen Talegruppe er aktivert utenfra.</p>
+<p>På   samme måte som når en stemmegruppe er aktiv, kreves det at kanalen er   sovende en stund før tilkobling av stemmegrupper kan finne sted, både   eksternt og med en undertone. Tiden kan justeres med sysop, men er som standard 30 sekunder.</p>
+<p>Det er imidlertid alltid mulig å aktivere / endre Talegruppe med DTMF-kommandoer når som helst. </p>
+<h2>QSY </h2>
+<p>Under en QSO på en talegruppe er det mulig å flytte alle aktive noder til en annen talegruppe. Den   aktive noden er noden som har hatt lokal aktivitet siden Talegruppen   ble aktivert, dvs. at støybarrieren har åpnet minst en gang.</p>
+<p>QSY-funksjonen styres av DTMF-kommandoer. </p>
+<table cellspacing="0" cellpadding="5" class="table table-bordered  col-12  col-xl-7" >
+  <tbody>
+    <tr>
+      <th>92#</th>
+      <td>QSY til en tilfeldig tallgruppe som automatisk velges av reflektorserveren </td>
+    </tr>
+    <tr>
+      <th>92nnn# </th>
+      <td>QSY til talegruppe nnn </td>
+    </tr>
+    <tr>
+      <th>93#</th>
+      <td>Følg den siste QSY </td>
+    </tr>
+  </tbody>
+</table>
+<p>QSY   for midlertidig talegruppe brukes hensiktsmessig på en slik måte at man   ringer til en begynnelse på en bredere talegruppe, f.eks. 240 for hele   Sverige. Når alle deltakerne har "ringt inn" på talegruppen brukes QSY-kommandoen ( <strong>92#</strong> ) - for å flytte alle aktive noder til den midlertidige talegruppen. Den bredere nummergruppen vil da igjen være gratis for samtaler.</p>
+<p>En automatisk QSY utføres også på Speech Group 240, etter 5 minutter. </p>
+<p>QSY til en spesifisert talegruppe kan brukes til å legge til flere noder i en pågående QSO. Anta at en QSO har startet på Talgroup 2403, dvs. SM3. Under QSO vil du utvide med noder i SM5 også, dvs. Tallgruppe 2405. Kommandoen <strong>922405#</strong> kan da brukes til dette. Alle   noder som for øyeblikket er aktive på 2403 vil bli flyttet til 2405, og   alle noder som overvåker 2405 vil koble til talegruppen.</p>
+<p>I nyere versjoner av SvxLink kan du veldig enkelt følge en QSY. Når QSY oppstår, <em>sier</em> repeateren " <em>QSY 24099nn venter</em> ". Hvis du trykker på PTT innen ca. 15 sekunder, vil repeateren følge denne QSY. Ellers sier repeateren " <em>QSY [24099nn] ignorert</em> ".</p>
+<p>En passiv node kan også lages manuelt for å følge den siste QSY med kommandoen <strong>93#</strong> . Dette   kan være bra hvis du ikke har hatt tid til å sende før QSY fant sted   eller hadde tid til å trykke PTT innen 15 sekunder etter QSY.</p>
+<p>Legg merke til forskjellen mellom QSY og lokalt valg av TG. </p>
+<ul>
+  <li><strong>922405 #</strong> flytter alle aktive noder til talegruppe 2405 (QSY).</li>
+  <li><strong>912405 #</strong> flytter bare den lokale noden til talegruppe 2405 (valg av tallgruppe).</li>
+</ul>
+<h2>DTMF-kommandoer </h2>
+<table cellspacing="0" cellpadding="5" border="0" class="table table-sm table-striped col-12  col-xl-7">
+  <thead class="dash_header">
+    <tr>
+      <th nowrap="nowrap" align="left">Kommando </th>
+      <th nowrap="nowrap" align="left">Eksempel </th>
+      <th nowrap="nowrap" align="left">Beskrivelse </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>91nnn # </td>
+      <td>912405 #</td>
+      <td>Aktiver talegruppe (2405). </td>
+    </tr>
+    <tr>
+      <td>91 #</td>
+      <td> </td>
+      <td>Gå tilbake til den tidligere valgte talegruppen. <em>På SK7RFL, SK7RN og SK5BN = aktiver standardnummergruppe.</em></td>
+    </tr>
+    <tr>
+      <td>92 #</td>
+      <td> </td>
+      <td>QSY alle aktive noder til en tilfeldig talegruppe valgt automatisk av reflektoren. </td>
+    </tr>
+    <tr>
+      <td>92nnn #</td>
+      <td> </td>
+      <td>QSY alle aktive noder til en bestemt talegruppe</td>
+    </tr>
+    <tr>
+      <td>93 #</td>
+      <td> </td>
+      <td>Følg QSY hvis du nettopp har lyttet. Også PTT innen 15 sekunder etter <em>QSY venter</em> .</td>
+    </tr>
+    <tr>
+      <td>94nnnn # </td>
+      <td>9424070#</td>
+      <td>Legg midlertidig til ekstra Talegruppeovervåking</td>
+    </tr>
+    <tr>
+      <td>9 * # </td>
+      <td> </td>
+      <td>Informasjon / status (talegrupper)</td>
+    </tr>
+    <tr>
+      <td>1 #</td>
+      <td> </td>
+      <td>Aktiver papegøyen (slutter med <strong>#</strong> ).</td>
+    </tr>
+    <tr>
+      <td>2 #</td>
+      <td> </td>
+      <td>Aktiver EchoLink (avsluttes med <strong>#</strong> ).</td>
+    </tr>
+    <tr>
+      <td>5 # </td>
+      <td> </td>
+      <td>Vær (METAR) for nærliggende flyplass.</td>
+    </tr>
+    <tr>
+      <td>0 #</td>
+      <td> </td>
+      <td>Hjelp </td>
+    </tr>
+  </tbody>
+</table>
+<h2>SSA Bulletin </h2>
+<p>SSA-bulletinen kan sendes ut lokalt på hver repeater. Det er også to bulletiner i systemet, som du kan lytte til over hele eller deler av nettverket.</p>
+<ul>
+  <li>SK2SSA, søndager kl 20.00 på Talgrupp 24020. </li>
+  <li>SK3SSA, søndager klokken 21:00 på Talgrupp 24033. </li>
+  <li><a href="https://sk7rfl.se/bulletin" target="_blank">SK7SSA</a> , søndager kl 09:00 på Talgrupp 24070.</li>
+</ul>
+<p>Hvis den lokale repeateren ikke overvåker ønsket punktnummergruppe, kan dette legges til med kommandoen <strong>94</strong> som ovenfor.</p>
+<h2>Ekstra informasjon</h2>
+<p>Kartleggingen mellom undertoner og talegrupper er i henhold til SSAs liste for CTCSS. Den andre tonen i hvert distrikt (&ldquo;Sekundær 1&rdquo;) er kartlagt til talegruppen for det distriktet.</p>
+<p>Hvis du vil koble fra en talegruppe direkte, uten å vente i 30 sekunder, kan du trykke <strong>910 #</strong> (TG0). Bra å bruke hvis du tilfeldigvis velger feil talegruppe.</p>
+<p>Du kan ikke aktivere flere talegrupper samtidig. </p>
+<p>Hvis   du har aktivert en bestemt talegruppe, for eksempel TG2403, vil trafikk   fra andre talegrupper bli sperret til trafikken endelig har stoppet på   TG2403 og det har gått 30 sekunder. </p>
+<p>SvxReflectorn er ikke koblet til DMR / Brandmeister, men bruker lignende navn og tall på Talgrupper. </p>
+<h2>Sysop instruksjon </h2>
+<p>Regler og konfigurasjonstips finner du her: <a href="https://svxreflector-sm.groups.io/g/sysops/wiki" target="_blank">sysops@svxreflector-sm.groups.io | Wiki</a></p>
+<p>Hvis du har opprettet en konto på denne portalen, er det også flere verktøy for å generere konfigurasjon (under Mine stasjoner).</p>

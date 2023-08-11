@@ -298,31 +298,38 @@ function Draw_bar(id, lat,lon)
 }
 function update_bar(id,value,sql)
 {
+
 	const canvas1 = document.getElementById('bar_'+id);
-	var can =canvas1.getContext('2d');
 	
-	can.clearRect(1, 99 ,8, -100); 
-	if(value>=0 && value <100)
-		can.fillRect(1, 99 ,8, -1*value); 
-	else if (value >=100)
-		can.fillRect(1, 99 ,8, -100);
 
+	if(canvas1 != null)
+	{
+		var can =canvas1.getContext('2d');
 		
-		if(sql == 'active')
-	{
-		 
-		can.fillStyle ="#1932F7";
-
+		can.clearRect(1, 99 ,8, -100); 
+		if(value>=0 && value <100)
+			can.fillRect(1, 99 ,8, -1*value); 
+		else if (value >=100)
+			can.fillRect(1, 99 ,8, -100);
+	
+			
+			if(sql == 'active')
+		{
+			 
+			can.fillStyle ="#1932F7";
+	
+			
+		}
+		else if(sql == 'open')
+		{
+			can.fillStyle ="#E31013";
+	
+		}
+		else
+		{
+			can.fillStyle ='black';
+		}
 		
-	}
-	else if(sql == 'open')
-	{
-		can.fillStyle ="#E31013";
-
-	}
-	else
-	{
-		can.fillStyle ='black';
 	}
 	
 	

@@ -1,0 +1,154 @@
+<img src="reflektor.png" alt="nodemap"  class="rounded col-12  col-xl-5" style="float:right">
+
+<h1>Systembeschreibung - SvxLink / SvxReflector </h1>
+<p>SvxReflector   (früher auch &quot;östkustlänken&quot; genannt) ist ein nationales Netzwerk   schwedischer analoger Repeater, das mit Hilfe von <a href="https://translate.google.com/website?sl=sv&amp;tl=de&amp;ajax=1&amp;u=http://www.svxlink.org/" target="_blank">SvxLink</a> in der Regel über das Internet miteinander verbunden ist.</p>
+<p>Im Netzwerk Speech <strong>werden Gruppen</strong> verwendet , um den Datenverkehr zu trennen. Eine Sprachgruppe kann mit einem logischen &quot;Kanal&quot; verglichen werden.</p>
+<ul>
+  <li>Ein Repeater kann mehrere Sprachgruppen aufnehmen (überwachen). Welche Sprachgruppen für jeden Repeater geeignet sind, finden Sie auf der Homepage von SvxPortalen.</li>
+  <li>Eine Sprachgruppe kann vom lokalen Benutzer mithilfe von DTMF-Befehlen oder Subton (CTCSS) manuell ausgewählt werden. </li>
+  <li>Der   Repeater kann auch eine lokale Standardnummerngruppe haben, die beim   lokalen Start automatisch aktiviert wird (wenn der Benutzer keine aktive   Auswahl trifft).</li>
+</ul>
+<p>Auf der anderen Seite kann ein Repeater nie seine <u>aktiv</u> auf mehr als eine Sprachgruppe zu einem Zeitpunkt.</p>
+<p>Eingehender   Datenverkehr in einer überwachten Sprachgruppe startet den Repeater   automatisch, kann jedoch normalerweise während eines laufenden QSO nicht   unterbrochen werden. </p>
+<p>Repeater und Simplex-Knoten im Netzwerk überwachen statisch: </p>
+<ul>
+  <li>Sprachgruppe 240, die ganz Schweden abdeckt. </li>
+  <li>Eigene Distriktnummerngruppe - zB 2405 für SM5. </li>
+  <li>Mögliche Repeater und Distrikte in der Nähe. </li>
+  <li>Möglicherweise eigene lokale Nummerngruppe - zB 240515 für Eskilstuna. <em>Dies kann dann verwendet werden, um nur diesen Repeater zu &quot;adressieren&quot;.</em></li>
+  <li>Möglicherweise Clusternummerngruppe - zB 24078 für SK7RFL + SK7RN an Land oder 24021 für die &quot;Kalix-Linie&quot;. </li>
+</ul>
+<p><strong>Das gesamte System kann in Echtzeit über das Svx-Portal (diese Website) überwacht werden. </strong></p>
+<p>Die neuesten Informationen finden Sie in einer Mailingliste: <a href="u=https://svxreflector-sm.groups.io/" target="_blank">https://svxreflector-sm.groups.io/</a></p>
+<p><strong>Repeater-Schule </strong> <a href="https://sk7rfl.se/" target="_blank">bei SK7RFL.se</a> : <a href="https://sk7rfl.se/repeaterskolan/" target="_blank">https://sk7rfl.se/repeaterskolan/</a></p>
+<h2>Wahl der Sprachgruppe </h2>
+<p>Wenn   Sie eine bestimmte Sprachgruppe verwenden möchten, können Sie diese auf   zwei Arten auswählen - mit DTMF oder Subton (CTCSS). </p>
+<p>Wenn   in der ausgewählten Sprachgruppe kein Datenverkehr vorhanden ist,   wechselt das System nach 30 Sekunden in den Leerlaufmodus (einstellbar   über Sysop) und wartet auf die Aktivität in überwachten Sprachgruppen. Ein kleines &quot;FLIRRP&quot; ist zu hören, wenn der Repeater oder Simplex-Knoten in seine Standardposition zurückkehrt. Bei SK7RFL, SK7RN und SK5BN geschieht dies immer in Verbindung mit dem Herunterfahren des Repeaters.</p>
+<h3>DTMF </h3>
+<p>Um die Sprachgruppe 2405 mit DTMF zu aktivieren, drücken Sie: </p>
+<pre class="col-12  col-xl-5">912405#</pre>
+<p>Der Repeater gibt bekannt, dass er zur Sprachgruppe 2405 wechselt, wenn Sie PTT loslassen. </p>
+<h3>Subton (CTCSS) </h3>
+<p>Eine Liste der Sprachgruppen, die mit Subton aktiviert werden können, finden Sie hier im <a href="index.php" target="_blank">SvxPortal</a> .</p>
+<p>Um beispielsweise die Sprachgruppe 2405 mit Subton, CTCSS zu aktivieren, wählen Sie Subton 91,5 Hz. Nach der ersten Sendesitzung gibt Tepeatern bekannt, zu welcher Sprachgruppe gewechselt wird, wenn Sie PTT freigeben.</p>
+<p>Die Aktivierung mit einem Unterton kann nur im Schlafmodus des Repeaters erfolgen, dh nicht während des aktuellen QSO. </p>
+<h3>Tabelle mit Untertönen für jeden Repeater und Simplex-Knoten im System </h3>
+<p><a href="ctcss_map_table.php" target="_blank"> https://svxportal.sm2ampr.net/ctcss_map_table.php</a></p>
+<h2>Trinkgeld </h2>
+<p>Programmieren   Sie mehrere Speicherkanäle mit unterschiedlichen Untertönen, um den   Repeater / Simplex-Knoten mit der richtigen Sprachgruppe direkt   aktivieren zu können. </p>
+<p>Für   Knoten mit einem Subton, der mit keiner Sprachgruppe verbunden ist,   wird in der Spalte &quot;Lokal&quot; die Spalte &quot;Lokal&quot; angezeigt. In der Liste können Dienste auf dem Knoten verwendet werden, ohne dass eine Sprachgruppe verbunden ist. Es   kann praktisch sein, verschiedene Module in SvxLink wie Papegoja,   EchoLink, Voicemail usw. zu verwenden. Es ermöglicht auch, lokale QSOs   auf dem Kanal zu haben, ohne dass eine Sprachgruppe von außen aktiviert   wird.</p>
+<p>Ähnlich   wie bei einer aktiven Sprachgruppe muss der Kanal eine Zeit lang ruhen,   bevor die Verbindung von Sprachgruppen sowohl remote als auch mit einem   Unterton hergestellt werden kann. Die Zeit ist per Sysop einstellbar, beträgt aber standardmäßig 30 Sekunden.</p>
+<p>Es ist jedoch jederzeit möglich, die Sprachgruppe mit DTMF-Befehlen zu aktivieren / ändern. </p>
+<h2>QSY </h2>
+<p>Während eines QSO für eine Sprachgruppe können alle aktiven Knoten in eine andere Sprachgruppe verschoben werden. Der   aktive Knoten ist der Knoten, der seit Aktivierung der Sprachgruppe   lokal aktiv war, dh die Lärmschutzwand hat sich mindestens einmal   geöffnet.</p>
+<p>Die QSY-Funktion wird durch DTMF-Befehle gesteuert. </p>
+<table cellspacing="0" cellpadding="5" class="table table-bordered  col-12  col-xl-5">
+  <tbody>
+    <tr>
+      <th>92 #</th>
+      <td>QSY zu einer Zufallszahlengruppe, die vom Reflektorserver automatisch ausgewählt wird </td>
+    </tr>
+    <tr>
+      <th>92nnn # </th>
+      <td>QSY zur Sprachgruppe nnn </td>
+    </tr>
+    <tr>
+      <th>93 #</th>
+      <td>Folgen Sie dem neuesten QSY </td>
+    </tr>
+  </tbody>
+</table>
+<p>QSY   für temporäre Sprachgruppen wird in geeigneter Weise so verwendet, dass   Anrufe zu einem Anfang in einer breiteren Sprachgruppe getätigt werden,   z. B. 240 für ganz Schweden. Wenn alle Teilnehmer &quot;angerufen&quot; haben In der Sprachgruppe wird der QSY-Befehl ( <strong>92 #</strong> ) verwendet, um alle aktiven Knoten in die temporäre Sprachgruppe zu verschieben. Die breitere Nummerngruppe ist dann wieder frei für Anrufe.</p>
+<p>Nach 5 Minuten wird auch eine automatische QSY für die Sprachgruppe 240 durchgeführt. </p>
+<p>QSY zu einer bestimmten Sprachgruppe kann verwendet werden, um einem laufenden QSO weitere Knoten hinzuzufügen. Angenommen, ein QSO wurde in Talgroup 2403, dh SM3, gestartet. Unter dem QSO möchten Sie auch mit Knoten in SM5 erweitern, dh mit der <strong>Nummerngruppe</strong> 2405. <strong>Hierfür</strong> kann dann der Befehl <strong>922405 #</strong> verwendet werden. Alle   Knoten, die derzeit auf 2403 aktiv sind, werden auf 2405 verschoben,   und alle Knoten, die 2405 überwachen, stellen eine Verbindung zur   Sprachgruppe her.</p>
+<p>In neueren Versionen von SvxLink können Sie einem QSY sehr einfach folgen. Wenn QSY auftritt, <em>sagt</em> der Repeater &quot; <em>QSY 24099nn ausstehend</em> &quot;. Wenn Sie PTT innerhalb von ca. 15 Sekunden drücken, folgt der Repeater diesem QSY. Andernfalls sagt der Repeater &quot; <em>QSY [24099nn] ignoriert</em> &quot;.</p>
+<p>Ein passiver Knoten kann auch manuell erstellt werden, um dem neuesten QSY mit dem Befehl <strong>93 #</strong> zu folgen . Dies   kann hilfreich sein, wenn Sie vor QSY keine Zeit zum Senden hatten oder   innerhalb von 15 Sekunden nach QSY Zeit hatten, PTT zu drücken.</p>
+<p>Beachten Sie den Unterschied zwischen QSY und lokaler Wahl von TG. </p>
+<ul>
+  <li><strong>922405#</strong> verschiebt alle aktiven Knoten in die Sprachgruppe 2405 (QSY).</li>
+  <li><strong>912405# verschiebt</strong> nur den lokalen Knoten zur <strong>Sprachgruppe</strong> 2405 ( <strong>Sprachgruppenauswahl</strong> ).</li>
+</ul>
+<h2>DTMF-Befehle </h2>
+<table cellspacing="0" cellpadding="5" border="0" class="table table-sm table-striped col-12  col-xl-5">
+  <thead class="dash_header">
+    <tr>
+      <th nowrap="nowrap" align="left">Befehl </th>
+      <th nowrap="nowrap" align="left">Beispiel </th>
+      <th nowrap="nowrap" align="left">Beschreibung </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>91nnn# </td>
+      <td>912405#</td>
+      <td>Sprachgruppe aktivieren (2405). </td>
+    </tr>
+    <tr>
+      <td>91#</td>
+      <td> </td>
+      <td>Springen Sie zurück zur zuvor ausgewählten Sprachgruppe. <em>Bei SK7RFL aktivieren SK7RN und SK5BN die Standardnummerngruppe.</em></td>
+    </tr>
+    <tr>
+      <td>92#</td>
+      <td> </td>
+      <td>QSY alle aktiven Knoten zu einer zufälligen Sprachgruppe, die vom Reflektor automatisch ausgewählt wird. </td>
+    </tr>
+    <tr>
+      <td>92nnn#</td>
+      <td> </td>
+      <td>QSY alle aktiven Knoten zu einer bestimmten Sprachgruppe</td>
+    </tr>
+    <tr>
+      <td>93#</td>
+      <td> </td>
+      <td>Folgen Sie QSY, wenn Sie gerade zugehört haben. Auch PTT innerhalb von 15 Sekunden nach <em>QSY Pending</em> .</td>
+    </tr>
+    <tr>
+      <td>94nnnn# </td>
+      <td>9424070#</td>
+      <td>Fügen Sie vorübergehend eine zusätzliche Sprachgruppenüberwachung hinzu</td>
+    </tr>
+    <tr>
+      <td>9*# </td>
+      <td> </td>
+      <td>Information / Status (Sprachgruppen)</td>
+    </tr>
+    <tr>
+      <td>1#</td>
+      <td> </td>
+      <td>Aktiviere den Papagei (endet mit <strong>#</strong> ).</td>
+    </tr>
+    <tr>
+      <td>2#</td>
+      <td> </td>
+      <td>Aktivieren Sie EchoLink (endet mit <strong>#</strong> ).</td>
+    </tr>
+    <tr>
+      <td>5# </td>
+      <td> </td>
+      <td>Wetter (METAR) für den nahe gelegenen Flughafen.</td>
+    </tr>
+    <tr>
+      <td>0#</td>
+      <td> </td>
+      <td>Hilfe </td>
+    </tr>
+  </tbody>
+</table>
+<h2>SSA Bulletin </h2>
+<p>Das SSA-Bulletin kann lokal auf jedem Repeater gesendet werden. Es gibt auch zwei Bulletins im System, die über das gesamte Netzwerk oder Teile davon abgehört werden können.</p>
+<ul>
+  <li>SK2SSA, sonntags um 20:00 Uhr auf Talgrupp 24020. </li>
+  <li>SK3SSA, sonntags um 21:00 Uhr auf Talgrupp 24033. </li>
+  <li><a href="https://sk7rfl.se/bulletin" target="_blank">SK7SSA</a> , sonntags um 09:00 Uhr auf Talgrupp 24070.</li>
+</ul>
+<p>Wenn der lokale Repeater die gewünschte Aufzählungsnummerngruppe nicht überwacht, kann dies mit dem Befehl <strong>94</strong> wie oben hinzugefügt werden .</p>
+<h2>Verletzung </h2>
+<p>Die Zuordnung zwischen Untertönen und Sprachgruppen entspricht der SSA-Liste für CTCSS. Der zweite Ton in jedem Distrikt (&quot;Sekundär 1&quot;) wird der Sprachgruppe für diesen Distrikt zugeordnet.</p>
+<p>Wenn Sie eine Sprachgruppe direkt trennen möchten, ohne 30 Sekunden warten zu müssen, können Sie <strong>910 #</strong> (TG0) drücken. Gut zu verwenden, wenn Sie zufällig die falsche Sprachgruppe auswählen.</p>
+<p>Sie können nicht mehrere Sprachgruppen gleichzeitig aktivieren. </p>
+<p>Wenn   Sie eine bestimmte Sprachgruppe aktiviert haben, z. B. TG2403, wird der   Datenverkehr von anderen Sprachgruppen blockiert, bis der Datenverkehr   auf TG2403 endgültig gestoppt wurde und 30 Sekunden vergangen sind. </p>
+<p>SvxReflectorn ist nicht mit DMR / Brandmeister verbunden, verwendet jedoch ähnliche Namen und Nummern für Talgrupper. </p>
+<h2>Sysop-Anweisung </h2>
+<p>Regeln und Konfigurationstipps finden Sie hier: <a href="https://svxreflector-sm.groups.io/g/sysops/wiki" target="_blank">sysops@svxreflector-sm.groups.io | Wiki</a></p>
+<p>Wenn   Sie in diesem Portal ein Konto erstellt haben, gibt es auch   verschiedene Tools zum Generieren der Konfiguration (unter Meine   Stationen).</p>

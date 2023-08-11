@@ -1,0 +1,158 @@
+<img src="reflektor.png" alt="nodemap"  class="rounded col-5"/style="float:right">
+
+
+<h1>Opis systemu - SvxLink / SvxReflector</h1>
+<p>SvxReflector   (dawniej nazywany  &bdquo;Ã – stkustlänken&rdquo;) to krajowa sieć   szwedzkich analogowych przemienników, które są połączona za pomocą <a href="http://www.svxlink.org/" target="_blank">SvxLink</a> , zwykle przez Internet.</p>
+<p>W sieci <strong>grupy</strong> rozmowne służą do oddzielania ruchu. Grupę rozmowną można przyrównać do logicznego &bdquo;kanału&rdquo;.</p>
+<ul>
+  <li>Przemiennik może pracować na odbierze (monitoring) na kilku grupach rozmownych. Na stronie startowej SvxPortalen podano, które grupy rozmowne są dostęne na przemienniku.</li>
+  <li>Grupa rozmowna może być wybrana ręcznie przez lokalnego użytkownika za pomocą poleceń DTMF lub Subton (CTCSS).</li>
+  <li>Przemiennik może mieć zdefiniowną lokalną domyślną grupę rozmowną, która jest aktywowana automatycznie przy pracy lokalnej (jeśli użytkownik nie dokona aktywnego wyboru).</li>
+</ul>
+<p>Z drugiej strony przemiennik nigdy nie może być <u>aktywny</u> na więcej niż na jednej grupie rozmownej.</p>
+<p>Ruch   przychodzący na monitorowanej grupie rozmownej uruchomi przemiennik  automatycznie, lecz nie przerwie to trwającego QSO.</p>
+<p>Przemienniki i węzły simpleksowe monitorują statycznie:</p>
+<ul>
+  <li>Grupa rozmowną 240, która obejmuje całą Szwecję.</li>
+  <li>Własna grupa numerów okręgów - np. 2405 dla SM5.</li>
+  <li>Możliwe w przemenniki i okręgi pobliżu.</li>
+  <li>Ewentualnie własna lokalna grupy - np. 240515 dla Eskilstuna. <em>Można to następnie wykorzystać do &bdquo;adresowania&rdquo; wybranego przemiennika.</em></li>
+  <li>Ewentualnie grupy klastrów - np. 24078 dla SK7RFL + SK7RN na lądzie lub 24021 dla &quot;linii Kalix&quot;.</li>
+</ul>
+<p><strong>Cały system można monitorować w czasie rzeczywistym za pośrednictwem portalu Svx (właśnie tutaj).</strong></p>
+<p>Najnowsze informacje można znaleźć na grupie: <a href="https://svxreflector-sm.groups.io/" target="_blank">https://svxreflector-sm.groups.io/</a></p>
+<p><strong>Szkoła repeaterów na </strong> <a href="https://sk7rfl.se/" target="_blank">SK7RFL.se</a> : <a href="https://sk7rfl.se/repeaterskolan/" target="_blank">https://sk7rfl.se/repeaterskolan/</a></p>
+<h2>Wybór grupy rozmownej</h2>
+<p>Aby użyć określoną grupę rozmowną, możesz ją wybrać na dwa sposoby - za pomocą DTMF lub przez Subton (CTCSS).</p>
+<p>W przypadkum kiedy nie będzie prowadzona korespodencja na wybranej grupie rozmownej, system przełącza się w tryb bezczynności po 30 sekundach (konfigurowane przez sysop) i będzie czekł na aktywność na monitorowanych grupach rozmownych. Krótki dzwięk &bdquo;FLIRRP&rdquo; jest słyszalny, gdy przemiennik lub node simpleks powraca do trybu domyślnego. W SK7RFL, SK7RN i SK5BN dzieje się to zawsze gdy następuje zamknięcie przemiennika.</p>
+<h3>DTMF</h3>
+<p>Aby aktywować grupę rozmowną 2405 z DTMF, naciśnij:</p>
+<pre  class="col-12  col-xl-7">912405#</pre>
+<p>Przmiennik ogłosi, że przełącza się na grupę 2405 po zwolnieniu PTT.</p>
+<h3>Podton (CTCSS)</h3>
+<p>Listę grup rozmownych, które można aktywować za pomocą Subton, można znaleźć tutaj: <a href="https://svxportal.sm2ampr.net" target="_blank">SvxPortalen</a> .</p>
+<p>Aby aktywować np. grupę mowy 2405 z Subton, CTCSS, wybierz Subton 91.5Hz. Po pierwszej sesji transmisji Tepeatern ogłasi, do której grupy mowy został przełączony tuż po zwolnieniu PTT.</p>
+<p>Aktywacja subtone może nastąpić tylko z trybu uśpienia przemiennika, czyli nie jest to możliwe podczas bieżącego QSO.</p>
+<h3>Tabela z podtonami dla każdego przemiennika lub węzła simpleksowego w systemie</h3>
+<p><a href="https://svxportal-sm2ampr-net.translate.goog/ctcss_map_table.php?_x_tr_sl=sv&amp;_x_tr_tl=pl&amp;_x_tr_hl=sv&amp;_x_tr_pto=wapp" target="_blank">https://svxportal.sm2ampr.net/ctcss_map_table.php</a></p>
+<h2>Wskazówka</h2>
+<p>Zaprogramuj kilka kanałów pamięci z różnymi podtonami, aby móc bezpośrednio aktywować Repeater albo węceł Simplex z właściwą grupą mowy.</p>
+<p>Dla tych węzłów, które mają Subton, który nie jest połączony z żadną grupą  rozmowną, kolumna &bdquo;Local&rdquo; na liście, usługi w węźle mogą być używane bez   podłączonej żadnej grupy rozmownej (rozmowa lokalna). Może to być przydatne przy użyciu różnych modułów SvxLink, takich jak Parrot, EchoLink, Poczta głosowa itp. Umożliwia to również prowadzenie lokalnych QSO na kanale, bez aktywacji grupy rozmownej i przekazywania korespodencji do innych przemienników (na zewnątrz).</p>
+<p>W taki sam sposób, jak dla przypadku aktywnej grupy rozmownej, wymagane jest, aby kanał był uśpiony przez pewien czas, zanim będzie mogło nastąpić połączenie grup rozmownych, zarówno zdalnie, jak i za pomocą podtonu. Czas jest konifgurowany przez sysop, domyślnie wynosi 30 sekund.</p>
+<p>W dowolnym momencie mozesz aktywować/zmienić Grupę Rozmowną za pomocą poleceń DTMF.</p>
+<h2>QSY</h2>
+<p>Podczas QSO na grupie rozmownej możliwe jest przeniesienie wszystkich aktywnych węzłów do innej grupy rozmownej. Węzeł aktywny to węzeł, który wykazywał aktywność lokalną od momentu aktywacji grupy rozmownej, tj. blokada została otwarta przynajmniej raz.</p>
+<p>Funkcja QSY jest kontrolowana przez polecenia DTMF.</p>
+<table cellspacing="0" cellpadding="5" class="table table-bordered  col-7"> 
+  <tbody>
+    <tr>
+      <th>92 #</th>
+      <td>QSY do grupy losowej, która jest automatycznie wybierana przez serwer reflektora</td>
+    </tr>
+    <tr>
+      <th>92nnn #</th>
+      <td>QSY do grupy o numerze nnn</td>
+    </tr>
+    <tr>
+      <th>93 #</th>
+      <td>Śledź najnowsze QSY</td>
+    </tr>
+  </tbody>
+</table>
+<p>QSY dla tymczasowej grupy mowy jest szególnie polecane dla grup o szerszym zasięgu np. 240 - używanej w całej Szwecji.   Kiedy wszyscy uczestnicy &quot;wdzwonią&quot; do grupy rozmownej, używane jest polecenie QSY ( <strong>92 #</strong> ) - aby przenieść wszystkie aktywne węzły do ​​tymczasowej grupy rozmownej. Szersza grupa numerów będzie wtedy ponownie dostępna dla pozostałych węzłów i połączeń.</p>
+<p>W Grupie 240 następuje automatyczne QSY po 5 minutach.</p>
+<p>QSY do określonej Grupy rozmownej może być użyte do dodania większej liczby węzłów do trwającego QSO. Załóżmy, że QSO rozpoczęło się na Talgroup 2403, tj. SM3. W trakcie QSO chcemy dodać kolejne węzły w SM5 tj. Grupę Numerów 2405. Można wtedy użyć komendy <strong>922405 # . </strong>Wszystkie   węzły, które są aktualnie aktywne w 2403 zostaną przeniesione do 2405, a   wszystkie węzły monitorujące 2405 połączą się z grupą mowy.</p>
+<p>W nowszych wersjach SvxLink możesz bardzo łatwo śledzić QSY. Gdy pojawi się QSY, przemiennik oznajmi o &bdquo; <em>QSY 24099nn w toku</em> &rdquo;. Jeśli naciśniesz PTT w ciągu około 15 sekund, przemiennik będzie podążał za tym QSY. W przeciwnym razie repeater oznajmi, iż &bdquo; <em>QSY [24099nn] zignorowano</em> &rdquo;.</p>
+<p>Węzeł pasywny można również ręcznie ustawić tak, aby podążał za najnowszą QSY za pomocą polecenia <strong>93 #</strong> . Może to być pomocne, jeśli nie masz czasu na wysłanie PTT przed QSY lub zdążyłeś nacinać PTT w ciągu 15 sekund po QSY.</p>
+<p>Zwróć uwagę na różnicę między QSY a lokalnym wyborem TG.</p>
+<ul>
+  <li><strong>922405 #</strong> przenosi wszystkie aktywne węzły do ​​grupy numerów 2405 (QSY).</li>
+  <li><strong>912405 #</strong> przenosi tylko węzeł lokalny do grupy głosowej 2405 (wybór grupy głosowej).</li>
+</ul>
+<h2>Polecenia DTMF</h2>
+<table cellspacing="0" cellpadding="5" border="0" class="table table-bordered  col-7">
+  <thead class="dash_header">
+    <tr>
+      <th nowrap="nowrap" align="left">Komenda</th>
+      <th nowrap="nowrap" align="left">Przykład</th>
+      <th nowrap="nowrap" align="left">Opis</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>91nnn#</td>
+      <td>912405#</td>
+      <td>Aktywuj grupę rozmowną (2405).</td>
+    </tr>
+    <tr>
+      <td>91#</td>
+      <td> </td>
+      <td>Wróć do poprzednio wybranej grupy rozmownej. <em>W SK7RFL, SK7RN i SK5BN = aktywuj standardową grupę numerów.</em></td>
+    </tr>
+    <tr>
+      <td>92#</td>
+      <td> </td>
+      <td>QSY - przenieś wszystkie aktywne węzły do ​​tymczasowej grupy, która jest automatycznie nadana przez reflektor.</td>
+    </tr>
+    <tr>
+      <td>92nnn#</td>
+      <td> </td>
+      <td>QSY - przenieś wszystkie aktywne węzły do ​​ grupy nnn</td>
+    </tr>
+    <tr>
+      <td>93#</td>
+      <td> </td>
+      <td>Podążaj za QSY - zadziała jeśli tylko słuchałeś, albo po 15 sekunach po komunikacie <em>QSY oczekiwanie</em> .</td>
+    </tr>
+    <tr>
+      <td>94nnnn #</td>
+      <td>9424070#</td>
+      <td>Tymczasowe monitorowanie grupy nnnn</td>
+    </tr>
+    <tr>
+      <td>9*#</td>
+      <td> </td>
+      <td>Informacje / Status (grupy)</td>
+    </tr>
+    <tr>
+      <td>1#</td>
+      <td> </td>
+      <td>Aktywuj papugę (kończy się <strong>#</strong> ).</td>
+    </tr>
+    <tr>
+      <td>2#</td>
+      <td> </td>
+      <td>Aktywuj EchoLink (kończy się <strong>#</strong> ).</td>
+    </tr>
+    <tr>
+      <td>5#</td>
+      <td> </td>
+      <td>Pogoda (METAR) dla pobliskiego lotniska.</td>
+    </tr>
+    <tr>
+      <td>0#</td>
+      <td> </td>
+      <td>Pomoc</td>
+    </tr>
+  </tbody>
+</table>
+<h2>Biuletyn SSA</h2>
+<p>Biuletyn SSA może być rozgłoszony lokalnie na każdym przemienniku. W systemie znajdują się również dwa biuletyny, których można słuchać w całej sieci.</p>
+<ul>
+  <li>SK2SSA, niedziele o 20:00 na grupie 24020.</li>
+  <li>SK3SSA, niedziele o 21:00 na grupie 24033.</li>
+  <li><a href="https://sk7rfl.se/bulletin" target="_blank">SK7SSA</a> , niedziele o 09:00 na grupie 24070.</li>
+</ul>
+<p>Jeśli lokalny repeater nie monitoruje żądanej z w/w grup, można ją dodać za pomocą polecenia <strong>94</strong> jak powyżej.</p>
+<h2>Informacje dodatkowe</h2>
+<p>Mapowanie między podtonami i grupami  jest zgodne z listą SSA dla CTCSS. Drugi ton w każdym dystrykcie (drugi w kolejności) jest mapowany do grupy przyporządkowanej temu okręgowi.</p>
+<p>Jeśli chcesz odłączyć grupę bezpośrednio, bez czekania 30 sekund, możesz nacisnąć <strong>910 #</strong> (TG0). Jest to pomocne gdy zdarzy ci się wybrać niewłaściwą grupę mowy.</p>
+<p>Nie możesz jednocześnie aktywować kilku grup.</p>
+<p>Jeśli   aktywowałeś konkretną grupę, na przykład TG2403, ruch z innych grup zostanie zablokowany, dopóki ruch na TG2403 nie zostanie ostatecznie zatrzymany i minie 30 sekund.</p>
+<p>SvxReflector nie jest połączony z DMR / Brandmeister, ale używa podobnych nazw i numerów w grupach - nie są to jednak te same grupy.</p>
+<h2>Instrukcja Sysopa</h2>
+<p>Wskazówki dotyczące zasad i konfiguracji można znaleźć tutaj: <a href="https://svxreflector-sm.groups.io/g/sysops/wiki" target="_blank">sysops@svxreflector-sm.groups.io | Wiki</a></p>
+<p>Dla osób posiadających konto na Portalu, udostępnione są narzędzi do generowania konfiguracji (w sekcji Moje Stacje).</p>
+<div>
+  <div></div>
+</div>

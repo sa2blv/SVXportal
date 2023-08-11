@@ -108,6 +108,14 @@ function reaload_user_table()
 		  $("#user_table_one tbody").html(data);
 		});
 }
+function expand_image(image)
+{
+
+	  $('#imagepreview').attr('src', image); // here asign the image to the modal when the user click the enlarge link
+	  $('#imagemodal').modal('show'); // imagemodal is the id attribute assigned to the bootstrap modal, then i use the show function
+
+	   
+}
 
 
 </script>
@@ -236,13 +244,15 @@ function reaload_user_table()
 </div>
 <br />
 <div id="user_table_one_p">
-    <table class="table" id="user_table_one">
+    <table class="table table-sm table-striped" id="user_table_one">
       <thead class="thead-dark">
         <tr>
           <th scope="col">#</th>
+          <th scope="col"></th>
           <th scope="col"><?php echo _('First name')?></th>
           <th scope="col"><?php echo _('Last name')?></th>
           <th scope="col"><?php echo _('Username')?></th>
+          <th scope="col"><?php echo _('E-mail')?></th>
           <th scope="col"><?php echo _('Is admin')?></th>
           <th scope="col"><?php echo _('Station permission')?></th>
           <th scope="col"><?php echo _('Action')?></th>
@@ -258,14 +268,22 @@ function reaload_user_table()
       
       
       while($row = $result->fetch_assoc()) {
-          
+        $idarray= array();
       ?>
       
         <tr>
       <th scope="row"><?php echo $row['id']?></th>
+      
+      <?php 
+      if($row['image_url'] == null)
+          $row['image_url'] ="user.svg"; 
+       
+      ?>
+      <td><img onclick="expand_image(this.src)" class"img-fluid" src="<?php echo $row['image_url']?>" width="30px;"></td>
       <td><?php echo $row['Firstname']?></td>
       <td><?php echo $row['lastname']?></td>
       <td><?php echo $row['Username']?></td>
+      <td><a  class="link-primary"  target="_blank" href="mailto:<?php echo $row['email']?>"><?php echo $row['email']?></a></td>
     <?php   if($row['Is_admin'] == 1){?>
       <td><?php echo _('Yes')?></td>
     <?php }else{?>
@@ -305,9 +323,9 @@ while ($row1 = mysqli_fetch_array($result1, MYSQLI_ASSOC))
 $idin= join(",",$idarray);
 
 if(sizeof ($idarray) == 0)
-    $result2 = mysqli_query($link, "SELECT * FROM `RefletorStations`  WHERE Callsign !='' ");
+    $result2 = mysqli_query($link, "SELECT * FROM `RefletorStations`  WHERE Callsign !=''  order by Callsign ");
     else
-        $result2 = mysqli_query($link, "SELECT * FROM `RefletorStations`  WHERE ID NOT IN($idin) AND Callsign !='' ");
+        $result2 = mysqli_query($link, "SELECT * FROM `RefletorStations`  WHERE ID NOT IN($idin) AND Callsign !='' order by Callsign ");
 unset($idarray);
         
 
@@ -337,6 +355,27 @@ while ($row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC))
   </tbody>
 </table>
 </div>
+
+
+
+<div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel"><?php echo _('User image')?></h4>
+      </div>
+      <div class="modal-body">
+        <img src="" id="imagepreview" width="100%" >
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 
   <!-- Modal -->
 <div id="Premission" class="modal fade" role="dialog">

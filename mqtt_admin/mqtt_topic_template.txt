@@ -1,0 +1,4 @@
+portal/%NODE%/#	 rw
+opt/%NODE%/#	rw
+svxcard/%NODE%/#	rw
+Master/%NODE%/#	ro

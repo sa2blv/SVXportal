@@ -19,6 +19,7 @@ define_settings();
         
         $username =   $Reflektor_link->real_escape_string($_POST['usern']);
         $passwd   =   $Reflektor_link->real_escape_string($_POST['password']);
+        $passwd = base64_encode($passwd);
         $active   =   $Reflektor_link->real_escape_string($_POST['Enable']);
         $mail   =      $Reflektor_link->real_escape_string($_POST['mail']);
         $description   =   $Reflektor_link->real_escape_string($_POST['description']);
@@ -66,6 +67,7 @@ define_settings();
             
             $urid= $Reflektor_link->real_escape_string($_POST['user_id']);
             $passwd= $Reflektor_link->real_escape_string($_POST['password']);
+            $passwd = base64_encode($passwd);
     
            
             
@@ -100,7 +102,26 @@ define_settings();
             
             $Reflektor_link->query("UPDATE `users` SET `active` = '$active' WHERE `id` = '$urid'; ");
             
+            
+            // fishing for username 
+            $result = mysqli_query($Reflektor_link, "SELECT `user` FROM `users` WHERE `id` = $urid ");
+            
+            while($row = $result->fetch_assoc())
+            {
+                
+                $user = $row['user'];
+                
+            }
+            
+            
+            if($active !="1")
+            {
+                $Reflektor_link->query("INSERT INTO `Refletion_actions` (`ID`, `Action`, `Data`) VALUES (NULL, 'KICK', '$user');  ");
+            }
             $Reflektor_link->commit();
+            
+            
+            
             $Reflektor_link->close();
         
         }
@@ -157,6 +178,7 @@ define_settings();
                 $server =REFLEKTOR_SERVER_ADRESS;
                 $user =$row['user'];
                 $password = $row['password'];
+                $password = base64_decode($password);
                 $port =REFLEKTOR_SERVER_PORT;
                 
                 $msg = "This mail contain login credntials for the svxreflektor \r\n";
@@ -192,6 +214,42 @@ define_settings();
                 
             }
         }
+        
+        
+    }
+    if($_POST['acl_tg'] == '1')
+    {
+
+        if($_SESSION['is_admin'] >0 && $_SESSION['loginid'] >0 )
+        {
+            $tg =   $Reflektor_link->real_escape_string($_POST['tg']);
+            $regex =   $Reflektor_link->real_escape_string($_POST['regex']);
+            
+            echo $regex;
+            
+            $Reflektor_link->query("DELETE FROM `ACL` WHERE `TG` = '$tg'");
+            if($tg !="")
+            {
+                $Reflektor_link->query("INSERT INTO `ACL` (`id`, `TG`, `regex`) VALUES (NULL, '$tg', '$regex');");
+            }
+
+        }
+        
+   
+        
+    }
+    
+    
+    if($_POST['Kick_user'] == '1')
+    {
+
+        if($_SESSION['is_admin'] >0 && $_SESSION['loginid'] >0 )
+        {
+            $call =   $Reflektor_link->real_escape_string($_POST['call']);
+            $Reflektor_link->query("INSERT INTO `Refletion_actions` (`ID`, `Action`, `Data`) VALUES (NULL, 'KICK', '$call');");
+                   
+        }
+        
         
         
     }

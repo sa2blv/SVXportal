@@ -93,8 +93,7 @@ class MQtt_Driver {
             	}
             
             function onFailure(message) {
-            	console.log("Connection Attempt to Host "+host+"Failed");
-            	setTimeout(MQTTconnect, reconnectTimeout);
+            	<?php //setTimeout(MQTTconnect, reconnectTimeout);?>
             }
             
             <?php $this->Print_mqtt_mesasage_notification()?>

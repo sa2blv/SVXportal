@@ -1,21 +1,46 @@
 <?php
 include_once 'config.php';
 
+include_once 'function.php';
+include_once 'redis.php';
+
 $link->set_charset("utf8");
 
 
 $talkgroup_array= array();
 $station_array= array();
+$json_data ="";
 
-function Get_station_from_json() {
+function Get_station_from_json() 
+{
     global $serveradress;
-    
+    global $json_data;
 
-    $context = stream_context_create(array('http' => array('header'=>'Connection: close\r\n')));
-    $json_data = file_get_contents($serveradress,false,$context);
+
+    //$context = stream_context_create(array('http' => array('header'=>'Connection: close\r\n')));
+    $key ="svxportal_cahce_ctcss_maptable";
+    
+    if(Redis_key_exist_enable($key))
+    {
+        
+        $json_data = Redis_Get_key($key);
+    }
+    else
+    {
+
+      $json_data = file_get_contents($serveradress,false,$context);
+      
+      if (defined('USE_REDIS'))
+      {
+          Redis_Set_Key_time($key,$json_data,60);
+      }
+      
+    }
 
     
     //$json_data = file_get_contents($serveradress);
+    $json_data = iconv("utf-8", "utf-8//ignore", $json_data);
+    
     $json = json_decode($json_data);
     global $talkgroup_array;
     global $station_array;
@@ -29,8 +54,7 @@ function Get_station_from_json() {
         {
  
             
-        
-            
+       
             $station_first_RX =array();
             $station_first_TX =array();
             $a=0;
@@ -64,14 +88,14 @@ function Get_station_from_json() {
                 }
                 else
                 {
-                    $offset =$station_first_TX[$int]-$station_first_RX[$int];
+                    $offset = floatval($station_first_TX[$int])-floatval($station_first_RX[$int]);
                 }
                 
                 $ofset_char ="";
                 
                 if($offset != 0)
                 {
-                    if (($station_first_RX[$int]-$station_first_TX[$int]) <0)
+                    if ((floatval($station_first_RX[$int])-floatval($station_first_TX[$int])) <0)
                     {
                         $ofset_char="-";
                     }
@@ -89,7 +113,7 @@ function Get_station_from_json() {
                 
                 
                 
-                $offset =$station_first_TX[$int]-$station_first_RX[$int];
+                $offset =floatval($station_first_TX[$int])-floatval($station_first_RX[$int]);
                 
                 foreach($station->toneToTalkgroup as $tonegroup => $talkgroup)
                 {
@@ -146,7 +170,9 @@ var_dump($station_array);
 ?>
 
 <?php 
+set_laguage();
 
+$noheader =$_GET['NOHEAD'];
 
 if($noheader != 1){?>
 <!DOCTYPE html>
@@ -241,9 +267,11 @@ if($noheader != 1){?>
   
   
   <form action="Get_Node_CSV.php" method="POST" onsubmit="return validate_export()"  target="_blank">
-  <div id="print_export_log">
+  <div id="print_export_log" >
 
-  <table class="table table-hover table-sm" id="ctcss_data_table" >
+ <div style="overflow-x:auto;overflow-y: hidden;" >
+ 
+  <table class="table table-hover table-sm" id="ctcss_data_table"  >
     <thead class="dash_header">
       <tr>
         <th> </th>
@@ -311,6 +339,9 @@ if($noheader != 1){?>
 
     </tbody>
   </table>
+  </div>
+  <br />
+  
   </div>
   <?php if(!$_GET['hiddeexport']){?>
   
