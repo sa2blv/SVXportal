@@ -14,8 +14,8 @@ function Type_one($parameter,$value,$txt) {
   
   
         <div class="form-check form-check-inline" >
-        <input class="form-check-input" type="radio" name="<?php echo $parameter?>" id="exampleRadios1" value="0" <?php if($value == 0){ echo "checked";}?>>
-        <label class="form-check-label" for="<?php echo $parameter?>">
+        <input class="form-check-input" type="radio" name="<?php echo $parameter?>" id="<?php echo $parameter?>2" value="0" <?php if($value == 0){ echo "checked";}?>>
+        <label class="form-check-label" for="<?php echo $parameter?>2">
         <?php echo _('No');?>
         </label>
         </div>

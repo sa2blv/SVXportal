@@ -16,17 +16,17 @@ CREATE TABLE `Dtmf_command` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Index för tabell `Dtmf_command`
+-- Index fÃ¶r tabell `Dtmf_command`
 --
 ALTER TABLE `Dtmf_command`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT för dumpade tabeller
+-- AUTO_INCREMENT fÃ¶r dumpade tabeller
 --
 
 --
--- AUTO_INCREMENT för tabell `Dtmf_command`
+-- AUTO_INCREMENT fÃ¶r tabell `Dtmf_command`
 --
 ALTER TABLE `Dtmf_command`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
@@ -47,18 +47,18 @@ CREATE TABLE `Infotmation_page` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Index för dumpade tabeller
+-- Index fÃ¶r dumpade tabeller
 --
 
 --
--- Index för tabell `Infotmation_page`
+-- Index fÃ¶r tabell `Infotmation_page`
 --
 ALTER TABLE `Infotmation_page`
   ADD PRIMARY KEY (`id`);
 
 
 --
--- AUTO_INCREMENT för tabell `Infotmation_page`
+-- AUTO_INCREMENT fÃ¶r tabell `Infotmation_page`
 --
 ALTER TABLE `Infotmation_page`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
@@ -94,21 +94,21 @@ CREATE TABLE `Operation_log` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Index för dumpade tabeller
+-- Index fÃ¶r dumpade tabeller
 --
 
 --
--- Index för tabell `Operation_log`
+-- Index fÃ¶r tabell `Operation_log`
 --
 ALTER TABLE `Operation_log`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT för dumpade tabeller
+-- AUTO_INCREMENT fÃ¶r dumpade tabeller
 --
 
 --
--- AUTO_INCREMENT för tabell `Operation_log`
+-- AUTO_INCREMENT fÃ¶r tabell `Operation_log`
 --
 ALTER TABLE `Operation_log`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
@@ -134,23 +134,28 @@ CREATE TABLE `User_Premission` (
 
 
 --
--- Index för tabell `User_Premission`
+-- Index fÃ¶r tabell `User_Premission`
 --
 ALTER TABLE `User_Premission`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT för dumpade tabeller
+-- AUTO_INCREMENT fÃ¶r dumpade tabeller
 --
 
 --
--- AUTO_INCREMENT för tabell `User_Premission`
+-- AUTO_INCREMENT fÃ¶r tabell `User_Premission`
 --
 ALTER TABLE `User_Premission`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
 
 
 
+ALTER TABLE `users` ADD `email` TEXT NOT NULL AFTER `lastname`; 
+
+ALTER TABLE `Infotmation_page` ADD `Module` VARCHAR(90) NOT NULL AFTER `Station_id`;
+
+ALTER TABLE `RefletorNodeLOG` CHANGE `Id` `Id` INT(11) NOT NULL AUTO_INCREMENT; 
 
 
 
