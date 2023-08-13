@@ -19,6 +19,10 @@ $conn = new mysqli($host, $user, $password, $db);
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
+$value = "Reflector server";
+$sql = "INSERT INTO `RefletorNodeLOG` (`Id`, `Callsign`, `Type`, `Active`, `Talkgroup`, `NODE`, `Siglev`, `Duration`, `IsTalker`,`Nodename`,`Talktime`) VALUES (NULL, '".$value."', '3', '2', '0', '', '0', '0', '0', '','0');";
+$conn->query($sql);
+
 }
 
 // this is a multplier that detect if noode is down and how many times it is down 20sec * $downtime_time
@@ -163,8 +167,18 @@ function read_cache()
 
 // Get data from server
 $json_data = file_get_contents($serveradress);
+$json_data = iconv("utf-8", "utf-8//ignore", $json_data);
 $json = json_decode($json_data);
 
+
+
+if(is_null($json->nodes) )
+{
+
+  exit(0);
+  $conn->close();
+
+}
 
     echo "check data to write!";
     wrie_to_cache($json_data);
@@ -189,7 +203,7 @@ $json = json_decode($json_data);
     foreach ($json->nodes as $key => $value) {
         // $arr[3] will be updated with each value from $arr...
         //var_dump($key);
-        //var_dump($value);
+//        var_dump($value->{'sysop'});
         //echo "{$key} => {$value} ";
         //print_r($arr);
 
@@ -211,6 +225,14 @@ $json = json_decode($json_data);
                 $conn->query($sql);
                 
 
+            $sysop = $conn->real_escape_string(@$value->{'sysop'});
+            $version =$conn->real_escape_string(@$value->{'swVer'});
+            $location =$conn->real_escape_string(@utf8_decode($value->{'nodeLocation'}));
+
+            $sql_version = "UPDATE `RefletorStations` SET Sysop='$sysop' , Version = '$version' , Location='$location' WHERE Callsign='$key'";
+            $conn->query($sql_version);
+
+
                 
       
                 
@@ -230,6 +252,19 @@ $json = json_decode($json_data);
             
             $sql_insert = "UPDATE `RefletorStations` SET Last_Seen=now(), Station_Down='0' WHERE Callsign='$key'";
             $conn->query($sql_insert);
+
+            $sysop = $conn->real_escape_string(@$value->{'sysop'});
+            $version =$conn->real_escape_string(@$value->{'swVer'});
+            $location =$conn->real_escape_string(@$value->{'nodeLocation'});
+	    if($location == "")
+	    {
+		$location =$conn->real_escape_string(@$value->{'NodeLocation'});
+	    } 
+
+            
+            $sql_version = "UPDATE `RefletorStations` SET Sysop='$sysop' , Version = '$version' , Location='$location' WHERE Callsign='$key'";
+            $conn->query($sql_version);
+
            
         }
         
