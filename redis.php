@@ -107,6 +107,24 @@ function sql_to_array_redis_cahce($key,$sql,$time = 500)
         {
             $sql_data =Redis_Get_ser ($key);
         }
+        else
+        {
+            $sqla = $link->query($sql);
+            
+            while($row = $sqla->fetch_assoc())
+            {
+                $sql_data[] = $row;
+                
+                
+            }
+            if(defined('USE_REDIS'))
+            {
+                Redis_Set_Key_ser($key,$sql_data,$time);
+            }
+            
+            
+            
+        }
     }
     else
     {
