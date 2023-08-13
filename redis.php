@@ -98,16 +98,15 @@ function Redis_key_exist_enable($key)
 
 function sql_to_array_redis_cahce($key,$sql,$time = 500)
 {
-    global $link;
-
-  
-    
+    global $link;  
     $sql_data =array();
     
-    if(Redis_key_exist_enable($key) )
+    if( defined('USE_REDIS') )
     {
-
-        $sql_data =Redis_Get_ser ($key);
+        if(Redis_key_exist_enable($key))
+        {
+            $sql_data =Redis_Get_ser ($key);
+        }
     }
     else
     {
@@ -120,9 +119,10 @@ function sql_to_array_redis_cahce($key,$sql,$time = 500)
             
             
         }
-        
-        Redis_Set_Key_ser($key,$sql_data,$time);
-        
+        if(defined('USE_REDIS'))
+        {
+          Redis_Set_Key_ser($key,$sql_data,$time);
+        }
         
     }
     
