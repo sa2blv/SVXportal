@@ -6079,8 +6079,10 @@ function fnExcelexport(table)
 	</div>
 	</div>
    
-   <?php }?>
+   <?php }else{?>
+   </div>
    
+   <?php }?>
             	 
             	 </div>
             	 
