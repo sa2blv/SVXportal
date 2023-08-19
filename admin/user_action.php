@@ -52,7 +52,7 @@ if($_POST['registernewuser'] == 1)
 
 if($_SESSION['is_admin'] >0 && $_SESSION['loginid'] >0 ){
     
-    if($_POST['newuser'] == 1)
+    if($_POST['newuser'] == '1')
     {
         
         
@@ -66,11 +66,19 @@ if($_SESSION['is_admin'] >0 && $_SESSION['loginid'] >0 ){
         $firstname = $link->real_escape_string($_POST['name']);
         $lastname = $link->real_escape_string($_POST['lastname']);
         $isadmin = $link->real_escape_string($_POST['isadmin']);
+        if($isadmin =="")
+        {
+            $isadmin=0;
+        }
+          
         $passwd= md5($passwd);
+        $email ="";
         
-        
-        $link->query("INSERT INTO `users` (`id`, `Username`, `Password`, `level`, `Is_admin`, `Firstname`, `lastname`, `email`) VALUES (NULL, '$username', '$passwd', '1', '$isadmin', '$firstname', '$lastname',''); ");
+      $link->query("INSERT INTO `users` (`id`, `Username`, `Password`, `level`, `Is_admin`, `Firstname`, `lastname`, `email`) VALUES (NULL, '$username', '$passwd', '1', '$isadmin', '$firstname', '$lastname',''); ");
 
+     //   echo "INSERT INTO `users` (`id`, `Username`, `Password`, `level`, `Is_admin`, `Firstname`, `lastname`, `email`) VALUES (NULL, '$username', '$passwd', '1', '$isadmin', '$firstname', '$lastname','$email'); ";
+        
+        
         $link->commit();
         $link->close();
     }
