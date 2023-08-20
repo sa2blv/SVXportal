@@ -414,7 +414,7 @@ CREATE TABLE `Refletor_station_state` (
   `Current_stop` timestamp NOT NULL,
   `action` int NOT NULL,
   `tg` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -441,7 +441,7 @@ CREATE TABLE `Station_day_statistic` (
 
 CREATE TABLE `trafic_day_statistics` (
   `id` int NOT NULL,
-  `Node` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `Node` varchar(50) CHARACTER SET utf8 COLLATE utf8mb4_unicode_ci NOT NULL,
   `TG` varchar(20) NOT NULL,
   `Year` varchar(12) NOT NULL,
   `Mounth` varchar(12) NOT NULL,
@@ -522,7 +522,7 @@ CREATE TABLE `trafic_day_statistics` (
   `Total_N` float NOT NULL,
   `Total_X2` float NOT NULL,
   `Total_T` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -534,7 +534,7 @@ CREATE TABLE `trafic_mounth_statistics` (
   `id` int NOT NULL,
   `Node` varchar(50) NOT NULL,
   `TG` varchar(20) NOT NULL,
-  `Year` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `Year` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `TOT_N` float NOT NULL,
   `TOT_X2` float NOT NULL,
   `TOT_T` float NOT NULL,
@@ -574,7 +574,7 @@ CREATE TABLE `trafic_mounth_statistics` (
   `1_N` float NOT NULL,
   `1_X2` float NOT NULL,
   `1_T` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Index för dumpade tabeller
