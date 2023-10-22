@@ -714,7 +714,7 @@ for(var k in data.nodes){
 
 for(var k in data.nodes){
 		
-    if(data.nodes[k].hidden == true)
+    if(data.nodes[k].hidden == true && data.nodes[k].isTalker != true)
     {
     	if(data.nodes[k].mqtt_undhide == true)
     	{

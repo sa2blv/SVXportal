@@ -528,7 +528,7 @@ var talkgroups_active = new Array();
 for(var k in data.nodes)
 {
 		
-	    if(data.nodes[k].hidden == true && secret_santa == 0) 
+	    if(data.nodes[k].hidden == true && secret_santa == 0 && data.nodes[k].isTalker != true ) 
 	    {
 	    	delete data.nodes[k];
 	    }
@@ -851,7 +851,26 @@ function Load_station_intofmation(value)
 	$.get( "station_info.php", { callsign: value, no_header: "true" } )
 	  .done(function( data ) {
 		  if(value != "")
-	    	$('#station_info_html_data').html(data);
+		  {
+
+			  $('#station_info_html_data').html(data);
+
+			  
+
+			  <?php
+			  if($use_mqtt == true){
+			      
+			      ?>
+			      mqtt.disconnect();
+			      MQTTconnect();
+				  
+
+<?php  }
+		  ?>				
+	
+
+		  }
+	    	
 		  else
 			  $('#station_info_html_data').html("<h3><?php echo _('Pleace select station') ?></h3>");  
 	  });
@@ -3382,7 +3401,7 @@ function prosess_json_reflecktor()
     
 		for(var k in data.nodes){
 			
-		    if(data.nodes[k].hidden == true && secret_santa == 0)
+		    if(data.nodes[k].hidden == true && secret_santa == 0 && data.nodes[k].isTalker != true)
 		    {
 		    	delete data.nodes[k];
 		    	
@@ -5166,7 +5185,7 @@ function add_tx_station()
 	 
 	 
 	
-		    if(data.nodes[k].hidden == true)
+		    if(data.nodes[k].hidden == true && data.nodes[k].tg == 0 )
 		    {
 			    console.log(data.nodes[k]);
 		    	delete data.nodes[k];
@@ -5245,7 +5264,7 @@ function update_tx_station_loop(data)
 	
 		for(var k in data.nodes){
 			
-		    if(data.nodes[k].hidden == true)
+		    if(data.nodes[k].hidden == true && data.nodes[k].tg == 0 )
 		    {
 		    	delete data.nodes[k];
 		    	

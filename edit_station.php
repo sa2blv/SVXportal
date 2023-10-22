@@ -92,35 +92,6 @@ function scan_dir($dir) {
 
 
 
-tinymce.init({
-  selector: '#mytextarea',
-  plugins: 'print preview paste importcss searchreplace autolink directionality code visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap quickbars emoticons',
-  removed_menuitems: 'newdocument',
-  height : "800"
-});
-
-$('#mytextarea_Dialog').on('resized', function (event) {
-    var hgt= $('#mytextarea_Dialog').jqxWindow("height");
-    //alert("window:resized. height=" + hgt);
-    tinymce.activeEditor.theme.resizeTo(null, hgt-150);
-});
-
-
-
-
-tinymce.init({
-	  selector: '#Hardware_area',
-	  plugins: 'print preview paste importcss searchreplace autolink directionality code visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap quickbars emoticons',
-	  removed_menuitems: 'newdocument',
-	  height : "800"
-	});
-
-	$('#Hardware_area_Dialog').on('resized', function (event) {
-	    var hgt= $('#Hardware_area_Dialog').jqxWindow("height");
-	    //alert("window:resized. height=" + hgt);
-	    tinymce.activeEditor.theme.resizeTo(null, hgt-150);
-	});
-
 
 
 
@@ -271,15 +242,44 @@ function create_station($station_id) {
     
     $temp = mysqli_fetch_array($res, MYSQLI_ASSOC);
     
+ 
+    
     $calls = $temp['Callsign'];
     $idnr =$temp['ID'];
     
-    
+
     
     if($temp != null)
     {
+
         $default_info ="";
         $default_hw ="";
+        
+        
+     
+        $handle = @fopen("./driver/core/DefaultHardware.php", "r");
+        if ($handle) {
+            while (($buffer = fgets($handle, 4096)) !== false) {
+                $default_hw.= $buffer;
+            }
+            if (!feof($handle)) {
+               
+            }
+            fclose($handle);
+        }
+
+        
+        // Outputs an empty string
+        $default_hw= htmlentities(($default_hw), ENT_QUOTES | ENT_IGNORE, "UTF-8");
+       //$default_hw= ;
+        $default_hw = $link->real_escape_string($default_hw);
+        
+
+        
+        
+        
+        
+        
         
         mysqli_query($link, "INSERT INTO `Infotmation_page` (`id`, `Station_Name`, `Station_id`, `Module`, `Html`, `Hardware_page`, `Image`) VALUES (NULL, '$calls', '$idnr', '', '$default_info', '$default_hw', '');");
     }
@@ -307,7 +307,7 @@ else
     
     $id = $_GET["Station_id"];
     $id = $link->real_escape_string($id);
-    $result = mysqli_query($link, "SELECT Html , Hardware_page, id, Station_Name, Station_id, Module, Image FROM `Infotmation_page` WHERE id='".$id."'");
+    $result = mysqli_query($link, "SELECT Html , Hardware_page, id, Station_Name, Station_id, Module, Image, GrafanaUrl FROM `Infotmation_page` WHERE id='".$id."'");
     
     
     
@@ -317,6 +317,8 @@ else
 
 
 $station_data = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+
 
 if($station_data == NULL)
 {
@@ -835,6 +837,19 @@ $premission_rw =check_premission_station_RW($_GET["Station_idnr"],$_SESSION['log
             ?>
 	 </select>
    </div>
+   
+   <div class="form-group">
+    <label for="GrafanaUrl"><?php echo _('Graphana url')?>:</label>
+    <input type="url" class="form-control" id="GrafanaUrl" name="GrafanaUrl" aria-describedby="emailHelp" placeholder="http://" value="<?php echo $station_data['GrafanaUrl']?>">
+    
+    
+    
+    
+    
+
+   </div>
+   
+   
 
   <button type="submit" class="btn btn-primary"><?php echo _('Save')?></button>
 </form> 
@@ -940,6 +955,7 @@ function  Create_dtmf()
     .done(function( data ) {
     	alert("<?php echo _('Command is created')?>");
     	get_table();
+    	$( "#New_DTMF_Form" ).trigger("reset");
     
     
     
@@ -1014,7 +1030,10 @@ function  Update_dtmf()
 
 </script>
 
-  <div class="modal fade" id="New_Command" role="dialog">
+
+
+
+   <div class="modal fade" id="New_Command" role="dialog">
     <div class="modal-dialog modal-lg">
     
       <!-- Modal content-->
@@ -1024,9 +1043,10 @@ function  Update_dtmf()
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           
         </div>
-        <div class="modal-body">
+       
+      <div class="modal-body">
          
-     <form onsubmit="return Create_dtmf()" id="New_DTMF_Form" action="#">
+        <form onsubmit="return Create_dtmf()" id="New_DTMF_Form" action="#">
           <div class="form-group">
             <label for="command"><?php echo _('DTMF command')?></label>
             <input type="text" name="command" class="form-control" id="command"  placeholder="">
@@ -1064,40 +1084,32 @@ function  Update_dtmf()
              
              </select>
           </div>
-          
-          
-          
-
-            
             
           
           <input type="hidden" name="Station_id" class="form-control" id="Station_id" value="<?php echo $station_data['Station_id'] ?>">
           <input type="hidden" name="Mew_DTNF" class="form-control" id="Mew_DTNF" value="1">
           <input type="hidden" name="Station_name" class="form-control" value="<?php echo $station_data['Station_Name'] ?>">
-  
+
           
-          
-          <button type="submit" class="btn btn-primary"><?php echo _('Create')?></button>
+          <button type="submit" onclick="Create_dtmf()" class="btn btn-primary" data-dismiss="modal"><?php echo _('Create')?></button>
+ 	  <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo _('Close')?></button>
     </form>
 
 
 
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo _('Close')?></button>
-        </div>
+
       </div>
-      </div>
-      </div>
+      
+    </div>   
+    </div>
 
 
-  
-  
-    
-  
-    
- 
- 
+
+
+
+
+
    <div class="modal fade" id="Update_command" role="dialog">
     <div class="modal-dialog modal-lg">
     
@@ -1188,6 +1200,48 @@ function  Update_dtmf()
   
   <?php }else{
     include 'admin/login.php'; }?>
+
+<script type="text/javascript">
+
+var file_station = '<?php echo  $station_data['Station_Name']; ?>';
+
+
+tinymce.init({
+  selector: '#mytextarea',
+  plugins: 'print preview paste importcss searchreplace autolink directionality code visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap quickbars emoticons',
+  removed_menuitems: 'newdocument',
+  height : "800",
+  images_upload_url:'postAcceptor.php?station='+file_station,
+  images_upload_base_path:  window.location.origin+'/'
+});
+
+$('#mytextarea_Dialog').on('resized', function (event) {
+    var hgt= $('#mytextarea_Dialog').jqxWindow("height");
+    //alert("window:resized. height=" + hgt);
+    tinymce.activeEditor.theme.resizeTo(null, hgt-150);
+});
+
+
+
+
+tinymce.init({
+	  selector: '#Hardware_area',
+	  plugins: 'print preview paste importcss searchreplace autolink directionality code visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap quickbars emoticons',
+	  removed_menuitems: 'newdocument',
+	  height : "800",
+	  images_upload_url: 'postAcceptor.php?station='+file_station,
+	  images_upload_base_path: window.location.origin
+	});
+
+	$('#Hardware_area_Dialog').on('resized', function (event) {
+	    var hgt= $('#Hardware_area_Dialog').jqxWindow("height");
+	    //alert("window:resized. height=" + hgt);
+	    tinymce.activeEditor.theme.resizeTo(null, hgt-150);
+	});
+
+	
+
+</script>
 
 </body>
 </html>
