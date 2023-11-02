@@ -55,6 +55,10 @@ function set_laguage() {
         case 'pl':
             $lang ="pl_PL";
             break;
+        case 'bs':
+            $lang ="bs_BA";
+            break;
+            
         default:
             $lang = key($langs);
             break;
@@ -68,12 +72,14 @@ function set_laguage() {
         $lang = str_replace("-", "_", $lang);
         $lang= trim($lang);
         
-        
+
     
     
     // Processes \r\n's first so they aren't converted twice.
     $lang = str_replace("-", "_", $lang);
     $lang= trim($lang);
+    
+
     
     $directory = dirname(__FILE__).'/locale';
 
@@ -85,6 +91,9 @@ function set_laguage() {
         $locale = $_SESSION['languge'];
 
     }
+    
+
+    
     
     $current_lagnuge= $locale;
 
@@ -258,6 +267,8 @@ function return_flag($lang)
         echo '<img  src="images/flags/fr.svg" width=25px" alt="tr_TR"> <span class="'.$class.'">FR</span>';
     elseif($lang == "pl_PL")
         echo '<img  src="images/flags/pl.svg" width=25px" alt="tr_TR"> <span class="'.$class.'">PL</span>';
+   elseif($lang == "bs_BA")
+        echo '<img  src="images/flags/boh.svg" width=25px" alt="bs_ba"> <span class="'.$class.'">BA</span>';
     else
         echo '<img  src="images/flags/gb.svg" width="25px" alt="GB" style=""> <span class="'.$class.'">ENG</span>';
     
@@ -439,6 +450,20 @@ function translate_folder_page($url)
 
     
 }
+
+
+function detect_empty_cache_table()
+{
+    global $link;
+    $nummber = $link->query("SELECT COUNT(*) as c FROM trafic_day_statistics ")->fetch_object()->c;
+    
+    if($nummber  >0 )
+        return true;
+    
+    return false;
+    
+}
+
 
 
 

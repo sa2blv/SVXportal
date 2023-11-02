@@ -97,6 +97,7 @@ function fix_sidemeny_active(current)
 		{
 			 $( this ).addClass('active');
 		}
+		
 
 		
 	});
@@ -263,7 +264,7 @@ $(document).ready(function(){
 			size: {width: "100%", height: "0px"}
 		});
 
-		$( "#Datepicker_graph" ).datepicker({<?php echo startdate($start_date_defined)?>maxDate:0,firstDay: 1, dateFormat: 'yy-mm-dd' });
+		$( "#Datepicker_graph" ).datepicker({<?php echo startdate($start_date_defined)?>changeYear:true,changeMonth: true,maxDate:0,firstDay: 1, dateFormat: 'yy-mm-dd' });
 
 
 	      // javascipt links to page tabs
@@ -312,7 +313,15 @@ $(document).ready(function(){
 					
 
 				}
-				
+				if(hash[1] == "Last_heard_page")
+				{
+					activate_last_heard();
+
+					
+					
+
+				}
+								
 
 
 				
@@ -451,6 +460,9 @@ function reflector_handler()
     	var date = new Date().toLocaleTimeString();
     	
     	console.log("Demon running "+date);
+
+
+    	get_active_last();
   	  }
     }).fail(function() { console.log("Data eror"); interval = setTimeout(reflector_handler, 800);    });
 
@@ -517,7 +529,7 @@ var talkgroups_active = new Array();
 for(var k in data.nodes)
 {
 		
-	    if(data.nodes[k].hidden == true && secret_santa == 0) 
+	    if(data.nodes[k].hidden == true && secret_santa == 0 && data.nodes[k].isTalker != true ) 
 	    {
 	    	delete data.nodes[k];
 	    }
@@ -644,12 +656,25 @@ for(var k in data.nodes){
         
         		}
          }
+		 var tg_open_str ="";
+         if(data.nodes[k].tg > 0 )
+         {
+        	 tg_open_str ="onclick=\"open_tg_window('"+data.nodes[k].tg+"')\"";
+        	 
+         }
+         var is_resstricted_collor =" style=\"cursor: pointer;\"  ";
+
+        if(data.nodes[k].restrictedTG == true)
+     	{
+        	is_resstricted_collor ="style=\"cursor: pointer; color: #FF00FF;font-weight: bold;\"";
+     	}
+         
        
     		
         if(data.nodes[k].isTalker == false)
     	{
         	$('#Reflektortable_row_'+k).removeClass( "table-info" );
-        	$('#Reflektortable_row_'+k).html('<td class="text-nowrap" onclick="go_to_station(\''+k+'\')" style="cursor: pointer;">'+k+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td class="red_collor"><?php echo _("NO")?></td><td class="text-primary">'+text+'</td><td></td><td></td>');
+        	$('#Reflektortable_row_'+k).html('<td class="text-nowrap" onclick="go_to_station(\''+k+'\')" style="cursor: pointer;">'+k+'</td>'+'<td '+tg_open_str+' '+is_resstricted_collor+'>'+data.nodes[k].tg+'</td>'+'<td class="red_collor"><?php echo _("NO")?></td><td class="text-primary">'+text+'</td><td></td><td></td>');
 
     	 	 totalSeconds[k]=0;
     
@@ -661,7 +686,7 @@ for(var k in data.nodes){
             	
     		//tr class="table-info">
     		var idns = k;
-    		$('#Reflektortable_row_'+k).html('<td class="text-nowrap" onclick="go_to_station(\''+k+'\')" style="cursor: pointer;">'+k+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td class="green_collor" ><?php echo _("YES")?></td><td class="text-primary">'+text+'</td><td><label id="Start_talk_'+k+'"></label></td><td  class="d-none d-md-table-cell" ><label id="minutes_'+idns+'">00</label>:<label id="seconds_'+idns+'">00</label></td>');
+    		$('#Reflektortable_row_'+k).html('<td class="text-nowrap" onclick="go_to_station(\''+k+'\')" style="cursor: pointer;">'+k+'</td>'+'<td '+tg_open_str+' '+is_resstricted_collor+'>'+data.nodes[k].tg+'</td>'+'<td class="green_collor" ><?php echo _("YES")?></td><td class="text-primary">'+text+'</td><td><label id="Start_talk_'+k+'"></label></td><td  class="d-none d-md-table-cell" ><label id="minutes_'+idns+'">00</label>:<label id="seconds_'+idns+'">00</label></td>');
     		$('#Reflektortable_row_'+k).addClass( "table-info" );
     
              totalSeconds[k]++;
@@ -806,6 +831,12 @@ function listen_live_external()
 
 	window.open(station_url+".m3u", "_blank", ""); 
 }
+function open_tg_window(tg)
+{
+	 window.open("last_heard_page.php?TG="+tg, "_blank", "toolbar=no,scrollbars=yes,resizable=yes,width=800,height=800"); 
+	
+}
+
 
 
 
@@ -821,7 +852,26 @@ function Load_station_intofmation(value)
 	$.get( "station_info.php", { callsign: value, no_header: "true" } )
 	  .done(function( data ) {
 		  if(value != "")
-	    	$('#station_info_html_data').html(data);
+		  {
+
+			  $('#station_info_html_data').html(data);
+
+			  
+
+			  <?php
+			  if($use_mqtt == true){
+			      
+			      ?>
+			      mqtt.disconnect();
+			      MQTTconnect();
+				  
+
+<?php  }
+		  ?>				
+	
+
+		  }
+	    	
 		  else
 			  $('#station_info_html_data').html("<h3><?php echo _('Pleace select station') ?></h3>");  
 	  });
@@ -1663,25 +1713,29 @@ ul.dropdown-lr {
             <div style="width: 250px;"></div>
        		 <a href="#" class="dropdown-item"><?php echo _('Select your language')?></a>
        		     <div class="dropdown-divider"></div>
-        	
+        	<a onclick="load_languge('bs_BA')" class="dropdown-item table-primary" href="#"><img   src="images/flags/boh.svg" width="30px" alt="bs_BA"> <?php echo _('Bosnian')?></a>
             <a onclick="load_languge('en_UK')" class="dropdown-item table-primary" href="#"><img   src="images/flags/gb.svg" width="30px" alt="GB"> <?php echo _('English')?></a>
-            
-            <a onclick="load_languge('sv_SE')" class="dropdown-item table-secondary" href="#"><img src="images/flags/se.svg" width="30px" alt="Se"> <?php echo _('Swedish')?></a>
-        
-        
+            <a onclick="load_languge('fr_FR')" class="dropdown-item table-primary" href="#"><img  src="images/flags/fr.svg" width="30px" alt="it"> <?php echo _('French')?></a>
+           	<a onclick="load_languge('de_DE')" class="dropdown-item table-primary" href="#"><img  src="images/flags/de.svg" width="30px" alt="it"> <?php echo _('German')?></a>
+            <a onclick="load_languge('it_IT')" class="dropdown-item table-primary" href="#"><img  src="images/flags/it.svg" width="30px" alt="it"> <?php echo _('Italian')?></a>
             <a onclick="load_languge('nb_NO')" class="dropdown-item table-primary" href="#"><img src="images/flags/no.svg" width="30px" alt="NO"> <?php echo _('Norwegian')?></a>
-        
+            <a  onclick="load_languge('pl_PL')" class="dropdown-item table-secondary" href="#"><img src="images/flags/pl.svg" width="30px" alt="tr_TR"> <?php echo _('Polish')?></a>
+            <a onclick="load_languge('sv_SE')" class="dropdown-item table-secondary" href="#"><img src="images/flags/se.svg" width="30px" alt="Se"> <?php echo _('Swedish')?></a>
+          	<a  onclick="load_languge('tr_TR')" class="dropdown-item table-secondary" href="#"><img src="images/flags/tr.svg" width="30px" alt="tr_TR"> <?php echo _('Turkish')?></a>
         	<a onclick="load_languge('uk_UA')" class="dropdown-item table-secondary" href="#"><img  src="images/flags/ua.svg" width="30px" alt="uk"> <?php echo _('Ukrainian')?></a>
         	
-        	<a onclick="load_languge('it_IT')" class="dropdown-item table-primary" href="#"><img  src="images/flags/it.svg" width="30px" alt="it"> <?php echo _('Italian')?></a>
         	
-        	<a onclick="load_languge('de_DE')" class="dropdown-item table-primary" href="#"><img  src="images/flags/de.svg" width="30px" alt="it"> <?php echo _('German')?></a>
         	
-        	<a onclick="load_languge('fr_FR')" class="dropdown-item table-primary" href="#"><img  src="images/flags/fr.svg" width="30px" alt="it"> <?php echo _('French')?></a>
+
         	
-        	<a  onclick="load_languge('tr_TR')" class="dropdown-item table-secondary" href="#"><img src="images/flags/tr.svg" width="30px" alt="tr_TR"> <?php echo _('Turkish')?></a>
         	
-        	<a  onclick="load_languge('pl_PL')" class="dropdown-item table-secondary" href="#"><img src="images/flags/pl.svg" width="30px" alt="tr_TR"> <?php echo _('Polish')?></a>
+     
+        	
+        	
+        	
+        	           
+        	
+        	
         	
         	</div>
         	
@@ -1851,6 +1905,12 @@ ul.dropdown-lr {
 
 				<li class="nav-item"><a class="nav-link" href="#Log"  onclick="hide_menu_click();Load_log()"
 						data-toggle="tab"><i class="fas  fa-align-justify"></i> <?php echo _("Log")?></a></li>
+
+
+				<li class="nav-item"><a class="nav-link" href="#Last_heard_page"  onclick="hide_menu_click();activate_last_heard();"
+						data-toggle="tab"><i class="fas  fa-align-justify"></i> <?php echo _("Last heard")?></a></li>
+						
+						
 						
 
 					<li class="nav-item"><a class="nav-link" href="#Recivers2"
@@ -1956,7 +2016,7 @@ ul.dropdown-lr {
                     	<div id="Reflektortable_div"> 
 					<table id="Reflektortable" class="table table-sm">
 					<thead>
-					<tr class="dash_header"><th><?php echo _("Callsign")?></th><th><?php echo _("TG#")?></th><th><?php echo _("Is talker")?></th><th><?php echo _("Monitored TGs")?></th><th class="d-none d-md-table-cell" ><?php echo _("Start talk")?></th><th class="d-none d-md-table-cell" ><?php echo _("Talk time")?></th></tr>
+					<tr class="dash_header"><th><?php echo _("Callsign")?></th><th class="text-nowrap"><?php echo _("TG#")?></th><th class="text-nowrap"><?php echo _("Is talker")?></th><th><?php echo _("Monitored TGs")?></th><th class="d-none d-md-table-cell text-nowrap" ><?php echo _("Start talk")?></th><th class="d-none d-md-table-cell text-nowrap" ><?php echo _("Talk time")?></th></tr>
 					</thead>
 					<tbody>
 					</tbody>
@@ -1975,6 +2035,12 @@ ul.dropdown-lr {
 					<span class="mr-2">
                       <i class="fas fa-circle text-warning"></i> <?php echo _('Dropped')?>
          		 </span> 
+         		 
+         		 <span class="mr-2">
+                      <i class="fas fa-circle" style="color: magenta;"></i> <?php echo _('Restricted')?>
+         		 </span> 
+         		 
+         		 
 
 
                   </div>
@@ -2500,6 +2566,7 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
 									<div class="dropdown-menu"
 										aria-labelledby="navbarDropdownMenuLink">
 										<a class="dropdown-item" onclick="show_covige()" href="#"><i class="fas fa-asterisk"></i> <?php echo _("Show")?></a>
+										<a class="dropdown-item" onclick="open_select_map()" href="#"><i class="fas fa-asterisk"></i> <?php echo _("Select")?></a>
 										<a class="dropdown-item" onclick="remove_covige()" href="#"><i class="fas fa-asterisk"></i> <?php echo _("Remove")?></a>
 
 									</div></li>
@@ -2527,12 +2594,44 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 		  <a class="dropdown-item" onclick="map.overlays_.clear();" href="#"><i class="fas fa-minus-circle"></i> <?php echo _("Remove bars")?> </a> <a class="dropdown-item"
 											onclick="vectorSource.clear();Barsource.clear();map.overlays_.clear();"
 											href="#"><i class="fas fa-minus-circle"></i> <?php echo _("Remove ALL stations")?></a> <a class="dropdown-item"
-											onclick="prosess_json_reflecktor();" href="#"><i class="fas fa-minus-circle"></i> <?php echo _("Show Receivers")?></a>
+											onclick="prosess_json_reflecktor();" href="#"><i class="fas fa-asterisk"></i> <?php echo _("Show Receivers")?></a>
+											
+											
+											<?php 
+											
+											/*
 											
 											<a class="nav-link" href="#"
+											
+											
 									onclick="toogle_AutoFollow()" id="Autofollow_text"
 									data-toggle="dropdown" aria-haspopup="true"
 									aria-expanded="false"><i class="fas fa-asterisk"></i> <?php echo _("Toggle AutoFollow")?> </a>
+									
+									
+																				<a class="nav-link" href="#"
+									onclick="toogle_AutoFollow()" id="Autofollow_text"
+									data-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="false"><i class="fas fa-asterisk"></i> <?php echo _("Toggle AutoFollow")?> </a>
+									
+										*/
+									?>
+									
+									<a class="nav-link" href="#"
+									onclick="set_disable_text(1)" id="Autofollow_text"
+									data-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="false"><i class="fas fa-asterisk"></i> <?php echo _("Remove labels")?> 
+									</a>
+									
+								
+									
+									
+									
+									<a class="nav-link" href="#"
+									onclick="set_disable_text(0)" id="Autofollow_text"
+									data-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="false"><i class="fas fa-asterisk"></i> <?php echo _("Show labels")?> 
+									</a>
 									
 									
 									<a class="nav-link" href="#"
@@ -2651,8 +2750,9 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 								
 								?>
 								
-								<button type="button" class="btn btn-secondary" id="Show_radiomobile_button"
-										><?php echo _('Radiomobile')?></button>
+								<button type="button" class="btn btn-secondary" id="Show_radiomobile_button">
+									<?php echo _('Radiomobile')?>
+								</button>
 
 						
 								
@@ -2722,7 +2822,7 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 	  if (currZoom != newZoom) {
 //		console.log('zoom end, new zoom: ' + newZoom);
 		currZoom = newZoom;
-		if(currZoom <= 9)
+		if(currZoom <= 8)
 		{
 			map.overlayContainer_.hidden = true;
 			Barlayaer.setVisible(false);
@@ -2841,7 +2941,7 @@ function show_station_information(identity)
 
 				var qth_name =data.nodes[identity].qth[qth].name
 				if(freq != null)
-					freq = freq.toFixed(3);
+					freq = freq.toFixed(4);
 				var enabled = data.nodes[identity].qth[qth].rx[rx].enabled
 				if(enabled == undefined)
 				{
@@ -2858,8 +2958,15 @@ function show_station_information(identity)
 
 	 
 }
+var disable_text_map  =0;
+function set_disable_text(val)
+{
 
-function update_tx_station(lat,lon,idn,tg,label,active)
+	disable_text_map = val;
+	map.updateSize();
+}
+
+function update_tx_station(lat,lon,idn,tg,label,active,talker)
 {
 
 	var update_icon = vectorSource.getFeatureById("stn_"+idn);
@@ -2908,7 +3015,11 @@ function update_tx_station(lat,lon,idn,tg,label,active)
     	ctx.fill();
     	ctx.beginPath();
     	ctx.arc(30, 30, 10, 0, Math.PI * 2, true); // Outer circle
-    	if(active == false)
+    	if(talker == true)
+    	{
+    		ctx.fillStyle ="#000080";
+    	}
+    	else if(active == false)
     		ctx.fillStyle ="#FFFFFF";
     	else
     	{
@@ -2933,7 +3044,7 @@ function update_tx_station(lat,lon,idn,tg,label,active)
     	var newZoom = map.getView().getZoom();
 
 
-    	if(newZoom >= 7)
+    	if(newZoom >= 7 && disable_text_map == 0)
     	{
     		lablel_text = label;
     	}
@@ -2975,6 +3086,8 @@ function connect_reflector()
 	vectorSource.clear();
 	Barsource.clear();
 	map.overlays_.clear();
+	map_lon_lat = new Array()
+	map_pos_i=0;
 
 
 
@@ -3170,6 +3283,8 @@ function update_text_byid(id,text,sql)
 function add_repeater_node(lat, lon,label,idn)
 {
 
+	
+
 
 
 	addmarker(0,lat, lon,label,"aa"+idn);
@@ -3279,6 +3394,10 @@ function addimage(src,lamin,lomin,lamax,lomax)
     return ov[src];
 }
 
+var  map_lon_lat = new Array();
+var map_pos_i=0;
+
+
 function prosess_json_reflecktor()
 {
 
@@ -3287,7 +3406,7 @@ function prosess_json_reflecktor()
     
 		for(var k in data.nodes){
 			
-		    if(data.nodes[k].hidden == true && secret_santa == 0)
+		    if(data.nodes[k].hidden == true && secret_santa == 0 && data.nodes[k].isTalker != true)
 		    {
 		    	delete data.nodes[k];
 		    	
@@ -3327,9 +3446,13 @@ function prosess_json_reflecktor()
 
    
     				
-    				var name = k+" "+data.nodes[k].qth[qth].rx[qth1].name;
+    				var name =  k+" "+data.nodes[k].qth[qth].name;
+    				console.log(data.nodes[k].qth[qth].rx[qth1].name);
+    				
     				var talkgroup =data.nodes[k].tg;
-    				var idn=k+data.nodes[k].qth[qth].rx[qth1].name;
+    				var idn=k+qth1;
+    				console.log(idn);
+    				console.log(data.nodes[k].qth[qth].rx[qth1].name);
     				idn =idn.replace(/ /g,"_");
 
     	
@@ -3341,7 +3464,16 @@ function prosess_json_reflecktor()
             				
             				var group_idn= k+data.nodes[k].qth[qth].name;
             				group_idn =group_idn.replace(/ /g,"_");
+            				if(!valudate_if_exist(lon,lat))
+            				{
+            					map_lon_lat[map_pos_i] = new Array();
+            					map_lon_lat[map_pos_i]['lat'] = lat;
+            					map_lon_lat[map_pos_i]['lon'] = lon;
+            					map_pos_i++;
+            					
             				add_repeater_node(lat, lon,name,group_idn);
+            				
+            				}
 							if(Barsource.getFeatureById(group_idn) == null)
 							{
  //               				console.log("tx: " +group_idn+" "+lat+" "+lon);
@@ -3354,6 +3486,9 @@ function prosess_json_reflecktor()
         				else
         				{
 //        					console.log("else tx: " +idn+" "+lat+" "+lon);
+
+							console.log("kallekulla");
+						    console.log(idn);
         					addtext(0,lat, lon,idn);
         					Draw_bar(idn, lat,lon);
         				}
@@ -3368,19 +3503,38 @@ function prosess_json_reflecktor()
 							if(Barsource.getFeatureById(group_idn) == null)
 							{
 								station_identifire[group_idn] =k;
-								
-        						add_repeater_node(lat, lon,name,group_idn);
-        	    				
+
+								if(!valudate_if_exist(lon,lat))
+	            				{
+	            					map_lon_lat[map_pos_i] = new Array();
+	            					map_lon_lat[map_pos_i]['lat'] = lat;
+	            					map_lon_lat[map_pos_i]['lon'] = lon;
+	            					map_pos_i++;
+
+	            					
+        					    	add_repeater_node(lat, lon,name,group_idn);
+	            				}
 							}
         					
         				}
         				else
         				{
-  //      					console.log("else rx: " +idn+" "+lat+" "+lon);
- 							idn =idn.replace(/ /g,"_");
- 							station_identifire[idn] =k;
- 							console.log(idn);
-        					add_repeater_node(lat, lon,name,idn);
+
+            				if(!valudate_if_exist(lon,lat))
+            				{
+            					console.log("else rx: " +idn+" "+lat+" "+lon);
+            					map_lon_lat[map_pos_i] = new Array();
+            					map_lon_lat[map_pos_i]['lat'] = lat;
+            					map_lon_lat[map_pos_i]['lon'] = lon;
+            					map_pos_i++;
+            					
+     							idn =idn.replace(/ /g,"_");
+     							station_identifire[idn] =k;
+     							console.log(idn);
+     							add_repeater_node(lat, lon,name,idn);
+            				}
+ 				
+        					//
         				}
     					
 
@@ -3405,6 +3559,22 @@ function prosess_json_reflecktor()
   });
 
 }
+function valudate_if_exist(lon,lat)
+{
+
+	for(var i in map_lon_lat)
+	{
+		if(map_lon_lat[i]['lat']  ==lat && map_lon_lat[i]['lon'] ==  lon )
+			return true;
+	}	
+	
+
+	
+	return false;
+}
+
+
+
 function get_year_static()
 {
 	var date_value = $('#Datepicker_graph').val();
@@ -3524,6 +3694,17 @@ function get_year_static()
 	
 
 	  });
+
+	<?php if (detect_empty_cache_table () == true ){?>
+
+
+
+	 const myTimeout = setTimeout(get_station_chat_year, 450);
+
+
+	<?php }?>
+
+
 }
 
 
@@ -3650,7 +3831,11 @@ window.myBara = new Chart(ctx, {
 
 
 	  });
-	get_station_chat();
+
+
+	 setTimeout(get_station_chat, 20);
+	  
+
 }
 var show_all_tg =1;
 var use_hour=0;
@@ -3865,6 +4050,266 @@ function set_repater_statics_mounth()
 
 
 
+function get_statistics_mounth()
+{
+
+	$('#Graph_mo_grap_holder').html("");
+	$('#Graph_mo_grap_holder').html('<canvas id="Graph_mo" width="400px" height="400px"></canvas>');
+	var canvas = document.getElementById('Graph_mo')
+	canvas.width = canvas.width; 
+	var ctx = document.getElementById('Graph_mo').getContext('2d');
+	var barDatafromJSON;
+	var date_value = $('#Datepicker_graph').val();
+
+
+    var barDatafromJSON= {
+    	labels: [''],
+    	datasets: [
+    	]
+    
+    };
+
+
+window.myBara = new Chart(ctx, {
+	type: 'bar',
+	data: barDatafromJSON,
+	options: {
+		responsive: true,
+		maintainAspectRatio: false,
+		legend: {
+			 display: true ,//This will do the task
+			position: 'right',
+		},
+		title: {
+			display: true,
+			text: '<?php echo _("Talkgroup activity")?> '
+		},
+		scales: {
+            yAxes: [{
+                ticks: {
+                    // Include a dollar sign in the ticks
+                    callback: function(value, index, values) {
+                        return secondsToDHMS( value);
+                    }
+            	,beginAtZero: true
+                }
+            }]
+        },
+		tooltips: {
+            // Disable the on-canvas tooltip
+            enabled: true,
+            callbacks: {
+                label: function(tooltipItem, data) {
+                    var label = data.datasets[tooltipItem.datasetIndex].label;
+                    var talktime = data.datasets[tooltipItem.datasetIndex].data[0];
+      
+					
+                    if (label) {
+                        label += ': ';
+                    }
+                    label += secondsToDHMS(talktime);
+                    return label;
+                }
+            }
+
+        }
+	}
+});
+
+	
+	$.get( "get_statistics.php", { date: date_value , cahce_mouth_tg : '1'} )
+	  .done(function( data ) {
+		  var jsondata = JSON.parse(data); 
+
+
+
+
+
+	    	
+		  var i =0;
+		  for(var talkgroup in jsondata)
+		  {
+		    	if(tg_collors[talkgroup] == null)
+		    	{
+		    		tg_collors[talkgroup]= new Array();
+		    		tg_collors[talkgroup]["id"] =talkgroup;
+		    		tg_collors[talkgroup]["color"] =random_css_collor();
+		    		tg_collors[talkgroup]["TXT"] ="";
+		    	}
+		    	
+
+			  if(jsondata[talkgroup].unixtime >0)
+			  {
+  
+
+    			  i++;
+
+   
+    				var newDataset = {
+    					label: talkgroup,
+    					backgroundColor: tg_collors[talkgroup]['color'].trim(),
+    					borderColor:  tg_collors[talkgroup]['color'].trim(),
+    					borderWidth: 1,
+    					data: []
+    				};
+
+    				
+						var datato_push =jsondata[talkgroup].unixtime;
+    					newDataset.data.push(datato_push);
+    				
+
+    					barDatafromJSON.datasets.push(newDataset);
+
+    				
+    			  
+			  }
+			  
+		  }
+		  
+
+		  window.myBara.update();
+
+	
+
+
+
+	  });
+
+	get_station_chat_mo();
+}
+
+function get_statistics_year_tg()
+{
+
+	$('#Graph_ytg_grap_holder').html("");
+	$('#Graph_ytg_grap_holder').html('<canvas id="Graph_tg_grap_ca" width="400px" height="400px"></canvas>');
+	var canvas = document.getElementById('Graph_tg_grap_ca')
+	canvas.width = canvas.width; 
+	var ctx = document.getElementById('Graph_tg_grap_ca').getContext('2d');
+	var barDatafromJSON;
+	var date_value = $('#Datepicker_graph').val();
+
+
+    var barDatafromJSON= {
+    	labels: [''],
+    	datasets: [
+    	]
+    
+    };
+
+
+window.myBara = new Chart(ctx, {
+	type: 'bar',
+	data: barDatafromJSON,
+	options: {
+		responsive: true,
+		maintainAspectRatio: false,
+		legend: {
+			 display: true ,//This will do the task
+			position: 'right',
+		},
+		title: {
+			display: true,
+			text: '<?php echo _("Talkgroup activity")?> '
+		},
+		scales: {
+            yAxes: [{
+                ticks: {
+                    // Include a dollar sign in the ticks
+                    callback: function(value, index, values) {
+                        return secondsToDHMS( value);
+                    }
+            	,beginAtZero: true
+                }
+            }]
+        },
+		tooltips: {
+            // Disable the on-canvas tooltip
+            enabled: true,
+            callbacks: {
+                label: function(tooltipItem, data) {
+                    var label = data.datasets[tooltipItem.datasetIndex].label;
+                    var talktime = data.datasets[tooltipItem.datasetIndex].data[0];
+      
+					
+                    if (label) {
+                        label += ': ';
+                    }
+                    label += secondsToDHMS(talktime);
+                    return label;
+                }
+            }
+
+        }
+	}
+});
+
+	
+	$.get( "get_statistics.php", { date: date_value , cahce_year_tg : '1'} )
+	  .done(function( data ) {
+		  var jsondata = JSON.parse(data); 
+
+
+
+
+
+	    	
+		  var i =0;
+		  for(var talkgroup in jsondata)
+		  {
+		    	if(tg_collors[talkgroup] == null)
+		    	{
+		    		tg_collors[talkgroup]= new Array();
+		    		tg_collors[talkgroup]["id"] =talkgroup;
+		    		tg_collors[talkgroup]["color"] =random_css_collor();
+		    		tg_collors[talkgroup]["TXT"] ="";
+		    	}
+		    	
+
+			  if(jsondata[talkgroup].unixtime >0)
+			  {
+  
+
+    			  i++;
+
+   
+    				var newDataset = {
+    					label: talkgroup,
+    					backgroundColor: tg_collors[talkgroup]['color'].trim(),
+    					borderColor:  tg_collors[talkgroup]['color'].trim(),
+    					borderWidth: 1,
+    					data: []
+    				};
+
+    				
+						var datato_push =jsondata[talkgroup].unixtime;
+    					newDataset.data.push(datato_push);
+    				
+
+    					barDatafromJSON.datasets.push(newDataset);
+
+    				
+    			  
+			  }
+			  
+		  }
+		  
+
+		  window.myBara.update();
+
+	
+
+
+
+	  });
+
+
+}
+
+
+
+
+
 function get_statistics_month()
 {
 
@@ -3938,6 +4383,7 @@ function get_statistics_month()
 					maintainAspectRatio: false,
 					legend: {
 						position: 'top',
+						 display: false //This will do the task
 					},
 					title: {
 						display: true,
@@ -4053,7 +4499,277 @@ function get_statistics_month()
 		  ?>
 
 	  });
+
+
+<?php if (detect_empty_cache_table () == true ){?>
+
+
+
+const myTimeout = setTimeout(get_statistics_mounth, 400);
+
+
+<?php }?>
 }
+
+
+
+
+function get_station_chat_mo()
+{
+
+	
+	$('#Graph_Cricle_mo_holder').html("");
+	$('#Graph_Cricle_mo_holder').html('<canvas id="Graph_Cricle_mo" width="400px" height="600px"></canvas>');
+
+	
+	var canvas = document.getElementById('Graph_Cricle_mo')
+	canvas.width = canvas.width; 
+	var ctx = document.getElementById('Graph_Cricle_mo').getContext('2d');
+	var barDatafromJSON;
+	var date_value = $('#Datepicker_graph').val();
+	var Stations = new Array();
+	var Stations_timesum = new Array();
+	var Stations_collor = new Array()
+	var j=0;
+	$("#nodes_activity > tbody").html("");
+	$("#nodes_activity > tfoot").html("");
+	$.get( "get_statistics.php", { date: date_value,cahce_mouth :1} )
+	  .done(function( data ) {
+		  //console.log("chart");
+		  console.log(data);
+		 
+		  var Stations_json = JSON.parse(data); 
+		  var total_time_secunds =0;
+		  var total_present =0;
+
+	
+		  for(var station in Stations_json.data)
+		  {
+			  console.log(Stations_json.data[j]);
+			  Stations_timesum[j]=0;
+			  Stations_timesum[j] = Stations_json.data[j].time;
+			  total_time_secunds = total_time_secunds+ parseInt(Stations_json.data[j].time);
+			  console.log(Stations_json.data[j].time);
+			  Stations[j] =  Stations_json.data[j].call;
+			  if(node_collors[Stations_json.data[j].call]["color"] != null)
+			  {
+			  	Stations_collor[j] = node_collors[Stations_json.data[j].call]["color"].trim();
+			  }
+			  else
+			  {
+			  	Stations_collor[j] = Hex_random_css_collor();
+			  }
+			  var preccent= (((Stations_json.data[j].time)/(86400*30)) * 100).toFixed(3);
+			  total_present=total_present+parseFloat(preccent);
+			  var preccent_network= (((Stations_json.data[j].time)/Stations_json.total_secounds) * 100).toFixed(3);
+			  
+			  $("#nodes_activity > tbody").append('<tr><td><span class="text-nowrap">'+Stations_json.data[j].call+'</span></td><td>'+Stations_json.data[j].Secound+"</td><td>"+preccent_network+"%</td><td class=\"d-none  d-md-table-cell\">"+preccent+"%</td></tr>");
+			  j++;
+
+			 
+		  }
+		  console.log(total_time_secunds);
+
+		  $("#nodes_activity > thead ").html('<tr><th><?php echo _("Station")?></th><th><?php echo _("Uptime")?></th><th><?php echo _("Network Usage curent mouth")?></th><th  class="d-none  d-md-table-cell"><?php echo _("Usage last 30 days")?></th><th class="d-none  d-md-table-cell"></tr>');
+
+		  
+		  $("#nodes_activity > tfoot").append('<tr><td><?php echo _('Total')?></td><td>'+secondsToDayHMS(total_time_secunds)+'</td><td></td><td class=\"d-none  d-md-table-cell\" >'+total_present.toFixed(2)+'%</td><td class=\"d-none  d-md-table-cell\"></td></tr>');
+		
+	
+
+		    var data = {
+		    	    datasets: [{
+		    	        data: Stations_timesum,
+    					backgroundColor: Stations_collor,
+    					borderColor:  Stations_collor
+		    	    }],
+
+		    	    // These labels appear in the legend and in the tooltips when hovering different arcs
+		    	    labels: Stations
+		    	};
+
+
+		window.myBar = new Chart(ctx, {
+			type: 'pie',
+			data: data,
+			options: {
+				maintainAspectRatio: false,
+				responsive: true,
+				legend: {
+					position: 'right'
+					//display: true //This will do the task
+				},
+				title: {
+					display: true,
+					text: '<?php echo _('Station activity')?> '
+				},
+
+				
+				tooltips: {
+		            // Disable the on-canvas tooltip
+		            enabled: true,
+		            callbacks: {
+		                label: function(tooltipItem, data) {
+		                    var label = data.labels[tooltipItem.index];
+		                    var talktime = data.datasets[0].data[tooltipItem.index];
+		    
+							
+		                    if (label) {
+		                        label += ': ';
+		                    }
+		                    //console.log(talktime);
+		                    label += secondsToDHMS(talktime);
+		                    return label;
+		                }
+		            }
+
+		        }
+			}
+		});
+
+	  });
+
+
+
+
+	
+}
+
+function get_station_chat_year()
+{
+
+	
+	$('#Graph_Cricle_year_holder').html("");
+	$('#Graph_Cricle_year_holder').html('<canvas id="Graph_Cricle_year" width="400px" height="600px"></canvas>');
+
+	
+	var canvas = document.getElementById('Graph_Cricle_year')
+	canvas.width = canvas.width; 
+	var ctx = document.getElementById('Graph_Cricle_year').getContext('2d');
+	var barDatafromJSON;
+	var date_value = $('#Datepicker_graph').val();
+	var Stations = new Array();
+	var Stations_timesum = new Array();
+	var Stations_collor = new Array()
+	var j=0;
+	$("#nodes_activity > tbody").html("");
+	$("#nodes_activity > tfoot").html("");
+	$.get( "get_statistics.php", { date: date_value,cahce_year :1} )
+	  .done(function( data ) {
+		  //console.log("chart");
+	
+		 
+		  var Stations_json = JSON.parse(data); 
+		  var total_time_secunds =0;
+		  var total_present =0;
+
+	
+		  for(var station in Stations_json.data)
+		  {
+			  console.log(Stations_json.data[j]);
+			  Stations_timesum[j]=0;
+			  Stations_timesum[j] = Stations_json.data[j].time;
+			  total_time_secunds = total_time_secunds+ parseInt(Stations_json.data[j].time);
+			  console.log(Stations_json.data[j].time);
+			  Stations[j] =  Stations_json.data[j].call;
+			  if(node_collors[Stations_json.data[j].call]["color"] != null)
+			  {
+			  	Stations_collor[j] = node_collors[Stations_json.data[j].call]["color"].trim();
+			  }
+			  else
+			  {
+			  	Stations_collor[j] = Hex_random_css_collor();
+			  }
+			  var preccent= (((Stations_json.data[j].time)/(86400*365)) * 100).toFixed(3);
+			  total_present=total_present+parseFloat(preccent);
+			  var preccent_network= (((Stations_json.data[j].time)/Stations_json.total_secounds) * 100).toFixed(3);
+			  
+			  $("#nodes_activity > tbody").append('<tr><td><span class="text-nowrap">'+Stations_json.data[j].call+'</span></td><td>'+Stations_json.data[j].Secound+"</td><td>"+preccent_network+"%</td><td class=\"d-none  d-md-table-cell\">"+preccent+"%</td></tr>");
+			  j++;
+
+			 
+		  }
+		  console.log(total_time_secunds);
+
+		  $("#nodes_activity > thead ").html('<tr><th><?php echo _("Station")?></th><th><?php echo _("Uptime")?></th><th><?php echo _("Network Usage year")?></th><th  class="d-none  d-md-table-cell"><?php echo _("Usage based on year")?></th><th class="d-none  d-md-table-cell"></tr>');
+
+		  
+		  $("#nodes_activity > tfoot").append('<tr><td><?php echo _('Total')?></td><td>'+secondsToDayHMS(Stations_json.total_secounds)+'</td><td></td><td class=\"d-none  d-md-table-cell\" >'+total_present.toFixed(2)+'%</td><td class=\"d-none  d-md-table-cell\"></td></tr>');
+		
+			console.log(Stations_json.total_secounds);
+
+		    var data = {
+		    	    datasets: [{
+		    	        data: Stations_timesum,
+    					backgroundColor: Stations_collor,
+    					borderColor:  Stations_collor
+		    	    }],
+
+		    	    // These labels appear in the legend and in the tooltips when hovering different arcs
+		    	    labels: Stations
+		    	};
+
+
+		window.myBar = new Chart(ctx, {
+			type: 'pie',
+			data: data,
+			options: {
+				maintainAspectRatio: false,
+				responsive: true,
+				legend: {
+					position: 'right',
+					 display: true //This will do the task
+				},
+				title: {
+					display: true,
+					text: '<?php echo _('Station activity')?> '
+				},
+
+				
+				tooltips: {
+		            // Disable the on-canvas tooltip
+		            enabled: true,
+		            callbacks: {
+		                label: function(tooltipItem, data) {
+		                    var label = data.labels[tooltipItem.index];
+		                    var talktime = data.datasets[0].data[tooltipItem.index];
+		    
+							
+		                    if (label) {
+		                        label += ': ';
+		                    }
+		                    //console.log(talktime);
+		                    label += secondsToDHMS(talktime);
+		                    return label;
+		                }
+		            }
+
+		        }
+			}
+		});
+
+	  });
+
+<?php if (detect_empty_cache_table() == true){?>
+
+	get_statistics_year_tg();
+
+<?php }?>	
+}
+
+
+
+
+
+function load_chart_delay()
+{
+
+	
+	setTimeout(get_station_chat, 200);
+	
+	
+}
+
 
 
 
@@ -4114,7 +4830,10 @@ function get_station_chat()
 		  }
 		  console.log(total_time_secunds);
 		  $("#nodes_activity > tfoot").append('<tr><td><?php echo _('Total')?></td><td>'+secondsToDayHMS(total_time_secunds)+'</td><td></td><td class=\"d-none  d-md-table-cell\" >'+total_present.toFixed(2)+'%</td><td class=\"d-none  d-md-table-cell\"></td></tr>');
-		
+
+
+		  $("#nodes_activity > thead ").html('<tr><th><?php echo _("Station")?></th><th><?php echo _("Uptime")?></th><th><?php echo _("Network Usage 24 hour")?></th><th  class="d-none  d-md-table-cell"><?php echo _("Usage last 24 hour")?></th><th class="d-none  d-md-table-cell"><?php echo _("Most used receiver")?></th></tr>');
+			
 	
 
 		    var data = {
@@ -4289,6 +5008,75 @@ function setmap_noTransform(lon,lat,z)
 
 var Lock_show =0;
 var coverigeGroup;
+
+
+function open_select_map()
+{
+
+	var popupWindow = parent.window.open("select_map_stations.php", "mozillaWindow", 'width=800,height=800',"popup" );
+	if (popupWindow.addEventListener) {
+	popupWindow.addEventListener('message', function(event) {
+		    console.log("Message received from the child: " + event.data); // Message received from child
+			var data =  event.data.toString();
+			console.log(data.split(","));
+			
+			show_covige_stations(data.split(","))
+			 popupWindow.close();
+		  });
+	}
+	
+}
+
+
+
+function idn_loocup(site)
+{
+	var objet_id = vectorSource.getFeatures();
+
+	for(var id in objet_id )
+	{
+
+		var site_idn = objet_id[id].id_;
+		if(site_idn == ('stn_'+site))
+		{
+			return true;
+		}
+		if( site_idn.includes(site))
+		{
+			return true;
+		}
+
+	}
+
+
+	return false;
+
+	
+}
+function idn_loocup_select(site,array)
+{
+
+
+	for(var id in array )
+	{
+
+		var site_idn = array[id];
+
+
+		if(site.includes(site_idn) )
+		{
+			return true;
+		}
+
+	}
+
+
+	return false;
+
+	
+}
+
+
 function show_covige()
 {
 	remove_covige();
@@ -4300,7 +5088,7 @@ function show_covige()
             layers: [],
             name: 'coverige'
         });
-		//peter
+
 		<?php
 
 				$result = mysqli_query($link, "SELECT * FROM `covrige` ");
@@ -4309,8 +5097,9 @@ function show_covige()
 
 				// Associative array
 				while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-		
-				    echo "" . $row["Radiomobilestring"] . "";
+				    echo "if(idn_loocup('".$row["Name"]."')) {";
+				    
+				    echo "" . $row["Radiomobilestring"] . "}";
 
 		
 				}
@@ -4327,6 +5116,53 @@ function remove_covige()
 	this.map.removeLayer(this.coverigeGroup);
 	Lock_show  =0;
 }
+
+function show_covige_stations(arrays)
+{
+
+	
+	remove_covige();
+	if(Lock_show == 0)
+	{
+		Lock_show =1;
+		
+
+		coverigeGroup = new ol.layer.Group({
+            layers: [],
+            name: 'coverige'
+        });
+
+		console.log(arrays);
+		
+		<?php
+
+				$result = mysqli_query($link, "SELECT * FROM `covrige` ");
+
+				// Numeric array
+
+				// Associative array
+				while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+				    echo "if(idn_loocup_select('".$row["Name"]."',arrays)) {";
+				    
+				    echo "" . $row["Radiomobilestring"] . "}";
+
+		
+				}
+
+				?>
+
+		
+				map.addLayer(this.coverigeGroup);
+		
+	}
+}
+
+
+
+
+
+
+
 
 
 function load_Recivers_html()
@@ -4354,7 +5190,7 @@ function add_tx_station()
 	 
 	 
 	
-		    if(data.nodes[k].hidden == true)
+		    if(data.nodes[k].hidden == true  )
 		    {
 			    console.log(data.nodes[k]);
 		    	delete data.nodes[k];
@@ -4388,9 +5224,18 @@ function add_tx_station()
         			
         				//console.log(name);
         				
+        				
+        				
         
-        				add_repeater_transmiter(lat,lon,name,idn,talkgroup)
-        		
+        					if(!valudate_if_exist(lon,lat))
+            				{
+            					map_lon_lat[map_pos_i] = new Array();
+            					map_lon_lat[map_pos_i]['lat'] = lat;
+            					map_lon_lat[map_pos_i]['lon'] = lon;
+            					map_pos_i++;
+        						add_repeater_transmiter(lat,lon,name,idn,talkgroup)
+            				}
+            				
         				// tempoary fix if useing mor than 1 transmitter on same qth
         				setmap(lat, lon,8);
         				break;
@@ -4424,7 +5269,7 @@ function update_tx_station_loop(data)
 	
 		for(var k in data.nodes){
 			
-		    if(data.nodes[k].hidden == true)
+		    if(data.nodes[k].hidden == true && data.nodes[k].tg == 0 )
 		    {
 		    	delete data.nodes[k];
 		    	
@@ -4459,7 +5304,7 @@ function update_tx_station_loop(data)
 				idn =idn.replace(/ /g,"_");
 
 				if(isNaN(parseFloat(lat)) == false && isNaN(parseFloat(lon)) == false )
-				  update_tx_station(lat,lon,idn,talkgroup,name,active);
+				  update_tx_station(lat,lon,idn,talkgroup,name,active,data.nodes[k].isTalker);
 		        	
 
 		        }
@@ -4479,7 +5324,8 @@ function update_tx_station_loop(data)
         			var lon =parseFloat(data.nodes[k].qth[qth].pos.long);
         			var name = k+" "+data.nodes[k].qth[qth].rx[qth1].name;
         			var talkgroup =data.nodes[k].tg;
-        			var idn=k+data.nodes[k].qth[qth].rx[qth1].name;
+        			//var idn=k+data.nodes[k].qth[qth].rx[qth1].name;
+        			var idn=k+qth1;
         			idn =idn.replace(/ /g,"_");
         			
  //       			console.log(idn+" "+lat+" "+lon);
@@ -4507,7 +5353,8 @@ function update_tx_station_loop(data)
         			}
         			if(count_rx > 1 && sql != "")
         			{
-        				var group_idn = k+data.nodes[k].qth[qth].name;
+        				//var group_idn = k+data.nodes[k].qth[qth].name;
+        				var group_idn=k+data.nodes[k].qth[qth].rx[qth1].name;
         				group_idn =group_idn.replace(/ /g,"_");
         				if(Barsource.getFeatureById(group_idn) != null)
         				{
@@ -4519,7 +5366,8 @@ function update_tx_station_loop(data)
         			}
         			else if(count_rx > 1)
         			{
-        				var group_idn = k+data.nodes[k].qth[qth].name;
+        				//var group_idn = k+data.nodes[k].qth[qth].name;
+        				var group_idn=k+data.nodes[k].qth[qth].rx[qth1].name;
         				group_idn =group_idn.replace(/ /g,"_");
         				if(Barsource.getFeatureById(group_idn) != null)
         				{
@@ -4598,7 +5446,62 @@ function change_day_next()
     get_statistics();
     get_statistics_hour();
 
+ <?php if (detect_empty_cache_table() == true){?>
+
+
+ 	setTimeout(change_data_date, 400);
+ 	
+    
+<?php }?>
+
 }
+function change_data_date()
+{
+
+ <?php if (detect_empty_cache_table() == true){?>
+
+
+ $('#tab_plane_statistics > div').each(function () {
+		console.log($(this).hasClass("active"));
+	  if($(this).hasClass("active") == true )
+		  { 
+
+    		  if($(this).attr('id') == 'menu_year')
+    		  {
+    			  get_year_static();
+    
+    		  }
+    
+    		  if($(this).attr('id') == 'menu_month')
+    		  {
+    			   get_statistics_month();
+    		  }
+
+    		  if($(this).attr('id') == 'menu_hour')
+    		  {
+        	
+    			  load_chart_delay();
+    		  }
+
+    		  
+
+		  
+		  }
+	  
+});
+
+ 
+
+
+ 
+
+    
+<?php }?>
+
+	
+	
+}
+
 function change_day_prew()
 {
 
@@ -4608,6 +5511,11 @@ function change_day_prew()
     get_statistics();
     get_statistics_hour();
 
+ <?php if (detect_empty_cache_table() == true){?>
+    
+ 	change_data_date();
+    
+<?php }?>
 
 }
 function bind_key_statistics()
@@ -4898,7 +5806,7 @@ function fnExcelexport(table)
         
                        <ul class="nav  navbar-expand">
                       	<li class="nav-link  active"><a data-toggle="tab" onclick="$('#ssas a.active').removeClass('active');get_statistics();" href="#dastaty"><i class="far fa-circle"></i> <?php echo _("Day")?></a></li>
-                      	<li class="nav-link "><a data-toggle="tab" onclick="$('#ssas a.active').removeClass('active');get_statistics_hour()" href="#menu_hour"><i class="far fa-circle"></i> <?php echo _("Hour")?></a></li>
+                      	<li class="nav-link "><a data-toggle="tab" onclick="$('#ssas a.active').removeClass('active');get_statistics_hour();get_station_chat();" href="#menu_hour"><i class="far fa-circle"></i> <?php echo _("Hour")?></a></li>
                       	<li class="nav-link "><a data-toggle="tab" onclick="$('#ssas a.active').removeClass('active');get_statistics_month()" href="#menu_month"><i class="far fa-circle"></i> <?php echo _("Month")?></a></li>
                       	<li class="nav-link "><a data-toggle="tab" onclick="$('#ssas a.active').removeClass('active');get_year_static()" href="#menu_year"><i class="far fa-circle"></i> <?php echo _("Year")?></a></li>
     
@@ -4913,7 +5821,7 @@ function fnExcelexport(table)
        					  <button class="prev-day btn btn-outline-secondary"  onclick="change_day_prew()" id="prev-day"><i class="fa fa-angle-left" aria-hidden='true' ></i></button>
        					</div>
        					<div class="col-8 col-xl-10">
-       					  <input style="margin-left: 5px" type="text" id="Datepicker_graph" value="<?php echo date("Y-m-d")?>" onchange="get_statistics();get_statistics_hour();get_statistics_month();" class="form-control" >
+       					  <input style="margin-left: 5px" type="text" id="Datepicker_graph" value="<?php echo date("Y-m-d")?>" onchange="get_statistics();get_statistics_hour();change_data_date();" class="form-control" >
         				</div>
         				<div class="col-2 col-xl-1">
     					  <button style="margin-left: " class='next-day btn btn-outline-secondary' onclick="change_day_next()" ><i class='fa fa-angle-right' aria-hidden='true'></i></button>
@@ -4930,7 +5838,7 @@ function fnExcelexport(table)
 
 
         		<div class="row">
-				<div class="tab-content col-md-12">
+				<div class="tab-content col-md-12" id="tab_plane_statistics">
 				
 				
      			<div id="dastaty" class="tab-pane in active w-100  ">
@@ -5134,7 +6042,71 @@ function fnExcelexport(table)
                 			
                 			
             	 	
-            	 	</div>
+            	 
+   
+   
+   <?php 
+   
+   /*
+    * New feald for statistics 
+    */
+   
+   ?>
+   
+   
+   <?php if (detect_empty_cache_table() == true){?>
+
+
+            <div class="row">
+                 <div class="col-md-12">
+                        	
+        				<div class="card shadow mb-4">
+                			<div class="card-header py-3 text-white bg-dark">
+                  				<h6 class="m-0 font-weight-bold "><?php echo _('Talkgroups')?></h6>
+           		 			</div>
+                    	<div class="card-body">
+						
+					
+        				<div style="width: 100%; height: 600px;" id="Graph_mo_grap_holder">
+        					<canvas id="Graph_mo" width="800px" height="600px"></canvas>
+        				</div>
+        				
+                				
+                				    			
+                    </div>
+              	</div>
+              </div>
+             
+        </div>
+		
+		<div class="row">
+			
+			
+        	<div class="col-md-12"> 
+        	
+        	        		<div class="card shadow mb-4">
+        						<div class="card-header py-3  text-white bg-dark">
+          							<h6 class="m-0 font-weight-bold "><?php echo _('Nodes')?></h6>
+   		 						</div>
+            					<div class="card-body" style="min-height:540px;">
+
+        						<div class="" id="Graph_Cricle_mo_holder">
+        							<canvas id="Graph_Cricle_mo" width="400px" height="400px"></canvas>
+        						</div>	
+        		
+            				</div>
+      	</div>
+              	
+              	
+   </div>           	
+
+	</div>
+	</div>
+   
+   <?php }else{?>
+   </div>
+   
+   <?php }?>
             	 
             	 </div>
             	 
@@ -5263,26 +6235,81 @@ function fnExcelexport(table)
 
 
                 				
-                	</div>
-                			</div>
+    	</div>
+	</div>
+ </div>            		
+
+
+   <?php if (detect_empty_cache_table() == true){?>
+
+<div class="row">
+                 <div class="col-md-12">
+                        	
+        				<div class="card shadow mb-4">
+                			<div class="card-header py-3 text-white bg-dark">
+                  				<h6 class="m-0 font-weight-bold "><?php echo _('Talkgroups')?></h6>
+           		 			</div>
+                    	<div class="card-body">
+						
+					
+        				<div style="width: 100%; height: 600px;" id="Graph_ytg_grap_holder"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div><canvas id="Graph_tg_grap_mo" style="display: block; width: 1481px; height: 600px;" class="chartjs-render-monitor" width="400" height="600"></canvas></div>
+        				
+                				
+                				    			
+                    </div>
+              	</div>
+              </div>
+             
+</div>
+        
+        
+        
 
 
 
-                    	 </div>
-                	 </div>
-            	 </div>           	 
-            	            	 
-            	 </div>
-        			
-    			</div>
+<div class="row">
+			
+			
+	<div class="col-md-12"> 
+        	
+        	        		<div class="card shadow mb-4">
+        						<div class="card-header py-3  text-white bg-dark">
+          							<h6 class="m-0 font-weight-bold "><?php echo _('Nodes')?></h6>
+   		 						</div>
+            					<div class="card-body" style="min-height:540px;">
+
+        						<div class="" id="Graph_Cricle_year_holder">
+        							<canvas id="Graph_Cricle_year" width="400px" height="400px"></canvas>
+        						</div>	
+        		
+            				</div>
+      	</div>
+      	
+      	
+      	
 
 
-    			<div class="row">
+                    	
+	 </div>
+</div>    
+
+<?php }?>       	 
+    
+    
+    
+        
+
+
+<div class="row">
     				<div class="col-md-12">
     					&nbsp;
     				</div>
-    			</div>
-    			<div class="col-md-12" id="table">
+	</div>
+		</div>
+			</div>
+			
+			
+	<div class="col-md-12" id="table">
     			
     			<div class="card shadow mb-4">
            
@@ -5304,8 +6331,11 @@ function fnExcelexport(table)
     				</table>
     			</div>
     			</div>	
-    			</div>
-    
+
+
+</div> 
+</div> 
+</div> 
     			
     			<div class="tab-pane " id="Table_ctcss">
     			<?php 
@@ -5314,6 +6344,12 @@ function fnExcelexport(table)
     			//include 'ctcss_map_table.php'?>
     			</div>
     			
+    			<div class="tab-pane " id="Last_heard_page">
+    			<?php 
+ 
+    			
+    			include 'las_call_box.php'?>
+    			</div>    			
     
     
     

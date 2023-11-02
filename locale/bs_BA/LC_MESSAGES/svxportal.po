@@ -1,0 +1,1654 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# EMIR HAJDARBEGOVIC (E77EH) <emir_hajdarbegovic@yahoo.com>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-01 18:00+0200\n"
+"PO-Revision-Date: 2023-11-02 13:38+0100\n"
+"Last-Translator: \n"
+"Language-Team: E7Link\n"
+"Language: bs_BA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.1\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: driver/card\n"
+
+#: SVXprotal-master/src/jquery-ui.min.js:10
+msgid "'"
+msgstr ""
+
+#: admin.php:222 index.php:1525 index1.php:1156
+msgid "admin interface"
+msgstr "Admin interfejs"
+
+#: admin.php:228 edit_station.php:425 list_reciver.php:1438
+#: list_reciver_2.php:672 list_reciver_old.php:462 radiomobile_front.php:83
+#: requset_reflector_login.php:395 station_dash.php:352
+msgid "Back"
+msgstr "Nazad"
+
+#: admin.php:237 admin/stations.php:40 admin/stations.php:50
+msgid "Stations"
+msgstr "Stanice"
+
+#: admin.php:240 admin/talkgroup.php:75 index.php:4969 index1.php:4135
+#: index_old.php:3161 indexa.php:3162 requset_reflector_login.php:1128
+msgid "Talkgroup"
+msgstr "Grupa za razgovor"
+
+#: admin.php:244 admin/log.php:80
+msgid "Fault log"
+msgstr "Dnevnik grešaka"
+
+#: admin.php:248 admin/users.php:117
+msgid "Users"
+msgstr "Korisnici"
+
+#: admin.php:252
+msgid "Reflektor users"
+msgstr "Korisnici reflektora"
+
+#: admin.php:258 admin/Settings.php:76 edit_station.php:464
+msgid "Settings"
+msgstr "Podešavanja"
+
+#: admin/Reflektor_users.php:25 admin/users.php:16
+msgid "User created sucsessfully!"
+msgstr "Korisnik je uspješno kreiran!"
+
+#: admin/Reflektor_users.php:41 admin/talkgroup.php:25 admin/users.php:31
+msgid "Please confirm user removal"
+msgstr "Molimo potvrdite uklanjanje korisnika"
+
+#: admin/Reflektor_users.php:57
+msgid "Please confirm user enable"
+msgstr "Molimo potvrdite korisničko omogućavanje"
+
+#: admin/Reflektor_users.php:60
+msgid "Please confirm user disable"
+msgstr "Molimo potvrdite korisničko onemogućavanje"
+
+#: admin/Reflektor_users.php:95 admin/users.php:72
+msgid "Password is updated!"
+msgstr "Lozinka je ažurirana!"
+
+#: admin/Reflektor_users.php:179
+msgid "Please enter your message"
+msgstr "Unesite vašu poruku"
+
+#: admin/Reflektor_users.php:187 admin/Reflektor_users.php:207
+msgid "Message sent"
+msgstr "Poruka poslana"
+
+#: admin/Reflektor_users.php:236
+msgid "Reflector users"
+msgstr "Korisnici reflektora"
+
+#: admin/Reflektor_users.php:246 admin/users.php:127
+msgid "Print Users"
+msgstr "Ispiši korisnike"
+
+#: admin/Reflektor_users.php:248 admin/log.php:109 admin/stations.php:52
+#: admin/talkgroup.php:87 admin/users.php:129 ctcss_map_table.php:209
+#: index.php:1728 index.php:2140 index.php:4490 index1.php:1358 index1.php:1751
+#: index_old.php:772 index_old.php:1057 indexa.php:773 indexa.php:1058
+#: log.php:223
+msgid "Print"
+msgstr "Print"
+
+#: admin/Reflektor_users.php:255 admin/log.php:116 admin/stations.php:59
+#: admin/talkgroup.php:94 admin/users.php:136 ctcss_map_table.php:216
+#: index.php:1723 index1.php:1353 index_old.php:779 index_old.php:1064
+#: indexa.php:780 indexa.php:1065 log.php:230
+msgid "Export xls"
+msgstr "Izvezi u xls"
+
+#: admin/Reflektor_users.php:262 admin/Reflektor_users.php:284
+#: admin/Reflektor_users.php:356 admin/users.php:143 admin/users.php:174
+#: admin/users.php:226 database_text.php:13
+msgid "Create user"
+msgstr "Kreiraj korisnika"
+
+#: admin/Reflektor_users.php:288 admin/login.php:36 admin/users.php:178
+#: admin/users.php:245 index.php:1561 index.php:1562 index.php:4461
+#: index.php:4618 index1.php:1191 index1.php:1192 index1.php:3760
+#: index1.php:3917 index_old.php:3045 indexa.php:3046
+msgid "Username"
+msgstr "Korisničko ime"
+
+#: admin/Reflektor_users.php:296
+msgid "Generate Username"
+msgstr "Generiši korisničko ime"
+
+#: admin/Reflektor_users.php:303 admin/Reflektor_users.php:484
+#: admin/login.php:43 admin/users.php:186 admin/users.php:406 index.php:1565
+#: index.php:4634 index1.php:1195 index1.php:3933
+#: requset_reflector_login.php:606 requset_reflector_login.php:609
+#: requset_reflector_login.php:1110
+msgid "Password"
+msgstr "Lozinka"
+
+#: admin/Reflektor_users.php:311 admin/Reflektor_users.php:490
+#: requset_reflector_login.php:612
+msgid "Generate password"
+msgstr "Generiši lozinku"
+
+#: admin/Reflektor_users.php:323 admin/Reflektor_users.php:375
+#: admin/talkgroup.php:122 admin/talkgroup.php:162 edit_station.php:966
+#: edit_station.php:1078 edit_station.php:1162 requset_reflector_login.php:628
+#: requset_reflector_login.php:631 station_info.php:146
+msgid "Description"
+msgstr "Opis"
+
+#: admin/Reflektor_users.php:334 admin/Reflektor_users.php:376 index.php:4627
+msgid "E-mail"
+msgstr "E-pošta"
+
+#: admin/Reflektor_users.php:351 admin/Reflektor_users.php:377 index.php:2403
+#: index1.php:2015 index_old.php:1331 indexa.php:1332
+msgid "Enable"
+msgstr "Omogući"
+
+#: admin/Reflektor_users.php:373
+msgid "Station login"
+msgstr "Prijava stanice"
+
+#: admin/Reflektor_users.php:374
+msgid "Station password"
+msgstr "Lozinka stanice"
+
+#: admin/Reflektor_users.php:378 admin/users.php:248 database_text.php:15
+#: edit_station.php:968
+msgid "Action"
+msgstr "Akcija"
+
+#: admin/Reflektor_users.php:411 admin/Settings.php:25
+#: admin/get_reflector.php:35 admin/get_station.php:34 admin/get_users.php:23
+#: admin/stations.php:130 admin/users.php:270 database_text.php:17
+msgid "Yes"
+msgstr "Da"
+
+#: admin/Reflektor_users.php:413 admin/Settings.php:19
+#: admin/get_reflector.php:37 admin/get_station.php:36 admin/get_users.php:25
+#: admin/stations.php:132 admin/users.php:272 database_text.php:16
+msgid "No"
+msgstr "Ne"
+
+#: admin/Reflektor_users.php:436 admin/get_reflector.php:58
+msgid "Select action"
+msgstr "Označi akciju"
+
+#: admin/Reflektor_users.php:438 admin/get_reflector.php:60
+msgid "Enable user"
+msgstr "Omogući korisnika"
+
+#: admin/Reflektor_users.php:440 admin/get_reflector.php:62
+msgid "Disable user"
+msgstr "Onemogući korisnika"
+
+#: admin/Reflektor_users.php:442 admin/get_reflector.php:64
+msgid "Send message to Sysadmin"
+msgstr "Pošalji poruku sistemskom administratoru"
+
+#: admin/Reflektor_users.php:443 admin/get_reflector.php:65
+msgid "Send login credentaial to sysadmin"
+msgstr "Pošalji prijavne podatke sistemskom administratoru"
+
+#: admin/Reflektor_users.php:444 admin/Reflektor_users.php:478
+#: admin/users.php:400
+msgid "Change user password"
+msgstr "Promjeni korisničku lozinku"
+
+#: admin/Reflektor_users.php:496 admin/stations.php:171 admin/talkgroup.php:219
+#: admin/users.php:367 admin/users.php:416 edit_station.php:725
+#: edit_station.php:1130 edit_station.php:1208 index.php:109 index.php:2418
+#: index1.php:69 index1.php:2030 index_old.php:59 indexa.php:60
+msgid "Close"
+msgstr "Zatvori"
+
+#: admin/Reflektor_users.php:497 admin/stations.php:65 admin/stations.php:172
+#: admin/talkgroup.php:220 admin/users.php:368 admin/users.php:417
+#: edit_station.php:1201
+msgid "Update"
+msgstr "Ažuriraj"
+
+#: admin/Settings.php:67
+msgid "Settings is saved!"
+msgstr "Postavke su sačuvane!"
+
+#: admin/Settings.php:113 edit_station.php:492 edit_station.php:595
+#: edit_station.php:883
+msgid "Save"
+msgstr "Sačuvaj"
+
+#: admin/get_reflector.php:66
+msgid "Change node password"
+msgstr "Promjeni lozinku čvora/linka"
+
+#: admin/get_users.php:31 admin/users.php:276
+msgid "- Select station -"
+msgstr "- Odaberi stanicu -"
+
+#: admin/get_users.php:32 admin/users.php:277
+msgid "User granded"
+msgstr "Korisnik odobren"
+
+#: admin/get_users.php:48 admin/users.php:292
+msgid "Read only"
+msgstr "Samo za čitanje"
+
+#: admin/get_users.php:59 admin/users.php:302
+msgid "User not granded"
+msgstr "Korisnik nije odobren"
+
+#: admin/log.php:89 log.php:155
+msgid "Page size"
+msgstr "Veličina stranice"
+
+#: admin/log.php:107 admin/talkgroup.php:85 log.php:221
+msgid "Log print"
+msgstr "Ispis dnevnika"
+
+#: admin/log.php:138 index.php:624 index.php:1928 index1.php:395
+#: index1.php:1554 log.php:249
+msgid "Live"
+msgstr "Uživo"
+
+#: admin/log.php:142 admin/log.php:143 log.php:253 log.php:254
+msgid "Search"
+msgstr "Pretraži"
+
+#: admin/log.php:203 edit_station.php:710 edit_station.php:740 index.php:5032
+#: index1.php:4198 index_old.php:3202 indexa.php:3203 log.php:323
+#: station_info.php:192
+msgid "Date"
+msgstr "Datum"
+
+#: admin/log.php:204 index.php:5071 index1.php:4234 index_old.php:3234
+#: indexa.php:3235 log.php:324 map_pick.php:93 requset_reflector_login.php:841
+msgid "Station"
+msgstr "Stanica"
+
+#: admin/log.php:205 log.php:325
+msgid "Event"
+msgstr "Događaj"
+
+#: admin/log.php:237 log.php:344
+msgid "is Talker on tg"
+msgstr "započeo razgovor na TG"
+
+#: admin/log.php:239
+msgid "Stoped talk tg"
+msgstr "završio razgovor na TG"
+
+#: admin/log.php:243 log.php:350
+msgid "Reciver"
+msgstr "Prijemnik"
+
+#: admin/log.php:245
+msgid " is active signal level"
+msgstr "je aktivni nivo signala"
+
+#: admin/log.php:247 log.php:354
+msgid "has signal level"
+msgstr "ima nivo signala"
+
+#: admin/log.php:253 log.php:360
+msgid "Node"
+msgstr "Čvor/link"
+
+#: admin/log.php:255
+msgid "has dropt from reflektor"
+msgstr "je odbačen sa reflektora"
+
+#: admin/log.php:257
+msgid "has connected to  reflektor"
+msgstr "je konektovan na reflektor"
+
+#: admin/log.php:275
+msgid "Previous"
+msgstr "Prethodno"
+
+#: admin/login.php:13 index.php:900 index1.php:665 index_old.php:504
+#: indexa.php:505
+msgid "Wrong username or password"
+msgstr "Pogrešno korisničko ime ili lozinka"
+
+#: admin/login.php:27
+msgid "Sign In"
+msgstr "Prijavite se"
+
+#: admin/login.php:47 index.php:1663 index1.php:1293 index_old.php:696
+#: indexa.php:697
+msgid "Login"
+msgstr "Prijava"
+
+#: admin/stations.php:91 ctcss_map_table.php:249 index.php:1744 index.php:2166
+#: index1.php:253 index1.php:1374 index1.php:1778 index_old.php:209
+#: index_old.php:806 index_old.php:1098 indexa.php:210 indexa.php:807
+#: indexa.php:1099 list_reciver.php:84 list_reciver_2.php:58
+#: list_reciver_old.php:55 requset_reflector_login.php:446
+#: requset_reflector_login.php:618 requset_reflector_login.php:1101
+msgid "Callsign"
+msgstr "Pozivni znak"
+
+#: admin/stations.php:92 ctcss_map_table.php:251 div_reciver.php:135
+#: index.php:2374 index.php:2400 index1.php:1987 index_old.php:1303
+#: indexa.php:1304 list_reciver.php:84 list_reciver_2.php:58
+#: list_reciver_old.php:55
+msgid "Location"
+msgstr "Lokacija"
+
+#: admin/stations.php:93 database_text.php:18
+msgid "Last seen"
+msgstr "Poslednji viđen"
+
+#: admin/stations.php:94
+msgid "Station down"
+msgstr "Stanica je diskonektovana"
+
+#: admin/stations.php:95 admin/stations.php:161 admin/talkgroup.php:131
+#: admin/talkgroup.php:165 admin/talkgroup.php:209 index.php:2168
+#: index1.php:1781 index_old.php:924 index_old.php:1101 indexa.php:925
+#: indexa.php:1102
+msgid "Color"
+msgstr "Boja"
+
+#: admin/stations.php:155 admin/talkgroup.php:203
+msgid "Change station color"
+msgstr "Promjeni boju stanice"
+
+#: admin/talkgroup.php:47
+msgid "talkgroup created!"
+msgstr "Grupa za razgovor je kreirana!"
+
+#: admin/talkgroup.php:110 admin/talkgroup.php:144
+msgid "Create talkgroup"
+msgstr "Kreiraj grupu za razgovor"
+
+#: admin/talkgroup.php:114 admin/talkgroup.php:161 index.php:1744
+#: index.php:2164 index1.php:253 index1.php:1776 index_old.php:209
+#: index_old.php:1096 indexa.php:210 indexa.php:1097 list_reciver.php:84
+#: list_reciver_2.php:58 list_reciver_old.php:55
+#: requset_reflector_login.php:699
+msgid "TG#"
+msgstr ""
+
+#: admin/talkgroup.php:164 index.php:2286 index1.php:1899 index_old.php:1211
+#: indexa.php:1212
+msgid "Actions"
+msgstr "Akcije"
+
+#: admin/users.php:87
+msgid "Premission is updated!"
+msgstr "Dozvola je ažurirana!"
+
+#: admin/users.php:195 admin/users.php:243 database_text.php:11
+msgid "First name"
+msgstr "Ime"
+
+#: admin/users.php:206 admin/users.php:244 database_text.php:12
+msgid "Last name"
+msgstr "Prezime"
+
+#: admin/users.php:221
+msgid "User is admin"
+msgstr "Korisnik je admin"
+
+#: admin/users.php:246 database_text.php:14
+msgid "Is admin"
+msgstr "Je li admin?"
+
+#: admin/users.php:247
+msgid "Station permission"
+msgstr "Dozvole stanice"
+
+#: admin/users.php:347
+msgid "Assign station permission for user"
+msgstr "Dodijelite dozvolu stanici za korisnika"
+
+#: admin/users.php:356
+msgid "Read only acsess"
+msgstr "Pristup samo za čitanje"
+
+#: admin/users.php:361
+msgid "Write acsess"
+msgstr "Pristup za pisanje"
+
+#: ctcss_map_table.php:196
+msgid "CTCSS Map table"
+msgstr "CTCSS Map tabela"
+
+#: ctcss_map_table.php:207
+msgid "CTSS map table"
+msgstr "CTCSS map tabela"
+
+#: ctcss_map_table.php:250 div_reciver.php:135 index.php:2402 index1.php:2014
+#: index_old.php:1330 indexa.php:1331 list_reciver.php:84 list_reciver_2.php:58
+#: list_reciver_old.php:55
+msgid "Frequency"
+msgstr "Frekvencija"
+
+#: ctcss_map_table.php:257
+msgid "Local"
+msgstr "Lokalno"
+
+#: ctcss_map_table.php:321
+msgid "Software"
+msgstr "Softver"
+
+#: ctcss_map_table.php:330
+msgid "CSV index"
+msgstr ""
+
+#: ctcss_map_table.php:335
+msgid "Use three last char in call"
+msgstr "Koristite tri zadnja znaka u pozivu"
+
+#: ctcss_map_table.php:340
+msgid "Export"
+msgstr "Izvezi"
+
+#: database_text.php:2
+msgid "Hide the languge bar"
+msgstr "Sakri jezičke odabire"
+
+#: database_text.php:3
+msgid "Use Custom header in sidebar"
+msgstr "Koristite prilagođeno zaglavlje u bočnoj traci"
+
+#: database_text.php:4
+msgid "External dokumentation page"
+msgstr "Stranica vanjske dokumentacije"
+
+#: database_text.php:5
+msgid "Use login for player"
+msgstr "Koristi prijavu za plejer"
+
+#: database_text.php:6
+msgid "Use external dokumentation page"
+msgstr "Koristi stranicu vanjske dokumentacije"
+
+#: database_text.php:7
+msgid "The default talkgroup for Recording statistic"
+msgstr "Podrazumijevana grupa za razgovor za statistiku snimanja"
+
+#: database_text.php:8
+msgid "Send an email to sysop when the node goes down"
+msgstr "Pošaljite email sysopu kada čvor/link padne"
+
+#: database_text.php:9
+msgid "Mail to system administrator"
+msgstr "Pošaljite mail administratoru sistema"
+
+#: database_text.php:10
+msgid "E-mail adress for the system"
+msgstr "E-mail adresa za sistem"
+
+#: database_text.php:19
+msgid "color"
+msgstr "boja"
+
+#: database_text.php:21 database_text.php:25
+msgid "Hide the Monitor bar"
+msgstr "Sakrij traku monitora"
+
+#: database_text.php:22
+msgid "Server adresss to svxreflektor"
+msgstr "Adresa servera za svxreflektor"
+
+#: database_text.php:23
+msgid "Svxreflektor server port"
+msgstr "Port servera za svxreflektor"
+
+#: database_text.php:24
+msgid "TinyMCE Cloud API KEY"
+msgstr ""
+
+#: database_text.php:26
+msgid "\"Beta\" Node admin notfication"
+msgstr "Obavijest administratora čvora/linka \"Beta\"."
+
+#: div_reciver.php:8 edit_station.php:808 edit_station.php:839
+msgid "None"
+msgstr "Nema"
+
+#: div_reciver.php:9 index.php:2101 index1.php:1712 index_old.php:1024
+#: indexa.php:1025 list_reciver_2.php:669 list_reciver_old.php:459
+msgid "All"
+msgstr "Sve"
+
+#: div_reciver.php:126
+msgid "Signal values at"
+msgstr "Vrijednosti signala na"
+
+#: div_reciver.php:135 list_reciver.php:84 list_reciver_2.php:58
+#: list_reciver_old.php:55
+msgid "Receiver"
+msgstr "Prijemnik"
+
+#: div_reciver.php:135 index.php:1982 index1.php:1608 index_old.php:912
+#: indexa.php:913 list_reciver.php:84 list_reciver_2.php:58
+#: list_reciver_old.php:55
+msgid "Signal"
+msgstr "Signal"
+
+#: div_reciver.php:186
+msgid "MHz"
+msgstr "MHz"
+
+#: edit_station.php:132 edit_station.php:148 station_dash.php:132
+#: station_dash.php:148
+msgid "Page is saved"
+msgstr "Stranica je sačuvana"
+
+#: edit_station.php:160 station_dash.php:160
+msgid "Settings is saved"
+msgstr "Postavke su sačuvane"
+
+#: edit_station.php:174 station_dash.php:174
+msgid "Ticket is created"
+msgstr "Karta je kreirana"
+
+#: edit_station.php:391 station_dash.php:318
+msgid "Premission Denied!"
+msgstr "Dozvola odbijena!"
+
+#: edit_station.php:415
+msgid "Station editor"
+msgstr "Urednik stanice"
+
+#: edit_station.php:437 station_info.php:79
+msgid "Information"
+msgstr "Informacija"
+
+#: edit_station.php:440 station_info.php:80
+msgid "Hardware"
+msgstr "Hardver"
+
+#: edit_station.php:444
+msgid "DTMF commands"
+msgstr "DTMF komande"
+
+#: edit_station.php:448 station_info.php:81
+msgid "Operating information"
+msgstr "Operativne informacije"
+
+#: edit_station.php:458
+msgid "Driver dashboard"
+msgstr "Kontrolna tabla drajvera"
+
+#: edit_station.php:529 requset_reflector_login.php:550
+msgid "Send command to node"
+msgstr "Pošalji poruku čvoru/linku"
+
+#: edit_station.php:537 edit_station.php:1074 edit_station.php:1158
+#: requset_reflector_login.php:558
+msgid "DTMF command"
+msgstr "DTMF komanda"
+
+#: edit_station.php:545 requset_reflector_login.php:566
+msgid "Scheduled date"
+msgstr "Planirani datum"
+
+#: edit_station.php:549 requset_reflector_login.php:570
+msgid "Send commnd to repeater"
+msgstr "Pošalji komandu repetitoru"
+
+#: edit_station.php:660 edit_station.php:948
+msgid "New"
+msgstr "Novi"
+
+#: edit_station.php:678
+msgid "New ticket"
+msgstr "Nova karta"
+
+#: edit_station.php:693
+msgid "Text"
+msgstr "Tekst"
+
+#: edit_station.php:700 function.php:277
+msgid "Info"
+msgstr "Info"
+
+#: edit_station.php:701 function.php:278
+msgid "Warning"
+msgstr "Upozorenje"
+
+#: edit_station.php:702 function.php:279
+msgid "Fault"
+msgstr "Greška"
+
+#: edit_station.php:703 function.php:280
+msgid "Done"
+msgstr "Urađeno"
+
+#: edit_station.php:726 edit_station.php:1123
+msgid "Create"
+msgstr "Kreiraj"
+
+#: edit_station.php:741 station_info.php:193
+msgid "Message"
+msgstr "Poruka"
+
+#: edit_station.php:742 edit_station.php:967 edit_station.php:1083
+#: edit_station.php:1170 station_info.php:194
+msgid "Category"
+msgstr "Kategorija"
+
+#: edit_station.php:806
+msgid "Radio Image"
+msgstr "Radio slika"
+
+#: edit_station.php:837
+msgid "Driver"
+msgstr "Drajver"
+
+#: edit_station.php:871
+msgid "Graphana url"
+msgstr ""
+
+#: edit_station.php:965 station_info.php:82
+msgid "DTMF"
+msgstr ""
+
+#: edit_station.php:985 edit_station.php:1045
+msgid "Command is created"
+msgstr "Komanda je kreirana"
+
+#: edit_station.php:1066
+msgid "New DTMF Command "
+msgstr "Nova DTMF komanda"
+
+#: edit_station.php:1150
+msgid "Edit DTMF Command "
+msgstr "Izmjeni DTMF komandu"
+
+#: function.php:264
+msgid "General"
+msgstr "Glavni"
+
+#: function.php:265
+msgid "Echolink"
+msgstr ""
+
+#: function.php:266 log.php:206
+msgid "Reflektor"
+msgstr ""
+
+#: function.php:267
+msgid "Shortcut"
+msgstr "Skraćenica"
+
+#: function.php:268
+msgid "Macro"
+msgstr "Makro"
+
+#: index.php:110 index1.php:70 index_old.php:60 indexa.php:61
+msgid "Today"
+msgstr "Danas"
+
+#: index.php:111 index.php:3219 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
+msgid "January"
+msgstr "Januar"
+
+#: index.php:111 index.php:3219 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
+msgid "February"
+msgstr "Februar"
+
+#: index.php:111 index.php:3219 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
+msgid "March"
+msgstr "Mart"
+
+#: index.php:111 index.php:3219 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
+msgid "April"
+msgstr "April"
+
+#: index.php:111 index.php:3219 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
+msgid "May"
+msgstr "Maj"
+
+#: index.php:111 index.php:3219 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
+msgid "June"
+msgstr "Juni"
+
+#: index.php:111 index.php:3219 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
+msgid "July"
+msgstr "Juli"
+
+#: index.php:111 index.php:3219 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
+msgid "August"
+msgstr "August"
+
+#: index.php:111 index.php:3219 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
+msgid "September"
+msgstr "Septembar"
+
+#: index.php:111 index.php:3219 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
+msgid "October"
+msgstr "Oktobar"
+
+#: index.php:111 index.php:3219 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
+msgid "November"
+msgstr "Novembar"
+
+#: index.php:111 index.php:3219 index1.php:71 index1.php:2791 index_old.php:61
+#: index_old.php:2085 indexa.php:62 indexa.php:2086
+msgid "December"
+msgstr "Decembar"
+
+#: index.php:112 index1.php:72 index_old.php:62 indexa.php:63
+msgid "Su"
+msgstr "Ned"
+
+#: index.php:112 index1.php:72 index_old.php:62 indexa.php:63
+msgid "Mo"
+msgstr "Pon"
+
+#: index.php:112 index1.php:72 index_old.php:62 indexa.php:63
+msgid "Tu"
+msgstr "Uto"
+
+#: index.php:112 index1.php:72 index_old.php:62 indexa.php:63
+msgid "We"
+msgstr "Sri"
+
+#: index.php:112 index1.php:72 index_old.php:62 indexa.php:63
+msgid "Th"
+msgstr "Čet"
+
+#: index.php:112 index1.php:72 index_old.php:62 indexa.php:63
+msgid "Fr"
+msgstr "Pet"
+
+#: index.php:112 index1.php:72 index_old.php:62 indexa.php:63
+msgid "Sa"
+msgstr "Sub"
+
+#: index.php:113 index1.php:73 index_old.php:63 indexa.php:64
+msgid "Monday"
+msgstr "Ponedjeljak"
+
+#: index.php:113 index1.php:73 index_old.php:63 indexa.php:64
+msgid "Tuesday"
+msgstr "Utorak"
+
+#: index.php:113 index1.php:73 index_old.php:63 indexa.php:64
+msgid "Wednesday"
+msgstr "Srijeda"
+
+#: index.php:113 index1.php:73 index_old.php:63 indexa.php:64
+msgid "Thursday"
+msgstr "Četvrtak"
+
+#: index.php:113 index1.php:73 index_old.php:63 indexa.php:64
+msgid "Friday"
+msgstr "Petak"
+
+#: index.php:113 index1.php:73 index_old.php:63 indexa.php:64
+msgid "Saturday"
+msgstr "Subota"
+
+#: index.php:113 index1.php:73 index_old.php:63 indexa.php:64
+msgid "Sunday"
+msgstr "Nedjelja"
+
+#: index.php:253 index1.php:145 index_old.php:129 indexa.php:130
+msgid "No data"
+msgstr "Nema podataka"
+
+#: index.php:498 index1.php:272 index_old.php:221 indexa.php:222
+msgid "NO"
+msgstr "NE"
+
+#: index.php:510 index1.php:282 index_old.php:230 indexa.php:231
+msgid "YES"
+msgstr "DA"
+
+#: index.php:641 index1.php:412
+msgid "Pleace select station"
+msgstr "Molimo odaberite stanicu"
+
+#: index.php:1444 index.php:4592 index.php:4653 index1.php:3891 index1.php:3952
+msgid "Register"
+msgstr "Registrirajte se"
+
+#: index.php:1459 index1.php:1104
+msgid "Select your language"
+msgstr "Odaberite jezik"
+
+#: index.php:1462 index1.php:1107
+msgid "English"
+msgstr "Engleski"
+
+#: index.php:1464 index1.php:1109
+msgid "Swedish"
+msgstr "Švedski"
+
+#: index.php:1467 index1.php:1112
+msgid "Norwegian"
+msgstr "Norveški"
+
+#: index.php:1469 index1.php:1114
+msgid "Ukrainian"
+msgstr "Ukrainski"
+
+#: index.php:1471 index1.php:1116
+msgid "Italian"
+msgstr "Italijanski"
+
+#: index.php:1473
+msgid "German"
+msgstr "Njemački"
+
+#: index.php:1475
+msgid "French"
+msgstr "Francuski"
+
+#: index.php:1477 index1.php:1118
+msgid "Turkish"
+msgstr "Turski"
+
+#: index.php:1533 index1.php:1165
+msgid "Sign out"
+msgstr "Odjavi se"
+
+#: index.php:1548 index.php:1557 index.php:1569 index.php:4463 index1.php:1180
+#: index1.php:1187 index1.php:1199 index1.php:3762 index_old.php:3047
+#: indexa.php:3048
+msgid "Log In"
+msgstr "Prijavi se"
+
+#: index.php:1566 index.php:4462 index1.php:1196 index1.php:3761
+#: index_old.php:3046 indexa.php:3047
+msgid "password"
+msgstr "Lozinka"
+
+#: index.php:1609 index.php:1726 index1.php:1239 index1.php:1356
+#: index_old.php:665 index_old.php:770 indexa.php:666 indexa.php:771
+msgid "Reflector clients"
+msgstr "Klijenti reflektora"
+
+#: index.php:1616 index1.php:1246 index_old.php:667 indexa.php:668
+msgid "Monitor"
+msgstr "Praćenje"
+
+#: index.php:1623
+msgid "Station information"
+msgstr "Informacija o stanici"
+
+#: index.php:1626 index1.php:1256 index_old.php:669 indexa.php:670
+msgid "System description"
+msgstr "Opis sistema"
+
+#: index.php:1628 index.php:2127 index.php:2138 index.php:2375 index.php:4721
+#: index1.php:1258 index1.php:1738 index1.php:1749 index1.php:1988
+#: index1.php:4010 index_old.php:671 index_old.php:1045 index_old.php:1055
+#: index_old.php:1304 indexa.php:672 indexa.php:1046 indexa.php:1056
+#: indexa.php:1305 list_reciver.php:496
+msgid "Talkgroups"
+msgstr "Grupe za razgovor"
+
+#: index.php:1630 index1.php:1260 index_old.php:673 indexa.php:674
+msgid "List receiver"
+msgstr "Lista prijemnika"
+
+#: index.php:1633 index1.php:1263 index_old.php:676 indexa.php:677
+msgid "Statistics"
+msgstr "Statistike"
+
+#: index.php:1636 index1.php:1266 index_old.php:683 indexa.php:684 log.php:146
+msgid "Log"
+msgstr "Dnevnik"
+
+#: index.php:1641 index1.php:1271 index_old.php:681 indexa.php:682
+msgid "Receivers"
+msgstr "Prijemnici"
+
+#: index.php:1648 index1.php:1278 index_old.php:685 indexa.php:686
+msgid "CTCSS map table"
+msgstr "CTCSS map tabela"
+
+#: index.php:1652 index1.php:1282
+msgid "My stations"
+msgstr "Moje stanice"
+
+#: index.php:1661 index1.php:1291 index_old.php:694 indexa.php:695
+msgid "Map"
+msgstr "Mapa"
+
+#: index.php:1714 index1.php:1344
+msgid "Active Nodes"
+msgstr "Aktivni čvorovi/linkovi"
+
+#: index.php:1720 index.php:2133 index1.php:1350
+msgid "Action menu"
+msgstr "Akcioni meni"
+
+#: index.php:1744 index1.php:253 index_old.php:209 indexa.php:210
+msgid "Is talker"
+msgstr "Govori"
+
+#: index.php:1744 index1.php:253 index_old.php:209 indexa.php:210
+msgid "Monitored TGs"
+msgstr "Nadgleda TG"
+
+#: index.php:1744 index1.php:253
+msgid "Start talk"
+msgstr "Početak razgovora"
+
+#: index.php:1744 index.php:5033 index1.php:253 index1.php:4199
+#: index_old.php:209 index_old.php:3203 indexa.php:210 indexa.php:3204
+#: list_reciver.php:84 list_reciver_2.php:58 list_reciver_old.php:55
+msgid "Talk time"
+msgstr "Trajanje razgovora"
+
+#: index.php:1758 index1.php:1389
+msgid "Talker"
+msgstr "Govornik"
+
+#: index.php:1761
+msgid "Dropped"
+msgstr "Pao"
+
+#: index.php:1783 index1.php:1409
+msgid "Active talkgroups"
+msgstr "Aktivne grupe za razgovor"
+
+#: index.php:1792 index1.php:1375 index1.php:1418 index_old.php:807
+#: indexa.php:808
+msgid "TG"
+msgstr ""
+
+#: index.php:1795 index.php:4750 index1.php:1421 index1.php:4039
+msgid "Nodes"
+msgstr "Čvorovi/linkovi"
+
+#: index.php:1831 index1.php:1457
+msgid "Player"
+msgstr "Plejer"
+
+#: index.php:1878 index1.php:1504 index_old.php:872 indexa.php:873
+msgid "repeat"
+msgstr "ponovi"
+
+#: index.php:1879 index1.php:1505 index_old.php:873 indexa.php:874
+msgid "shuffle"
+msgstr "izmiješaj"
+
+#: index.php:1880 index1.php:1506 index_old.php:874 indexa.php:875
+msgid "full screen"
+msgstr "puni zaslon"
+
+#: index.php:1934 index1.php:1560
+msgid "Select channel"
+msgstr "Odaberi kanal"
+
+#: index.php:1938 index1.php:1564 list_reciver.php:1424
+msgid "Default"
+msgstr "Zadano"
+
+#: index.php:1957 index1.php:1583 index_old.php:898 indexa.php:899
+msgid "Listen LIVE"
+msgstr "Slušaj uživo"
+
+#: index.php:1964 index1.php:1590 index_old.php:902 indexa.php:903
+msgid "Select date to listen"
+msgstr "Odaberi datum za slušanje"
+
+#: index.php:1969 index1.php:1595 index_old.php:904 indexa.php:905
+msgid "to use player you must login"
+msgstr "za korištenje plejera morate se prijaviti"
+
+#: index.php:1985
+msgid "Signal value from receiver"
+msgstr "Vrijednost signala sa prijemnika"
+
+#: index.php:2099 index1.php:1710 index_old.php:1022 indexa.php:1023
+#: log.php:173
+msgid "Filter"
+msgstr ""
+
+#: index.php:2165 index1.php:1777 index_old.php:1097 indexa.php:1098
+msgid "Talkgroup Name"
+msgstr "Naziv grupe za razgovor"
+
+#: index.php:2167 index1.php:1779 index_old.php:1099 indexa.php:1100
+msgid "Last active"
+msgstr "Posljednji aktivni"
+
+#: index.php:2276 index1.php:1889 index_old.php:1201 indexa.php:1202
+msgid "Coverage"
+msgstr "Pokrivenost"
+
+#: index.php:2279 index1.php:1892 index_old.php:1204 indexa.php:1205
+msgid "Show"
+msgstr "Prikaži"
+
+#: index.php:2280 index1.php:1893 index_old.php:1205 indexa.php:1206
+msgid "Remove"
+msgstr "Ukloni"
+
+#: index.php:2304 index1.php:1917 index_old.php:1229 indexa.php:1230
+msgid "Remove bars"
+msgstr "Ukloni rešetke"
+
+#: index.php:2306 index1.php:1919 index_old.php:1231 indexa.php:1232
+msgid "Remove ALL stations"
+msgstr "Ukloni sve stanice"
+
+#: index.php:2307 index1.php:1920 index_old.php:1232 indexa.php:1233
+msgid "Show Receivers"
+msgstr "Prikaži prijemnike"
+
+#: index.php:2312 index1.php:1925 index_old.php:1237 indexa.php:1238
+msgid "Toggle AutoFollow"
+msgstr "Uključi automatsko praćenje"
+
+#: index.php:2318 index1.php:1931 index_old.php:1243 indexa.php:1244
+msgid "Reload Map"
+msgstr "Ponono učitaj mapu"
+
+#: index.php:2358 index1.php:1971 index_old.php:1287 indexa.php:1288
+msgid "Station info for"
+msgstr "Informacije o stanici za"
+
+#: index.php:2376 index1.php:1989 index_old.php:1305 indexa.php:1306
+msgid "Version"
+msgstr "Verzija"
+
+#: index.php:2377 index1.php:1990 index_old.php:1306 indexa.php:1307
+msgid "CurrentTG"
+msgstr "Trenutna TG"
+
+#: index.php:2378 index1.php:1991 index_old.php:1307 indexa.php:1308
+msgid "Sysop"
+msgstr ""
+
+#: index.php:2399 index1.php:2012 index_old.php:1328 indexa.php:1329
+msgid "RX Name"
+msgstr "RX naziv"
+
+#: index.php:2401 index1.php:2013 index_old.php:1329 indexa.php:1330
+msgid "SqlType"
+msgstr "Skvelč tip"
+
+#: index.php:2420 index1.php:2032
+msgid "Show covreage"
+msgstr "Prikaži pokrivenost"
+
+#: index.php:2432
+msgid "Radiomobile"
+msgstr ""
+
+#: index.php:3221 index.php:3886 index1.php:2793 index_old.php:2087
+#: indexa.php:2088
+msgid "Total"
+msgstr "Ukupno"
+
+#: index.php:3250 index1.php:2822 index_old.php:2116 indexa.php:2117
+msgid "Year statistics"
+msgstr "Godišnja statistika"
+
+#: index.php:3331 index1.php:2902 index_old.php:2196 indexa.php:2197
+msgid "Talkgroup activity"
+msgstr "Aktivnost grupe za razgovor"
+
+#: index.php:3490 index.php:3514 index1.php:3046 index_old.php:2340
+#: indexa.php:2341
+msgid "Reflektor time in S"
+msgstr "Vrijeme reflektora u S"
+
+#: index.php:3592 index1.php:3148 index_old.php:2442 indexa.php:2443
+msgid "time"
+msgstr "vrijeme"
+
+#: index.php:3690
+msgid "Month activity"
+msgstr "Mjesečna aktivnost"
+
+#: index.php:3714
+msgid "Month activity "
+msgstr "Mjesečna aktivnost"
+
+#: index.php:3913 index1.php:3258 index_old.php:2552 indexa.php:2553
+msgid "Station activity"
+msgstr "Aktivnost stanice"
+
+#: index.php:4478 index1.php:3777 station_info.php:57
+msgid "Station infromation"
+msgstr "Informacija o stanici"
+
+#: index.php:4515 index1.php:3814
+msgid "Select station"
+msgstr "Odaberi stanicu"
+
+#: index.php:4558 index1.php:3857
+msgid "Passwords aren same"
+msgstr "Lozinke nisu iste"
+
+#: index.php:4570 index1.php:3869
+msgid "User already exist!"
+msgstr "Korisnik već postoji!"
+
+#: index.php:4574 index1.php:3873
+msgid "User is creadted!"
+msgstr "Korisnik je kreiran!"
+
+#: index.php:4599 index1.php:3898
+msgid "Firstname"
+msgstr "Ime"
+
+#: index.php:4601 index1.php:3900
+msgid "jay"
+msgstr ""
+
+#: index.php:4606 index1.php:3905
+msgid "Lastname"
+msgstr "Prezime"
+
+#: index.php:4608 index1.php:3907
+msgid "Shmit"
+msgstr ""
+
+#: index.php:4629 index1.php:3928
+msgid "info@test.nu"
+msgstr ""
+
+#: index.php:4636 index1.php:3935
+msgid "Password should be at least 8 characters"
+msgstr "Lozinka mora sadržavati najmanje 8 karaktera"
+
+#: index.php:4641 index1.php:3940
+msgid "Password (Confirm)"
+msgstr "Lozinka (potvrdi)"
+
+#: index.php:4643 index1.php:3942
+msgid "Please confirm password"
+msgstr "Potvrdi lozinku"
+
+#: index.php:4652 index1.php:3951
+msgid "Clear"
+msgstr "Čisto"
+
+#: index.php:4678 index1.php:3977 index_old.php:3084 indexa.php:3085
+msgid "Day"
+msgstr "Dan"
+
+#: index.php:4679 index1.php:3978 index_old.php:3085 indexa.php:3086
+msgid "Hour"
+msgstr "Sat"
+
+#: index.php:4680
+msgid "Month"
+msgstr "Mjesec"
+
+#: index.php:4681 index1.php:3979 index_old.php:3086 indexa.php:3087
+msgid "Year"
+msgstr "Godina"
+
+#: index.php:4783 index1.php:4069
+msgid "Hour chart"
+msgstr "Satni grafikon"
+
+#: index.php:4789 index.php:4869 index.php:4935 index1.php:4101
+#: index_old.php:3142 indexa.php:3143
+msgid "No Repeater Filter"
+msgstr "Bez filtera za repetitore"
+
+#: index.php:4790 index.php:4870 index.php:4936 index1.php:4102
+#: index_old.php:3143 indexa.php:3144
+msgid "Repeater"
+msgstr "Repetitor"
+
+#: index.php:4863
+msgid "Month chart"
+msgstr "Mjesečni grafikon"
+
+#: index.php:4968 index1.php:4134 index_old.php:3160 indexa.php:3161
+#: requset_reflector_login.php:1127
+msgid "No Talkgroup Filter"
+msgstr "Bez filtera grupe za razgovor"
+
+#: index.php:5025 index1.php:4191 index_old.php:3195 indexa.php:3196
+msgid "Toplist 10 days"
+msgstr "Top lista 10 dana"
+
+#: index.php:5072 index1.php:4234 index_old.php:923 index_old.php:3234
+#: indexa.php:924 indexa.php:3235
+msgid "Uptime"
+msgstr "Vrijeme rada"
+
+#: index.php:5073 index1.php:4234 index_old.php:3234 indexa.php:3235
+msgid "Network Usage 24 hour"
+msgstr "Korištenje mreže 24 sata"
+
+#: index.php:5074 index1.php:4234 index_old.php:3234 indexa.php:3235
+msgid "Usage last 24 hour"
+msgstr "Korištenje zadnja 24 sata"
+
+#: index.php:5076 index1.php:4234 index_old.php:3234 indexa.php:3235
+msgid "Most used receiver"
+msgstr "Najčešće korišten prijemnik"
+
+#: index1.php:1253
+msgid "Station informtation"
+msgstr "Informacija o stanici"
+
+#: index1.php:1376 index_old.php:808 indexa.php:809
+msgid "Ver"
+msgstr "Ver"
+
+#: index1.php:1377 index_old.php:809 indexa.php:810
+msgid "TGs"
+msgstr "TG"
+
+#: index1.php:1611 index_old.php:913 indexa.php:914
+msgid "Signal value  from Reciver"
+msgstr "Vrijednost signala sa prijemnika"
+
+#: index1.php:3070 index_old.php:2364 indexa.php:2365
+msgid "Hour activity "
+msgstr "Aktivnost po satu"
+
+#: index1.php:3926
+msgid "Email"
+msgstr "E-pošta"
+
+#: index_old.php:209 indexa.php:210
+msgid "Active RX"
+msgstr "Aktivni RX"
+
+#: index_old.php:502 indexa.php:503
+msgid "Login sucsess"
+msgstr "Uspješna prijava"
+
+#: index_old.php:761 indexa.php:762
+msgid " Reflector clients"
+msgstr "Klijenti reflektora"
+
+#: index_old.php:785 index_old.php:900 index_old.php:1026 index_old.php:1035
+#: index_old.php:1069 index_old.php:1258 index_old.php:3076 indexa.php:786
+#: indexa.php:901 indexa.php:1027 indexa.php:1036 indexa.php:1070
+#: indexa.php:1259 indexa.php:3077
+msgid "Toggle menu"
+msgstr "Prebaci meni"
+
+#: index_old.php:820 indexa.php:821
+msgid "QSO Monitor"
+msgstr "Praćenje QSOa"
+
+#: index_old.php:921 indexa.php:922
+msgid "Name"
+msgstr "Ime"
+
+#: index_old.php:922 indexa.php:923
+msgid "Openings"
+msgstr "Otvori"
+
+#: index_old.php:1100 indexa.php:1101
+msgid "Time Total"
+msgstr "Ukupno vrijeme"
+
+#: index_old.php:3063 indexa.php:3064
+msgid "Statistics for Network"
+msgstr "Statistika za mrežu"
+
+#: list_reciver.php:16 list_reciver_2.php:16 list_reciver_old.php:15
+msgid "Receiver Monitor"
+msgstr "Monitor prijemnika"
+
+#: list_reciver.php:1425 list_reciver_2.php:668 list_reciver_old.php:458
+msgid "Talkgroup filter"
+msgstr "Filter grupe za razgovor"
+
+#: list_reciver.php:1426
+msgid "All active"
+msgstr "Svi aktivni"
+
+#: list_reciver.php:1433
+msgid "Search for Node"
+msgstr "Pretraži čvor/link"
+
+#: log.php:191
+msgid "Repeater actions"
+msgstr "Akcije repetitora"
+
+#: log.php:198
+msgid "S-values"
+msgstr "S-jedinice"
+
+#: log.php:346
+msgid "Ended talk on tg"
+msgstr "Završen razgovor na tg"
+
+#: log.php:352
+msgid " is active, signal level"
+msgstr "je aktivan, vrijednost signala"
+
+#: log.php:362
+msgid "has dropped  from reflector"
+msgstr "je diskonektovan sa reflektora"
+
+#: log.php:364
+msgid "has connected to  reflector"
+msgstr "je konektovan na reflektor"
+
+#: radiomobile.php:109
+msgid "Uplad sucess!"
+msgstr "Učitavanje uspješno!"
+
+#: radiomobile.php:124
+msgid "Error"
+msgstr "Greška"
+
+#: radiomobile_front.php:77
+#, fuzzy
+#| msgid "Admin interface"
+msgid "Radiomobile interfejs"
+msgstr "Admin interfejs"
+
+#: radiomobile_front.php:93
+msgid "Select radiomobile zip file  to upload"
+msgstr "Odaberi radiomobilni zip fajl za učitavanje"
+
+#: radiomobile_front.php:98
+msgid "upload Zip file"
+msgstr "Učitaj zip fajl"
+
+#: radiomobile_front.php:98
+msgid "submit"
+msgstr "Potvrdi"
+
+#: radiomobile_front.php:109
+msgid "Not admin"
+msgstr "Nije admin"
+
+#: requset_reflector_login.php:289
+msgid "Station already exist!"
+msgstr "Stanica već postoji!"
+
+#: requset_reflector_login.php:296
+msgid "Thanks for your registration an admin will contact you soon"
+msgstr "Hvala na registraciji, administrator će vas uskoro kontaktirati"
+
+#: requset_reflector_login.php:385
+msgid "Network acsess"
+msgstr "Mrežni pristup"
+
+#: requset_reflector_login.php:407
+msgid "My Stations"
+msgstr "Moje stanice"
+
+#: requset_reflector_login.php:410
+msgid "Request repeater Login"
+msgstr "Zatraži prijavu repetitora"
+
+#: requset_reflector_login.php:414
+msgid "Generate node_info.json"
+msgstr "Generiši node_info.json"
+
+#: requset_reflector_login.php:419
+msgid "Generate svx.config parameters"
+msgstr "Generiši svx.config paramatre"
+
+#: requset_reflector_login.php:447
+msgid "Lastseen"
+msgstr "Zadnje viđeno"
+
+#: requset_reflector_login.php:448
+msgid "Svxlink version"
+msgstr "Svxlink verzija"
+
+#: requset_reflector_login.php:449
+msgid "Send Command"
+msgstr "Pošalji komandu"
+
+#: requset_reflector_login.php:490
+msgid "Send DTMF to node"
+msgstr "Pošalji DTMF na čvor/link"
+
+#: requset_reflector_login.php:493
+msgid "Send Command to Nod"
+msgstr "Pošalji komandu na čvor/link"
+
+#: requset_reflector_login.php:496
+msgid "Edit Repeater"
+msgstr "Uredi repetitor"
+
+#: requset_reflector_login.php:507 station_dash.php:342
+msgid "Station Dashboard"
+msgstr "Nadzorna ploča stanice"
+
+#: requset_reflector_login.php:527
+msgid "Svxlink updated"
+msgstr "Svxlink je ažuriran"
+
+#: requset_reflector_login.php:530
+msgid "New svxlink version avabel"
+msgstr "Dostupna nova svxlink verzija"
+
+#: requset_reflector_login.php:533
+msgid "Node disconnected"
+msgstr "Čvor/link diskonektovan"
+
+#: requset_reflector_login.php:593
+msgid "User Credentals"
+msgstr "Korisničke dozvole"
+
+#: requset_reflector_login.php:597
+msgid "Email address"
+msgstr "Adresa e-pošte"
+
+#: requset_reflector_login.php:600
+msgid "Enter email"
+msgstr "Upiši e-poštu"
+
+#: requset_reflector_login.php:638
+msgid "Register User"
+msgstr "Registruj korisnika"
+
+#: requset_reflector_login.php:658
+msgid "Repater information"
+msgstr "Podaci o repetitoru"
+
+#: requset_reflector_login.php:661
+msgid "Station location ( Area )"
+msgstr "Lokacija stanice (područje)"
+
+#: requset_reflector_login.php:664
+msgid "Node location"
+msgstr "Lokacija čvora/linka"
+
+#: requset_reflector_login.php:671
+msgid "System operator"
+msgstr "Sistemski operator"
+
+#: requset_reflector_login.php:691
+msgid "Tone To Talkgroup Mapping"
+msgstr "Ton za mapiranje na grupu za razgovor"
+
+#: requset_reflector_login.php:698
+msgid "CTCSS"
+msgstr ""
+
+#: requset_reflector_login.php:719
+msgid "#TG"
+msgstr ""
+
+#: requset_reflector_login.php:761
+msgid "QTH Settings"
+msgstr "QTH podešavanja"
+
+#: requset_reflector_login.php:893
+msgid "Location name"
+msgstr "Naziv lokacije"
+
+#: requset_reflector_login.php:896
+msgid "Stockholm"
+msgstr "Živinice"
+
+#: requset_reflector_login.php:902
+msgid "Latitude"
+msgstr "Latituda"
+
+#: requset_reflector_login.php:914
+msgid "Longitude"
+msgstr "Longituda"
+
+#: requset_reflector_login.php:924
+msgid "Locator"
+msgstr "Lokator"
+
+#: requset_reflector_login.php:933
+msgid "Tx Letter \"Get From svxlink.conf\""
+msgstr "TX slovo (provjeriti u svxlink.conf)"
+
+#: requset_reflector_login.php:943
+msgid "RX letter \"Get From svxlink.conf\""
+msgstr "RX slovo (provjeriti u svxlink.conf)"
+
+#: requset_reflector_login.php:953
+msgid "Sql type"
+msgstr "Tip skvelča"
+
+#: requset_reflector_login.php:967
+msgid "Transmitter Power w"
+msgstr "Snaga emitovanja u W"
+
+#: requset_reflector_login.php:977
+msgid "Antenna Directon"
+msgstr "Smjer antene"
+
+#: requset_reflector_login.php:988
+msgid "Antenna Height"
+msgstr "Visina antene"
+
+#: requset_reflector_login.php:998
+msgid "Antenna Description"
+msgstr "Opis antene"
+
+#: requset_reflector_login.php:1007
+msgid "TX Frequency"
+msgstr "TX frekvencija"
+
+#: requset_reflector_login.php:1016
+msgid "RX Frequency"
+msgstr "RX frekvencija"
+
+#: requset_reflector_login.php:1030
+msgid "Parameters dor Svxlink.conf"
+msgstr "Parametri iz svxlink.conf"
+
+#: requset_reflector_login.php:1034 requset_reflector_login.php:1044
+msgid "Parameter"
+msgstr "Parametar"
+
+#: requset_reflector_login.php:1079
+msgid "Generate JSON / Paramters"
+msgstr "Generiši JSON parametre"
+
+#: requset_reflector_login.php:1118
+msgid "Select talkgroups to monitor"
+msgstr "Označi praćenje grupa za razgovor"
+
+#: requset_reflector_login.php:1149
+msgid "Generate config"
+msgstr "Generiši konfiguraciju"
+
+#: station_dash.php:279
+msgid "No station id"
+msgstr "ID broj stanice"
+
+#: station_info.php:145
+msgid "DTMF Command"
+msgstr "DTMF komanda"
+
+#: station_info.php:247
+msgid "Radio"
+msgstr ""
+
+#: station_info.php:268
+msgid "Logic status"
+msgstr "Status logike"
+
+#~ msgid "Live Log"
+#~ msgstr "Log uživo"
+
+#~ msgid "Card"
+#~ msgstr "Kartica"
+
+#~ msgid "RSSI"
+#~ msgstr "RSSI"
+
+#~ msgid "S-Value"
+#~ msgstr "S-vrijednost"
+
+#~ msgid "Tempeure"
+#~ msgstr "Temperatura"
+
+#~ msgid "SWR alarm"
+#~ msgstr "SWR alarm"
+
+#~ msgid "AC alarm"
+#~ msgstr "AC alarm"
+
+#~ msgid "PA alarm"
+#~ msgstr "PA alarm"
+
+#, fuzzy
+#~| msgid "Battery"
+#~ msgid "On battery"
+#~ msgstr "Baterija"
+
+#~ msgid "Tempeture"
+#~ msgstr "Temperatura"
+
+#~ msgid "Battery"
+#~ msgstr "Baterija"
+
+#~ msgid "alarm"
+#~ msgstr "alarm"
+
+#~ msgid "Show covrige"
+#~ msgstr "Prikaži pokrivenost"
+
+#~ msgid "Chart"
+#~ msgstr "Grafikon"
+
+#~ msgid "Pie"
+#~ msgstr "Pie"
+
+#~ msgid "Svxportal  Reflector clients"
+#~ msgstr "Svxportal klijenti reflektora"
+
+#~ msgid "Svxportal Talkgroups"
+#~ msgstr "Svxportal grupe za razgovor"
+
+#~ msgid "Time"
+#~ msgstr "Vrijeme"
+
+#~ msgid "Svxportal Log"
+#~ msgstr "Svxportal dnevnik"
+
+#~ msgid "Toggle menu<"
+#~ msgstr "Prebaci meni"
