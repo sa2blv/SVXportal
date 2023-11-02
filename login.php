@@ -10,7 +10,7 @@ $password = $link->real_escape_string($password);
 $password_hash = md5($password);
 
 
-$result = mysqli_query($link, "SELECT id,is_admin,level  FROM `users`  WHERE Username = '".$username."' AND Password='".$password_hash."'  ");
+$result = mysqli_query($link, "SELECT id,is_admin,level ,image_url   FROM `users`  WHERE Username = '".$username."' AND Password='".$password_hash."'  ");
 
 
 
@@ -23,6 +23,7 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
         $_SESSION["level"] = $row['level'];
         $_SESSION["is_admin"] = $row['is_admin'];
         $_SESSION["Username"] = $username;
+        $_SESSION["User_image"] = $row['image_url'];
         echo "true";
     }
     else

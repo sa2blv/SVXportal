@@ -14,12 +14,11 @@ These instructions will get you a copy of the project up and running on your loc
 
 
 ```
-* php5 and larger
-* mysql
-* apache2 or ngnx
+* php5 or larger
+* MySQL
+* Apache2 or ngnx
 * crontab
-* screen 
-```
+* screen```
 
 Step 1: Update your system
 ```
@@ -30,21 +29,22 @@ sudo apt-get install mysql-server mysql-client libmysqlclient-dev
 Step 3: Install Apache server
 
 sudo apt-get install apache2 apache2-doc apache2-npm-prefork apache2-utils libexpat1 ssl-cert
-Step 4: Install PHP (php7.0 latest version of PHP)
+Step 4: Install PHP 
 
-sudo apt-get install libapache2-mod-php7.0 php7.0 php7.0-common php7.0-curl php7.0-dev php7.0-gd php-pear php-imagick php7.0-mcrypt php7.0-mysql php7.0-ps php7.0-xsl
-Step 5: Install Phpmyadmin(for database)
 
-sudo apt-get install phpmyadmin
-```
+Step 5: Install Phpmyadmin(for database not requierd )
 
-Alternativly use the combined lamp server 
-
-sudo tasksel install lamp-server
 
 ```
 
-### Installing
+### for installing check this guide 
+
+
+https://www.granudden.info/Ham/Repeatrar/Dokument/SvxPortal2.5.pdf
+
+
+
+### Installing advance
 
 1. clone or donload the files to your www location
    ex /var/www/html.
@@ -61,13 +61,16 @@ this requirer that you hav setup an database / user in mysql
 
 "this is an examle of Mysql user setup"
 
-4. add this line to your corntab
+4. Open your browser ang go to 
+http://yoururl/install.php and follow the instructions.
+if yo want to upgrade from an previus version use
+http://yoururl/update.php
 
-@reboot sleep 60 && screen  -d -m bash -c  'cd /var/www/ ; watch -n 1  php logdeamon.php;'
-@reboot sleep 60 && screen  -d -m bash -c  'cd /var/www/ ; watch -n 20  php station_heartbeat.php;'
 
 
-please note that the folder /var/www/ shall be your instalation folder.
+
+
+
 
 5. reboot or manualy start 
 
@@ -78,5 +81,7 @@ screen  -d -m bash -c  'cd /var/www/ ; watch -n 1  php logdeamon.php;'
 ```
 
 ## License
+
+
 
 

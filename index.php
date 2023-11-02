@@ -335,6 +335,71 @@ $(document).ready(function(){
 
 
 
+<<<<<<< HEAD
+=======
+
+	      // javascipt links to page tabs
+		  let url = location.href.replace(/\/$/, "");
+		  
+		  if (location.hash) {
+		    const hash = url.split("#");
+
+		    $('#Reflector').removeClass("active");
+		    $('#'+hash[1]+'').tab("show");
+		    url = location.href.replace(/\/#/, "#");
+		    history.replaceState(null, null, url);
+		    setTimeout(() => {
+		      $(window).scrollTop(0);
+
+				console.log(hash[1]);
+				if(hash[1] == "map_repeater")
+				{
+					hide_menu_click();
+					setTimeout(function(){
+							map.updateSize();
+							connect_reflector();
+					   },300); 
+
+				}
+				if(hash[1] == "Statistics")
+				{
+					get_statistics();
+
+				}
+				if(hash[1] == "listen")
+				{
+					hide_menu_click();
+					player_move();
+					get_audio_date();
+
+					
+					
+
+				}
+				if(hash[1] == "Table_ctcss")
+				{
+					Load_ctcss_mapping();
+
+					
+					
+
+				}
+				
+
+
+				
+				
+				if(hash[2] == "menu_hide")
+				{
+				      $( "#wrapper" ).removeClass( "toggled" );
+				}
+
+				fix_sidemeny_active(hash[1]);
+				
+
+
+
+>>>>>>> master
 				
 
 
@@ -459,6 +524,7 @@ function reflector_handler()
     	var date = new Date().toLocaleTimeString();
     	
     	console.log("Demon running "+date);
+<<<<<<< HEAD
 
 
     	get_active_last();
@@ -468,6 +534,14 @@ function reflector_handler()
 
 
 
+=======
+  	  }
+    }).fail(function() { console.log("Data eror"); interval = setTimeout(reflector_handler, 800);    });
+
+
+
+
+>>>>>>> master
 }
 function create_bar_rx(value,element,rx_sql)
 {
@@ -528,7 +602,11 @@ var talkgroups_active = new Array();
 for(var k in data.nodes)
 {
 		
+<<<<<<< HEAD
 	    if(data.nodes[k].hidden == true && secret_santa == 0 && data.nodes[k].isTalker != true ) 
+=======
+	    if(data.nodes[k].hidden == true && secret_santa == 0) 
+>>>>>>> master
 	    {
 	    	delete data.nodes[k];
 	    }
@@ -673,7 +751,11 @@ for(var k in data.nodes){
         if(data.nodes[k].isTalker == false)
     	{
         	$('#Reflektortable_row_'+k).removeClass( "table-info" );
+<<<<<<< HEAD
         	$('#Reflektortable_row_'+k).html('<td class="text-nowrap" onclick="go_to_station(\''+k+'\')" style="cursor: pointer;">'+k+'</td>'+'<td '+tg_open_str+' '+is_resstricted_collor+'>'+data.nodes[k].tg+'</td>'+'<td class="red_collor"><?php echo _("NO")?></td><td class="text-primary">'+text+'</td><td></td><td></td>');
+=======
+        	$('#Reflektortable_row_'+k).html('<td class="text-nowrap" onclick="go_to_station(\''+k+'\')" style="cursor: pointer;">'+k+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td class="red_collor"><?php echo _("NO")?></td><td class="text-primary">'+text+'</td><td></td><td></td>');
+>>>>>>> master
 
     	 	 totalSeconds[k]=0;
     
@@ -685,7 +767,11 @@ for(var k in data.nodes){
             	
     		//tr class="table-info">
     		var idns = k;
+<<<<<<< HEAD
     		$('#Reflektortable_row_'+k).html('<td class="text-nowrap" onclick="go_to_station(\''+k+'\')" style="cursor: pointer;">'+k+'</td>'+'<td '+tg_open_str+' '+is_resstricted_collor+'>'+data.nodes[k].tg+'</td>'+'<td class="green_collor" ><?php echo _("YES")?></td><td class="text-primary">'+text+'</td><td><label id="Start_talk_'+k+'"></label></td><td  class="d-none d-md-table-cell" ><label id="minutes_'+idns+'">00</label>:<label id="seconds_'+idns+'">00</label></td>');
+=======
+    		$('#Reflektortable_row_'+k).html('<td class="text-nowrap" onclick="go_to_station(\''+k+'\')" style="cursor: pointer;">'+k+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td class="green_collor" ><?php echo _("YES")?></td><td class="text-primary">'+text+'</td><td><label id="Start_talk_'+k+'"></label></td><td  class="d-none d-md-table-cell" ><label id="minutes_'+idns+'">00</label>:<label id="seconds_'+idns+'">00</label></td>');
+>>>>>>> master
     		$('#Reflektortable_row_'+k).addClass( "table-info" );
     
              totalSeconds[k]++;
@@ -830,12 +916,15 @@ function listen_live_external()
 
 	window.open(station_url+".m3u", "_blank", ""); 
 }
+<<<<<<< HEAD
 function open_tg_window(tg)
 {
 	 window.open("last_heard_page.php?TG="+tg, "_blank", "toolbar=no,scrollbars=yes,resizable=yes,width=800,height=800"); 
 	
 }
 
+=======
+>>>>>>> master
 
 
 
@@ -2745,9 +2834,14 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 								
 								?>
 								
+<<<<<<< HEAD
 								<button type="button" class="btn btn-secondary" id="Show_radiomobile_button">
 									<?php echo _('Radiomobile')?>
 								</button>
+=======
+								<button type="button" class="btn btn-secondary" id="Show_radiomobile_button"
+										><?php echo _('Radiomobile')?></button>
+>>>>>>> master
 
 						
 								
@@ -3039,7 +3133,11 @@ function update_tx_station(lat,lon,idn,tg,label,active,talker)
     	var newZoom = map.getView().getZoom();
 
 
+<<<<<<< HEAD
     	if(newZoom >= 7 && disable_text_map == 0)
+=======
+    	if(newZoom >= 7)
+>>>>>>> master
     	{
     		lablel_text = label;
     	}
@@ -3278,8 +3376,11 @@ function update_text_byid(id,text,sql)
 function add_repeater_node(lat, lon,label,idn)
 {
 
+<<<<<<< HEAD
 	
 
+=======
+>>>>>>> master
 
 
 	addmarker(0,lat, lon,label,"aa"+idn);
@@ -3401,7 +3502,11 @@ function prosess_json_reflecktor()
     
 		for(var k in data.nodes){
 			
+<<<<<<< HEAD
 		    if(data.nodes[k].hidden == true && secret_santa == 0 && data.nodes[k].isTalker != true)
+=======
+		    if(data.nodes[k].hidden == true && secret_santa == 0)
+>>>>>>> master
 		    {
 		    	delete data.nodes[k];
 		    	
@@ -3441,9 +3546,13 @@ function prosess_json_reflecktor()
 
    
     				
+<<<<<<< HEAD
     				var name =  k+" "+data.nodes[k].qth[qth].name;
     				console.log(data.nodes[k].qth[qth].rx[qth1].name);
     				
+=======
+    				var name = k+" "+data.nodes[k].qth[qth].rx[qth1].name;
+>>>>>>> master
     				var talkgroup =data.nodes[k].tg;
     				var idn=k+qth1;
     				console.log(idn);
@@ -4033,6 +4142,212 @@ function get_statistics_hour()
 	  });
 }
 var set_mounth_station ="";
+<<<<<<< HEAD
+=======
+
+function set_repater_statics_mounth()
+{
+
+	set_mounth_station = $('#filterpicker_repeater_mouth :selected').val();
+	get_statistics_month();
+
+
+}
+
+
+
+function get_statistics_month()
+{
+
+	$('#canvas_grap_holder2').html("");
+	$('#canvas_grap_holder2').html('<canvas id="Graph_month" width="400px" height="400px"></canvas>');
+	var canvas = document.getElementById('Graph_month')
+	canvas.width = canvas.width; 
+	var ctx = document.getElementById('Graph_month').getContext('2d');
+	var barDatafromJSON;
+	var date_value = $('#Datepicker_graph').val();
+
+    var barDatafromJSON= {
+    	labels: [''],
+    	datasets: [
+    	]
+    
+    };
+
+
+
+    date_value  = date_value.slice(0, -3);
+	$.get( "get_statistics.php", { date_m: date_value, totalmount:"true",station: set_mounth_station} )
+	  .done(function( data ) {
+		  var jsondata = JSON.parse(data); 
+		  console.log(jsondata);
+		 
+
+
+	    	
+		  var i =0;
+		  // fuling fÃ¶r time 0-24
+		  var data_to_set = new Array();
+		  var labels = new Array();
+		  var collor = new Array();
+
+		  for(var talkgroup in jsondata)
+		  {
+
+		      data_to_set[talkgroup] ={x:talkgroup, y:parseInt(jsondata[talkgroup].unixtime)};
+			  labels[talkgroup] =jsondata[talkgroup].day;
+		
+  
+			  
+		  }
+
+
+		  
+
+		    var barDatafromJSON= {
+		        	labels: labels,
+		        	datasets: [
+		        		{
+		    			label: '<?php echo _("Month activity")?>',
+						backgroundColor: "#6495ED",
+						borderColor: "#6495ED",
+						fill: false,
+						data: data_to_set
+		        		}
+		    ]
+		    };
+	
+
+
+		    		  
+
+		  window.myLine = new Chart(ctx, {
+				type: 'line',
+				data: barDatafromJSON,
+				options: {
+					responsive: true,
+					maintainAspectRatio: false,
+					legend: {
+						position: 'top',
+					},
+					title: {
+						display: true,
+						text: '<?php echo _("Month activity ")?>'+$('#Datepicker_graph').val()
+					},
+					scales: {
+			            yAxes: [{
+			                ticks: {
+			                    // Include a dollar sign in the ticks
+			                    callback: function(value, index, values) {
+			                        return secondsToDHMS( value);
+			                    }
+			                }
+			            }]
+			        },
+					tooltips: {
+			            // Disable the on-canvas tooltip
+			            enabled: true,
+			            
+		            callbacks: {
+		                label: function(tooltipItem, data) {
+		                    var label = data.datasets[tooltipItem.datasetIndex].label;
+		                    var talktime = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].y;
+		          
+				
+							
+		                    if (label) {
+		                        label += ': ';
+		                    }
+		                    label += secondsToDHMS(talktime);
+		                    return label;
+		                }
+		            }
+				   }
+				}
+				
+					
+				
+			});
+<?php 
+/*
+		  
+			if(show_all_tg ==1 )
+			{
+				var talkgropoup_array = new Array();
+
+				  for (time = 0; time < 24;time++) 
+				  {
+					  
+					  for(var talkgroup in jsondata[time].TG)
+					  {
+						  if(talkgropoup_array[talkgroup] == 'undefined' || !(talkgropoup_array[talkgroup] instanceof Array) )
+						  {
+						 	 talkgropoup_array[talkgroup]= new Array();
+						  }
+						  
+						  if(jsondata[time].TG[talkgroup] <= 0)
+						  {
+							  talkgropoup_array[talkgroup][time] ={x: time, y:0};
+						  }
+						  else
+						  {
+							  talkgropoup_array[talkgroup][time] = {x:time  ,y: jsondata[time].TG[talkgroup]};
+						  }
+					  }
+						  
+
+				  }
+
+				  for(var talkgroup in talkgropoup_array)
+				  {
+
+				    	if(tg_collors[talkgroup] == null)
+				    	{
+				    		tg_collors[talkgroup]= new Array();
+				    		tg_collors[talkgroup]["id"] =talkgroup;
+				    		tg_collors[talkgroup]["color"] =random_css_collor();
+				    		tg_collors[talkgroup]["TXT"] ="";
+				    	}
+
+				    	
+
+						var newDataset = {
+		    					label: talkgroup+ ' <?php echo _('time')?>',
+		    					backgroundColor: tg_collors[talkgroup]['color'].trim(),
+		    					borderColor:  tg_collors[talkgroup]['color'].trim(),
+		    					fill: false,
+		    					data: talkgropoup_array[talkgroup]
+		    				};
+		
+		    		
+
+		    				
+				
+		
+		    					barDatafromJSON.datasets.push(newDataset);
+
+
+								  
+					 
+
+				  }
+				  window.myLine.update();
+
+				  
+				  //console.log(talkgropoup_array[240]);
+
+				
+				
+			}
+
+		  */
+		  ?>
+
+	  });
+}
+
+
+>>>>>>> master
 
 function set_repater_statics_mounth()
 {
@@ -4056,6 +4371,7 @@ function get_statistics_mounth()
 	var barDatafromJSON;
 	var date_value = $('#Datepicker_graph').val();
 
+<<<<<<< HEAD
 
     var barDatafromJSON= {
     	labels: [''],
@@ -4111,6 +4427,37 @@ window.myBara = new Chart(ctx, {
 	}
 });
 
+=======
+	
+		  for(var station in Stations_json.data)
+		  {
+			  console.log(Stations_json.data[j]);
+			  Stations_timesum[j]=0;
+			  Stations_timesum[j] = Stations_json.data[j].time;
+			  total_time_secunds = total_time_secunds+ parseInt(Stations_json.data[j].time);
+			  console.log(Stations_json.data[j].time);
+			  Stations[j] =  Stations_json.data[j].call;
+			  if(node_collors[Stations_json.data[j].call]["color"] != null)
+			  {
+			  	Stations_collor[j] = node_collors[Stations_json.data[j].call]["color"].trim();
+			  }
+			  else
+			  {
+			  	Stations_collor[j] = Hex_random_css_collor();
+			  }
+			  var preccent= (((Stations_json.data[j].time)/86400) * 100).toFixed(3);
+			  total_present=total_present+parseFloat(preccent);
+			  var preccent_network= (((Stations_json.data[j].time)/Stations_json.total_secounds) * 100).toFixed(3);
+			  
+			  $("#nodes_activity > tbody").append('<tr><td><span class="text-nowrap">'+Stations_json.data[j].call+'</span></td><td>'+Stations_json.data[j].Secound+"</td><td>"+preccent_network+"%</td><td class=\"d-none  d-md-table-cell\">"+preccent+"%</td><td  class=\"d-none  d-md-table-cell\">"+Stations_json.data[j].reciver+"</td></tr>");
+			  j++;
+
+			 
+		  }
+		  console.log(total_time_secunds);
+		  $("#nodes_activity > tfoot").append('<tr><td><?php echo _('Total')?></td><td>'+secondsToDayHMS(total_time_secunds)+'</td><td></td><td class=\"d-none  d-md-table-cell\" >'+total_present.toFixed(2)+'%</td><td class=\"d-none  d-md-table-cell\"></td></tr>');
+		
+>>>>>>> master
 	
 	$.get( "get_statistics.php", { date: date_value , cahce_mouth_tg : '1'} )
 	  .done(function( data ) {
@@ -5190,12 +5537,21 @@ function add_tx_station()
 			    console.log(data.nodes[k]);
 		    	delete data.nodes[k];
 	
+<<<<<<< HEAD
 		    }
 		    if ( k.includes("/")) {
 				var new_call = k.replace("/",'-');
 		    	data.nodes[new_call] = data.nodes[k]; 
 		        delete data.nodes[k];
 		    }
+=======
+		    }
+		    if ( k.includes("/")) {
+				var new_call = k.replace("/",'-');
+		    	data.nodes[new_call] = data.nodes[k]; 
+		        delete data.nodes[k];
+		    }
+>>>>>>> master
 		    
 		}
 		
@@ -5219,6 +5575,7 @@ function add_tx_station()
         			
         				//console.log(name);
         				
+<<<<<<< HEAD
         				
         				
         
@@ -5231,6 +5588,11 @@ function add_tx_station()
         						add_repeater_transmiter(lat,lon,name,idn,talkgroup)
             				}
             				
+=======
+        
+        				add_repeater_transmiter(lat,lon,name,idn,talkgroup)
+        		
+>>>>>>> master
         				// tempoary fix if useing mor than 1 transmitter on same qth
         				setmap(lat, lon,8);
         				break;
@@ -5299,7 +5661,11 @@ function update_tx_station_loop(data)
 				idn =idn.replace(/ /g,"_");
 
 				if(isNaN(parseFloat(lat)) == false && isNaN(parseFloat(lon)) == false )
+<<<<<<< HEAD
 				  update_tx_station(lat,lon,idn,talkgroup,name,active,data.nodes[k].isTalker);
+=======
+				  update_tx_station(lat,lon,idn,talkgroup,name,active);
+>>>>>>> master
 		        	
 
 		        }
@@ -5801,7 +6167,11 @@ function fnExcelexport(table)
         
                        <ul class="nav  navbar-expand">
                       	<li class="nav-link  active"><a data-toggle="tab" onclick="$('#ssas a.active').removeClass('active');get_statistics();" href="#dastaty"><i class="far fa-circle"></i> <?php echo _("Day")?></a></li>
+<<<<<<< HEAD
                       	<li class="nav-link "><a data-toggle="tab" onclick="$('#ssas a.active').removeClass('active');get_statistics_hour();get_station_chat();" href="#menu_hour"><i class="far fa-circle"></i> <?php echo _("Hour")?></a></li>
+=======
+                      	<li class="nav-link "><a data-toggle="tab" onclick="$('#ssas a.active').removeClass('active');get_statistics_hour()" href="#menu_hour"><i class="far fa-circle"></i> <?php echo _("Hour")?></a></li>
+>>>>>>> master
                       	<li class="nav-link "><a data-toggle="tab" onclick="$('#ssas a.active').removeClass('active');get_statistics_month()" href="#menu_month"><i class="far fa-circle"></i> <?php echo _("Month")?></a></li>
                       	<li class="nav-link "><a data-toggle="tab" onclick="$('#ssas a.active').removeClass('active');get_year_static()" href="#menu_year"><i class="far fa-circle"></i> <?php echo _("Year")?></a></li>
     
@@ -5816,7 +6186,11 @@ function fnExcelexport(table)
        					  <button class="prev-day btn btn-outline-secondary"  onclick="change_day_prew()" id="prev-day"><i class="fa fa-angle-left" aria-hidden='true' ></i></button>
        					</div>
        					<div class="col-8 col-xl-10">
+<<<<<<< HEAD
        					  <input style="margin-left: 5px" type="text" id="Datepicker_graph" value="<?php echo date("Y-m-d")?>" onchange="get_statistics();get_statistics_hour();change_data_date();" class="form-control" >
+=======
+       					  <input style="margin-left: 5px" type="text" id="Datepicker_graph" value="<?php echo date("Y-m-d")?>" onchange="get_statistics();get_statistics_hour();get_statistics_month();" class="form-control" >
+>>>>>>> master
         				</div>
         				<div class="col-2 col-xl-1">
     					  <button style="margin-left: " class='next-day btn btn-outline-secondary' onclick="change_day_next()" ><i class='fa fa-angle-right' aria-hidden='true'></i></button>
@@ -6037,6 +6411,7 @@ function fnExcelexport(table)
                 			
                 			
             	 	
+<<<<<<< HEAD
             	 
    
    
@@ -6102,6 +6477,9 @@ function fnExcelexport(table)
    </div>
    
    <?php }?>
+=======
+            	 	</div>
+>>>>>>> master
             	 
             	 </div>
             	 

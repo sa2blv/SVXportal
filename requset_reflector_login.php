@@ -498,10 +498,22 @@ function update_mqtt_user()
   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
 <?php 
+<<<<<<< HEAD
+
+$svxlink_versonfile =  file_get_contents("https://raw.githubusercontent.com/sm0svx/svxlink/master/src/versions", 0, stream_context_create(["http"=>["timeout"=>1]]));
+$svxlink_verson_array =parse_ini_string($svxlink_versonfile);
+=======
+>>>>>>> master
 
 $svxlink_versonfile =  file_get_contents("https://raw.githubusercontent.com/sm0svx/svxlink/master/src/versions", 0, stream_context_create(["http"=>["timeout"=>1]]));
 $svxlink_verson_array =parse_ini_string($svxlink_versonfile);
 
+
+Get_version_from_json();
+
+
+
+?>
 
 Get_version_from_json();
 
@@ -607,6 +619,23 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 
   </tbody>
 </table>
+
+<span class="mr-2">
+<i class="fas fa-circle text-success"></i> <?php echo _('Svxlink updated');?>     
+ </span>
+<span class="mr-2">
+<i class="fas fa-circle text-warning"></i> <?php echo _('New svxlink version avabel');?>                        
+ </span>
+ <span class="mr-2">
+<i class="fas fa-circle text-info"></i> <?php echo _('Node disconnected');?>                        
+ </span>
+ 
+
+
+
+
+
+
 
 
   <div id="mqtt" class="modal fade" role="dialog">

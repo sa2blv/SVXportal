@@ -128,17 +128,43 @@ CREATE TABLE `RefletorNodeLOG` (
 -- Tabellstruktur `RefletorStations`
 --
 
+--
+-- Tabellstruktur `RefletorStations`
+--
+
 CREATE TABLE `RefletorStations` (
-  `ID` int(11) NOT NULL,
+  `ID` int NOT NULL,
   `Callsign` varchar(40) CHARACTER SET utf8 COLLATE utf8_swedish_ci NOT NULL,
   `Location` text NOT NULL,
   `Collor` text,
   `Last_Seen` datetime DEFAULT NULL,
-  `Station_Down` int(11) NOT NULL,
-  `Station_Down_timmer_count` int(11) NOT NULL,
-  `Monitor` int(11) NOT NULL DEFAULT '1'
+  `Station_Down` int NOT NULL,
+  `Station_Down_timmer_count` int NOT NULL,
+  `Monitor` int NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Index för dumpade tabeller
+--
+
+--
+-- Index för tabell `RefletorStations`
+--
+ALTER TABLE `RefletorStations`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Callsign` (`Callsign`),
+  ADD KEY `Callsign_2` (`Callsign`);
+
+--
+-- AUTO_INCREMENT för dumpade tabeller
+--
+
+--
+-- AUTO_INCREMENT för tabell `RefletorStations`
+--
+ALTER TABLE `RefletorStations`
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT;
+COMMIT;
 -- --------------------------------------------------------
 
 --
@@ -292,13 +318,6 @@ ALTER TABLE `RefletorNodeLOG`
   ADD KEY `Time` (`Time`),
   ADD KEY `Id` (`Id`);
 
---
--- Index fÃ¶r tabell `RefletorStations`
---
-ALTER TABLE `RefletorStations`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `Callsign` (`Callsign`),
-  ADD KEY `Callsign_2` (`Callsign`);
 
 --
 -- Index fÃ¶r tabell `repeater`
@@ -400,6 +419,7 @@ ALTER TABLE `RefletorNodeLOG` CHANGE `Id` `Id` INT(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE RefletorNodeLOG AUTO_INCREMENT = 1;
 
 
+<<<<<<< HEAD
 
 -- --------------------------------------------------------
 
@@ -421,6 +441,46 @@ CREATE TABLE `Refletor_station_state` (
 --
 -- Tabellstruktur `Station_day_statistic`
 --
+=======
+CREATE TABLE `ReflectorNodeLOG_History` (
+  `Id` int(11) NOT NULL,
+  `Callsign` varchar(40) NOT NULL,
+  `Type` int(11) NOT NULL,
+  `Active` int(11) NOT NULL,
+  `Talkgroup` bigint(20) NOT NULL,
+  `NODE` varchar(11) NOT NULL,
+  `Siglev` int(11) NOT NULL,
+  `Duration` int(11) NOT NULL,
+  `Nodename` varchar(80) NOT NULL,
+  `IsTalker` int(20) NOT NULL,
+  `Time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Talktime` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+
+ALTER TABLE `RefletorNodeLOG` ADD INDEX(`Talktime`); 
+
+ALTER TABLE `Infotmation_page` ADD `GrafanaUrl` TEXT NOT NULL AFTER `Image`; 
+
+ALTER TABLE `Infotmation_page` CHANGE `GrafanaUrl` `GrafanaUrl` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL; 
+
+
+ALTER TABLE `users` ADD `image_url` VARCHAR(255) NULL DEFAULT NULL AFTER `email`; 
+
+
+
+ALTER TABLE `RefletorNodeLOG` CHANGE `Id` `Id` INT(11) NOT NULL AUTO_INCREMENT; 
+
+ALTER TABLE `users` ADD `Reset_token` VARCHAR(99) NOT NULL AFTER `image_url`; 
+
+UPDATE `Settings` SET `value` = '2.5' WHERE `Settings`.`Define` = 'PORTAL_VERSION'; 
+
+ALTER TABLE `users` CHANGE `Reset_token` `Reset_token` VARCHAR(99) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL; 
+
+
+>>>>>>> master
 
 CREATE TABLE `Station_day_statistic` (
   `Id` int NOT NULL,
@@ -433,6 +493,7 @@ CREATE TABLE `Station_day_statistic` (
   `maxsiglev` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Statistcs for reciver day by day';
 
+<<<<<<< HEAD
 -- --------------------------------------------------------
 
 --
@@ -576,11 +637,14 @@ CREATE TABLE `trafic_mounth_statistics` (
   `1_T` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8mb4_unicode_ci;
 
+=======
+>>>>>>> master
 --
 -- Index för dumpade tabeller
 --
 
 --
+<<<<<<< HEAD
 -- Index för tabell `Refletor_station_state`
 --
 ALTER TABLE `Refletor_station_state`
@@ -588,12 +652,15 @@ ALTER TABLE `Refletor_station_state`
   ADD KEY `Callsign` (`Callsign`);
 
 --
+=======
+>>>>>>> master
 -- Index för tabell `Station_day_statistic`
 --
 ALTER TABLE `Station_day_statistic`
   ADD PRIMARY KEY (`Id`);
 
 --
+<<<<<<< HEAD
 -- Index för tabell `trafic_day_statistics`
 --
 ALTER TABLE `trafic_day_statistics`
@@ -614,21 +681,27 @@ ALTER TABLE `trafic_mounth_statistics`
   ADD KEY `Year` (`Year`);
 
 --
+=======
+>>>>>>> master
 -- AUTO_INCREMENT för dumpade tabeller
 --
 
 --
+<<<<<<< HEAD
 -- AUTO_INCREMENT för tabell `Refletor_station_state`
 --
 ALTER TABLE `Refletor_station_state`
   MODIFY `ID` int NOT NULL AUTO_INCREMENT;
 
 --
+=======
+>>>>>>> master
 -- AUTO_INCREMENT för tabell `Station_day_statistic`
 --
 ALTER TABLE `Station_day_statistic`
   MODIFY `Id` int NOT NULL AUTO_INCREMENT;
 
+<<<<<<< HEAD
 --
 -- AUTO_INCREMENT för tabell `trafic_day_statistics`
 --
@@ -655,3 +728,10 @@ ALTER TABLE `RefletorStations` CHANGE `ID` `ID` INT NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `RefletorStations` ADD `Version` VARCHAR(200) NOT NULL AFTER `Last_Seen`; 
 ALTER TABLE `RefletorStations` ADD `Sysop` VARCHAR(200) NOT NULL AFTER `Collor`; 
+=======
+
+UPDATE `Settings` SET `value` = '2.5' WHERE `Settings`.`Define` = 'PORTAL_VERSION'; 
+
+
+INSERT INTO `RefletorStations` (`ID`, `Callsign`, `Location`, `Collor`, `Sysop`, `Version`, `Last_Seen`, `Station_Down`, `Station_Down_timmer_count`, `Monitor`) VALUES (NULL, 'dummy', '', NULL, NULL, NULL, NULL, '1', '1', '1');
+>>>>>>> master

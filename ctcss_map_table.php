@@ -2,7 +2,10 @@
 include_once 'config.php';
 
 include_once 'function.php';
+<<<<<<< HEAD
 include_once 'redis.php';
+=======
+>>>>>>> master
 
 $link->set_charset("utf8");
 
@@ -18,6 +21,7 @@ function Get_station_from_json()
 
 
     //$context = stream_context_create(array('http' => array('header'=>'Connection: close\r\n')));
+<<<<<<< HEAD
     $key ="svxportal_cahce_ctcss_maptable";
     
     if(Redis_key_exist_enable($key))
@@ -36,6 +40,11 @@ function Get_station_from_json()
       }
       
     }
+=======
+
+    $json_data = file_get_contents($serveradress,false,$context);
+    
+>>>>>>> master
 
     
     //$json_data = file_get_contents($serveradress);

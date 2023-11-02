@@ -321,4 +321,8 @@ $time_elapsed_secs = microtime(true) - $start;
 echo "Script execution time: ".$time_elapsed_secs;
 echo PHP_EOL;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 ?>

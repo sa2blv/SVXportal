@@ -1,11 +1,14 @@
 <?php
 include_once  'config.php';
+<<<<<<< HEAD
 include_once 'redis.php';
 
 
 
 
 
+=======
+>>>>>>> master
 /* ini_set('display_errors', 1);
  ini_set('display_startup_errors', 1);
  error_reporting(E_ALL);
@@ -19,6 +22,7 @@ if ($conn->connect_error) {
 include 'function.php';
 set_laguage();
 
+<<<<<<< HEAD
 
 function check_key_config_bool($key,$array)
 {
@@ -79,6 +83,8 @@ function if_day_in_cache($date)
 
 
 
+=======
+>>>>>>> master
 $json_array=array();
 function secondsToDHMS($seconds) {
     $s = (int)$seconds;
@@ -161,6 +167,7 @@ function get_most_use_reciver($day)
         if($count_array[$row2['Callsign']][0])
           $moste_used_station[$row2['Callsign']] =$count_array[$row2['Callsign']][0];
     }
+<<<<<<< HEAD
     
     
    
@@ -183,7 +190,22 @@ function get_most_use_reciver($day)
         
     
     
+=======
+>>>>>>> master
     
+    $quvery_optimizer =  "SELECT Max_reciver , `Station_id` , RefletorStations.Callsign as callsing FROM `Station_day_statistic` LEFT JOIN RefletorStations ON `Station_id` = RefletorStations.ID WHERE `Date` = '$day'"; 
+    $sqla = $link->query($quvery_optimizer);
+    while($row2 = $sqla->fetch_assoc())
+    {
+        $moste_used_station[$row2['callsing']] = $row2['Max_reciver'];
+        
+    }
+        
+        
+    
+    
+    
+
 
 
 }
@@ -361,11 +383,52 @@ else if($qrv != "")
         $days = (int)date("d",strtotime($day));
         
         
+<<<<<<< HEAD
         $sql = "SELECT `Node`, sum(Total_T) as total_talked  FROM `trafic_day_statistics` WHERE Year = '$year' AND Mounth ='$Mounth' and Day ='$days' GROUP BY `Node` order by Node";
          
         $key = "svxportal_cahce_node_day_".$day;
         $sql_data =sql_to_array_redis_cahce($key,$sql);
         
+=======
+        $i++;
+    }
+    $outarray['total_secounds'] = $time_total_usage;
+    
+    
+    echo json_encode ($outarray);
+    
+    
+    
+}
+else if( $_GET['time'] == "true")
+{
+    
+    $day = $link->real_escape_string($day);
+    
+    
+    //$tme_string ="`Time` BETWEEN '$day $timel:00:00.000000' AND '$day $timel:59:59.000000'";
+    $tme_string ="`Time` BETWEEN '$day 00:00:00.000000' AND '$day 23:59:59.000000'";
+    
+    //$sql_active ="SELECT sum(UNIX_TIMESTAMP(`Time`)), `Talkgroup` FROM RefletorNodeLOG WHERE `Type` = '1' $station_qvery AND  `Active` ='1' AND $tme_string group by  `Talkgroup`";
+    $station_string= "";
+    
+    if ($_GET['station'] !="")
+    {
+        $station =$link->real_escape_string($_GET['station']);
+        $station_string = "AND Callsign ='$station'";
+    }
+    
+    $sql_nonactive ="SELECT UNIX_TIMESTAMP(Time), Talktime, `Talkgroup` FROM RefletorNodeLOG WHERE `Type` = '1' $station_qvery AND `Active` ='0' AND $tme_string $station_string  ";
+    $sqla = $link->query($sql_nonactive);
+    $data = array();
+    while($row = $sqla->fetch_assoc()) {
+        $data[] = $row;
+        
+    }
+    
+
+    
+>>>>>>> master
 
 
 
@@ -458,10 +521,83 @@ else if($qrv != "")
     
     
 }
+<<<<<<< HEAD
 else if( $_GET['time'] == "true")
+=======
+else if( $_GET['totalmount'] != "")
+{
+    /*
+     *
+     * SELECT count(id), YEAR(`Time`), MONTH(`Time`), DAYOFMONTH(`Time`), sum(`Talktime`) as total_talktime FROM `RefletorNodeLOG` WHERE Type = 1 AND Active = 0 AND YEAR(`Time`) =2020 GROUP BY YEAR(`Time`), MONTH(`Time`) , DAYOFMONTH(`Time`) ORDER BY YEAR(`Time`) DESC, MONTH(`Time`) DESC, DAYOFMONTH(`Time`) DESC
+     *
+     *
+     */
+    $day= $_GET['date_m']."" ;
+    $day = $link->real_escape_string($day);
+    
+   // echo $day;
+    $last_day = date("t", strtotime($day));
+    //echo "- ".$last_day;
+    
+    $station_string= "";
+    
+    if ($_GET['station'] !="")
+    {
+        $station =$link->real_escape_string($_GET['station']);
+        $station_string = "AND Callsign ='$station'";
+    }
+    
+    
+    
+    $tme_string ="`Time` BETWEEN '$day-01 00:00:00.000000' AND '$day-$last_day 23:59:59.000000'";
+    
+
+    
+
+    
+    $sql="SELECT count(id), YEAR(`Time`), MONTH(`Time`), DAYOFMONTH(`Time`), sum(`Talktime`) as total_talktime FROM `RefletorNodeLOG` WHERE $tme_string AND Type = 1 AND Active = 0  $station_string GROUP BY YEAR(`Time`), MONTH(`Time`) , DAYOFMONTH(`Time`)  ORDER BY YEAR(`Time`) ASC, MONTH(`Time`) ASC, DAYOFMONTH(`Time`) ASC";
+    
+   // echo $sql;
+    
+    $json_array = array();
+    
+    
+    $sqla = $link->query($sql);
+    
+    $i =0;
+    while($row = $sqla->fetch_assoc())
+    {
+
+        $json_array[$i] = array();
+        $json_array[$i]["secounds"]  = secondsToDHMS($row["total_talktime"]);
+        $json_array[$i]["unixtime"]  = $row["total_talktime"];
+        $json_array[$i] ["day"] =_(date("D",strtotime( $row["YEAR(`Time`)"].'-'.$row["MONTH(`Time`)"].'-'.$row["DAYOFMONTH(`Time`)"]))). date(" Y-m-d",strtotime( $row["YEAR(`Time`)"].'-'.$row["MONTH(`Time`)"].'-'.$row["DAYOFMONTH(`Time`)"]));
+        $i++;
+        
+
+        
+        
+
+        
+    }
+    
+    
+    
+    
+    
+    
+    echo json_encode ($json_array);
+    
+    
+    
+    
+}
+else 
+>>>>>>> master
 {
     $dates =$day;
     $day = $link->real_escape_string($day);
+<<<<<<< HEAD
     
     if(if_day_in_cache($day) > 0)
     {
@@ -478,6 +614,22 @@ else if( $_GET['time'] == "true")
         
         for($timel =0; $timel <= 24;$timel++)
         {
+=======
+    //$day ="2021-05-17";
+    
+    $tme_string ="`Time` BETWEEN '$day 00:00:00.000000' AND '$day 23:59:59.000000'";
+    
+    //$sql_active ="SELECT sum(Talktime), `Talkgroup` FROM RefletorNodeLOG WHERE `Type` = '1' $station_qvery AND  `Active` ='1' AND $tme_string group by  `Talkgroup`";
+    
+    $sql_nonactive ="SELECT sum(Talktime), `Talkgroup` FROM RefletorNodeLOG WHERE `Type` = '1'$station_qvery AND `Active` ='0' AND $tme_string group by  `Talkgroup` ";
+    
+    /*
+    echo $sql_active;
+    echo "<br>";
+    */
+    
+    //echo $sql_nonactive;
+>>>>>>> master
 
             
             
@@ -857,6 +1009,7 @@ else if ($_GET['cahce_year_tg'] == "1")
     
     //   $sqla = $link->query($sql);
     $timesum =array();
+<<<<<<< HEAD
     
     $i =0;
     foreach ($sql_data as $j => $row)
@@ -883,6 +1036,14 @@ else if ($_GET['cahce_year_tg'] == "1")
             @$json_array[$row["TG"]] ["Secound"] = secondsToDHMS($timesum[ $row["TG"]]);
             @$json_array[$row["TG"]] ["unixtime"] = $timesum[ $row["TG"]];
         }
+=======
+  
+    $i =0;   
+    while($row = $sqla->fetch_assoc()) {
+        
+        //echo $i++;
+        $timesum[$row["Talkgroup"]] =$row["sum(Talktime)"];
+>>>>>>> master
     }
     
     
@@ -898,6 +1059,7 @@ else if ($_GET['cahce_year_tg'] == "1")
 
 
 
+<<<<<<< HEAD
 else if ($_GET['cahce_mouth_tg'] == "1")
 {
 
@@ -910,6 +1072,9 @@ else if ($_GET['cahce_mouth_tg'] == "1")
     
     $key = "svxportal_cahce_mouth_tg_".$year."_".$Mounth;  
     $sql_data =sql_to_array_redis_cahce($key,$sql);
+=======
+    $result = mysqli_query($link, "SELECT `Talkgroup` FROM `RefletorNodeLOG` GROUP BY `Talkgroup` ");
+>>>>>>> master
     
  
  //   $sqla = $link->query($sql);
@@ -1164,7 +1329,12 @@ else
     }
     else
     {
+<<<<<<< HEAD
         
+=======
+        @$json_array[$row["Talkgroup"]] ["Secound"] = secondsToDHMS($timesum[ $row["Talkgroup"]]);
+        @$json_array[$row["Talkgroup"]] ["unixtime"] = $timesum[ $row["Talkgroup"]];
+>>>>>>> master
     
     
         $json_array= array();
@@ -1216,7 +1386,11 @@ else
         
         
     }
+<<<<<<< HEAD
  
+=======
+    echo "";
+>>>>>>> master
     echo json_encode ($json_array);
 }
 

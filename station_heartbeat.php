@@ -13,7 +13,7 @@ define_settings();
 
 
 
-$file = 'tmp/cache_json.txt';
+$file = '/tmp/cache_json.txt';
 // Create connection
 $conn = new mysqli($host, $user, $password, $db);
 // Check connection

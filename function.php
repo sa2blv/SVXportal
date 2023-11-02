@@ -440,6 +440,7 @@ function translate_folder_page($url)
     
 }
 
+<<<<<<< HEAD
 
 function detect_empty_cache_table()
 {
@@ -454,6 +455,8 @@ function detect_empty_cache_table()
 }
 
 
+=======
+>>>>>>> master
 
 
 

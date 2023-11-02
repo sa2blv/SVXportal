@@ -74,7 +74,11 @@ if(sizeof ($idarray) == 0)
     $result2 = mysqli_query($link, "SELECT * FROM `RefletorStations`  WHERE Callsign !=''  order by Callsign");
 else
 {
+<<<<<<< HEAD
     $result2 = mysqli_query($link, "SELECT * FROM `RefletorStations`  WHERE ID NOT IN(".$idin.") AND Callsign !='' order by Callsign ");
+=======
+    $result2 = mysqli_query($link, "SELECT * FROM `RefletorStations`  WHERE ID NOT IN(".$idin.") AND Callsign !='' ");
+>>>>>>> master
     unset($idarray);
 }
 

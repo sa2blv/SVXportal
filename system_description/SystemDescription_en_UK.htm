@@ -3,6 +3,7 @@
 <p>SvxReflector   (formerly also called &quot;Östkustlänken&quot;) is a National Network of   Swedish analogue Repeaters, which is linked together with the help of <a href="http://www.svxlink.org/" target="_blank">SvxLink</a> , usually over the Internet.</p>
 <p>In the network, talkgroups used to separate the traffic. A talkgroup can be likened to a logical &quot;channel&quot;.</p>
 <ul>
+<<<<<<< HEAD
   <li>A repeater can fit (monitor) several Talk Groups. Which  talkgroup   are suited by each repeater is stated on SvxPortalen's homepage.</li>
   <li>A Voice group can be selected manually by the local user, using DTMF commands or Subton (CTCSS). </li>
   <li>The   repeater can also have a local default number group, which is activated   automatically at local start (if the user does not make an active   selection).</li>
@@ -12,6 +13,17 @@
 <p>Repeaters and Simplex nodes in the network monitor statically: </p>
 <ul>
   <li>Talk group 240, which covers the whole of Sweden. </li>
+=======
+  <li>A repeater can fit (monitor) several Speech Groups. Which  talkgroup   are suited by each repeater is stated on SvxPortalen's homepage.</li>
+  <li>A Voice group can be selected manually by the local user, using DTMF commands or Subton (CTCSS). </li>
+  <li>The   repeater can also have a local default number group, which is activated   automatically at local start (if the user does not make an active   selection).</li>
+</ul>
+<p>On the other hand, a repeater can never be <u>active</u> on more than one Speech Group at a time.</p>
+<p>Incoming   traffic on a monitored Voice Group will start the repeater   automatically, but cannot normally break in during an ongoing QSO. </p>
+<p>Repeaters and Simplex nodes in the network monitor statically: </p>
+<ul>
+  <li>Speech group 240, which covers the whole of Sweden. </li>
+>>>>>>> master
   <li>Own District Number Group - eg 2405 for SM5. </li>
   <li>Possible nearby Repeaters and Districts. </li>
   <li>Possibly own local number group - eg 240515 for Eskilstuna. <em>This can then be used to &quot;address&quot; only this repeater.</em></li>
@@ -19,27 +31,46 @@
 </ul>
 <p><strong>The entire system can be monitored in real time via the Svx Portal (this website). </strong></p>
 <p>Latest information can be found on a mailing list: <a href="https://svxreflector-sm.groups.io/" target="_blank">https://svxreflector-sm.groups.io/</a></p>
+<<<<<<< HEAD
 <p><strong>Repeater school </strong> <a href="https://sk7rfl.se/" target="_blank">at SK7RFL.se</a> : <a href="https://sk7rfl.se/repeaterskolan/" target="_blank">https://sk7rfl.se/repeaterskolan/</a></p>
 <h2>Choice of Talkgroup </h2>
 <p>If you want to use a specific Talk Group, it can be selected in two ways - with DTMF or Subton (CTCSS). </p>
 <p>If   no traffic occurs on the selected Talkgroup, the system switches to   idle mode after 30 seconds (adjustable by sysop) and waits for activity   on monitored talk groups. A small &quot;FLIRRP&quot; is heard when the repeater or simplex node returns to its default position. On SK7RFL, SK7RN and SK5BN, this always happens in connection with the Repeater closing down.</p>
+=======
+<p><strong>Repeater school </strong> <a href="https://sk7rfl.se/" target="_blank">at SK7RFL.se</a> : <a href="https://www.sk7rfl.se/446546397" target="_blank">https://www.sk7rfl.se/446546397</a></p>
+<h2>Choice of Talkgroup </h2>
+<p>If you want to use a specific Speech Group, it can be selected in two ways - with DTMF or Subton (CTCSS). </p>
+<p>If   no traffic occurs on the selected Talkgroup, the system switches to   idle mode after 30 seconds (adjustable by sysop) and waits for activity   on monitored speech groups. A small &quot;FLIRRP&quot; is heard when the repeater or simplex node returns to its default position. On SK7RFL, SK7RN and SK5BN, this always happens in connection with the Repeater closing down.</p>
+>>>>>>> master
 <h3>DTMF </h3>
 <p>To activate voice group 2405 with DTMF, press: </p>
 <pre class="col-12  col-xl-7">912405#</pre>
 <p>The repeater will announce that it will switch to Talkgroup 2405 when you release PTT. </p>
 <h3>Subton (CTCSS) </h3>
 <p>A list of talkgroup that can be activated with Subton can be found here on the <a href="index.php" target="_blank">SvxPortal</a> .</p>
+<<<<<<< HEAD
 <p>To activate eg talkgroup 2405 with Subton, CTCSS, select Subton 91.5Hz. After the first broadcast session, Tepeatern announces which Talk Group it will switch to when you release PTT.</p>
+=======
+<p>To activate eg talkgroup 2405 with Subton, CTCSS, select Subton 91.5Hz. After the first broadcast session, Tepeatern announces which Speech Group it will switch to when you release PTT.</p>
+>>>>>>> master
 <p>Activation with a subtone can only take place from the repeater's sleep mode, ie not during the current QSO. </p>
 <h3>Table with Subtones for each Repeater and Simplex Node in the System </h3>
 <p><a href="ctcss_map_table.php" target="_blank"> https://svxportal.sm2ampr.net/ctcss_map_table.php</a></p>
 <h2>Tip </h2>
 <p>Program   several memory channels with different Subtones, in order to be able to   activate the Repeater / Simplex node with the correct talkgroup   directly. </p>
+<<<<<<< HEAD
 <p>For those nodes that have a Subton that is not connected to any talkgroup, column local in the list, services on the node can be used without any Voice group being connected. It   can be practical for using various modules in SvxLink such as parot,   EchoLink, Voice mail etc. It also makes it possible to have local QSOs   on the channel, without any Talk group being activated from outside .</p>
 <p>In   the same way as when a Voice Group is active, it is required that the   channel is dormant for a time before connection of voice groups can take   place, both remotely and with a subtone. The time is adjustable by sysop, but is by default 30 seconds.</p>
 <p>However, it is always possible to activate / change talkgroup with DTMF commands at any time. </p>
 <h2>QSY </h2>
 <p>During a QSO on one Talk Group, it is possible to move all active nodes to another Talk Group. The   active node is the node that has had local activity since the talkgroup was activated, ie that the noise barrier has opened at least once.</p>
+=======
+<p>For those nodes that have a Subton that is not connected to any talkgroup, column local in the list, services on the node can be used without any Voice group being connected. It   can be practical for using various modules in SvxLink such as parot,   EchoLink, Voice mail etc. It also makes it possible to have local QSOs   on the channel, without any Speech group being activated from outside .</p>
+<p>In   the same way as when a Voice Group is active, it is required that the   channel is dormant for a time before connection of voice groups can take   place, both remotely and with a subtone. The time is adjustable by sysop, but is by default 30 seconds.</p>
+<p>However, it is always possible to activate / change talkgroup with DTMF commands at any time. </p>
+<h2>QSY </h2>
+<p>During a QSO on one Speech Group, it is possible to move all active nodes to another Speech Group. The   active node is the node that has had local activity since the talkgroup was activated, ie that the noise barrier has opened at least once.</p>
+>>>>>>> master
 <p>The QSY function is controlled by DTMF commands. </p>
 <table cellspacing="0" cellpadding="5" class="table table-bordered  col-12  col-xl-7">
   <tbody>
@@ -49,7 +80,11 @@
     </tr>
     <tr>
       <th>92nnn # </th>
+<<<<<<< HEAD
       <td>QSY to talk group nnn </td>
+=======
+      <td>QSY to speech group nnn </td>
+>>>>>>> master
     </tr>
     <tr>
       <th>93 #</th>
@@ -57,9 +92,15 @@
     </tr>
   </tbody>
 </table>
+<<<<<<< HEAD
 <p>QSY   for temporary talk group is suitably used in such a way that calls to   a beginning are made on a broader talk group, eg 240 for the whole of   Sweden. When all participants have called in on the talkgroup , the QSY command ( <strong>92 #</strong> ) is used - to move all active nodes to the temporary talk group. The wider number group will then again be free for calls.</p>
 <p>An automatic QSY is also performed on talkgroup  240, after 5 minutes. </p>
 <p>QSY to a specified Talk Group can be used to add more nodes to an ongoing QSO. Assume that a QSO has started on talkgroup  2403, ie SM3. Under the QSO, you want to expand with nodes in SM5 as well, ie Number group 2405. The command <strong>922405 #</strong> can then be used for this. All   nodes that are currently active on 2403 will be moved to 2405 and all   nodes that monitor 2405 will connect to the talk group.</p>
+=======
+<p>QSY   for temporary speech group is suitably used in such a way that calls to   a beginning are made on a broader speech group, eg 240 for the whole of   Sweden. When all participants have called in on the talkgroup , the QSY command ( <strong>92 #</strong> ) is used - to move all active nodes to the temporary speech group. The wider number group will then again be free for calls.</p>
+<p>An automatic QSY is also performed on talkgroup  240, after 5 minutes. </p>
+<p>QSY to a specified Speech Group can be used to add more nodes to an ongoing QSO. Assume that a QSO has started on talkgroup  2403, ie SM3. Under the QSO, you want to expand with nodes in SM5 as well, ie Number group 2405. The command <strong>922405 #</strong> can then be used for this. All   nodes that are currently active on 2403 will be moved to 2405 and all   nodes that monitor 2405 will connect to the speech group.</p>
+>>>>>>> master
 <p>In newer versions of SvxLink, you can very easily follow a QSY. When QSY occurs, the repeater <em>says</em> &quot; <em>QSY 24099nn pending</em> &quot;. If you press PTT within about 15 seconds, the repeater will follow this QSY. Otherwise the repeater says &quot; <em>QSY [24099nn] ignored</em> &quot;.</p>
 <p>A passive node can also be manually made to follow the latest QSY with the command <strong>93 #</strong> . This can be good if you have not had time to send before QSY took place or had time to press PTT within 15 seconds after QSY.</p>
 <p>Note the difference between QSY and local choice of TG. </p>
@@ -80,7 +121,11 @@
     <tr>
       <td>91nnn# </td>
       <td>912405 #</td>
+<<<<<<< HEAD
       <td>Activate Talk Group (2405). </td>
+=======
+      <td>Activate Speech Group (2405). </td>
+>>>>>>> master
     </tr>
     <tr>
       <td>91#</td>
@@ -139,12 +184,20 @@
 <ul>
   <li>SK2SSA, Sundays at 20:00 on Talgrupp 24020. </li>
   <li>SK3SSA, Sundays at 21:00 on Talgrupp 24033. </li>
+<<<<<<< HEAD
   <li><a href="https://sk7rfl.se/bulletin" target="_blank">SK7SSA</a> , Sundays at 09:00 on Talgrupp 24070.</li>
+=======
+  <li><a href="https://www.sk7rfl.se/447021515" target="_blank">SK7SSA</a> , Sundays at 09:00 on Talgrupp 24070.</li>
+>>>>>>> master
 </ul>
 <p>If the local Repeater does not monitor the desired bullet number group, this can be added with the command <strong>94</strong> as above.</p>
 <h2>Extra information</h2>
 <p>The mapping between Subtones and Talkgroups is according to SSA's list for CTCSS. The second tone in each district (Secondary 1 ) is mapped to talkgroup for that district.</p>
+<<<<<<< HEAD
 <p>If you want to disconnect a talkgroup  directly, without waiting 30 seconds, you can press <strong>910 #</strong> (TG0). Good to use if you happen to choose the wrong Talk Group.</p>
+=======
+<p>If you want to disconnect a talkgroup  directly, without waiting 30 seconds, you can press <strong>910 #</strong> (TG0). Good to use if you happen to choose the wrong Speech Group.</p>
+>>>>>>> master
 <p>You cannot activate several talkgroup  at the same time. </p>
 <p>If   you have activated a specific talkgroup, for example TG2403, traffic   from other talkgroup will be blocked until the traffic has stopped   on TG2403 and 30 seconds have passed. </p>
 <p>The SvxReflector is not connected to DMR / Brandmeister, but uses similar names and numbers on talkgroup. </p>

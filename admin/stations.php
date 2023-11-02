@@ -295,7 +295,11 @@ cursor: pointer;
  
  <div id="station_data>">
 
+<<<<<<< HEAD
     <table class="table table-sm table-striped table-hover" id="station_table_date">
+=======
+    <table class="table table-sm" id="station_table_date">
+>>>>>>> master
       <thead class="thead-dark">
         <tr>
           <th scope="col"><?php echo _('Id')?></th>
@@ -379,7 +383,11 @@ cursor: pointer;
 
   </tbody>
   <tfoot class="table-dark">
+<<<<<<< HEAD
   <tr><td></td><td></td><td><?php echo _('Latest version')?></td><td><?php echo $svxlink_verson_array['SVXLINK']?></td><td colspan ="2"><?php echo _('Total up / down')?></td><td><?php echo $count_up ." / ". $count_down?></td><td><?php echo _('Total') ." ".($count_up+ $count_down) ?></td><td></td></tr>
+=======
+  <tr><td colspan ="2"><?php echo _('Total up / down')?></td><td><?php echo $count_up ." / ". $count_down?></td><td></td><td><?php  ?></td></tr>
+>>>>>>> master
   </tfoot>
 </table>
 

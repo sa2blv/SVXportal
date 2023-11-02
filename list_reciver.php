@@ -551,9 +551,15 @@ function generate_coulor()
      
            font_str ="font-weight: bold;";
         }
+<<<<<<< HEAD
         
         
         
+=======
+        
+        
+        
+>>>>>>> master
        	$('#selects').append($('<option>', {
        	    value: k,
        	    text: k+"		"+tg_collors[k]["TXT"],
@@ -838,7 +844,11 @@ for(var k in data.nodes){
     	    	{
 
     			             	    	
+<<<<<<< HEAD
         		var new_html = '<td>'+cirkel_string+'</td><td>'+k+'</td>'+'<td>'+data.nodes[k].NodeLocation+'</td>'+'<td ' +collor_restricted+'>'+data.nodes[k].tg+'</td>'+'<td class="">'+rssi_str+'<canvas id="bar_'+printk+'"></canvas></td><td id="reciver_'+printk+'">  </td></td><td id="value_k'+printk+'">0%</td><td id="freq_row'+printk+'"></td><td class="flex-nowrap"> - </td>'
+=======
+        		var new_html = '<td>'+cirkel_string+'</td><td>'+k+'</td>'+'<td>'+data.nodes[k].NodeLocation+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td class="">'+rssi_str+'<canvas id="bar_'+printk+'"></canvas></td><td id="reciver_'+printk+'">  </td></td><td id="value_k'+printk+'">0%</td><td id="freq_row'+printk+'"></td><td class="flex-nowrap"> - </td>'
+>>>>>>> master
   
     			 			
 	 	  		$('#row'+printk+'').html(new_html);
@@ -852,8 +862,12 @@ for(var k in data.nodes){
     		}
     		else
     		{
+<<<<<<< HEAD
         		
 	 	  		$('#row'+printk+'').html('<td>'+cirkel_string+'</td><td>'+k+'</td>'+'<td>'+data.nodes[k].NodeLocation+'</td>'+'<td '+collor_restricted+'>'+data.nodes[k].tg+'</td>'+'<td class="" >'+rssi_str+'<canvas id="bar_'+printk+'"></canvas></td><td id="reciver_'+printk+'">  </td><td id="value_k'+printk+'">0%</td><td id="freq_row'+printk+'"></td><td class="flex-nowrap" ><label id="minutes_'+data.nodes[k].tg+'">00</label>:<label id="seconds_'+data.nodes[k].tg+'">00</label></td>');
+=======
+	 	  		$('#row'+printk+'').html('<td>'+cirkel_string+'</td><td>'+k+'</td>'+'<td>'+data.nodes[k].NodeLocation+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td class="" >'+rssi_str+'<canvas id="bar_'+printk+'"></canvas></td><td id="reciver_'+printk+'">  </td><td id="value_k'+printk+'">0%</td><td id="freq_row'+printk+'"></td><td class="flex-nowrap" ><label id="minutes_'+data.nodes[k].tg+'">00</label>:<label id="seconds_'+data.nodes[k].tg+'">00</label></td>');
+>>>>>>> master
 	 	  		$('#row'+printk+'').addClass("font-weight-bold");	
 
 	 	  		
@@ -910,6 +924,7 @@ for(var k in data.nodes){
     	 }
     	 else
     	 {
+<<<<<<< HEAD
 
      		var collor_restricted ="";
 
@@ -923,6 +938,11 @@ for(var k in data.nodes){
     		 $("#minutes_"+data.nodes[k].tg).remove(); 
     		 $("#seconds_"+data.nodes[k].tg).remove(); 	 
 	  		$('#Reflektortable').append('<tbody class="table-striped" id="body-of-'+printk+'"><tr data-toggle="collapse" data-target="#group-of-'+printk+'" aria-expanded="false" aria-controls="group-of-'+printk+'" class="" id="row'+printk+'"><td>'+cirkel_string+'</td><td>'+k+'</td>'+'<td>'+data.nodes[k].NodeLocation+'</td>'+'<td '+collor_restricted+'>'+data.nodes[k].tg+'</td>'+'<td id="rssi_canas_'+printk+'"> <canvas id="bar_'+printk+'"></canvas></td><td id="reciver_'+printk+'">  </td><td id="value_k'+printk+'">0%</td></td><td id="freq_row'+printk+'"></td><td class="flex-nowrap"><label id="minutes_'+data.nodes[k].tg+'"></label><label id="seconds_'+data.nodes[k].tg+'"></label></td> </tr> </tbody>');
+=======
+    		 $("#minutes_"+data.nodes[k].tg).remove(); 
+    		 $("#seconds_"+data.nodes[k].tg).remove(); 	 
+	  		$('#Reflektortable').append('<tbody class="table-striped" id="body-of-'+printk+'"><tr data-toggle="collapse" data-target="#group-of-'+printk+'" aria-expanded="false" aria-controls="group-of-'+printk+'" class="" id="row'+printk+'"><td>'+cirkel_string+'</td><td>'+k+'</td>'+'<td>'+data.nodes[k].NodeLocation+'</td>'+'<td>'+data.nodes[k].tg+'</td>'+'<td id="rssi_canas_'+printk+'"> <canvas id="bar_'+printk+'"></canvas></td><td id="reciver_'+printk+'">  </td><td id="value_k'+printk+'">0%</td></td><td id="freq_row'+printk+'"></td><td class="flex-nowrap"><label id="minutes_'+data.nodes[k].tg+'"></label><label id="seconds_'+data.nodes[k].tg+'"></label></td> </tr> </tbody>');
+>>>>>>> master
 	  		create_bar('bar_'+printk);
 	  		//create_bar_rssi('bar_RSSI_'+printk)
 	    }
@@ -1044,6 +1064,7 @@ for(var k in data.nodes){
           if(Freqvensy.includes("DMR"))
           {
         	  sub_icon ='<img src="images/dmr.png" width="20px">';
+<<<<<<< HEAD
           }    
           if(Freqvensy.includes("SIP"))
           {
@@ -1060,6 +1081,9 @@ for(var k in data.nodes){
           }  
 
                           
+=======
+          }          
+>>>>>>> master
 
           
           //if(printk == "SK2RIU")
@@ -1546,12 +1570,20 @@ function update_bar_rssi(id,value,siglev,k)
   
   
     
+<<<<<<< HEAD
     	<select id="selects"  class="form-control form-control-sm w-25" onchange="update_filter(this.value)">
+=======
+    			<select id="selects"  class="form-control form-control-sm w-25" onchange="update_filter(this.value)">
+>>>>>>> master
     			 <optgroup label="<?php echo _('Default')?>s">
     				<option value="">-- <?php echo _('Talkgroup filter')?> --</option>
     				<option value="A">-- <?php echo _('All active')?> --</option>
 				 <optgroup label="">
+<<<<<<< HEAD
     	</select>
+=======
+    			</select>
+>>>>>>> master
     			
     
     <div id="form-inline my-2 my-lg-2">		
