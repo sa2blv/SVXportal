@@ -37,8 +37,7 @@ https://sk7rfl.se/doc/SvxPortal2.5.pdf
 ### Installing advance
 
 
-
-4. Open your browser ang go to 
+ Open your browser ang go to 
 http://yoururl/install.php and follow the instructions.
 if yo want to upgrade from an previus version use
 http://yoururl/update.php
