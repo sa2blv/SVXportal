@@ -14,25 +14,13 @@ These instructions will get you a copy of the project up and running on your loc
 
 
 ```
-* php5 or larger
+* php7.4 or larger
 * MySQL
 * Apache2 or ngnx
 * crontab
-* screen```
+* screen
+* PHP-FPM Recomended
 
-Step 1: Update your system
-```
-sudo apt-get update
-Step 2: Install Mysql
-
-sudo apt-get install mysql-server mysql-client libmysqlclient-dev
-Step 3: Install Apache server
-
-sudo apt-get install apache2 apache2-doc apache2-npm-prefork apache2-utils libexpat1 ssl-cert
-Step 4: Install PHP 
-
-
-Step 5: Install Phpmyadmin(for database not requierd )
 
 
 ```
@@ -42,40 +30,29 @@ Step 5: Install Phpmyadmin(for database not requierd )
 
 https://www.granudden.info/Ham/Repeatrar/Dokument/SvxPortal2.5.pdf
 
+https://sk7rfl.se/doc/SvxPortal2.5.pdf
+
 
 
 ### Installing advance
 
-1. clone or donload the files to your www location
-   ex /var/www/html.
 
-2. run the install.php from your browser
-this requirer that you hav setup an database / user in mysql 
-
-3. Add a user to mysql "if you self host" manualy you can use php myadmin
-   
-  mysql
-   $ mysql> CREATE DATABASE Svxportal;
-   $ mysql> CREATE USER 'Svxportal'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Change me password';
-   $ mysql>  GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, INDEX, DROP, ALTER, CREATE TEMPORARY TABLES, LOCK TABLES ON Svxportal.* TO 'Svxportal'@'localhost';
-
-"this is an examle of Mysql user setup"
-
-4. Open your browser ang go to 
+ Open your browser ang go to 
 http://yoururl/install.php and follow the instructions.
 if yo want to upgrade from an previus version use
 http://yoururl/update.php
 
 
 
+##New cronjob in verson 2.6
+#add to /etc/crontab
+16 0 * * *       user    php /var/www/Preprosess/calculate_date.php
+20 0 * * *       user    php /var/www/Preprosess/calculate_mounth.php
+#optional
+#16 0 * * *       user    /var/www/Preprosess/run_calulation.sh
 
 
 
-
-5. reboot or manualy start 
-
-screen  -d -m bash -c  'cd /var/www/ ; watch -n 20  php station_heartbeat.php;'
-screen  -d -m bash -c  'cd /var/www/ ; watch -n 1  php logdeamon.php;'
 
 
 ```
