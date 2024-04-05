@@ -128,43 +128,17 @@ CREATE TABLE `RefletorNodeLOG` (
 -- Tabellstruktur `RefletorStations`
 --
 
---
--- Tabellstruktur `RefletorStations`
---
-
 CREATE TABLE `RefletorStations` (
-  `ID` int NOT NULL,
+  `ID` int(11) NOT NULL,
   `Callsign` varchar(40) CHARACTER SET utf8 COLLATE utf8_swedish_ci NOT NULL,
   `Location` text NOT NULL,
   `Collor` text,
   `Last_Seen` datetime DEFAULT NULL,
-  `Station_Down` int NOT NULL,
-  `Station_Down_timmer_count` int NOT NULL,
-  `Monitor` int NOT NULL DEFAULT '1'
+  `Station_Down` int(11) NOT NULL,
+  `Station_Down_timmer_count` int(11) NOT NULL,
+  `Monitor` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Index för dumpade tabeller
---
-
---
--- Index för tabell `RefletorStations`
---
-ALTER TABLE `RefletorStations`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `Callsign` (`Callsign`),
-  ADD KEY `Callsign_2` (`Callsign`);
-
---
--- AUTO_INCREMENT för dumpade tabeller
---
-
---
--- AUTO_INCREMENT för tabell `RefletorStations`
---
-ALTER TABLE `RefletorStations`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT;
-COMMIT;
 -- --------------------------------------------------------
 
 --
@@ -318,6 +292,13 @@ ALTER TABLE `RefletorNodeLOG`
   ADD KEY `Time` (`Time`),
   ADD KEY `Id` (`Id`);
 
+--
+-- Index fÃ¶r tabell `RefletorStations`
+--
+ALTER TABLE `RefletorStations`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Callsign` (`Callsign`),
+  ADD KEY `Callsign_2` (`Callsign`);
 
 --
 -- Index fÃ¶r tabell `repeater`
@@ -419,44 +400,27 @@ ALTER TABLE `RefletorNodeLOG` CHANGE `Id` `Id` INT(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE RefletorNodeLOG AUTO_INCREMENT = 1;
 
 
-CREATE TABLE `ReflectorNodeLOG_History` (
-  `Id` int(11) NOT NULL,
-  `Callsign` varchar(40) NOT NULL,
-  `Type` int(11) NOT NULL,
-  `Active` int(11) NOT NULL,
-  `Talkgroup` bigint(20) NOT NULL,
-  `NODE` varchar(11) NOT NULL,
-  `Siglev` int(11) NOT NULL,
-  `Duration` int(11) NOT NULL,
-  `Nodename` varchar(80) NOT NULL,
-  `IsTalker` int(20) NOT NULL,
-  `Time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `Talktime` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
 
+--
+-- Tabellstruktur `Refletor_station_state`
+--
 
+CREATE TABLE `Refletor_station_state` (
+  `ID` int NOT NULL,
+  `Callsign` varchar(50) NOT NULL,
+  `Current_start` timestamp NOT NULL,
+  `Current_stop` timestamp NOT NULL,
+  `action` int NOT NULL,
+  `tg` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-ALTER TABLE `RefletorNodeLOG` ADD INDEX(`Talktime`); 
+-- --------------------------------------------------------
 
-ALTER TABLE `Infotmation_page` ADD `GrafanaUrl` TEXT NOT NULL AFTER `Image`; 
-
-ALTER TABLE `Infotmation_page` CHANGE `GrafanaUrl` `GrafanaUrl` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL; 
-
-
-ALTER TABLE `users` ADD `image_url` VARCHAR(255) NULL DEFAULT NULL AFTER `email`; 
-
-
-
-ALTER TABLE `RefletorNodeLOG` CHANGE `Id` `Id` INT(11) NOT NULL AUTO_INCREMENT; 
-
-ALTER TABLE `users` ADD `Reset_token` VARCHAR(99) NOT NULL AFTER `image_url`; 
-
-UPDATE `Settings` SET `value` = '2.5' WHERE `Settings`.`Define` = 'PORTAL_VERSION'; 
-
-ALTER TABLE `users` CHANGE `Reset_token` `Reset_token` VARCHAR(99) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL; 
-
-
+--
+-- Tabellstruktur `Station_day_statistic`
+--
 
 CREATE TABLE `Station_day_statistic` (
   `Id` int NOT NULL,
@@ -469,9 +433,159 @@ CREATE TABLE `Station_day_statistic` (
   `maxsiglev` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Statistcs for reciver day by day';
 
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur `trafic_day_statistics`
+--
+
+CREATE TABLE `trafic_day_statistics` (
+  `id` int NOT NULL,
+  `Node` varchar(50) CHARACTER SET utf8 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `TG` varchar(20) NOT NULL,
+  `Year` varchar(12) NOT NULL,
+  `Mounth` varchar(12) NOT NULL,
+  `Day` varchar(12) NOT NULL,
+  `Timestamp` timestamp NOT NULL,
+  `00_N` float NOT NULL,
+  `00_X2` float NOT NULL,
+  `00_T` float NOT NULL,
+  `01_N` float NOT NULL,
+  `01_X2` float NOT NULL,
+  `01_T` float NOT NULL,
+  `02_N` float NOT NULL,
+  `02_X2` float NOT NULL,
+  `02_T` float NOT NULL,
+  `03_N` float NOT NULL,
+  `03_X2` float NOT NULL,
+  `03_T` float NOT NULL,
+  `04_N` float NOT NULL,
+  `04_X2` float NOT NULL,
+  `04_T` float NOT NULL,
+  `05_N` float NOT NULL,
+  `05_X2` float NOT NULL,
+  `05_T` float NOT NULL,
+  `06_N` float NOT NULL,
+  `06_X2` float NOT NULL,
+  `06_T` float NOT NULL,
+  `07_N` float NOT NULL,
+  `07_X2` float NOT NULL,
+  `07_T` float NOT NULL,
+  `08_N` float NOT NULL,
+  `08_X2` float NOT NULL,
+  `08_T` float NOT NULL,
+  `09_N` float NOT NULL,
+  `09_X2` float NOT NULL,
+  `09_T` float NOT NULL,
+  `10_N` float NOT NULL,
+  `10_X2` float NOT NULL,
+  `10_T` float NOT NULL,
+  `11_N` float NOT NULL,
+  `11_X2` float NOT NULL,
+  `11_T` float NOT NULL,
+  `12_N` float NOT NULL,
+  `12_X2` float NOT NULL,
+  `12_T` float NOT NULL,
+  `13_N` float NOT NULL,
+  `13_X2` float NOT NULL,
+  `13_T` float NOT NULL,
+  `14_N` float NOT NULL,
+  `14_X2` float NOT NULL,
+  `14_T` float NOT NULL,
+  `15_N` float NOT NULL,
+  `15_X2` float NOT NULL,
+  `15_T` float NOT NULL,
+  `16_N` float NOT NULL,
+  `16_X2` float NOT NULL,
+  `16_T` float NOT NULL,
+  `17_N` float NOT NULL,
+  `17_X2` float NOT NULL,
+  `17_T` float NOT NULL,
+  `18_N` float NOT NULL,
+  `18_X2` float NOT NULL,
+  `18_T` float NOT NULL,
+  `19_N` float NOT NULL,
+  `19_X2` float NOT NULL,
+  `19_T` float NOT NULL,
+  `20_N` float NOT NULL,
+  `20_X2` float NOT NULL,
+  `20_T` float NOT NULL,
+  `21_N` float NOT NULL,
+  `21_X2` float NOT NULL,
+  `21_T` float NOT NULL,
+  `22_N` float NOT NULL,
+  `22_X2` float NOT NULL,
+  `22_T` float NOT NULL,
+  `23_N` float NOT NULL,
+  `23_X2` float NOT NULL,
+  `23_T` float NOT NULL,
+  `Total_N` float NOT NULL,
+  `Total_X2` float NOT NULL,
+  `Total_T` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur `trafic_mounth_statistics`
+--
+
+CREATE TABLE `trafic_mounth_statistics` (
+  `id` int NOT NULL,
+  `Node` varchar(50) NOT NULL,
+  `TG` varchar(20) NOT NULL,
+  `Year` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `TOT_N` float NOT NULL,
+  `TOT_X2` float NOT NULL,
+  `TOT_T` float NOT NULL,
+  `12_N` float NOT NULL,
+  `12_X2` float NOT NULL,
+  `12_T` float NOT NULL,
+  `11_N` float NOT NULL,
+  `11_X2` float NOT NULL,
+  `11_T` float NOT NULL,
+  `10_N` float NOT NULL,
+  `10_X2` float NOT NULL,
+  `10_T` float NOT NULL,
+  `9_N` float NOT NULL,
+  `9_X2` float NOT NULL,
+  `9_T` float NOT NULL,
+  `8_N` float NOT NULL,
+  `8_X2` float NOT NULL,
+  `8_T` float NOT NULL,
+  `7_N` float NOT NULL,
+  `7_X2` float NOT NULL,
+  `7_T` float NOT NULL,
+  `6_N` float NOT NULL,
+  `6_X2` float NOT NULL,
+  `6_T` float NOT NULL,
+  `5_N` float NOT NULL,
+  `5_X2` float NOT NULL,
+  `5_T` float NOT NULL,
+  `4_N` float NOT NULL,
+  `4_X2` float NOT NULL,
+  `4_T` float NOT NULL,
+  `3_N` float NOT NULL,
+  `3_X2` float NOT NULL,
+  `3_T` float NOT NULL,
+  `2_N` float NOT NULL,
+  `2_X2` float NOT NULL,
+  `2_T` float NOT NULL,
+  `1_N` float NOT NULL,
+  `1_X2` float NOT NULL,
+  `1_T` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8mb4_unicode_ci;
+
 --
 -- Index för dumpade tabeller
 --
+
+--
+-- Index för tabell `Refletor_station_state`
+--
+ALTER TABLE `Refletor_station_state`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Callsign` (`Callsign`);
 
 --
 -- Index för tabell `Station_day_statistic`
@@ -480,8 +594,34 @@ ALTER TABLE `Station_day_statistic`
   ADD PRIMARY KEY (`Id`);
 
 --
+-- Index för tabell `trafic_day_statistics`
+--
+ALTER TABLE `trafic_day_statistics`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `Node` (`Node`),
+  ADD KEY `TG` (`TG`),
+  ADD KEY `Year` (`Year`),
+  ADD KEY `Mounth` (`Mounth`),
+  ADD KEY `Day` (`Day`);
+
+--
+-- Index för tabell `trafic_mounth_statistics`
+--
+ALTER TABLE `trafic_mounth_statistics`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `Node` (`Node`),
+  ADD KEY `TG` (`TG`),
+  ADD KEY `Year` (`Year`);
+
+--
 -- AUTO_INCREMENT för dumpade tabeller
 --
+
+--
+-- AUTO_INCREMENT för tabell `Refletor_station_state`
+--
+ALTER TABLE `Refletor_station_state`
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT för tabell `Station_day_statistic`
@@ -489,8 +629,29 @@ ALTER TABLE `Station_day_statistic`
 ALTER TABLE `Station_day_statistic`
   MODIFY `Id` int NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT för tabell `trafic_day_statistics`
+--
+ALTER TABLE `trafic_day_statistics`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
-UPDATE `Settings` SET `value` = '2.5' WHERE `Settings`.`Define` = 'PORTAL_VERSION'; 
+--
+-- AUTO_INCREMENT för tabell `trafic_mounth_statistics`
+--
+ALTER TABLE `trafic_mounth_statistics`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+COMMIT;
 
 
-INSERT INTO `RefletorStations` (`ID`, `Callsign`, `Location`, `Collor`, `Sysop`, `Version`, `Last_Seen`, `Station_Down`, `Station_Down_timmer_count`, `Monitor`) VALUES (NULL, 'dummy', '', NULL, NULL, NULL, NULL, '1', '1', '1');
+
+
+UPDATE `Settings` SET `type` = '3' WHERE `Settings`.`id` = 1; 
+UPDATE `Settings` SET `value` = '2.6' WHERE `Settings`.`id` = 1; 
+
+ALTER TABLE `RefletorStations` DROP INDEX `Callsign_2`;
+
+TRUNCATE `RefletorStations`;
+ALTER TABLE `RefletorStations` CHANGE `ID` `ID` INT NOT NULL AUTO_INCREMENT; 
+
+ALTER TABLE `RefletorStations` ADD `Version` VARCHAR(200) NOT NULL AFTER `Last_Seen`; 
+ALTER TABLE `RefletorStations` ADD `Sysop` VARCHAR(200) NOT NULL AFTER `Collor`; 
