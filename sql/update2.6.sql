@@ -240,5 +240,12 @@ ALTER TABLE `trafic_mounth_statistics`
 COMMIT;
 
 
+ALTER TABLE users
+ADD image_url varchar(255);
+
+ALTER TABLE users
+ADD Reset_token varchar(99);
+
+
 UPDATE `Settings` SET `value` = '2.6B' WHERE `Settings`.`id` = 1; 
 

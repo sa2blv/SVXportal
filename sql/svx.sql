@@ -213,7 +213,9 @@ CREATE TABLE `users` (
   `level` int(11) NOT NULL,
   `Is_admin` int(11) NOT NULL,
   `Firstname` varchar(100) NOT NULL,
-  `lastname` varchar(100) NOT NULL
+  `lastname` varchar(100) NOT NULL,
+  `image_url` varchar(100),
+  `Reset_token` varchar(100)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
