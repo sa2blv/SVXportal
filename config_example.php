@@ -21,7 +21,6 @@ $livelink="%Stream_url%";
 $dir="%Recording_folder%";
 
 // svxreflektor server adress;
-//$serveradress ="http://reflector-sm.svxlink.org/svxreflektor/";
 $serveradress ="%Proxy_Serveradress%";
 
 // login form recording
@@ -45,17 +44,34 @@ $start_date_defined ="2020-01-12";
 
 #$reflektor_db_host =	 	"127.0.0.1";
 #$reflektor_db_user = 	"svxreflektor";
-#$reflektor_db_password = 	"94iXGNP09MttIJhp!a!";
+#$reflektor_db_password = 	"%DB_ref%";
 #$reflektor_db_db = 		"svxreflektor";
 
 #ini_set("SMTP", "MYSMTP.dns.org");
 
 #$use_mqtt=True;
-##$mqtt_host = "mqttportal.drift.sm2ampr.net";
+#$mqtt_host = "";
 #$mqtt_port = "10001";
 #$mqtt_TLS = "True";
 
 $Use_translate_on_info_page = true;
 $Use_translate_default_lang = "en_US";
+
+//define("USE_REDIS", true);
+//define("USE_REDIS_Multiuite_index", "HAMRadio");
+
+// redis host
+//$red_Host = '127.0.0.1';
+//$red_Port = 6379;
+//$red_Auth ='';
+
+$definde_qsy_tg  = array(
+    "24099" => "QSY",
+    "123" => "SIP",
+);
+
+
+
+
 
 ?>
